@@ -254,7 +254,9 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   assert.ok(boot('#/').html.includes('原创场景卡'));
   assert.equal(boot('#/').title,'AI Agent 与后端开发学习手册');
   assert.ok(boot('#/').html.includes('从 Agent 应用到后端工程，系统学习核心知识、项目实践与面试方法。'));
-  assert.ok(html.includes('class="brand-name">AI Agent 与后端开发学习手册'));
+  assert.ok(html.includes('aria-label="AI Agent 与后端开发学习手册首页"'));
+  assert.ok(html.includes('class="brand-name-ending">学习手册</span>'));
+  assert.ok(fs.readFileSync(path.join(site,'assets/style.css'),'utf8').includes('.brand-name-ending{white-space:nowrap}'));
   assert.ok(!html.includes('工程学习手册'));
   assert.ok(boot('#/library?q=SC-A01').title.endsWith(' · AI Agent 与后端开发学习手册'));
   assert.ok(boot('#/library?q=SC-A01').html.includes('SC-A01'));
