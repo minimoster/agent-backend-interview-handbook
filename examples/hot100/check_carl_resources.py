@@ -1,4 +1,4 @@
-"""Read-only verification of Carl links, scope, and preservation of original Hot100.
+"""Read-only verification of Carl links, scope, current lessons and unchanged main solutions.
 
 Run from the repository root: python -B examples/hot100/check_carl_resources.py
 Uses public metadata in sources/carl-hot100-resources.json; needs no network.
@@ -37,18 +37,29 @@ def main():
     require(len(supplemental_problems) == len({p['id'] for p in supplemental_problems}) == 15, '补充题必须为15个不同题号')
     require(not set(canonical_ids) & {p['id'] for p in supplemental_problems}, '补充题与官方Hot100出现重叠')
 
-    source_count = article_count = link_count = 0
+    source_count = article_count = historical_count = appendix_count = link_count = 0
     for p in problems:
         source = (ROOT / p['python_path']).read_bytes()
         article = (ROOT / p['doc_path']).read_bytes()
-        original_length = p['original_article_bytes']
+        marker = '\n## 代码随想录延伸阅读\n'.encode('utf-8')
+        require(article.count(marker) == 1, f"{p['id']}资源区块标记须唯一")
+        prefix, found, suffix = article.partition(marker)
+        addition_bytes = found + suffix
+        current_length = p.get('current_article_bytes', p['original_article_bytes'])
+        current_hash = p.get('current_article_sha256', p['original_article_sha256'])
         source_ok = SHA(source) == p['original_source_sha256']
-        article_ok = SHA(article[:original_length]) == p['original_article_sha256']
-        require(source_ok, f"{p['id']}原源码SHA256改变")
-        require(article_ok, f"{p['id']}原文章前缀SHA256改变")
+        article_ok = len(prefix) == current_length and SHA(prefix) == current_hash
+        historical_ok = (len(prefix) == p['original_article_bytes'] and
+                         SHA(prefix) == p['original_article_sha256'])
+        appendix_ok = SHA(addition_bytes) == p['resource_appendix_sha256']
+        require(source_ok, f"{p['id']}原主解法SHA256改变")
+        require(article_ok, f"{p['id']}当前原创文章前缀SHA256改变")
+        require(appendix_ok, f"{p['id']}外部资源区块SHA256改变")
         source_count += int(source_ok)
         article_count += int(article_ok)
-        addition = article[original_length:].decode()
+        historical_count += int(historical_ok)
+        appendix_count += int(appendix_ok)
+        addition = addition_bytes.decode('utf-8')
         require(addition.startswith('\n## 代码随想录延伸阅读\n'), f"{p['id']}追加区块不完整")
         require('```' not in addition, f"{p['id']}外部资源区不应复制代码块")
         for key in ['primary_explanation_url', 'primary_python_url', 'primary_video_url']:
@@ -123,7 +134,9 @@ def main():
     report = {
         'canonical_hot100_problem_count': len(canonical_ids),
         'original_source_sha256_preserved_count': source_count,
-        'original_article_prefix_sha256_preserved_count': article_count,
+        'current_article_prefix_sha256_verified_count': article_count,
+        'historical_article_prefix_sha256_unchanged_count': historical_count,
+        'resource_appendix_sha256_preserved_count': appendix_count,
         'canonical_manifest_sha256_preserved': SHA(manifest_path.read_bytes()) == mapping['canonical_manifest_original_sha256'],
         'main_resource_counts_explanation_python_video': main_counts,
         'supplemental_problem_count': len(supplemental_problems),
@@ -131,7 +144,7 @@ def main():
         'supplemental_unique_anchor_count': len({p['article_anchor'] for p in supplemental_problems}),
         'additional_local_links_checked': link_count,
         'errors': errors,
-        'scope': 'read-only local metadata and byte-preservation checks; dated external checks are not rerun',
+        'scope': 'read-only local metadata/current-prefix checks, historical prefix comparison and unchanged main-solution/resource-appendix hashes; dated external checks are not rerun',
     }
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return bool(errors)

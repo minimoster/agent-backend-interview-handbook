@@ -4,7 +4,7 @@
 
 这些是所读面经题单中未能直接由Hot100主线替代的变体。题设缺失的地方明确声明假设，不声称恢复原作者未提供的完整题目。讲解、代码和合成测试均为原创。
 
-2026-10-09，Python 3.12.14运行6个测试入口全部通过，含固定种子随机对拍与小范围穷举；没有向在线判题站提交。链表题重连原节点，调用后原链表结构改变。共享节点类型如下：
+2026-10-10，Python 3.12.14运行8个测试入口全部通过，含固定种子随机对拍、小范围穷举与X04的5,000位字符串边界；没有向在线判题站提交。附带的[历史运行记录](../../examples/interview_algorithms/validation-result.json)对应2026-10-09的6项测试，不包含新增的超大字符串与输入验证入口；当前8项可从根目录用`python -B examples/interview_algorithms/test_solutions.py`复现。链表题重连原节点，调用后原链表结构改变。共享节点类型如下：
 
 ```python
 from dataclasses import dataclass
@@ -52,7 +52,7 @@ def reverse_words_in_place(chars: list[str]) -> None:
 
 **常见误区：** 用split再join却声称原地；用chars[::-1]产生副本；把Python字符串赋值当作可修改字符。
 
-**来源与验证：** 原主题由[来源覆盖表](../../coverage/README.md)定位；本节为原创明确题设与代码，对应测试已运行。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
 
 <a id="x02"></a>
 ## X02 奇数位递增、偶数位递减的链表，如何线性排序？
@@ -103,11 +103,17 @@ Input is acyclic. Relinks existing nodes; consumes the original list topology.
 
 **面试答法：** 拆奇偶、反偶链、归并，两次左右遍历仍是O(n)，只用常数指针和一个哨兵节点。这个优化依赖输入的奇偶单调前提，任意链表不适用。
 
-**追问：** 怎样证明没有丢节点？测试结果节点身份集合与原集合相等，遍历时检测环，并检查输出排序。若要求保留原链结构，则需要复制节点或不同接口约定。
+**追问：** 怎样证明没有丢节点？需要分阶段的不变量，而不只是对几个样例比较节点集合：
+
+1. 拆链：按尾指针划定的已处理奇数前缀、已处理偶数前缀、尚未处理的原后缀，节点身份两两不交，并集始终是全部原节点。这里前缀到尾指针为止，不把尾部尚未断开的next计入前缀。每轮将后缀的下一个奇数节点接到奇链，再把其原后继接到偶链；游标前进前已经保住后续节点的入口。后缀每轮缩短，结束后`odd.next = None`断掉最后的跨链连接，得到两条互不相交的无环链。
+2. 反转：previous已反转前缀与current未处理后缀仍构成偶链的身份分割；先保存following，再改current.next，每轮仅将一个节点从后缀转移到前缀。后缀变空时，偶链原节点恰好都出现一次，顺序相反。
+3. 归并：以tail为止的已完成输出前缀、left剩余链、right剩余链仍是原节点的身份分割；每轮只取一条剩余链的头节点接到tail并移动该链的头。两条剩余链有序，因此选较小头维持输出非递减；一个头耗尽后接上另一条完整后缀。没有新结果节点被创建，哨兵不在返回链内，终止时每个原节点恰好输出一次，也不会接回已完成前缀形成环。
+
+测试中的身份集合相等、遍历检测环、排序比较是上述性质在有限输入上的佐证，不能替代对所有允许输入的证明。若要求保留原链结构，则需要复制节点或不同接口约定；本解法也不承诺相等值按原位置稳定排序。证明方法可参见[MIT循环不变量原理](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf#page=143)。
 
 **常见误区：** 把奇偶按节点值而不是位置拆；未断链；反转顺序错误丢next；违反前提时仍保证有序。
 
-**来源与验证：** 原主题由[来源覆盖表](../../coverage/README.md)定位；本节为原创明确题设与代码，对应测试已运行。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
 
 <a id="x03"></a>
 ## X03 不用大整数转换，怎样把两个十进制字符串相加？
@@ -143,28 +149,38 @@ def add_decimal_strings(a: str, b: str) -> str:
 
 **常见误区：** 漏最终进位；用int(a)+int(b)绕过要求；把isdigit认为只接受ASCII；0000结果变成空串。
 
-**来源与验证：** 原主题由[来源覆盖表](../../coverage/README.md)定位；本节为原创明确题设与代码，对应测试已运行。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
 
 <a id="x04"></a>
 ## X04 怎样构造小于N的最大整数，原题少条件时怎么办？
 
 **优先级：P1。**
 
-**知识点详解：** 所读源题只有简短标题，没有给出允许数字集合等关键约束，因此不能声称某个解法就是原题标准答案。下面提供一个明确的原创变体：给定正整数N和允许数字集合D，每个数字可以重复，结果必须是无前导零的正整数，严格小于N；无解返回None。如果限制每位只能用一次，算法必须更换。
+**知识点详解：** 若题目只有简短标题，没有给出允许数字集合等关键约束，就不能确定唯一的标准答案。下面提供一个明确的原创变体：给定正整数N和允许数字集合D，每个数字可以重复，结果必须是无前导零的正整数，严格小于N；无解返回None。如果限制每位只能用一次，算法必须更换。
+
+面向超大输入的`largest_below_decimal(n, digits)`用非空ASCII十进制字符串表示N和结果，不把整个数转成int。N允许前导零并先规范化；0或1这个扩展输入返回None。非法字符串或非0–9整数的集合成员抛ValueError，bool不视为合法数位。结果保持规范十进制形式，严格小于N。
+
+`largest_below(n, digits)`保留整数便利接口，但整数须能在当前解释器配置下完成十进制str/int转换；超出转换限制抛ValueError，并提示使用字符串接口。CPython 3.11+及包含相关安全修补的较早版本对这类转换设有可配置长度限制，常见默认值为4,300位；它不是所有Python版本/实现的统一上限。本实现和测试均不修改或关闭该安全限制。机制见[Python十进制整数转换限制](https://docs.python.org/3.12/library/stdtypes.html#integer-string-conversion-length-limitation)。
 
 同位数时希望尽量长地与N保持相同前缀。在每个前缀仍可行的位置，记录“把当前位改为小于N该位的最大允许数字”的机会；一旦严格变小，后缀全填最大允许数字即可。越靠后的可行下降点保留越长相等前缀，结果越大。若同位数无解，则退到少一位并填最大数字。
 
 **具体例子：** N=678，D={1,4,7}，第一位6不可用，选小于6的最大允许数4，后面填7，得到477。N=1234，D={1,2,3,4}，尽量保留123，末位降成3，得到1233。N=100，D={0,1}同位数无法严格下降，退成11。
 
 ```python
-def largest_below(n: int, digits: set[int]) -> int | None:
-    """Largest POSITIVE integer < n, using reusable allowed digits, no leading 0."""
+def largest_below_decimal(n: str, digits: set[int]) -> str | None:
+    """Largest positive decimal < n, with reusable digits and no leading zero.
+
+    n is nonempty ASCII decimal; leading zeros are accepted and normalized.
+    No whole-input integer conversion or interpreter-limit changes occur.
+    """
+    if not isinstance(n, str) or not n or any(c < "0" or c > "9" for c in n):
+        raise ValueError("n must be a nonempty ASCII decimal string")
     if any(type(d) is not int or d < 0 or d > 9 for d in digits):
         raise ValueError("digits must be integers in 0..9")
-    if n <= 1 or not digits or not (digits - {0}):
+    bound = n.lstrip("0") or "0"
+    if bound in ("0", "1") or not digits or not (digits - {0}):
         return None
     allowed = sorted(digits)
-    bound = str(n)
     last_drop = None
     for i, char in enumerate(bound):
         limit = ord(char) - ord("0")
@@ -175,22 +191,43 @@ def largest_below(n: int, digits: set[int]) -> int | None:
             break
     if last_drop is not None:
         i, digit = last_drop
-        text = bound[:i] + str(digit) + str(allowed[-1]) * (len(bound) - i - 1)
-        return int(text)
+        return bound[:i] + str(digit) + str(allowed[-1]) * (len(bound) - i - 1)
     shorter = len(bound) - 1
     if shorter == 0:
         return None
     largest_nonzero = max(digits - {0})
-    return int(str(largest_nonzero) + str(allowed[-1]) * (shorter - 1))
+    return str(largest_nonzero) + str(allowed[-1]) * (shorter - 1)
+
+
+def largest_below(n: int, digits: set[int]) -> int | None:
+    """Integer convenience wrapper; decimal conversion limits remain active.
+
+    Non-int bounds raise ValueError; n <= 1 has no positive solution.
+    Oversized decimal conversions raise ValueError; use the string API instead.
+    """
+    if type(n) is not int:
+        raise ValueError("n must be an integer")
+    if any(type(d) is not int or d < 0 or d > 9 for d in digits):
+        raise ValueError("digits must be integers in 0..9")
+    if n <= 1:
+        return None
+    try:
+        result = largest_below_decimal(str(n), digits)
+        return int(result) if result is not None else None
+    except ValueError as error:
+        raise ValueError(
+            "decimal conversion limit exceeded; use largest_below_decimal "
+            "with a decimal string"
+        ) from error
 ```
 
-**面试答法：** 先补全合同再解。沿合法相等前缀寻找最靠后的可行下降点，下降后后缀贪心取最大；没有同长解再缩短。字符决策成本O(10d)，d为位数，构造输出用O(d)空间；Python整数转换还有其自身成本。
+**面试答法：** 先补全合同再解。沿合法相等前缀寻找最靠后的可行下降点，下降后后缀贪心取最大；没有同长解再缩短。字符串接口扫描输入和构造输出需O(d)时间、O(d)空间，d按含前导零的输入长度计，最多10个允许数位使每位的选择成本有常数上界。整数便利接口还要另计大整数十进制转换成本与其失败条件，不能据此宣称不限位数。
 
-**追问：** 是否允许0作为结果？本题不允许，若允许要补特殊返回。数字可重复、必须全用、固定长度等条件任一改变，都不能继续套用本算法。
+**追问：** 是否允许0作为结果？本题不允许，若允许要补特殊返回。数字可重复、必须全用、固定长度等条件任一改变，都不能继续套用本算法。怎样核对5,001位边界？对`"1" + "0"*5000`与D={0,1}，首位不能向下取非零数，同位数无解，答案是`"1"*5000`；直接比较长度与同长字典序即可核验，无需int转换。测试同时核对整数入口的超限异常以及调用前后安全限制相同。
 
 **常见误区：** 题面缺条件却猜成唯一题；把小于写成小于等于；产生前导零；只贪心匹配当前位却不记录退回点。
 
-**来源与验证：** 原主题由[来源覆盖表](../../coverage/README.md)定位；本节为原创明确题设与代码，对应测试已运行。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
 
 <a id="x05"></a>
 ## X05 删除排序链表里所有重复值，和保留一个重复值有什么区别？
@@ -227,7 +264,7 @@ def remove_all_duplicate_values(head: Node | None) -> Node | None:
 
 **常见误区：** 把题目误写成每个值留一个；只删除第二个节点；头部重复时丢失返回头；kept推进太快。
 
-**来源与验证：** 原主题由[来源覆盖表](../../coverage/README.md)定位；本节为原创明确题设与代码，对应测试已运行。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
 
 <a id="x06"></a>
 ## X06 判断两个字符串是不是字母异位词，字符范围为什么重要？
@@ -265,7 +302,7 @@ def are_anagrams(a: str, b: str) -> bool:
 
 **常见误区：** 只比较set；默认所有题都可用26字母数组；忽略重复次数；混淆异位词判断、分组与滑动窗口三种输出。
 
-**来源与验证：** 原主题由[来源覆盖表](../../coverage/README.md)定位；本节为原创明确题设与代码，对应测试已运行。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
 
 ## 如何运行验证
 

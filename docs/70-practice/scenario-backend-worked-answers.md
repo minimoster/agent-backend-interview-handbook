@@ -113,7 +113,7 @@
 
 **优先级：P0**
 
-**知识点详解**：先确认 PID、时间窗口和容器限制。高 CPU 用线程级观测（如 top -H -p PID）定位 TID，再转换十六进制与 Java 线程 dump 中 nid 对照，重复采样排除偶然瞬间；JFR 可进一步看热点、分配和阻塞。OOM 先分 Java heap、metaspace、direct memory、本地线程与容器 OOM kill。后者可能来不及生成 Java heap dump；采集本身可停顿、耗盘并包含敏感信息，需在授权范围控制。
+**知识点详解**：先确认 PID、JDK/JVM 实现、线程模型、时间窗口和容器限制。对于 Linux HotSpot 的平台线程，可用 `top -H -p PID` 定位高 CPU 的 OS TID，转换为十六进制后与传统线程转储中的 nid 对照，并重复采样排除偶然瞬间。Java Thread 的逻辑 ID 不等于 OS TID；虚拟线程会挂载、卸载并可能更换载体平台线程，不能用这套映射作为虚拟线程的稳定身份定位。采用虚拟线程时，结合 CPU 采样/JFR、请求上下文和支持虚拟线程的 `jcmd PID Thread.dump_to_file -format=json 文件路径` 分析；先用目标 JVM 的 `jcmd PID help` 核对可用命令。线程转储只是栈快照，不能单独证明 CPU 根因；JFR 可进一步看热点、分配和阻塞。OOM 先分 Java heap、metaspace、direct memory、本地线程与容器 OOM kill。后者可能来不及生成 Java heap dump；采集本身可停顿、耗盘并包含敏感信息，需在授权范围控制。
 
 **具体例子**：线程热点是正则回溯或死循环，优化堆容量没有意义；另一进程堆使用平稳但 native thread 创建失败，可能是线程数与本地内存限制。应保存日志、GC/JFR、进程状态和部署版本形成同一时间线。
 
@@ -121,9 +121,9 @@
 
 **追问**：heap dump 很大怎么处理？确认磁盘、访问权限与保留期限，离线分析最短必要副本，不能公开上传完整业务对象。
 
-**常见误区**：OOM 全是堆太小；jstack 一次就证明根因；未做线程 TID 映射就猜热点方法。
+**常见误区**：OOM 全是堆太小；一次线程转储就证明根因；把 Java 逻辑线程 ID 当作 OS TID；把平台线程的 TID→nid 方法无条件用于虚拟线程。
 
-**来源**：[FB-S049 JDK 21 jcmd](https://docs.oracle.com/en/java/javase/21/docs/specs/man/jcmd.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S056 Linux proc_pid_stat(5)](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[JDK 25 jcmd 命令与影响说明](https://docs.oracle.com/en/java/javase/25/docs/specs/man/jcmd.html)、[JDK 25 虚拟线程与载体调度](https://docs.oracle.com/en/java/javase/25/core/virtual-threads.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S056 Linux proc_pid_stat(5)](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)。业务组合、反例与答题组织为原创教学推导。
 
 <a id="fb73"></a>
 

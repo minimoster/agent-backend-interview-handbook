@@ -60,5 +60,5 @@
 
 **常见误区**：free 的 free 数值低就是泄漏；du 与 df 不同必是工具坏；一次截图足够解释间歇故障。
 
-**来源**：[FB-S047 GNU Coreutils rm 命令手册](https://www.gnu.org/s/coreutils/manual/html_node/rm-invocation.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S056 Linux proc_pid_stat(5)](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[procps-ng top(1)](https://man7.org/linux/man-pages/man1/top.1.html)、[procps-ng free(1)](https://man7.org/linux/man-pages/man1/free.1.html)、[procps-ng vmstat(8)](https://man7.org/linux/man-pages/man8/vmstat.8.html)、[GNU Coreutils df](https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html)、[GNU Coreutils du](https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)。业务组合、反例与答题组织为原创教学推导。
 

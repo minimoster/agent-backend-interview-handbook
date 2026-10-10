@@ -205,6 +205,22 @@ check('搜索占位符显式采用主题 muted 色，明暗背景均达到 AA',(
     assert.ok(contrastRatio(color('muted'),color('panel'))>=4.5);
   }
 });
+check('知识修订可检索，36条Agent追问参考答案可折叠且题数独立',()=>{
+  const expected=[['docs/10-agent/01-agent-loop-tools-and-state.md',8],['docs/10-agent/02-rag-retrieval-and-reranking.md',10],['docs/10-agent/03-memory-and-context.md',5],['docs/10-agent/04-streaming-and-reliable-execution.md',7],['docs/50-projects/public-repository-case-studies.md',6]];
+  for(const [file,count] of expected){
+    const doc=docs.get(file);
+    assert.equal((doc.html.match(/class="answer-section"/g)||[]).length,count,file);
+    assert.equal((doc.source.match(/\*\*验收点：\*\*/g)||[]).length,count,file);
+  }
+  const has=(q,file)=>engine.query(new URLSearchParams({q})).results.some(r=>r.d.path===file);
+  assert.ok(has('fingerprint','docs/50-projects/data-engineering-agent-case.md'));
+  assert.ok(has('子块全文字符串','docs/50-projects/public-repository-case-studies.md'));
+  assert.ok(has('Last-Event-ID','docs/10-agent/04-streaming-and-reliable-execution.md'));
+  assert.ok(docs.get('QUESTION_INDEX.md').source.includes('Agent补充 · 23题'));
+  assert.equal(index.counts.interview_questions,361);
+  assert.equal(data.hot100Count,100);
+  assert.equal(data.supplementaryCount,15);
+});
 check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存储',()=>{
   // Minimal DOM stubs check runtime initialization only. They do not lay out or paint a page.
   function boot(hash,allowStorage=true){

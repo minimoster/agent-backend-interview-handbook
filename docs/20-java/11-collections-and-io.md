@@ -36,7 +36,7 @@ JDK 7 ConcurrentHashMap 用 Segment 协調；JDK 8 之后的主要结构改为�
 
 **补充：Hashtable 与 HashMap**。两者都依赖键的 hashCode/equals。OpenJDK 25u Hashtable 用桶数组加链式冲突节点，不使用 HashMap 的树桶；默认容量 11，扩容路径通常为旧容量乘 2 加 1，而 HashMap 常用 2 的幂容量与翻倍分流。Hashtable 的 get/put 等关键方法在实例上同步，不允许 null 键和值；HashMap 允许一个 null 键及 null 值且本身不同步。单方法同步仍不把 `containsKey → put` 两次调用变成原子业务协议，必要时使用原子复合方法或同一把外部锁。高并发键值访问通常比较 ConcurrentHashMap，而非把 Hashtable 的整表监视器当默认方案。容量和节点是对应版本实现，不是 Map 接口合同。
 
-**具体例子**：容量从 16 变 32，某节点旧桶为 5；若存储 hash 的 16 位为零，新桶仍 5，否则为 21。并发 map 中两个请求做 containsKey 再 put 仍可能都通过检查，应改为 putIfAbsent。线程安全保证与树化阈值是两个层次。
+**具体例子**：容量从 16 变为 32，某节点旧桶为 5。检查节点已存储的 hash：若 `(hash & 16) == 0`，新桶仍为 5；否则为 5 + 16 = 21。这里的 16 是旧容量这个掩码值，检查的是权重为 16 的那一位，而不是第 16 个二进制位。并发 map 中两个请求做 containsKey 再 put 仍可能都通过检查，应改为 putIfAbsent。线程安全保证与树化阈值是两个层次。
 
 **面试答法**：我会讲扩容按新增哈希位分流、树桶缓解冲突、并发桶协调；阈值附带版本和路径，树桶的同步对象与树根区分。
 

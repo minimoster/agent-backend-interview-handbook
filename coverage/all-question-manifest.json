@@ -5,7 +5,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a01",
     "priority": "P0",
-    "chars": 575
+    "chars": 696
   },
   {
     "id": "A02",
@@ -13,7 +13,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a02",
     "priority": "P0",
-    "chars": 551
+    "chars": 687
   },
   {
     "id": "A03",
@@ -21,7 +21,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a03",
     "priority": "P0",
-    "chars": 615
+    "chars": 728
   },
   {
     "id": "A04",
@@ -29,7 +29,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a04",
     "priority": "P0",
-    "chars": 575
+    "chars": 824
   },
   {
     "id": "A05",
@@ -37,7 +37,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a05",
     "priority": "P0",
-    "chars": 534
+    "chars": 770
   },
   {
     "id": "A06",
@@ -45,7 +45,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a06",
     "priority": "P1",
-    "chars": 562
+    "chars": 692
   },
   {
     "id": "A07",
@@ -53,7 +53,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a07",
     "priority": "P1",
-    "chars": 553
+    "chars": 681
   },
   {
     "id": "A08",
@@ -61,7 +61,7 @@
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a08",
     "priority": "P1",
-    "chars": 684
+    "chars": 917
   },
   {
     "id": "A09",
@@ -69,7 +69,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a09",
     "priority": "P0",
-    "chars": 535
+    "chars": 664
   },
   {
     "id": "A10",
@@ -77,7 +77,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a10",
     "priority": "P0",
-    "chars": 577
+    "chars": 697
   },
   {
     "id": "A11",
@@ -85,7 +85,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a11",
     "priority": "P0",
-    "chars": 546
+    "chars": 671
   },
   {
     "id": "A12",
@@ -93,7 +93,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a12",
     "priority": "P0",
-    "chars": 517
+    "chars": 635
   },
   {
     "id": "A13",
@@ -101,7 +101,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a13",
     "priority": "P0",
-    "chars": 550
+    "chars": 772
   },
   {
     "id": "A14",
@@ -109,7 +109,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a14",
     "priority": "P0",
-    "chars": 735
+    "chars": 875
   },
   {
     "id": "A15",
@@ -117,7 +117,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a15",
     "priority": "P1",
-    "chars": 560
+    "chars": 688
   },
   {
     "id": "A16",
@@ -125,7 +125,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a16",
     "priority": "P0",
-    "chars": 568
+    "chars": 711
   },
   {
     "id": "A17",
@@ -133,7 +133,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a17",
     "priority": "P0",
-    "chars": 585
+    "chars": 722
   },
   {
     "id": "A18",
@@ -141,7 +141,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a18",
     "priority": "P1",
-    "chars": 635
+    "chars": 780
   },
   {
     "id": "A19",
@@ -149,7 +149,7 @@
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a19",
     "priority": "P0",
-    "chars": 540
+    "chars": 654
   },
   {
     "id": "A20",
@@ -157,7 +157,7 @@
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a20",
     "priority": "P0",
-    "chars": 519
+    "chars": 658
   },
   {
     "id": "A21",
@@ -165,7 +165,7 @@
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a21",
     "priority": "P1",
-    "chars": 537
+    "chars": 652
   },
   {
     "id": "A22",
@@ -173,7 +173,7 @@
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a22",
     "priority": "P1",
-    "chars": 568
+    "chars": 721
   },
   {
     "id": "A23",
@@ -181,7 +181,7 @@
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a23",
     "priority": "P1",
-    "chars": 540
+    "chars": 686
   },
   {
     "id": "A24",
@@ -189,7 +189,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a24",
     "priority": "P0",
-    "chars": 618
+    "chars": 888
   },
   {
     "id": "A25",
@@ -197,7 +197,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a25",
     "priority": "P0",
-    "chars": 531
+    "chars": 786
   },
   {
     "id": "A26",
@@ -205,7 +205,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a26",
     "priority": "P0",
-    "chars": 548
+    "chars": 668
   },
   {
     "id": "A27",
@@ -213,7 +213,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a27",
     "priority": "P0",
-    "chars": 612
+    "chars": 773
   },
   {
     "id": "A28",
@@ -221,7 +221,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a28",
     "priority": "P0",
-    "chars": 660
+    "chars": 870
   },
   {
     "id": "A29",
@@ -229,7 +229,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a29",
     "priority": "P0",
-    "chars": 502
+    "chars": 859
   },
   {
     "id": "A30",
@@ -237,7 +237,7 @@
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a30",
     "priority": "P0",
-    "chars": 597
+    "chars": 943
   },
   {
     "id": "FA22",
@@ -245,7 +245,7 @@
     "path": "docs/10-agent/14-controlled-improvement.md",
     "anchor": "fa22",
     "priority": "P1",
-    "chars": 720
+    "chars": 701
   },
   {
     "id": "FA23",
@@ -253,7 +253,7 @@
     "path": "docs/10-agent/14-controlled-improvement.md",
     "anchor": "fa23",
     "priority": "P1",
-    "chars": 724
+    "chars": 705
   },
   {
     "id": "FA24",
@@ -261,7 +261,7 @@
     "path": "docs/10-agent/14-controlled-improvement.md",
     "anchor": "fa24",
     "priority": "P2",
-    "chars": 767
+    "chars": 748
   },
   {
     "id": "FA25",
@@ -269,7 +269,7 @@
     "path": "docs/10-agent/14-controlled-improvement.md",
     "anchor": "fa25",
     "priority": "P1",
-    "chars": 857
+    "chars": 838
   },
   {
     "id": "FA42",
@@ -285,7 +285,7 @@
     "path": "docs/10-agent/15-mcp-versions-and-integration.md",
     "anchor": "fa26",
     "priority": "P0",
-    "chars": 870
+    "chars": 851
   },
   {
     "id": "FA27",
@@ -293,7 +293,7 @@
     "path": "docs/10-agent/15-mcp-versions-and-integration.md",
     "anchor": "fa27",
     "priority": "P0",
-    "chars": 1198
+    "chars": 1179
   },
   {
     "id": "FA28",
@@ -301,7 +301,7 @@
     "path": "docs/10-agent/15-mcp-versions-and-integration.md",
     "anchor": "fa28",
     "priority": "P1",
-    "chars": 855
+    "chars": 836
   },
   {
     "id": "FA29",
@@ -309,7 +309,7 @@
     "path": "docs/10-agent/15-mcp-versions-and-integration.md",
     "anchor": "fa29",
     "priority": "P0",
-    "chars": 789
+    "chars": 770
   },
   {
     "id": "FA30",
@@ -325,7 +325,7 @@
     "path": "docs/10-agent/16-skills-routing-and-governance.md",
     "anchor": "fa31",
     "priority": "P0",
-    "chars": 817
+    "chars": 798
   },
   {
     "id": "FA32",
@@ -333,7 +333,7 @@
     "path": "docs/10-agent/16-skills-routing-and-governance.md",
     "anchor": "fa32",
     "priority": "P0",
-    "chars": 737
+    "chars": 718
   },
   {
     "id": "FA33",
@@ -341,7 +341,7 @@
     "path": "docs/10-agent/16-skills-routing-and-governance.md",
     "anchor": "fa33",
     "priority": "P1",
-    "chars": 822
+    "chars": 803
   },
   {
     "id": "FA34",
@@ -357,7 +357,7 @@
     "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
     "anchor": "fa35",
     "priority": "P1",
-    "chars": 883
+    "chars": 864
   },
   {
     "id": "FA36",
@@ -365,7 +365,7 @@
     "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
     "anchor": "fa36",
     "priority": "P1",
-    "chars": 786
+    "chars": 767
   },
   {
     "id": "FA37",
@@ -373,7 +373,7 @@
     "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
     "anchor": "fa37",
     "priority": "P0",
-    "chars": 902
+    "chars": 883
   },
   {
     "id": "FA38",
@@ -381,7 +381,7 @@
     "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
     "anchor": "fa38",
     "priority": "P0",
-    "chars": 847
+    "chars": 828
   },
   {
     "id": "FA43",
@@ -389,7 +389,7 @@
     "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
     "anchor": "fa43",
     "priority": "P2",
-    "chars": 760
+    "chars": 808
   },
   {
     "id": "FA39",
@@ -397,7 +397,7 @@
     "path": "docs/10-agent/18-harness-runtime-and-observability.md",
     "anchor": "fa39",
     "priority": "P0",
-    "chars": 851
+    "chars": 832
   },
   {
     "id": "FA40",
@@ -405,7 +405,7 @@
     "path": "docs/10-agent/18-harness-runtime-and-observability.md",
     "anchor": "fa40",
     "priority": "P0",
-    "chars": 908
+    "chars": 889
   },
   {
     "id": "FA41",
@@ -421,7 +421,7 @@
     "path": "docs/10-agent/22-chroma-persistence-and-embedding.md",
     "anchor": "fa63",
     "priority": "P1",
-    "chars": 962
+    "chars": 1065
   },
   {
     "id": "J01",
@@ -429,7 +429,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j01",
     "priority": "P0",
-    "chars": 720
+    "chars": 702
   },
   {
     "id": "J02",
@@ -437,7 +437,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j02",
     "priority": "P0",
-    "chars": 656
+    "chars": 638
   },
   {
     "id": "J03",
@@ -445,7 +445,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j03",
     "priority": "P0",
-    "chars": 631
+    "chars": 613
   },
   {
     "id": "J04",
@@ -453,7 +453,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j04",
     "priority": "P0",
-    "chars": 616
+    "chars": 598
   },
   {
     "id": "J05",
@@ -461,7 +461,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j05",
     "priority": "P0",
-    "chars": 657
+    "chars": 639
   },
   {
     "id": "J06",
@@ -469,7 +469,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j06",
     "priority": "P1",
-    "chars": 559
+    "chars": 541
   },
   {
     "id": "J07",
@@ -477,7 +477,7 @@
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j07",
     "priority": "P0",
-    "chars": 633
+    "chars": 615
   },
   {
     "id": "J08",
@@ -493,7 +493,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j09",
     "priority": "P0",
-    "chars": 553
+    "chars": 535
   },
   {
     "id": "J10",
@@ -501,7 +501,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j10",
     "priority": "P0",
-    "chars": 862
+    "chars": 844
   },
   {
     "id": "J11",
@@ -509,7 +509,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j11",
     "priority": "P0",
-    "chars": 624
+    "chars": 606
   },
   {
     "id": "J12",
@@ -517,7 +517,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j12",
     "priority": "P0",
-    "chars": 605
+    "chars": 587
   },
   {
     "id": "J13",
@@ -525,7 +525,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j13",
     "priority": "P0",
-    "chars": 619
+    "chars": 601
   },
   {
     "id": "J14",
@@ -533,7 +533,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j14",
     "priority": "P1",
-    "chars": 575
+    "chars": 557
   },
   {
     "id": "J15",
@@ -541,7 +541,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j15",
     "priority": "P0",
-    "chars": 650
+    "chars": 632
   },
   {
     "id": "J16",
@@ -549,7 +549,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j16",
     "priority": "P0",
-    "chars": 668
+    "chars": 650
   },
   {
     "id": "J17",
@@ -557,7 +557,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j17",
     "priority": "P1",
-    "chars": 608
+    "chars": 590
   },
   {
     "id": "J18",
@@ -565,7 +565,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j18",
     "priority": "P0",
-    "chars": 653
+    "chars": 635
   },
   {
     "id": "J19",
@@ -573,7 +573,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j19",
     "priority": "P1",
-    "chars": 564
+    "chars": 546
   },
   {
     "id": "J20",
@@ -581,7 +581,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j20",
     "priority": "P1",
-    "chars": 670
+    "chars": 652
   },
   {
     "id": "J21",
@@ -589,7 +589,7 @@
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j21",
     "priority": "P1",
-    "chars": 772
+    "chars": 754
   },
   {
     "id": "J22",
@@ -605,7 +605,7 @@
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j23",
     "priority": "P0",
-    "chars": 587
+    "chars": 569
   },
   {
     "id": "J24",
@@ -613,7 +613,7 @@
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j24",
     "priority": "P0",
-    "chars": 555
+    "chars": 537
   },
   {
     "id": "J25",
@@ -621,7 +621,7 @@
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j25",
     "priority": "P1",
-    "chars": 512
+    "chars": 494
   },
   {
     "id": "J26",
@@ -629,7 +629,7 @@
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j26",
     "priority": "P1",
-    "chars": 618
+    "chars": 600
   },
   {
     "id": "J27",
@@ -637,7 +637,7 @@
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j27",
     "priority": "P0",
-    "chars": 521
+    "chars": 503
   },
   {
     "id": "J28",
@@ -645,7 +645,7 @@
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j28",
     "priority": "P0",
-    "chars": 554
+    "chars": 536
   },
   {
     "id": "J29",
@@ -661,7 +661,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j30",
     "priority": "P0",
-    "chars": 595
+    "chars": 577
   },
   {
     "id": "J31",
@@ -669,7 +669,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j31",
     "priority": "P1",
-    "chars": 573
+    "chars": 555
   },
   {
     "id": "J32",
@@ -677,7 +677,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j32",
     "priority": "P0",
-    "chars": 616
+    "chars": 598
   },
   {
     "id": "J33",
@@ -685,7 +685,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j33",
     "priority": "P0",
-    "chars": 593
+    "chars": 575
   },
   {
     "id": "J34",
@@ -693,7 +693,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j34",
     "priority": "P0",
-    "chars": 775
+    "chars": 757
   },
   {
     "id": "J35",
@@ -701,7 +701,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j35",
     "priority": "P0",
-    "chars": 767
+    "chars": 749
   },
   {
     "id": "J36",
@@ -709,7 +709,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j36",
     "priority": "P1",
-    "chars": 594
+    "chars": 576
   },
   {
     "id": "J37",
@@ -717,7 +717,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j37",
     "priority": "P0",
-    "chars": 749
+    "chars": 731
   },
   {
     "id": "J38",
@@ -725,7 +725,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j38",
     "priority": "P0",
-    "chars": 584
+    "chars": 566
   },
   {
     "id": "J39",
@@ -733,7 +733,7 @@
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j39",
     "priority": "P0",
-    "chars": 569
+    "chars": 551
   },
   {
     "id": "J40",
@@ -749,7 +749,7 @@
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j41",
     "priority": "P0",
-    "chars": 692
+    "chars": 674
   },
   {
     "id": "J42",
@@ -757,7 +757,7 @@
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j42",
     "priority": "P0",
-    "chars": 667
+    "chars": 649
   },
   {
     "id": "J43",
@@ -765,7 +765,7 @@
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j43",
     "priority": "P0",
-    "chars": 679
+    "chars": 661
   },
   {
     "id": "J44",
@@ -773,7 +773,7 @@
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j44",
     "priority": "P0",
-    "chars": 683
+    "chars": 665
   },
   {
     "id": "J45",
@@ -781,7 +781,7 @@
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j45",
     "priority": "P0",
-    "chars": 660
+    "chars": 642
   },
   {
     "id": "J46",
@@ -797,7 +797,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj01",
     "priority": "P1",
-    "chars": 2359
+    "chars": 2341
   },
   {
     "id": "FJ02",
@@ -805,7 +805,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj02",
     "priority": "P0",
-    "chars": 954
+    "chars": 936
   },
   {
     "id": "FJ03",
@@ -813,7 +813,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj03",
     "priority": "P0",
-    "chars": 1307
+    "chars": 1289
   },
   {
     "id": "FJ04",
@@ -821,7 +821,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj04",
     "priority": "P0",
-    "chars": 1149
+    "chars": 1131
   },
   {
     "id": "FJ05",
@@ -829,7 +829,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj05",
     "priority": "P0",
-    "chars": 1612
+    "chars": 1594
   },
   {
     "id": "FJ06",
@@ -837,7 +837,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj06",
     "priority": "P0",
-    "chars": 1426
+    "chars": 1408
   },
   {
     "id": "FJ07",
@@ -845,7 +845,7 @@
     "path": "docs/20-java/10-language-foundations.md",
     "anchor": "fj07",
     "priority": "P1",
-    "chars": 1091
+    "chars": 1073
   },
   {
     "id": "FJ08",
@@ -861,7 +861,7 @@
     "path": "docs/20-java/11-collections-and-io.md",
     "anchor": "fj09",
     "priority": "P0",
-    "chars": 1301
+    "chars": 1283
   },
   {
     "id": "FJ10",
@@ -869,7 +869,7 @@
     "path": "docs/20-java/11-collections-and-io.md",
     "anchor": "fj10",
     "priority": "P1",
-    "chars": 2130
+    "chars": 2187
   },
   {
     "id": "FJ11",
@@ -877,7 +877,7 @@
     "path": "docs/20-java/11-collections-and-io.md",
     "anchor": "fj11",
     "priority": "P0",
-    "chars": 1100
+    "chars": 1082
   },
   {
     "id": "FJ12",
@@ -893,7 +893,7 @@
     "path": "docs/20-java/12-jvm-operation.md",
     "anchor": "fj13",
     "priority": "P0",
-    "chars": 1688
+    "chars": 1670
   },
   {
     "id": "FJ14",
@@ -901,7 +901,7 @@
     "path": "docs/20-java/12-jvm-operation.md",
     "anchor": "fj14",
     "priority": "P1",
-    "chars": 1502
+    "chars": 1484
   },
   {
     "id": "FJ15",
@@ -909,7 +909,7 @@
     "path": "docs/20-java/12-jvm-operation.md",
     "anchor": "fj15",
     "priority": "P0",
-    "chars": 1415
+    "chars": 1397
   },
   {
     "id": "FJ16",
@@ -925,7 +925,7 @@
     "path": "docs/20-java/13-concurrency-details.md",
     "anchor": "fj17",
     "priority": "P0",
-    "chars": 2672
+    "chars": 2654
   },
   {
     "id": "FJ18",
@@ -933,7 +933,7 @@
     "path": "docs/20-java/13-concurrency-details.md",
     "anchor": "fj18",
     "priority": "P1",
-    "chars": 1790
+    "chars": 1772
   },
   {
     "id": "FJ19",
@@ -941,7 +941,7 @@
     "path": "docs/20-java/13-concurrency-details.md",
     "anchor": "fj19",
     "priority": "P1",
-    "chars": 1145
+    "chars": 1127
   },
   {
     "id": "FJ20",
@@ -949,7 +949,7 @@
     "path": "docs/20-java/13-concurrency-details.md",
     "anchor": "fj20",
     "priority": "P0",
-    "chars": 1180
+    "chars": 1162
   },
   {
     "id": "FJ21",
@@ -965,7 +965,7 @@
     "path": "docs/20-java/14-spring-mechanisms.md",
     "anchor": "fj22",
     "priority": "P0",
-    "chars": 1253
+    "chars": 1235
   },
   {
     "id": "FJ23",
@@ -973,7 +973,7 @@
     "path": "docs/20-java/14-spring-mechanisms.md",
     "anchor": "fj23",
     "priority": "P0",
-    "chars": 1773
+    "chars": 1755
   },
   {
     "id": "FJ24",
@@ -981,7 +981,7 @@
     "path": "docs/20-java/14-spring-mechanisms.md",
     "anchor": "fj24",
     "priority": "P1",
-    "chars": 2544
+    "chars": 2526
   },
   {
     "id": "FJ25",
@@ -1005,7 +1005,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g01",
     "priority": "P0",
-    "chars": 822
+    "chars": 804
   },
   {
     "id": "G02",
@@ -1013,7 +1013,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g02",
     "priority": "P1",
-    "chars": 737
+    "chars": 719
   },
   {
     "id": "G03",
@@ -1021,7 +1021,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g03",
     "priority": "P0",
-    "chars": 752
+    "chars": 734
   },
   {
     "id": "G04",
@@ -1029,7 +1029,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g04",
     "priority": "P0",
-    "chars": 682
+    "chars": 664
   },
   {
     "id": "G05",
@@ -1037,7 +1037,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g05",
     "priority": "P0",
-    "chars": 710
+    "chars": 692
   },
   {
     "id": "G06",
@@ -1045,7 +1045,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g06",
     "priority": "P0",
-    "chars": 787
+    "chars": 769
   },
   {
     "id": "G07",
@@ -1053,7 +1053,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g07",
     "priority": "P0",
-    "chars": 766
+    "chars": 748
   },
   {
     "id": "G08",
@@ -1061,7 +1061,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g08",
     "priority": "P0",
-    "chars": 652
+    "chars": 634
   },
   {
     "id": "G09",
@@ -1069,7 +1069,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g09",
     "priority": "P0",
-    "chars": 786
+    "chars": 927
   },
   {
     "id": "G10",
@@ -1077,7 +1077,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g10",
     "priority": "P0",
-    "chars": 699
+    "chars": 681
   },
   {
     "id": "G11",
@@ -1085,7 +1085,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g11",
     "priority": "P0",
-    "chars": 708
+    "chars": 690
   },
   {
     "id": "G12",
@@ -1093,7 +1093,7 @@
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g12",
     "priority": "P0",
-    "chars": 659
+    "chars": 641
   },
   {
     "id": "G13",
@@ -1109,7 +1109,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g14",
     "priority": "P0",
-    "chars": 728
+    "chars": 710
   },
   {
     "id": "G15",
@@ -1117,7 +1117,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g15",
     "priority": "P1",
-    "chars": 728
+    "chars": 710
   },
   {
     "id": "G16",
@@ -1125,7 +1125,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g16",
     "priority": "P0",
-    "chars": 757
+    "chars": 739
   },
   {
     "id": "G17",
@@ -1133,7 +1133,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g17",
     "priority": "P1",
-    "chars": 746
+    "chars": 728
   },
   {
     "id": "G18",
@@ -1141,7 +1141,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g18",
     "priority": "P0",
-    "chars": 760
+    "chars": 742
   },
   {
     "id": "G19",
@@ -1149,7 +1149,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g19",
     "priority": "P0",
-    "chars": 797
+    "chars": 779
   },
   {
     "id": "G20",
@@ -1157,7 +1157,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g20",
     "priority": "P0",
-    "chars": 713
+    "chars": 695
   },
   {
     "id": "G21",
@@ -1165,7 +1165,7 @@
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g21",
     "priority": "P0",
-    "chars": 827
+    "chars": 809
   },
   {
     "id": "G22",
@@ -1181,7 +1181,7 @@
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g23",
     "priority": "P0",
-    "chars": 701
+    "chars": 683
   },
   {
     "id": "G24",
@@ -1189,7 +1189,7 @@
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g24",
     "priority": "P0",
-    "chars": 801
+    "chars": 783
   },
   {
     "id": "G25",
@@ -1197,7 +1197,7 @@
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g25",
     "priority": "P1",
-    "chars": 731
+    "chars": 713
   },
   {
     "id": "G26",
@@ -1213,7 +1213,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g27",
     "priority": "P0",
-    "chars": 795
+    "chars": 777
   },
   {
     "id": "G28",
@@ -1221,7 +1221,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g28",
     "priority": "P0",
-    "chars": 751
+    "chars": 733
   },
   {
     "id": "G29",
@@ -1229,7 +1229,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g29",
     "priority": "P0",
-    "chars": 768
+    "chars": 750
   },
   {
     "id": "G30",
@@ -1237,7 +1237,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g30",
     "priority": "P0",
-    "chars": 753
+    "chars": 735
   },
   {
     "id": "G31",
@@ -1245,7 +1245,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g31",
     "priority": "P1",
-    "chars": 767
+    "chars": 749
   },
   {
     "id": "G32",
@@ -1253,7 +1253,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g32",
     "priority": "P0",
-    "chars": 679
+    "chars": 661
   },
   {
     "id": "G33",
@@ -1261,7 +1261,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g33",
     "priority": "P0",
-    "chars": 721
+    "chars": 703
   },
   {
     "id": "G34",
@@ -1269,7 +1269,7 @@
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g34",
     "priority": "P0",
-    "chars": 769
+    "chars": 751
   },
   {
     "id": "G35",
@@ -1285,7 +1285,7 @@
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g36",
     "priority": "P0",
-    "chars": 663
+    "chars": 645
   },
   {
     "id": "G37",
@@ -1293,7 +1293,7 @@
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g37",
     "priority": "P1",
-    "chars": 737
+    "chars": 719
   },
   {
     "id": "G38",
@@ -1301,7 +1301,7 @@
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g38",
     "priority": "P1",
-    "chars": 686
+    "chars": 668
   },
   {
     "id": "G39",
@@ -1309,7 +1309,7 @@
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g39",
     "priority": "P0",
-    "chars": 704
+    "chars": 686
   },
   {
     "id": "G40",
@@ -1325,7 +1325,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b01",
     "priority": "P0",
-    "chars": 555
+    "chars": 537
   },
   {
     "id": "B02",
@@ -1333,7 +1333,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b02",
     "priority": "P1",
-    "chars": 508
+    "chars": 490
   },
   {
     "id": "B03",
@@ -1341,7 +1341,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b03",
     "priority": "P0",
-    "chars": 549
+    "chars": 531
   },
   {
     "id": "B04",
@@ -1349,7 +1349,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b04",
     "priority": "P0",
-    "chars": 563
+    "chars": 545
   },
   {
     "id": "B05",
@@ -1357,7 +1357,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b05",
     "priority": "P0",
-    "chars": 584
+    "chars": 566
   },
   {
     "id": "B06",
@@ -1365,7 +1365,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b06",
     "priority": "P0",
-    "chars": 487
+    "chars": 469
   },
   {
     "id": "B07",
@@ -1373,7 +1373,7 @@
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b07",
     "priority": "P0",
-    "chars": 641
+    "chars": 623
   },
   {
     "id": "B08",
@@ -1389,7 +1389,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b09",
     "priority": "P0",
-    "chars": 651
+    "chars": 633
   },
   {
     "id": "B10",
@@ -1397,7 +1397,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b10",
     "priority": "P0",
-    "chars": 554
+    "chars": 536
   },
   {
     "id": "B11",
@@ -1405,7 +1405,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b11",
     "priority": "P0",
-    "chars": 677
+    "chars": 659
   },
   {
     "id": "B12",
@@ -1413,7 +1413,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b12",
     "priority": "P0",
-    "chars": 511
+    "chars": 493
   },
   {
     "id": "B13",
@@ -1421,7 +1421,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b13",
     "priority": "P0",
-    "chars": 613
+    "chars": 595
   },
   {
     "id": "B14",
@@ -1429,7 +1429,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b14",
     "priority": "P0",
-    "chars": 688
+    "chars": 670
   },
   {
     "id": "B15",
@@ -1437,7 +1437,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b15",
     "priority": "P0",
-    "chars": 718
+    "chars": 700
   },
   {
     "id": "B16",
@@ -1445,7 +1445,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b16",
     "priority": "P0",
-    "chars": 615
+    "chars": 597
   },
   {
     "id": "B17",
@@ -1453,7 +1453,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b17",
     "priority": "P0",
-    "chars": 479
+    "chars": 461
   },
   {
     "id": "B18",
@@ -1461,7 +1461,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b18",
     "priority": "P0",
-    "chars": 646
+    "chars": 628
   },
   {
     "id": "B19",
@@ -1469,7 +1469,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b19",
     "priority": "P1",
-    "chars": 550
+    "chars": 532
   },
   {
     "id": "B20",
@@ -1477,7 +1477,7 @@
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b20",
     "priority": "P0",
-    "chars": 632
+    "chars": 614
   },
   {
     "id": "B21",
@@ -1493,7 +1493,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b22",
     "priority": "P0",
-    "chars": 518
+    "chars": 500
   },
   {
     "id": "B23",
@@ -1501,7 +1501,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b23",
     "priority": "P0",
-    "chars": 642
+    "chars": 624
   },
   {
     "id": "B24",
@@ -1509,7 +1509,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b24",
     "priority": "P1",
-    "chars": 533
+    "chars": 515
   },
   {
     "id": "B25",
@@ -1517,7 +1517,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b25",
     "priority": "P0",
-    "chars": 508
+    "chars": 490
   },
   {
     "id": "B26",
@@ -1525,7 +1525,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b26",
     "priority": "P0",
-    "chars": 769
+    "chars": 751
   },
   {
     "id": "B27",
@@ -1533,7 +1533,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b27",
     "priority": "P0",
-    "chars": 659
+    "chars": 641
   },
   {
     "id": "B28",
@@ -1541,7 +1541,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b28",
     "priority": "P0",
-    "chars": 552
+    "chars": 534
   },
   {
     "id": "B29",
@@ -1549,7 +1549,7 @@
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b29",
     "priority": "P0",
-    "chars": 675
+    "chars": 657
   },
   {
     "id": "B30",
@@ -1565,7 +1565,7 @@
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b31",
     "priority": "P0",
-    "chars": 478
+    "chars": 460
   },
   {
     "id": "B32",
@@ -1573,7 +1573,7 @@
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b32",
     "priority": "P0",
-    "chars": 641
+    "chars": 623
   },
   {
     "id": "B33",
@@ -1581,7 +1581,7 @@
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b33",
     "priority": "P1",
-    "chars": 646
+    "chars": 628
   },
   {
     "id": "B34",
@@ -1589,7 +1589,7 @@
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b34",
     "priority": "P0",
-    "chars": 757
+    "chars": 739
   },
   {
     "id": "B35",
@@ -1605,7 +1605,7 @@
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b36",
     "priority": "P0",
-    "chars": 593
+    "chars": 575
   },
   {
     "id": "B37",
@@ -1613,7 +1613,7 @@
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b37",
     "priority": "P0",
-    "chars": 687
+    "chars": 669
   },
   {
     "id": "B38",
@@ -1621,7 +1621,7 @@
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b38",
     "priority": "P0",
-    "chars": 577
+    "chars": 559
   },
   {
     "id": "B39",
@@ -1629,7 +1629,7 @@
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b39",
     "priority": "P0",
-    "chars": 613
+    "chars": 595
   },
   {
     "id": "B40",
@@ -1637,7 +1637,7 @@
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b40",
     "priority": "P0",
-    "chars": 617
+    "chars": 599
   },
   {
     "id": "B41",
@@ -1653,7 +1653,7 @@
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b42",
     "priority": "P0",
-    "chars": 543
+    "chars": 525
   },
   {
     "id": "B43",
@@ -1661,7 +1661,7 @@
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b43",
     "priority": "P1",
-    "chars": 502
+    "chars": 484
   },
   {
     "id": "B44",
@@ -1669,7 +1669,7 @@
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b44",
     "priority": "P0",
-    "chars": 711
+    "chars": 693
   },
   {
     "id": "B45",
@@ -1677,7 +1677,7 @@
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b45",
     "priority": "P1",
-    "chars": 638
+    "chars": 620
   },
   {
     "id": "B46",
@@ -1685,7 +1685,7 @@
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b46",
     "priority": "P0",
-    "chars": 603
+    "chars": 585
   },
   {
     "id": "B47",
@@ -1701,7 +1701,7 @@
     "path": "docs/40-backend/07-security-and-problem-solving.md",
     "anchor": "b48",
     "priority": "P0",
-    "chars": 619
+    "chars": 601
   },
   {
     "id": "B49",
@@ -1709,7 +1709,7 @@
     "path": "docs/40-backend/07-security-and-problem-solving.md",
     "anchor": "b49",
     "priority": "P0",
-    "chars": 634
+    "chars": 616
   },
   {
     "id": "B50",
@@ -1725,7 +1725,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj26",
     "priority": "P0",
-    "chars": 1326
+    "chars": 1308
   },
   {
     "id": "FJ27",
@@ -1733,7 +1733,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj27",
     "priority": "P0",
-    "chars": 1168
+    "chars": 1150
   },
   {
     "id": "FJ28",
@@ -1741,7 +1741,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj28",
     "priority": "P0",
-    "chars": 1254
+    "chars": 1236
   },
   {
     "id": "FJ29",
@@ -1749,7 +1749,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj29",
     "priority": "P0",
-    "chars": 1449
+    "chars": 1431
   },
   {
     "id": "FJ30",
@@ -1757,7 +1757,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj30",
     "priority": "P0",
-    "chars": 1169
+    "chars": 1151
   },
   {
     "id": "FJ31",
@@ -1765,7 +1765,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj31",
     "priority": "P0",
-    "chars": 1798
+    "chars": 1780
   },
   {
     "id": "FJ32",
@@ -1773,7 +1773,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj32",
     "priority": "P1",
-    "chars": 1210
+    "chars": 1192
   },
   {
     "id": "FJ33",
@@ -1781,7 +1781,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj33",
     "priority": "P1",
-    "chars": 1048
+    "chars": 1030
   },
   {
     "id": "FJ34",
@@ -1789,7 +1789,7 @@
     "path": "docs/40-backend/20-mysql-mechanisms.md",
     "anchor": "fj34",
     "priority": "P0",
-    "chars": 994
+    "chars": 976
   },
   {
     "id": "FJ35",
@@ -1813,7 +1813,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj37",
     "priority": "P0",
-    "chars": 1375
+    "chars": 1357
   },
   {
     "id": "FJ38",
@@ -1821,7 +1821,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj38",
     "priority": "P0",
-    "chars": 1118
+    "chars": 1100
   },
   {
     "id": "FJ39",
@@ -1829,7 +1829,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj39",
     "priority": "P0",
-    "chars": 1156
+    "chars": 1138
   },
   {
     "id": "FJ40",
@@ -1837,7 +1837,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj40",
     "priority": "P0",
-    "chars": 1009
+    "chars": 991
   },
   {
     "id": "FJ41",
@@ -1845,7 +1845,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj41",
     "priority": "P0",
-    "chars": 1067
+    "chars": 1049
   },
   {
     "id": "FJ42",
@@ -1853,7 +1853,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj42",
     "priority": "P0",
-    "chars": 1631
+    "chars": 1613
   },
   {
     "id": "FJ43",
@@ -1861,7 +1861,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj43",
     "priority": "P0",
-    "chars": 1120
+    "chars": 1102
   },
   {
     "id": "FJ44",
@@ -1869,7 +1869,7 @@
     "path": "docs/40-backend/22-redis-mechanisms.md",
     "anchor": "fj44",
     "priority": "P1",
-    "chars": 904
+    "chars": 886
   },
   {
     "id": "FJ45",
@@ -1885,7 +1885,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb01",
     "priority": "P0",
-    "chars": 958
+    "chars": 939
   },
   {
     "id": "FB02",
@@ -1893,7 +1893,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb02",
     "priority": "P0",
-    "chars": 1045
+    "chars": 1026
   },
   {
     "id": "FB03",
@@ -1901,7 +1901,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb03",
     "priority": "P0",
-    "chars": 927
+    "chars": 908
   },
   {
     "id": "FB04",
@@ -1909,7 +1909,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb04",
     "priority": "P1",
-    "chars": 772
+    "chars": 753
   },
   {
     "id": "FB05",
@@ -1917,7 +1917,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb05",
     "priority": "P0",
-    "chars": 740
+    "chars": 721
   },
   {
     "id": "FB06",
@@ -1925,7 +1925,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb06",
     "priority": "P0",
-    "chars": 760
+    "chars": 741
   },
   {
     "id": "FB07",
@@ -1933,7 +1933,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb07",
     "priority": "P1",
-    "chars": 658
+    "chars": 639
   },
   {
     "id": "FB08",
@@ -1941,7 +1941,7 @@
     "path": "docs/40-backend/30-message-queue-details.md",
     "anchor": "fb08",
     "priority": "P1",
-    "chars": 711
+    "chars": 692
   },
   {
     "id": "FB09",
@@ -1957,7 +1957,7 @@
     "path": "docs/40-backend/31-design-patterns-in-practice.md",
     "anchor": "fb10",
     "priority": "P1",
-    "chars": 855
+    "chars": 836
   },
   {
     "id": "FB11",
@@ -1965,7 +1965,7 @@
     "path": "docs/40-backend/31-design-patterns-in-practice.md",
     "anchor": "fb11",
     "priority": "P0",
-    "chars": 2228
+    "chars": 2209
   },
   {
     "id": "FB12",
@@ -1973,7 +1973,7 @@
     "path": "docs/40-backend/31-design-patterns-in-practice.md",
     "anchor": "fb12",
     "priority": "P1",
-    "chars": 886
+    "chars": 867
   },
   {
     "id": "FB13",
@@ -1981,7 +1981,7 @@
     "path": "docs/40-backend/31-design-patterns-in-practice.md",
     "anchor": "fb13",
     "priority": "P0",
-    "chars": 728
+    "chars": 709
   },
   {
     "id": "FB14",
@@ -1997,7 +1997,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb15",
     "priority": "P0",
-    "chars": 883
+    "chars": 864
   },
   {
     "id": "FB16",
@@ -2005,7 +2005,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb16",
     "priority": "P0",
-    "chars": 705
+    "chars": 686
   },
   {
     "id": "FB17",
@@ -2013,7 +2013,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb17",
     "priority": "P0",
-    "chars": 606
+    "chars": 587
   },
   {
     "id": "FB18",
@@ -2021,7 +2021,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb18",
     "priority": "P1",
-    "chars": 612
+    "chars": 593
   },
   {
     "id": "FB19",
@@ -2029,7 +2029,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb19",
     "priority": "P0",
-    "chars": 624
+    "chars": 605
   },
   {
     "id": "FB20",
@@ -2037,7 +2037,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb20",
     "priority": "P1",
-    "chars": 724
+    "chars": 705
   },
   {
     "id": "FB21",
@@ -2045,7 +2045,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb21",
     "priority": "P0",
-    "chars": 622
+    "chars": 603
   },
   {
     "id": "FB22",
@@ -2053,7 +2053,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb22",
     "priority": "P0",
-    "chars": 765
+    "chars": 746
   },
   {
     "id": "FB23",
@@ -2061,7 +2061,7 @@
     "path": "docs/40-backend/32-network-protocol-details.md",
     "anchor": "fb23",
     "priority": "P0",
-    "chars": 597
+    "chars": 578
   },
   {
     "id": "FB24",
@@ -2077,7 +2077,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb25",
     "priority": "P0",
-    "chars": 710
+    "chars": 691
   },
   {
     "id": "FB26",
@@ -2085,7 +2085,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb26",
     "priority": "P0",
-    "chars": 648
+    "chars": 629
   },
   {
     "id": "FB27",
@@ -2093,7 +2093,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb27",
     "priority": "P0",
-    "chars": 724
+    "chars": 705
   },
   {
     "id": "FB28",
@@ -2101,7 +2101,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb28",
     "priority": "P1",
-    "chars": 653
+    "chars": 634
   },
   {
     "id": "FB29",
@@ -2109,7 +2109,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb29",
     "priority": "P0",
-    "chars": 2396
+    "chars": 2377
   },
   {
     "id": "FB30",
@@ -2117,7 +2117,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb30",
     "priority": "P1",
-    "chars": 694
+    "chars": 675
   },
   {
     "id": "FB31",
@@ -2125,7 +2125,7 @@
     "path": "docs/40-backend/33-operating-system-details.md",
     "anchor": "fb31",
     "priority": "P0",
-    "chars": 644
+    "chars": 625
   },
   {
     "id": "FB32",
@@ -2141,7 +2141,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb53",
     "priority": "P1",
-    "chars": 628
+    "chars": 609
   },
   {
     "id": "FB54",
@@ -2149,7 +2149,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb54",
     "priority": "P0",
-    "chars": 942
+    "chars": 923
   },
   {
     "id": "FB55",
@@ -2157,7 +2157,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb55",
     "priority": "P1",
-    "chars": 644
+    "chars": 625
   },
   {
     "id": "FB56",
@@ -2165,7 +2165,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb56",
     "priority": "P1",
-    "chars": 957
+    "chars": 938
   },
   {
     "id": "FB57",
@@ -2173,7 +2173,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb57",
     "priority": "P0",
-    "chars": 806
+    "chars": 787
   },
   {
     "id": "FB58",
@@ -2181,7 +2181,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb58",
     "priority": "P0",
-    "chars": 793
+    "chars": 774
   },
   {
     "id": "FB59",
@@ -2189,7 +2189,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb59",
     "priority": "P1",
-    "chars": 662
+    "chars": 643
   },
   {
     "id": "FB60",
@@ -2197,7 +2197,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb60",
     "priority": "P0",
-    "chars": 753
+    "chars": 734
   },
   {
     "id": "FB61",
@@ -2205,7 +2205,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb61",
     "priority": "P1",
-    "chars": 620
+    "chars": 601
   },
   {
     "id": "FB62",
@@ -2213,7 +2213,7 @@
     "path": "docs/40-backend/34-distributed-systems-details.md",
     "anchor": "fb62",
     "priority": "P0",
-    "chars": 849
+    "chars": 830
   },
   {
     "id": "FB63",
@@ -2229,7 +2229,7 @@
     "path": "docs/40-backend/35-linux-operations-practice.md",
     "anchor": "fb64",
     "priority": "P0",
-    "chars": 984
+    "chars": 965
   },
   {
     "id": "FB65",
@@ -2237,7 +2237,7 @@
     "path": "docs/40-backend/35-linux-operations-practice.md",
     "anchor": "fb65",
     "priority": "P0",
-    "chars": 710
+    "chars": 691
   },
   {
     "id": "FB66",
@@ -2245,7 +2245,7 @@
     "path": "docs/40-backend/35-linux-operations-practice.md",
     "anchor": "fb66",
     "priority": "P0",
-    "chars": 828
+    "chars": 1039
   },
   {
     "id": "FB79",
@@ -2253,7 +2253,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb79",
     "priority": "P0",
-    "chars": 1091
+    "chars": 1072
   },
   {
     "id": "FB80",
@@ -2261,7 +2261,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb80",
     "priority": "P1",
-    "chars": 992
+    "chars": 973
   },
   {
     "id": "FB81",
@@ -2269,7 +2269,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb81",
     "priority": "P0",
-    "chars": 905
+    "chars": 886
   },
   {
     "id": "FB82",
@@ -2277,7 +2277,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb82",
     "priority": "P0",
-    "chars": 904
+    "chars": 885
   },
   {
     "id": "FB83",
@@ -2285,7 +2285,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb83",
     "priority": "P0",
-    "chars": 879
+    "chars": 860
   },
   {
     "id": "FB84",
@@ -2293,7 +2293,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb84",
     "priority": "P1",
-    "chars": 967
+    "chars": 948
   },
   {
     "id": "FB85",
@@ -2301,7 +2301,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb85",
     "priority": "P0",
-    "chars": 1141
+    "chars": 1122
   },
   {
     "id": "FB86",
@@ -2309,7 +2309,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb86",
     "priority": "P1",
-    "chars": 801
+    "chars": 782
   },
   {
     "id": "FB87",
@@ -2317,7 +2317,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb87",
     "priority": "P1",
-    "chars": 1234
+    "chars": 1215
   },
   {
     "id": "FB88",
@@ -2325,7 +2325,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb88",
     "priority": "P1",
-    "chars": 1031
+    "chars": 1012
   },
   {
     "id": "FB89",
@@ -2333,7 +2333,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb89",
     "priority": "P1",
-    "chars": 776
+    "chars": 757
   },
   {
     "id": "FB90",
@@ -2341,7 +2341,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb90",
     "priority": "P1",
-    "chars": 965
+    "chars": 946
   },
   {
     "id": "FB91",
@@ -2349,7 +2349,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb91",
     "priority": "P0",
-    "chars": 895
+    "chars": 876
   },
   {
     "id": "FB92",
@@ -2357,7 +2357,7 @@
     "path": "docs/40-backend/36-interview-followup-topics.md",
     "anchor": "fb92",
     "priority": "P1",
-    "chars": 862
+    "chars": 843
   },
   {
     "id": "FB93",
@@ -2373,7 +2373,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a39",
     "priority": "P0",
-    "chars": 824
+    "chars": 1633
   },
   {
     "id": "A40",
@@ -2381,7 +2381,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a40",
     "priority": "P0",
-    "chars": 803
+    "chars": 948
   },
   {
     "id": "A41",
@@ -2389,7 +2389,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a41",
     "priority": "P0",
-    "chars": 835
+    "chars": 1229
   },
   {
     "id": "A42",
@@ -2397,7 +2397,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a42",
     "priority": "P0",
-    "chars": 649
+    "chars": 904
   },
   {
     "id": "A43",
@@ -2405,7 +2405,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a43",
     "priority": "P0",
-    "chars": 802
+    "chars": 1144
   },
   {
     "id": "A44",
@@ -2413,7 +2413,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a44",
     "priority": "P0",
-    "chars": 893
+    "chars": 1282
   },
   {
     "id": "FB33",
@@ -2421,7 +2421,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb33",
     "priority": "P0",
-    "chars": 746
+    "chars": 727
   },
   {
     "id": "FB34",
@@ -2429,7 +2429,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb34",
     "priority": "P0",
-    "chars": 896
+    "chars": 877
   },
   {
     "id": "FB35",
@@ -2437,7 +2437,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb35",
     "priority": "P0",
-    "chars": 683
+    "chars": 664
   },
   {
     "id": "FB36",
@@ -2445,7 +2445,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb36",
     "priority": "P1",
-    "chars": 629
+    "chars": 610
   },
   {
     "id": "FB37",
@@ -2453,7 +2453,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb37",
     "priority": "P0",
-    "chars": 776
+    "chars": 757
   },
   {
     "id": "FB38",
@@ -2461,7 +2461,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb38",
     "priority": "P0",
-    "chars": 1778
+    "chars": 1759
   },
   {
     "id": "FB39",
@@ -2469,7 +2469,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb39",
     "priority": "P0",
-    "chars": 875
+    "chars": 856
   },
   {
     "id": "FB40",
@@ -2477,7 +2477,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb40",
     "priority": "P0",
-    "chars": 814
+    "chars": 795
   },
   {
     "id": "FB41",
@@ -2485,7 +2485,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb41",
     "priority": "P0",
-    "chars": 674
+    "chars": 655
   },
   {
     "id": "FB42",
@@ -2493,7 +2493,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb42",
     "priority": "P0",
-    "chars": 785
+    "chars": 766
   },
   {
     "id": "FB43",
@@ -2501,7 +2501,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb43",
     "priority": "P0",
-    "chars": 775
+    "chars": 756
   },
   {
     "id": "FB44",
@@ -2509,7 +2509,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb44",
     "priority": "P0",
-    "chars": 868
+    "chars": 849
   },
   {
     "id": "FB45",
@@ -2517,7 +2517,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb45",
     "priority": "P0",
-    "chars": 854
+    "chars": 835
   },
   {
     "id": "FB46",
@@ -2525,7 +2525,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb46",
     "priority": "P0",
-    "chars": 1228
+    "chars": 1209
   },
   {
     "id": "FB47",
@@ -2533,7 +2533,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb47",
     "priority": "P1",
-    "chars": 712
+    "chars": 693
   },
   {
     "id": "FB48",
@@ -2541,7 +2541,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb48",
     "priority": "P1",
-    "chars": 666
+    "chars": 647
   },
   {
     "id": "FB49",
@@ -2549,7 +2549,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb49",
     "priority": "P0",
-    "chars": 724
+    "chars": 705
   },
   {
     "id": "FB50",
@@ -2557,7 +2557,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb50",
     "priority": "P0",
-    "chars": 699
+    "chars": 680
   },
   {
     "id": "FB51",
@@ -2565,7 +2565,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb51",
     "priority": "P0",
-    "chars": 733
+    "chars": 714
   },
   {
     "id": "FB52",
@@ -2573,7 +2573,7 @@
     "path": "docs/50-projects/teaching-case-review-and-seckill.md",
     "anchor": "fb52",
     "priority": "P0",
-    "chars": 972
+    "chars": 1008
   },
   {
     "id": "X01",
@@ -2581,7 +2581,7 @@
     "path": "docs/70-practice/interview-algorithm-supplements.md",
     "anchor": "x01",
     "priority": "P1",
-    "chars": 1364
+    "chars": 1360
   },
   {
     "id": "X02",
@@ -2589,7 +2589,7 @@
     "path": "docs/70-practice/interview-algorithm-supplements.md",
     "anchor": "x02",
     "priority": "P1",
-    "chars": 1872
+    "chars": 2532
   },
   {
     "id": "X03",
@@ -2597,7 +2597,7 @@
     "path": "docs/70-practice/interview-algorithm-supplements.md",
     "anchor": "x03",
     "priority": "P0",
-    "chars": 1471
+    "chars": 1467
   },
   {
     "id": "X04",
@@ -2605,7 +2605,7 @@
     "path": "docs/70-practice/interview-algorithm-supplements.md",
     "anchor": "x04",
     "priority": "P1",
-    "chars": 1947
+    "chars": 3738
   },
   {
     "id": "X05",
@@ -2613,7 +2613,7 @@
     "path": "docs/70-practice/interview-algorithm-supplements.md",
     "anchor": "x05",
     "priority": "P0",
-    "chars": 1391
+    "chars": 1387
   },
   {
     "id": "X06",
@@ -2621,7 +2621,7 @@
     "path": "docs/70-practice/interview-algorithm-supplements.md",
     "anchor": "x06",
     "priority": "P0",
-    "chars": 1490
+    "chars": 1294
   },
   {
     "id": "R01",
@@ -2629,7 +2629,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r01",
     "priority": "P2",
-    "chars": 696
+    "chars": 713
   },
   {
     "id": "R02",
@@ -2637,7 +2637,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r02",
     "priority": "P2",
-    "chars": 629
+    "chars": 604
   },
   {
     "id": "R03",
@@ -2645,7 +2645,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r03",
     "priority": "P2",
-    "chars": 606
+    "chars": 581
   },
   {
     "id": "R04",
@@ -2653,7 +2653,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r04",
     "priority": "P2",
-    "chars": 678
+    "chars": 653
   },
   {
     "id": "R05",
@@ -2661,7 +2661,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r05",
     "priority": "P2",
-    "chars": 662
+    "chars": 638
   },
   {
     "id": "R06",
@@ -2669,7 +2669,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r06",
     "priority": "P2",
-    "chars": 622
+    "chars": 605
   },
   {
     "id": "R07",
@@ -2677,7 +2677,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r07",
     "priority": "P2",
-    "chars": 1230
+    "chars": 1205
   },
   {
     "id": "R08",
@@ -2685,7 +2685,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r08",
     "priority": "P2",
-    "chars": 745
+    "chars": 711
   },
   {
     "id": "R09",
@@ -2693,7 +2693,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r09",
     "priority": "P2",
-    "chars": 677
+    "chars": 652
   },
   {
     "id": "R10",
@@ -2701,7 +2701,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r10",
     "priority": "P2",
-    "chars": 550
+    "chars": 525
   },
   {
     "id": "R11",
@@ -2709,7 +2709,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r11",
     "priority": "P2",
-    "chars": 656
+    "chars": 639
   },
   {
     "id": "R12",
@@ -2717,7 +2717,7 @@
     "path": "docs/70-practice/reasoning-twelve-puzzles.md",
     "anchor": "r12",
     "priority": "P2",
-    "chars": 1913
+    "chars": 590
   },
   {
     "id": "FB67",
@@ -2725,7 +2725,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb67",
     "priority": "P0",
-    "chars": 815
+    "chars": 796
   },
   {
     "id": "FB68",
@@ -2733,7 +2733,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb68",
     "priority": "P0",
-    "chars": 829
+    "chars": 810
   },
   {
     "id": "FB69",
@@ -2741,7 +2741,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb69",
     "priority": "P0",
-    "chars": 794
+    "chars": 775
   },
   {
     "id": "FB70",
@@ -2749,7 +2749,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb70",
     "priority": "P0",
-    "chars": 802
+    "chars": 783
   },
   {
     "id": "FB71",
@@ -2757,7 +2757,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb71",
     "priority": "P0",
-    "chars": 787
+    "chars": 768
   },
   {
     "id": "FB72",
@@ -2765,7 +2765,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb72",
     "priority": "P0",
-    "chars": 871
+    "chars": 1224
   },
   {
     "id": "FB73",
@@ -2773,7 +2773,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb73",
     "priority": "P0",
-    "chars": 805
+    "chars": 786
   },
   {
     "id": "FB74",
@@ -2781,7 +2781,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb74",
     "priority": "P1",
-    "chars": 719
+    "chars": 700
   },
   {
     "id": "FB75",
@@ -2789,7 +2789,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb75",
     "priority": "P0",
-    "chars": 997
+    "chars": 978
   },
   {
     "id": "FB76",
@@ -2797,7 +2797,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb76",
     "priority": "P0",
-    "chars": 996
+    "chars": 977
   },
   {
     "id": "FB77",
@@ -2805,7 +2805,7 @@
     "path": "docs/70-practice/scenario-backend-worked-answers.md",
     "anchor": "fb77",
     "priority": "P1",
-    "chars": 817
+    "chars": 798
   },
   {
     "id": "FB78",
@@ -2821,7 +2821,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s01",
     "priority": "P0",
-    "chars": 1687
+    "chars": 1670
   },
   {
     "id": "S02",
@@ -2829,7 +2829,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s02",
     "priority": "P0",
-    "chars": 1820
+    "chars": 1803
   },
   {
     "id": "S03",
@@ -2837,7 +2837,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s03",
     "priority": "P0",
-    "chars": 1167
+    "chars": 1150
   },
   {
     "id": "S04",
@@ -2845,7 +2845,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s04",
     "priority": "P0",
-    "chars": 1165
+    "chars": 1148
   },
   {
     "id": "S05",
@@ -2853,7 +2853,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s05",
     "priority": "P0",
-    "chars": 2282
+    "chars": 2265
   },
   {
     "id": "S06",
@@ -2861,7 +2861,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s06",
     "priority": "P1",
-    "chars": 1230
+    "chars": 1213
   },
   {
     "id": "S07",
@@ -2869,7 +2869,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s07",
     "priority": "P0",
-    "chars": 1097
+    "chars": 1080
   },
   {
     "id": "S08",
@@ -2877,7 +2877,7 @@
     "path": "docs/70-practice/sql-nine-worked-problems.md",
     "anchor": "s08",
     "priority": "P0",
-    "chars": 1512
+    "chars": 1495
   },
   {
     "id": "S09",

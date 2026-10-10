@@ -55,6 +55,27 @@ class Solution:
 
 复习：如果还要返回区间下标，在哪个分支更新当前起点？
 
+答案核对：选择“从nums[i]重新开始”时把当前起点改为i；best更新时同时保存当前起点与i。和相等时应先约定取最早区间、最短区间等规则，避免只比较和而让下标策略含糊。
+
+### 官方追问：分治如何做到O(n)？
+
+每个非空区间返回四元组`(total, prefix, suffix, best)`，分别是总和、最大非空前缀和、最大非空后缀和、最大非空子数组和。单个元素x的四个值都为x，不能把负数情况下的前后缀或答案初始化为0。
+
+相邻左右区间L、R只需O(1)合并：
+
+- total = L.total + R.total
+- prefix = max(L.prefix, L.total + R.prefix)
+- suffix = max(R.suffix, R.total + L.suffix)
+- best = max(L.best, R.best, L.suffix + R.prefix)
+
+前缀要么完全在L，要么包含整个L和R的一个非空前缀；后缀同理。最优子数组要么在一侧，要么跨分界，跨界部分恰好是L的非空后缀与R的非空前缀。对子区间归纳即可证明四个字段都正确。
+
+例子：L=`[-4,3]`摘要为`(-1,-1,3,3)`，R=`[-1,5,-6]`摘要为`(-2,4,-1,5)`；合并得到`(-3,3,1,7)`，跨界和3+4=7。`[-8,-2,-5]`摘要为`(-15,-8,-5,-2)`，仍选非空区间。
+
+平衡拆分形成n个叶子、n−1次常数合并，故总时间O(n)，递归栈O(log n)；使用下标区间，不复制切片。若每层另从中点扫描左右以求跨界和，则是O(n log n)的另一种分治版本。主接口仍采用上面的Kadane方法。
+
+[可运行分治实现](../../../examples/hot100/followup_algorithms.py)提供`maximum_subarray_summary`与`max_subarray_divide_conquer`；[独立测试](../../../examples/hot100/test_followup_algorithms.py)对97,655个非空小数组逐项核对四个字段，并测试全负与100,000项边界。根目录运行`python -B -m unittest examples.hot100.test_followup_algorithms -v`。追问来自[官方英文题页](https://leetcode.com/problems/maximum-subarray/)；合并推导与代码为本仓库原创。
+
 本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
 
 ## 延伸阅读

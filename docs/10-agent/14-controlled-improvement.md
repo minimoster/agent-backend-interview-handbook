@@ -2,9 +2,22 @@
 
 [返回 Agent 目录](README.md) · [基础题](01-agent-loop-tools-and-state.md) · [版本与纠错](../../errata/README.md)
 
-自改进在本章指有证据和发布控制的行为优化，不表示系统可以自行扩大权限。先掌握A31–A36的评测与安全，再学习候选经验、奖励和回滚。FA42提供一个有范围限制的论文案例。
+自改进在本章指有证据和发布控制的行为优化，不表示系统可以自行扩大权限。先掌握[A01–A08的工具与状态](01-agent-loop-tools-and-state.md)、[A16–A17的诊断与指标](02-rag-retrieval-and-reranking.md#a16)、[A24–A30的可靠执行](04-streaming-and-reliable-execution.md)，再核对下面的先修阅读与验收清单。FA42提供一个有范围限制的论文案例。
 
 本文核验日期为 2026-10-09。原理与示例为独立整理；设计建议不冒充框架的强制规范。文中的实验是待执行的验证方案，除非另有运行记录，不表示已经通过。
+
+<a id="prerequisite-reading-checklist"></a>
+
+## 先修阅读与验收清单
+
+这份清单是学习检查入口，不是一套已经运行的端到端课程或评测结果。先阅读一手入门资料，再用自己实现的最小系统保留测试证据：
+
+- **端到端评测。** 读[Agent评测方法](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)，明确任务、终态、判分器、输入和留出集。练习以固定合成任务验证实际产物与状态，区分单次轨迹和重复试验；冻结标签与成功标准，记录失败样本、调用数、耗时和成本。测试通过不自动证明未见任务效果。
+- **提示注入与权限。** 读[OWASP提示注入防护](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)。把文档、网页、工具结果和日志当数据，检查其中要求调用陌生工具或跨租户读取的反例。验收应断言可信执行层拒绝动作、权限不扩大、无敏感输出；只看模型回答“拒绝”不够。
+- **URL与SSRF。** 读[OWASP SSRF防护](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)。解析并限制允许的协议、域名和目标地址，考虑DNS变化及重定向。练习用隔离的假解析器/假传输覆盖回环、私网、云元数据地址、重定向到被拒目标的输入，不向真实内部服务发请求；每一跳都应受同一策略约束。
+- **预算与回归。** 先定义每步与全局deadline、尝试次数、并发、输入输出和费用上限，明确首次请求是否计入attempt。用超时、无进展循环与取消轨迹验收有界终止；比较新旧版本的成功、安全拒绝和费用，安全退化不能用平均得分上升抵消。
+
+记录组件版本、合成输入、命令、实际输出、机器可检查断言和未覆盖范围。尚未实现或运行的练习保持“待验证”，不把阅读清单当成实验已经通过。
 
 <a id="fa22"></a>
 

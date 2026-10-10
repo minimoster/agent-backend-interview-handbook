@@ -36,6 +36,8 @@
 
 ## 分领域修订与范围澄清
 
+- [知识合同与追问补充](knowledge-contract-corrections.md)：Python可哈希条件、算法变体、幂等身份、执行失败窗口和平台边界。
+
 - [SQL记录](sql-corrections.json)：窗口分层、聚合口径、日期边界、错误分支与索引。
 - [推理题记录](reasoning-corrections.json)：沙漏、赛马上界、投票规则、找零及借瓶条件。
 

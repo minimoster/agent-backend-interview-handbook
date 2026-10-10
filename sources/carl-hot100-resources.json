@@ -94,7 +94,8 @@
     "Python链接只指向实际存在且对应目标题的实现区。",
     "直接视频与相关视频分别记录；作者按公开视频网页元数据核验MID 525438321。",
     "缺失结论只限本次已核验来源，不推断资源永久不存在。",
-    "页面SHA256记录核验时公开网页版本；没有保存网页全文或上游代码。"
+    "页面SHA256记录核验时公开网页版本；没有保存网页全文或上游代码。",
+    "original_article_*保留外链首次整合时的历史前缀记录；正文修订时另存current_article_*，不把更新后的原创正文冒充历史字节。resource_appendix_sha256校验公开归属与外链区块本身未改变。"
   ],
   "problems": [
     {
@@ -180,7 +181,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "c8453f32129b12d53aadb331c2a43e3f571754d6e216e7cc7170124c9977fe98"
     },
     {
       "order": 2,
@@ -229,7 +231,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "7895991c93d9f674e38a1d33446b8ee7667d8ec7b153231649adf393ba714a3d"
     },
     {
       "order": 3,
@@ -278,7 +281,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "6a2384f2817381b2886bdcc62a4b6fd2f373cb38efb906443a53d9a7551bb626"
     },
     {
       "order": 4,
@@ -351,7 +355,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "c7f8543f984cce3271e189d4f89fdf59ae6f11168995e5a9e3e6010f650f4a41"
     },
     {
       "order": 5,
@@ -400,7 +405,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "ef914c102bc269a86b3a41c7d05d87413ae1760659916e5c9ab950364710ded2"
     },
     {
       "order": 6,
@@ -485,7 +491,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "b0b0e8117fd300ca4809c7143f4f9866599a12d24ac6fc090887a694e7044980"
     },
     {
       "order": 7,
@@ -570,7 +577,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "fd443320f2bfe76cf51e33ed496fe505f1fb115f56465e8e5b065ae4535e82c9"
     },
     {
       "order": 8,
@@ -619,7 +627,12 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "aa0df712e9c56237187cc17dba3420b68fb30741d3cfd28544bb10f39d4551cb",
+      "current_article_bytes": 3682,
+      "current_article_sha256": "1dd6cd2c3dcd7c04999d39d788eea6e23328ba53181900a8cf6f43a4d20ff3ce",
+      "article_revision_date": "2026-10-10",
+      "article_revision_reason": "原创知识合同修订与追问参考答案补充；主解法与外部资源区块不变。"
     },
     {
       "order": 9,
@@ -668,7 +681,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "1d0e7580b16071be7d1cae22d58407cb702bbf20c09da39d92f94aa40b5c5dac"
     },
     {
       "order": 10,
@@ -717,7 +731,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "ee3f66ac0ba31121bc17676eec997897ebc8703d926c8f7fd230ac89fc9c0a23"
     },
     {
       "order": 11,
@@ -785,7 +800,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "9fc7417298cea64a292217da35075895647d3bba5ec8616621072c11a2a68394"
     },
     {
       "order": 12,
@@ -834,7 +850,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "b7c3ac8f44da51cf40eedc8b223c1d2d1ce6f863447336894733571dd6e706f6"
     },
     {
       "order": 13,
@@ -953,7 +970,12 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "d53a696158e973f289d25fb5c44bda8fb14f791554088c5c830b0a091f0a6289",
+      "current_article_bytes": 4817,
+      "current_article_sha256": "e2b7a80454e3423dc50e2aee94a18684073f59e133c0f52cdc98494268a358e8",
+      "article_revision_date": "2026-10-10",
+      "article_revision_reason": "原创知识合同修订与追问参考答案补充；主解法与外部资源区块不变。"
     },
     {
       "order": 14,
@@ -1038,7 +1060,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "346dca0620871ffea38264883dfe49d3d8d0972c2aaf0b1138faa14b28ce82e2"
     },
     {
       "order": 15,
@@ -1094,7 +1117,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "56cebf6a29f288b487511a5545b1b475519fba89fef7cdf029014b8c5cdbe6fb"
     },
     {
       "order": 16,
@@ -1125,7 +1149,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "cd2429527c04d2a316bf58ef56f4640b4b78b8f3049b2cab0daf469c79f9e8eb"
     },
     {
       "order": 17,
@@ -1156,7 +1181,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "710b0edf1a321973f9242ccb54d48163d977304b3f5427e7878f3f3437148440"
     },
     {
       "order": 18,
@@ -1187,7 +1213,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "684709dd715e9d43555ccaf044565f69ea0189befd31b84d21a2b9fabfe738aa"
     },
     {
       "order": 19,
@@ -1243,7 +1270,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "7912c6828d303c1ccee59e0b1467e1a74bff7cc14b38f32a392d32f335001fd9"
     },
     {
       "order": 20,
@@ -1274,7 +1302,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "5423fe7baf9cbfbf11638e270d8a7919e92f59a602dbd8e57060e2c47921c9ab"
     },
     {
       "order": 21,
@@ -1305,7 +1334,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "0543b0450403766e5a8b671db02ff756e6858bb8e5a043f644ba9d498a9fc05e"
     },
     {
       "order": 22,
@@ -1378,7 +1408,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "7d5b11ad78bec37c43ed0f7f5862ba38651b520b9b8ab3b7c980e58a34026f17"
     },
     {
       "order": 23,
@@ -1463,7 +1494,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "b4ee6d84ecc0d9360d5402ea1a018314bbb05423e9b99033f8204fe41fccd46f"
     },
     {
       "order": 24,
@@ -1519,7 +1551,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "05338781f44fc5dccc9679e106684a64adeceef96e286a3875b1ffc8df7d6859"
     },
     {
       "order": 25,
@@ -1592,7 +1625,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "f7dbb084c824a5440fbbc92d825102ed363af6d20c91384904661caf3a662a84"
     },
     {
       "order": 26,
@@ -1677,7 +1711,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "00b896fd27b3baae6718901b6f881697614a6a4c2bb8b4418c499188b3c99c7a"
     },
     {
       "order": 27,
@@ -1726,7 +1761,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "5d32e1b9267d05baecc50f686df4b4fbdd968b0ea0ba4ae1887c07ac59b39ae9"
     },
     {
       "order": 28,
@@ -1757,7 +1793,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "e42543e844b7c0416c17d1a919a68e242a0d2714b81d0a608ea6d0724a5bbc60"
     },
     {
       "order": 29,
@@ -1842,7 +1879,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "292b773afb4c820d988f45876389b5720ee18c45c08a01f0f50e027ddde7ce69"
     },
     {
       "order": 30,
@@ -1927,7 +1965,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "b3b75d826fffa1f0af7e0d6b811b0288f59385927cb66b3d5472db8058ed25c3"
     },
     {
       "order": 31,
@@ -1958,7 +1997,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "568627cd5fcb11f307c717e9c5f56fdc76adbbf7f6cdd5b735aca1294915a873"
     },
     {
       "order": 32,
@@ -1989,7 +2029,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "fe083e6759d88a954855ce9bf2af24b37bf73ce8e77df14b76861d7f282b0b90"
     },
     {
       "order": 33,
@@ -2020,7 +2061,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "c88a02dab60043bb1d65cdc12fa164dcad9317e2e12a3070190d93f5440c3874"
     },
     {
       "order": 34,
@@ -2051,7 +2093,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "b5dcdb3972fe1291650bb4fda2e28c8c042c185675a63e6cc127d9095de6af9d"
     },
     {
       "order": 35,
@@ -2082,7 +2125,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "3cf8cf9e093c24f5797419e0ed222536ec840c3e0d3ab12d06c37509aef8cced"
     },
     {
       "order": 36,
@@ -2219,7 +2263,8 @@
         }
       ],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "3d1fab62cfd300b648611d8e4c6228b178f739e13ef10b5c92b13d9785fb179b"
     },
     {
       "order": 37,
@@ -2304,7 +2349,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "2bb4b51368d7a87bfbff323432e6ba5b32b5e7f3287222e8c34470bb87a310e2"
     },
     {
       "order": 38,
@@ -2389,7 +2435,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "905138a277de4118788c2d20e811afde2e5d95749a1a80a344b47cb28aff178c"
     },
     {
       "order": 39,
@@ -2474,7 +2521,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "302b448eb55806bb1dd81a3e8bbd31dfd7b4830fa91a0234abf40477992665c8"
     },
     {
       "order": 40,
@@ -2523,7 +2571,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "bca48b6d73d3e5a8d864cdab97d1f4b2885100c9c24ba3f188ceae0712632b4c"
     },
     {
       "order": 41,
@@ -2608,7 +2657,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "0ad886cbaa15bc1d03903acd2c057160af82edff0daaccc7d13599d60db089ab"
     },
     {
       "order": 42,
@@ -2676,7 +2726,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "f518794b7d90e6a3eef05d2a4da9cf343c627f3e1ccf2890205c24f001649885"
     },
     {
       "order": 43,
@@ -2744,7 +2795,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "f87780832d0a5993a5f4ee7fc199971725fbb6caa1f349117af93f092d8204a5"
     },
     {
       "order": 44,
@@ -2775,7 +2827,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "645d96cc28ed4cf6b4186c099da2d96d1a5f2b16ed1483837ad197d352825cd1"
     },
     {
       "order": 45,
@@ -2845,7 +2898,8 @@
       "notes": [
         "直接讲解和Python在102层序遍历文章的199独立区块；102视频仅列为相关视频，不能标为199单题视频。"
       ],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "41e73b9160d9a2b3ec25a13a6e4014ffe886baab53b9741a48c416a55679bc11"
     },
     {
       "order": 46,
@@ -2876,7 +2930,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "b9e3b1f8a78eba71ed6b9e49171dace9f2a42acca06ef2020a41fc91fbeb0ac3"
     },
     {
       "order": 47,
@@ -2966,7 +3021,8 @@
       "notes": [
         "Hot100有105独立题页；106文章也有105区块与preorder/inorder Python实现，但其106视频不计105配套视频。"
       ],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "8af7c62f1d61efffefffd79552ce00c514b5de91653760c874291805c8004fd8"
     },
     {
       "order": 48,
@@ -2997,7 +3053,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "509f7cf3a30a69f2f51175b2614e64ce445e592266fb7ddeca80e71ee6c45bbd"
     },
     {
       "order": 49,
@@ -3065,7 +3122,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "8d211c8db27ef8734bcc12049fe4753a59a8e92bbd0a585d3d303a55fd31cee3"
     },
     {
       "order": 50,
@@ -3096,7 +3154,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "b6ec43516abaecbca312d3dc4f0e5c4c8d9441f3b83b8a2abf2c506a64a5f54f"
     },
     {
       "order": 51,
@@ -3175,7 +3234,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "f15376cebbf2cfd24c812504fbe37f2ae123585091312103c9c35b72029cae85"
     },
     {
       "order": 52,
@@ -3206,7 +3266,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "2de9e73953bd12d4616da03494fac5a151ac1d0fe54941823305cdb224386221"
     },
     {
       "order": 53,
@@ -3264,7 +3325,8 @@
       "notes": [
         "官方补充207题页为简短拓扑排序BFS实现，本次读取未发现Python代码区，也没有视频直链。"
       ],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "bf76a12ccb9fc5fc3788a8a82618ea888bbd42562969b3720cc25132b6b5f9cd"
     },
     {
       "order": 54,
@@ -3295,7 +3357,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "c2ad28b979e6a9db39b8bedaa835d27139343fbf4bb4483680fa2cd1e9f3cb77"
     },
     {
       "order": 55,
@@ -3380,7 +3443,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "38bab192f610aeeadbd263605d168b966809d75c6873f51e6eefbd1b11354d1d"
     },
     {
       "order": 56,
@@ -3465,7 +3529,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "c3aefc48c5955539abfa666480ec66e2c0c8fd2c695df849a99bc43645085e82"
     },
     {
       "order": 57,
@@ -3533,7 +3598,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "9e4528118e2dd4ffde30ca99394e227320aab04777c32ea3c87216bb64470fad"
     },
     {
       "order": 58,
@@ -3618,7 +3684,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "6d513531e089776fdc8838d766419314f7e7369ea26464046dc7ecf57a638640"
     },
     {
       "order": 59,
@@ -3649,7 +3716,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "d5d45c944d18aa553b19348f2aa5912df24bc5717057f5dacc9db5e25e7ef493"
     },
     {
       "order": 60,
@@ -3680,7 +3748,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "99883f70a460388a965b2e5a324260a7e3f09e803c468e0e76590b6b934edb38"
     },
     {
       "order": 61,
@@ -3748,7 +3817,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "f3b658d6ce7ffd6fadd43b635b5f41694029d507d8fbd778229188f97b5f9e59"
     },
     {
       "order": 62,
@@ -3816,7 +3886,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "48c0a7fe068dee9033c6d736be8725d9d68cd16a3a15b13f6bf13f754c8aa4bb"
     },
     {
       "order": 63,
@@ -3872,7 +3943,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "5004a09d10607dcea64a76290b910da6fd45bc9f9ff2f553db6f524705347528"
     },
     {
       "order": 64,
@@ -3921,7 +3993,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "0d6471947fa4b989e8ceeb2156620ded3514101a6f8c42b1b8477ea508ea2590"
     },
     {
       "order": 65,
@@ -3994,7 +4067,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "0215bd64c156d609e8d091071fa388d98e8b2992bf46b447689b52e8a5f27577"
     },
     {
       "order": 66,
@@ -4043,7 +4117,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "39156b951580535c5e7f7eddad74e6c17d58721939a5064393105bbc191843e9"
     },
     {
       "order": 67,
@@ -4074,7 +4149,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "0491d0ac677956c2883395d23e02d8ca95922a267db6fd1d7c9139cf8ed3981b"
     },
     {
       "order": 68,
@@ -4105,7 +4181,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "845fe4b3fe1b3837411eaddea9dbc93ffcaa1d65188df41c9f0ed6728efd5601"
     },
     {
       "order": 69,
@@ -4190,7 +4267,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "28f2599a0cc26cd198c2ae95d611507e23043ad6d281dccd023d2851b8605672"
     },
     {
       "order": 70,
@@ -4239,7 +4317,12 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "346b58e1ebeb57d84857e262960d8d88c0e15696eb543a9a005cf1d93f5c1af3",
+      "current_article_bytes": 3597,
+      "current_article_sha256": "54dba7d506ea3fee987baf8e023a59fe42181f66673ff6f5d0424eb711688a89",
+      "article_revision_date": "2026-10-10",
+      "article_revision_reason": "原创知识合同修订与追问参考答案补充；主解法与外部资源区块不变。"
     },
     {
       "order": 71,
@@ -4270,7 +4353,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "7aa014df254cf2c21edb74ba7785c566d4c3c7d13cfd69cb18624d221a603310"
     },
     {
       "order": 72,
@@ -4355,7 +4439,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "c8780a9bf07f8ef1d111bbf3168bb83f1d723dd7a85f45a416b0d5b4fedfb481"
     },
     {
       "order": 73,
@@ -4440,7 +4525,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "f38ff7006cf516a566630969552fd73a59ba8fc70e95c9773a10ac3f568da140"
     },
     {
       "order": 74,
@@ -4471,7 +4557,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "001966996db04559cd099beb7c729b613b3386d123da72b5cfcbf17b82817f06"
     },
     {
       "order": 75,
@@ -4539,7 +4626,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "6120478041f898f323e35c614096b6c4135d4ed3e61e02b43d1c2db2f2fc81f4"
     },
     {
       "order": 76,
@@ -4570,7 +4658,12 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "4393bf036b6c014c9d199d8cc28f0a3925a45bfa9002626f8ab3d721e5b0d1ab",
+      "current_article_bytes": 7015,
+      "current_article_sha256": "81f640475bd8fe5097516f3298de1e00fa4e3a15a0c53d6e4911288ac124e776",
+      "article_revision_date": "2026-10-10",
+      "article_revision_reason": "原创知识合同修订与追问参考答案补充；主解法与外部资源区块不变。"
     },
     {
       "order": 77,
@@ -4638,7 +4731,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "8df25dcb22ffd8a260fc6819b44cec32d880442afd989255777e200614ef1b7c"
     },
     {
       "order": 78,
@@ -4706,7 +4800,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "23b4fd3797ac88adc101449421d7ac29820143b5f66d7f67a7cc1db3c36b3516"
     },
     {
       "order": 79,
@@ -4774,7 +4869,12 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "3df893512fb89498c621e2a4613f18c0f4df50a67536dc1fdd21546da0c14b32",
+      "current_article_bytes": 4587,
+      "current_article_sha256": "074a093fcb40e0487644a0c64cf1a3847daa704ebffefb30f4403ff9807b1936",
+      "article_revision_date": "2026-10-10",
+      "article_revision_reason": "原创知识合同修订与追问参考答案补充；主解法与外部资源区块不变。"
     },
     {
       "order": 80,
@@ -4842,7 +4942,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "b3c0894cfb36c320c3ecdf8be80acbf2695b352fdbd5eb3aedc2c3d8fc21a9bc"
     },
     {
       "order": 81,
@@ -4933,7 +5034,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "8c859cdc5c1676fa83108e5a3f604b458f05f8d4923bbc12b8766e05f9a90e1c"
     },
     {
       "order": 82,
@@ -4964,7 +5066,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "4ce1fac71a802120ea3a6b617ff657524871a84efe3b2628ce953f060ef24e29"
     },
     {
       "order": 83,
@@ -5049,7 +5152,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "e27513aa54873d4732a52c806c7e5529ca60d3d44a21e5fc15cf2dc592fdcb68"
     },
     {
       "order": 84,
@@ -5117,7 +5221,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "d2de7ec131c649a3ac41c10e6acb01d57e1c3f20f146b15b5fb4ffefa5ac79e3"
     },
     {
       "order": 85,
@@ -5202,7 +5307,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "5d1fa16c5d23b340e4d2ccafac338977f7095ee4e8828e3c67256a05f118e3f1"
     },
     {
       "order": 86,
@@ -5270,7 +5376,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "5d2a8d06ab3fbacc192a465b9eeb8778ccf8cbd25d94780e3f55f194b9e351ca"
     },
     {
       "order": 87,
@@ -5355,7 +5462,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "3ccab95c3ae2865b34fbf93b0936a9a5c1060d27f5743c88e254e38cd6133dad"
     },
     {
       "order": 88,
@@ -5386,7 +5494,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "7e0d086b203ee1c78ecb351a59c20abd3c5e1234a2c6dde204fc409d2eed60b5"
     },
     {
       "order": 89,
@@ -5454,7 +5563,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "e6ebf8a2780c8ccd9d3f1910004d73684c148f1b6fdf35594dc3665703833adb"
     },
     {
       "order": 90,
@@ -5485,7 +5595,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "363c1c0a814ea215902f6b140c3db22127ef5b89582104c3cfa410b93e411548"
     },
     {
       "order": 91,
@@ -5570,7 +5681,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "ce0bd7e8326ee6a44443d5903e9628cf941ef13586336c638acb7448370a5d15"
     },
     {
       "order": 92,
@@ -5601,7 +5713,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "25d647ceedd68f2d410c2dc2a0e93e1d9b6e8521f5387578c5ec4c87f03f8ae9"
     },
     {
       "order": 93,
@@ -5674,7 +5787,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "e54ffb8c3f13b92c2060c10aa468a6c3f13544c208e205bfe3c5b1432d102d40"
     },
     {
       "order": 94,
@@ -5759,7 +5873,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "452d80a14f77ddee23702bb846d6734d429e713cd6d50bc1ce097d509a45d55b"
     },
     {
       "order": 95,
@@ -5827,7 +5942,8 @@
       ],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "a5a42b86b33a316df4ee92de018a23093e6023c45555c7b14d99972687d78170"
     },
     {
       "order": 96,
@@ -5858,7 +5974,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "3169b48ca9f085e58bfad3b44ee4b2ba1443d63adeb8cd46d43989b677a132f3"
     },
     {
       "order": 97,
@@ -5889,7 +6006,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "8b85e774a83e6e74dcec5ea07f9ffe950631713584ea33195eb807e727f1803a"
     },
     {
       "order": 98,
@@ -5920,7 +6038,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "924388fd4094d33039be9f5743934ab6d40fec9180cd8ed176c581acaf35b48b"
     },
     {
       "order": 99,
@@ -5976,7 +6095,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": null
+      "no_match_scope": null,
+      "resource_appendix_sha256": "9583e91c611047ccba0edc11f2262abc9c56f5744405934e90607ab3f310c863"
     },
     {
       "order": 100,
@@ -6007,7 +6127,8 @@
       "direct_videos": [],
       "related_videos": [],
       "notes": [],
-      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。"
+      "no_match_scope": "本次核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索；不表示全网永久不存在。",
+      "resource_appendix_sha256": "cf8d2790307cf31867448db898559d814a765f0b46ed8e35a4aba18b310ef9fa"
     }
   ],
   "supplementary_index": {

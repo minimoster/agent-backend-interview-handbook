@@ -60,7 +60,7 @@ Spark application 与内部 job 的含义见 [官方术语](https://spark.apache
 | `submission_key` | 该 attempt 的外部提交身份 | 网络重发沿用，不为超时重新生成 |
 | `external_ref` | 后端、application ID 及可用的外部 attempt ID | 用于查询、取消与日志关联 |
 
-另设 `idempotency_key` 归并客户端对同一业务请求的重复投递。它应包含租户、目标、输入版本和规范化请求摘要，并有数据库唯一约束。相同 key 携带不同请求内容应拒绝或返回冲突；用户明确要求重新运行时再使用新业务版本。业务 attempt、YARN application attempt、Spark stage attempt、task attempt 是不同重试层，名称相近也不能混算。
+另设幂等记录归并客户端对同一业务请求的重复投递。建议以`(tenant_id, operation, caller_idempotency_key)`作为数据库唯一身份，另存首次请求的规范化`fingerprint`，其中包含目标、输入版本及影响结果的业务参数。相同身份且fingerprint一致时返回同一业务Job或明确的进行中结果；fingerprint不同时拒绝并报告冲突。网络重发沿用客户端键，显式新业务运行使用新键。若选择按内容寻址，应说明不同内容会产生新身份，不同时承诺检测同一客户端键的参数误用。业务attempt、YARN application attempt、Spark stage attempt和task attempt是不同重试层，不能混算。[AWS幂等API设计](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[Stripe同键参数校验](https://docs.stripe.com/api/idempotent_requests)
 
 
 ### 把意图与事实分开存
@@ -227,7 +227,7 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 
 | 场景 | 必须成立的断言 |
 | --- | --- |
-| 客户端重复投递同一幂等键 | 返回同一业务 Job；内容不同的重复键被拒绝 |
+| 客户端重复投递同一幂等身份 | 同一租户/操作/客户端键且指纹一致返回同一Job；同身份不同指纹被拒绝；其他租户、新操作或新键不误合并 |
 | 后端接受提交后服务崩溃 | 恢复关联原 attempt；不因超时盲建新 application |
 | 对账查询不可达 | 状态保持未知/待核对；不会伪造失败或无界重提 |
 | 旧执行者迟到成功 | 版本或 epoch 检查阻止覆盖新 attempt 和发布 |
@@ -240,3 +240,5 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 
 讲解时可以说“我理解业务任务与外部执行不同，设计会保留 attempt 与对账证据”；只有亲自实现、走读和运行后，才能把某能力说成自己的工作。本文不声称完成了部署、取消恢复或性能提升。可以沿本篇选一条失败轨迹实现最小原型，再用 [Spark 诊断补充](../40-backend/37-spark-execution-and-diagnostics.md#spark-diagnostics) 定义观察证据。
 
+
+可先运行[幂等身份内存反例](../../examples/agent_contracts/README.md)核对同键异参数合同。该实验没有连接Spark或数据库，不替代上表的集成验收。

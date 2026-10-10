@@ -14,7 +14,7 @@
 
 **知识点详解**
 
-当前Python参考区分EphemeralClient的内存存储、PersistentClient的本地磁盘存储和连接服务器的HttpClient。持久客户端要明确数据目录，重启时使用相同目录、租户、数据库与collection；容器环境还要确认目录是否位于持久卷。服务端部署的持久性由服务配置负责，不由客户端本地路径决定。
+当前Python参考区分EphemeralClient的内存存储、PersistentClient的本地磁盘存储和连接服务器的HttpClient。PersistentClient适合本地开发与测试；当前官方Client参考建议生产优先采用server-backed实例。实际部署还要核对并发客户端、备份恢复、升级和访问控制，目录落盘本身不等于生产可用。持久客户端要明确数据目录，重启时使用相同目录、租户、数据库与collection；容器环境还要确认目录是否位于持久卷。服务端部署的持久性由服务配置负责，不由客户端本地路径决定。
 
 **具体例子**
 

@@ -414,3 +414,172 @@ return {1, ARGV[2]}
 
 **来源**：[FB-S063 ThreadLocal Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。业务组合、反例与答题组织为原创教学推导。
 
+
+<a id="crash-replay-fixture"></a>
+
+## 提交边界与消息重放：待运行的隔离实验
+
+**状态：2026-10-10 未运行。** 本节补可复制的命令、故障点和业务断言，没有启动或验证 MySQL、Redis、Kafka、RabbitMQ。先完成[两连接锁与库存实验](../../examples/sql/README.md#mysql-concurrency-fixture)。下例用 Redis Streams 表达消息未确认与接管，仅覆盖这一种 MQ 机制；不能把结果套用到 Kafka offset、RabbitMQ ack 或完整分布式交易。
+
+前置条件：已经有授权、空的 MySQL 8.4 练习库和专用 Redis 练习实例，客户端只连接练习环境，全部输入是合成数据。以下 `redis-cli` 默认本机实例，远程环境要显式填已核验的连接参数；认证不写进命令、讲义或日志。绝不在混有真实数据的默认实例试跑。记录 `redis-cli INFO server`、`INFO persistence`、`INFO replication` 与 MySQL 的 VERSION、隔离级别、autocommit；没有记录持久化/复制设置就不能推导掉电或主从切换结果。
+
+### 固定账本、输入与状态
+
+MySQL 新建独立表，只初始化一次：
+
+```sh
+mysql --show-warnings -u EXERCISE_USER -p exercise_db
+```
+
+```sql
+CREATE TABLE bl_crash_inventory (
+  activity_id INT PRIMARY KEY,
+  initial_qty INT NOT NULL,
+  available INT NOT NULL CHECK (available>=0)
+) ENGINE=InnoDB;
+INSERT INTO bl_crash_inventory VALUES (1,2,2);
+CREATE TABLE bl_crash_orders (
+  request_key VARBINARY(64) PRIMARY KEY,
+  activity_id INT NOT NULL,
+  user_id BIGINT NOT NULL,
+  qty INT NOT NULL CHECK (qty=1),
+  UNIQUE KEY uq_activity_user (activity_id,user_id)
+) ENGINE=InnoDB;
+```
+
+消息只携带 request_key、activity_id、user_id、qty；SQL 是最终成交账本。选定全新的 Redis key，先检查 `EXISTS` 应为 0；非零即停止并换一个新前缀，不要删除或覆盖未知内容。
+
+```sh
+redis-cli EXISTS '{bl-crash}:orders' '{bl-crash}:projection'
+# 上条输出必须为 0，才初始化派生库存视图与两条消息。
+redis-cli SET '{bl-crash}:projection' 2 NX
+BEFORE_ID=$(redis-cli --raw XADD '{bl-crash}:orders' '*' request_key req-before activity_id 1 user_id 201 qty 1)
+AFTER_ID=$(redis-cli --raw XADD '{bl-crash}:orders' '*' request_key req-after activity_id 1 user_id 202 qty 1)
+redis-cli XGROUP CREATE '{bl-crash}:orders' lab-group 0
+redis-cli XREADGROUP GROUP lab-group c1 COUNT 1 STREAMS '{bl-crash}:orders' '>'
+```
+
+保存 BEFORE_ID 和 AFTER_ID 的实际输出；第一条 XREADGROUP 应取到 req-before。这里没有实现 Redis 预扣库存，projection 只是允许落后的展示/对账视图，不能用它授权成交。不要把这段实验说成“Redis 与 MySQL 一起原子提交”。
+
+### 故障一：SQL 提交前连接丢失
+
+消费者 c1 已读取 req-before，但尚未 XACK。在上述 MySQL 客户端逐条执行，ROW_COUNT 必须为 1，然后用 `\q` 断开连接，**不执行 COMMIT**：
+
+```sql
+START TRANSACTION;
+INSERT INTO bl_crash_orders VALUES ('req-before',1,201,1);
+UPDATE bl_crash_inventory SET available=available-1
+WHERE activity_id=1 AND available>=1;
+SELECT ROW_COUNT();
+\q
+```
+
+新 MySQL 连接执行下列检查，应输出 1，证明该连接的未提交事务已回滚：
+
+```sql
+SELECT IF((SELECT COUNT(*) FROM bl_crash_orders)=0
+ AND (SELECT available FROM bl_crash_inventory WHERE activity_id=1)=2,
+ 1,0) AS before_commit_rollback_ok;
+```
+
+消息仍 pending：
+
+```sh
+redis-cli XPENDING '{bl-crash}:orders' lab-group
+redis-cli XCLAIM '{bl-crash}:orders' lab-group c2 0 "$BEFORE_ID"
+```
+
+预期 pending 数 1，接管得到 req-before。`min-idle-time=0` 只用于已人工停掉 c1 的隔离演练，生产不能抢占仍工作的消费者。c2 在新 MySQL 连接重做整笔 req-before 事务：
+
+```sql
+START TRANSACTION;
+INSERT INTO bl_crash_orders VALUES ('req-before',1,201,1);
+UPDATE bl_crash_inventory SET available=available-1
+WHERE activity_id=1 AND available>=1;
+SELECT ROW_COUNT(); -- 必须为 1，否则 ROLLBACK
+COMMIT;
+```
+
+随后：
+
+```sh
+redis-cli XACK '{bl-crash}:orders' lab-group "$BEFORE_ID"
+```
+
+预期 XACK 返回 1。在 MySQL 检查下列输出为 1，不能只看消息已确认：
+
+```sql
+SELECT IF((SELECT available FROM bl_crash_inventory WHERE activity_id=1)=1
+ AND (SELECT COUNT(*) FROM bl_crash_orders)=1,1,0) AS recovered_once_ok;
+```
+
+### 故障二：SQL 已提交、消息尚未确认
+
+```sh
+redis-cli XREADGROUP GROUP lab-group c1 COUNT 1 STREAMS '{bl-crash}:orders' '>'
+```
+
+预期得到 req-after。新 MySQL 连接执行：
+
+```sql
+START TRANSACTION;
+INSERT INTO bl_crash_orders VALUES ('req-after',1,202,1);
+UPDATE bl_crash_inventory SET available=available-1
+WHERE activity_id=1 AND available>=1;
+SELECT ROW_COUNT(); -- 必须为 1，否则 ROLLBACK
+COMMIT;
+```
+
+注入点就在 COMMIT 后：停止 c1 的后续操作，**故意不 XACK、不更新 projection**，模拟消费者失联。SQL 应为两笔订单、available=0，Redis projection 仍为 2，pending 为 1。接管并重放：
+
+```sh
+redis-cli XCLAIM '{bl-crash}:orders' lab-group c2 0 "$AFTER_ID"
+```
+
+c2 在新 MySQL 连接执行下面的重放，INSERT 预期 1062；立即 ROLLBACK，再核对已有结果，不再扣库存：
+
+```sql
+START TRANSACTION;
+INSERT INTO bl_crash_orders VALUES ('req-after',1,202,1);
+ROLLBACK;
+SELECT activity_id,user_id,qty FROM bl_crash_orders
+WHERE request_key='req-after'; -- 必须为 1、202、1
+```
+
+然后 XACK：
+
+```sh
+redis-cli XACK '{bl-crash}:orders' lab-group "$AFTER_ID"
+redis-cli XPENDING '{bl-crash}:orders' lab-group
+```
+
+预期 XACK 为 1、pending 数 0。这里人工停止操作是在指定边界的注入，不是进程 SIGKILL、Redis 宕机或数据库掉电测试；后者需要独立实现与环境。
+
+### 业务账与派生视图的断言
+
+在 MySQL 保存下面的实际输出，四列都应为 1：
+
+```sql
+SELECT
+ (SELECT available=0 FROM bl_crash_inventory WHERE activity_id=1) AS stock_ok,
+ (SELECT COUNT(*)=2 FROM bl_crash_orders) AS order_count_ok,
+ (SELECT COUNT(*)=1 FROM bl_crash_orders
+  WHERE request_key='req-after' AND user_id=202 AND qty=1) AS replay_ok,
+ (SELECT i.initial_qty=i.available+COALESCE(SUM(o.qty),0)
+  FROM bl_crash_inventory i LEFT JOIN bl_crash_orders o
+    ON i.activity_id=o.activity_id
+  WHERE i.activity_id=1 GROUP BY i.activity_id,i.initial_qty,i.available) AS ledger_ok;
+```
+
+在两笔业务都已提交且练习环境无并发写时，以该账本结果把 projection 恢复为 0，并检查结果：
+
+```sh
+redis-cli SET '{bl-crash}:projection' 0
+redis-cli --raw GET '{bl-crash}:projection'
+```
+
+GET 应为 0，同时 SQL 账本仍符合四项不变量。只在这个静态实验允许直接 SET；线上应有版本/快照边界、增量日志与条件发布，避免把核对时读到的旧值覆盖新交易。本例不覆盖生产并发对账、Redis 预占补偿、outbox 发布窗口、服务器崩溃、消息保留/trim、复制丢写或性能。
+
+每个阶段保存命令、退出码、错误码、订单/库存与 pending 的前后快照。若升级为应用自动化，分别在 INSERT 后、库存 UPDATE 后、COMMIT 后和 ACK 前设置可控 failpoint，断言每次重放只产生一笔业务效果；SQL 和消息间仍无共享事务。任何阶段尚未跑过就保留待验证标记。
+
+机制依据：[Redis XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/)、[XCLAIM](https://redis.io/docs/latest/commands/xclaim/)、[XACK](https://redis.io/docs/latest/commands/xack/)、[XPENDING](https://redis.io/docs/latest/commands/xpending/)、[InnoDB 错误处理](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html)。命令组合、合成表与故障断言为原创教学设计。

@@ -77,14 +77,20 @@ def add_decimal_strings(a: str, b: str) -> str:
     return "".join(reversed(reversed_digits)).lstrip("0") or "0"
 
 
-def largest_below(n: int, digits: set[int]) -> int | None:
-    """Largest POSITIVE integer < n, using reusable allowed digits, no leading 0."""
+def largest_below_decimal(n: str, digits: set[int]) -> str | None:
+    """Largest positive decimal < n, with reusable digits and no leading zero.
+
+    n is nonempty ASCII decimal; leading zeros are accepted and normalized.
+    No whole-input integer conversion or interpreter-limit changes occur.
+    """
+    if not isinstance(n, str) or not n or any(c < "0" or c > "9" for c in n):
+        raise ValueError("n must be a nonempty ASCII decimal string")
     if any(type(d) is not int or d < 0 or d > 9 for d in digits):
         raise ValueError("digits must be integers in 0..9")
-    if n <= 1 or not digits or not (digits - {0}):
+    bound = n.lstrip("0") or "0"
+    if bound in ("0", "1") or not digits or not (digits - {0}):
         return None
     allowed = sorted(digits)
-    bound = str(n)
     last_drop = None
     for i, char in enumerate(bound):
         limit = ord(char) - ord("0")
@@ -95,13 +101,34 @@ def largest_below(n: int, digits: set[int]) -> int | None:
             break
     if last_drop is not None:
         i, digit = last_drop
-        text = bound[:i] + str(digit) + str(allowed[-1]) * (len(bound) - i - 1)
-        return int(text)
+        return bound[:i] + str(digit) + str(allowed[-1]) * (len(bound) - i - 1)
     shorter = len(bound) - 1
     if shorter == 0:
         return None
     largest_nonzero = max(digits - {0})
-    return int(str(largest_nonzero) + str(allowed[-1]) * (shorter - 1))
+    return str(largest_nonzero) + str(allowed[-1]) * (shorter - 1)
+
+
+def largest_below(n: int, digits: set[int]) -> int | None:
+    """Integer convenience wrapper; decimal conversion limits remain active.
+
+    Non-int bounds raise ValueError; n <= 1 has no positive solution.
+    Oversized decimal conversions raise ValueError; use the string API instead.
+    """
+    if type(n) is not int:
+        raise ValueError("n must be an integer")
+    if any(type(d) is not int or d < 0 or d > 9 for d in digits):
+        raise ValueError("digits must be integers in 0..9")
+    if n <= 1:
+        return None
+    try:
+        result = largest_below_decimal(str(n), digits)
+        return int(result) if result is not None else None
+    except ValueError as error:
+        raise ValueError(
+            "decimal conversion limit exceeded; use largest_below_decimal "
+            "with a decimal string"
+        ) from error
 
 
 def remove_all_duplicate_values(head: Node | None) -> Node | None:

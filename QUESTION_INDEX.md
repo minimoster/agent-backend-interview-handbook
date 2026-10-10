@@ -192,7 +192,7 @@
 - [J45 Agent 后端要怎么测试和监控](docs/20-java/05-agent-integration.md#j45) · P0
 - [J46 AI Agent 和 Java javaagent 有什么区别](docs/20-java/05-agent-integration.md#j46) · P2
 
-## Agent补充 · 63题
+## Agent补充 · 23题
 
 - [FA22 一次反思怎样成为可复用的改进 而不是把错误永久记住？](docs/10-agent/14-controlled-improvement.md#fa22) · P1
 - [FA23 受控自改进的执行评估更新发布闭环怎样设计？](docs/10-agent/14-controlled-improvement.md#fa23) · P1

@@ -11,15 +11,22 @@
 **优先级：P0** 
 
 **知识点详解** 
-- 直接核对 FilePlanStore 可见临时文件 Sync、Rename、目录 Sync，注释明确面向单机部署；Scheduler 使用 ExecutionID、LeaseOwner 检查执行身份。不要把这些字段讲成单调 epoch 或集群 fencing。
-- rename 着重避免读到半份替换文件，fsync 涉及落盘；二者不自动提供跨文件事务，也不自动解决多个执行者同时提交。平台与文件系统语义需要明确。
+- 直接核对FilePlanStore可见临时文件Sync、Rename、目录Sync，注释明确面向单机部署。Scheduler确实递增ExecutionEpoch，但完成/失败路径的executionMatches检查任务状态、ExecutionID、LeaseOwner和AssignedTo，并未把epoch作为外部写入端的fencing协议。字段存在、执行身份匹配与分布式fencing保证应分别解释。
+- rename着重避免读到半份替换文件，fsync涉及落盘；二者不自动提供跨文件事务，也不自动解决多个执行者同时提交。平台与文件系统语义需要明确。
+- 该固定FilePlanStore先更新内存再调用persistLocked，持久化失败时没有回滚内存；目录Sync还可能在Rename完成后返回错误。因此失败响应不必然表示状态未改变。应分别在写入、文件Sync、Rename和目录Sync阶段注入错误，对比当前进程读取、磁盘快照和重启回读，再明确回滚、隔离故障状态或对账策略。这里是静态代码核对，未运行该项目故障注入。
 - 完成/失败提交路径有 executionMatches 检查并处理迟到结果；仍应测试取消、恢复等组合路径。该实现的单机身份校验不能直接扩展为多个进程共享文件时的分布式互斥保证。
 
 **具体例子** ：执行者甲超时，乙接管后，甲又返回结果；需要验证甲能否覆盖乙的新状态。这应写成故障测试，不凭字段名推断。
 
-**30 秒答题主线** ：当前实现关注快照落盘和执行身份控制。我能解释 rename/fsync 分别解决什么，也会明确它们不是数据库事务；execID 和 leaseowner 的正确性要看每个状态提交点的校验，而不是把它们说成未实现的 epoch。
+**30 秒答题主线** ：当前实现关注单机快照落盘和执行身份控制。我会分别解释rename/fsync、持久化失败窗口、ExecutionEpoch计数器与完成提交的身份匹配。计数器存在不代表写入端执行了分布式fencing，返回失败也不保证RAM和磁盘都没变化。
 
 **追问** ：rename 成功但进程立即断电会怎样？旧执行者回写如何复现？
+
+#### 参考答案
+
+rename 的原子可见性不等于断电后的目录项持久性；在写入、文件 Sync、Rename 和目录 Sync 分阶段做故障测试，分别检查 RAM、磁盘和重启结果。固定实现先改内存再持久化，失败时不能默认没有变化。旧执行者测试应先领取身份1，再重新领取身份2，最后提交身份1结果，检查被拒绝。[固定 FilePlanStore](https://github.com/minimoster/agi-openresearch/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/store/file_plan_store.go)、[固定身份校验](https://github.com/minimoster/agi-openresearch/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/scheduler/scheduler.go#L703-L708)
+
+**验收点：** 分别假设Rename前失败与Rename后目录Sync失败，列出RAM、磁盘与重启可见状态，不把返回错误当作全未生效。
 
 **常见错误** ：原子文件替换被说成分布式强一致；看到租约字段就宣称绝无双执行。
 
@@ -42,6 +49,12 @@
 
 **追问** ：节点失败后哪些后继不能执行？如何检查环、缺失依赖和错误类型？
 
+#### 参考答案
+
+必须成功的依赖失败后，其后继不得执行发布；可选诊断分支须显式允许失败证据。执行前按 ID/依赖图校验环和缺失节点，再检查类型/产物合同，不能从“有依赖数组”推断实现了这些检查。案例回答应区分建议验收与已读到的代码。
+
+**验收点：** 必要依赖失败时发布节点不得启动；缺依赖和环在执行前给出明确错误。
+
 **常见错误** ：把前端进度图当实际 DAG 调度；把 Eino 当成提供所有可靠性保证的黑盒。
 
 **来源** ：[AG-P05](../../sources/catalog.md#ag-p05)、[AG-P14](../../sources/catalog.md#ag-p14)、[AG-T40](../../sources/catalog.md#ag-t40)。图校验是应核对项目是否覆盖的追问。
@@ -62,6 +75,12 @@
 **30 秒答题主线** ：我会把适配器预检和正式 benchmark 分开。前者最多8条、最多3次尝试；后者按配置运行并重算指标。代码提供评测能力，不等于已有可信效果结论；我会展示实际数据划分、日志和结果，没运行的部分不报指标。
 
 **追问** ：谁生成标签？评测规则能被待评模型改动吗？多分类 F1 是哪种平均方式？
+
+#### 参考答案
+
+参考标签、数据划分和判分规则应由独立可信评测侧冻结；待评模型可以生成候选代码，不能重定义标签或成功标准。多分类 F1 必须声明 micro、macro 或按真实样本数加权的 weighted，并说明无样本类、无正预测及解析失败的处理；不能只报一个“F1”。报告重复试验、失败样本和成本，8条预检不代表总体效果。[scikit-learn F1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html)、[Agent 评测方法](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+
+**验收点：** 同一多分类混淆矩阵分别算micro、macro和weighted F1，报告权重、缺类及无预测处理。
 
 **常见错误** ：把模型给出的分数直接当指标；不写样本数；把同组反复修复叫独立测试。
 
@@ -84,6 +103,12 @@
 
 **追问** ：去掉 Neo4j 能否运行？哪个系统是主数据源？为什么需要两种索引？
 
+#### 参考答案
+
+固定 Saber 的知识检索可以在 Neo4j 不可用时降级，但这是能力受限而非完全等价运行。PostgreSQL 保存主记录，向量/关键词/图索引承担不同召回路径；需要讲清索引更新、权限过滤和降级结果，不能只报组件名单。[固定架构说明](https://github.com/minimoster/agi-saber/blob/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef/README.md)
+
+**验收点：** 去掉可选图能力时列出剩余可用路径与失去的结果，不声称功能完全相同。
+
 **常见错误** ：只背 PostgreSQL/Milvus/ES；把可选服务说成全部已在生产使用。
 
 **来源** ：[AG-P13](../../sources/catalog.md#ag-p13)（项目 README 自述）；具体入口与部署状态仍需你走读、实际运行确认。
@@ -97,13 +122,19 @@
 **知识点详解** 
 - 代码核对：rewrite 后多 query 并行，每个 query 内顺序执行召回并做 RRF，跨 query 再融合与 LLM rerank；最终结果优先使用父块。父块内容在召回查 PG 时已读入，并非重排后才查库。
 - “多 query 并行”和“BM25/向量检索并行”是不同层级的结论；若没读启动 goroutine 的位置，不能把整个检索栈说成全面并行。
-- LLM rerank 读取子块内容 preview，不是 Cross-Encoder。跨 query 融合实际按内容 hash 聚合；同一 query 的融合用 PG ID。最终使用父块会增加 token，应检查去重和预算。
+- LLM rerank读取子块内容preview，不是Cross-Encoder。跨query融合实际以子块全文字符串作为map键，没有计算内容哈希；同一query的融合用PG ID。相同文本但来源或父块不同的候选可能合并，应保留这一身份与证据追溯边界。最终使用父块会增加token，应检查父块去重和上下文预算。
 
 **具体例子** ：3个 query 同时开始，各自先查一个索引再查另一个；总延迟不同于6个检索请求全部同时启动。
 
 **30 秒答题主线** ：我会准确说明并发发生在哪层。Saber 对多 query 并行，单个 query 中的召回按现有代码顺序执行，之后进行 RRF 和 LLM 重排，最终优先使用随召回结果取得的父块。如果要把召回并行化，需要先验证依赖、限流和效果。
 
 **追问** ：单路检索失败能否保留另一条结果？父块回补会不会重复？
+
+#### 参考答案
+
+单路失败是否保留另一条，取决于实际错误策略，应分别注入超时和空结果核对。固定实现多个 query 可以并发，单 query 的向量与关键词路径按代码顺序执行；跨 query 用原始子块文本去重，回补父块仍须独立去重和计入 token 预算。[固定 hybrid.go](https://github.com/minimoster/agi-saber/blob/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef/internal/domain/rag/hybrid.go)
+
+**验收点：** 不同来源的两个候选有相同子块文本，按固定实现会合并；父块/出处身份的丢失必须能指出。
 
 **常见错误** ：把“混合”自动解释成“并行”；把 LLM 排序讲成自己训练过重排模型。
 
@@ -125,6 +156,12 @@
 **30 秒答题主线** ：当前核对的是长期记忆的 PG 事务加 Milvus/Neo4j 异步投影。Outbox让更新意图可恢复，版本/hash与reconcile帮助幂等和修复，但不等于跨库强一致，也不能扩大成所有 RAG 索引都拥有相同保证。
 
 **追问** ：先收到 v3，再收到 v2 怎么办？失败任务一直重试会怎样？
+
+#### 参考答案
+
+消费 v2 前核对主记录当前版本/摘要，不能在已投影 v3 后无条件覆盖。重复失败要有次数/时间预算、退避、dead-letter 或 dead 状态及告警；修复后可重放并对账。事务 outbox 只保证主记录与待发送事件一起提交，不能消除投影延迟和消费者故障。[固定投影 worker](https://github.com/minimoster/agi-saber/blob/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef/internal/application/memoryprojection/worker.go)
+
+**验收点：** 先投影v3再收到v2，核对主记录与版本；过期消息不能让索引退回v2，失败处理有预算和告警。
 
 **常见错误** ：把 outbox 说成自动 exactly-once；把“定期对账”说成“任何时刻都没有不一致”。
 

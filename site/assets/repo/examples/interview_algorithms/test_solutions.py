@@ -1,9 +1,10 @@
 """Deterministic examples + randomized/brute-force references; standard library."""
 import random
+import sys
 import unittest
 from collections import Counter
 from solutions import (Node, reverse_words_in_place, sort_odd_up_even_down,
-                       add_decimal_strings, largest_below,
+                       add_decimal_strings, largest_below, largest_below_decimal,
                        remove_all_duplicate_values, are_anagrams)
 
 
@@ -65,10 +66,56 @@ class Examples(unittest.TestCase):
                 candidates=[x for x in range(1,n) if set(map(int,str(x)))<=digits]
                 expected=max(candidates) if candidates else None
                 self.assertEqual(largest_below(n,digits),expected,(n,digits))
+                self.assertEqual(largest_below_decimal(str(n), digits),
+                                 str(expected) if expected is not None else None, (n, digits))
         self.assertEqual(largest_below(678,{1,4,7}),477)
         self.assertEqual(largest_below(1234,{1,2,3,4}),1233)
         self.assertEqual(largest_below(100,{0,1}),11)
         self.assertIsNone(largest_below(1,{0,1}))
+        # All 1,024 decimal-digit subsets and N=1..299; grow an independent
+        # exhaustive candidate oracle instead of reusing the construction logic.
+        for mask in range(1024):
+            digits = {i for i in range(10) if mask & (1 << i)}
+            expected = None
+            for n in range(1, 300):
+                candidate = n - 1
+                if candidate > 0 and all(int(char) in digits for char in str(candidate)):
+                    expected = candidate
+                self.assertEqual(largest_below(n, digits), expected, (n, digits))
+                self.assertEqual(largest_below_decimal(str(n), digits),
+                                 str(expected) if expected is not None else None, (n, digits))
+
+    def test_largest_below_decimal_huge(self):
+        before_limit = sys.get_int_max_str_digits() if hasattr(sys, "get_int_max_str_digits") else None
+        self.assertEqual(largest_below_decimal("1" + "0" * 5000, {0, 1}), "1" * 5000)
+        self.assertEqual(largest_below_decimal("1" * 5000, {1}), "1" * 4999)
+        self.assertEqual(largest_below_decimal("7" * 5000 + "6", {1, 4, 7}), "7" * 5000 + "4")
+        self.assertEqual(largest_below_decimal("8" + "0" * 5000, {1, 4, 7}), "7" * 5001)
+        self.assertEqual(largest_below_decimal("0" * 5000 + "100", {0, 1}), "11")
+        self.assertIsNone(largest_below_decimal("9" * 5000, {0}))
+        self.assertIsNone(largest_below_decimal("0" * 5000, {0, 1}))
+        if before_limit:
+            # Build via arithmetic, not decimal parsing; preserve the active security limit.
+            with self.assertRaisesRegex(ValueError, "largest_below_decimal"):
+                largest_below(10 ** before_limit, {1})
+        if before_limit is not None:
+            self.assertEqual(sys.get_int_max_str_digits(), before_limit)
+
+    def test_largest_below_validation(self):
+        for bound in ("", "-2", "1.0", " 2", "１", 12, None):
+            with self.assertRaises(ValueError):
+                largest_below_decimal(bound, {1})
+        for digits in ({True}, {-1}, {10}, {1.0}, {"1"}):
+            with self.assertRaises(ValueError):
+                largest_below_decimal("123", digits)
+            with self.assertRaises(ValueError):
+                largest_below(123, digits)
+        for bound in (True, 2.5, "123", None):
+            with self.assertRaises(ValueError):
+                largest_below(bound, {1})
+        self.assertEqual(largest_below_decimal("00100", {0, 1}), "11")
+        self.assertIsNone(largest_below_decimal("1", {1}))
+        self.assertIsNone(largest_below_decimal("0", {1}))
 
     def test_remove_duplicates(self):
         rng=random.Random(4)

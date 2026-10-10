@@ -198,7 +198,7 @@ deadline 是“必须在某时刻结束”，timeout 是“从现在起最多等
 
 **知识点详解** 
 
-WaitGroup 解决“等待一组工作完成”，不直接收集错误，也不自动取消其他任务。经典写法先 Add 再启动 G，每个 G `defer Done()`，最后 Wait。计数归零让 Wait 返回；Add 放在新 G 内可能让 Wait 提前观察到零。Go 1.25 增加了 `WaitGroup.Go`，老版本仍要掌握 Add/Done。
+WaitGroup 解决“等待一组工作完成”，不直接收集错误，也不自动取消其他任务。经典写法先 Add 再启动 G，每个 G `defer Done()`，最后 Wait。计数归零让 Wait 返回；Add 放在新 G 内可能让 Wait 提前观察到零。Go 1.25 增加了 `WaitGroup.Go(f)`，可启动并登记任务，但合同要求 f 不得 panic。组为空时，Go 调用必须发生在 Wait 之前；组非空时可继续登记任务，包括由已有任务调用 Go。复用组启动下一批独立任务前，应等待上一批所有 Wait 返回。它仍不提供错误收集、自动取消或并发上限，老版本仍要掌握 Add/Done；WaitGroup 使用后也不能复制。
 
 errgroup 在等待基础上增加错误传播，并能通过 `WithContext` 让首个非 nil 错误触发派生 context 取消。它不是“收到一个错误就强制停止全部任务”；任务自身仍要检查取消。共享写入也不会因此自动安全。
 
@@ -210,7 +210,7 @@ errgroup 在等待基础上增加错误传播，并能通过 `WithContext` 让�
 
 **误区** ：WaitGroup 是锁；errgroup 会返回所有错误；Done 漏调没有后果。
 
-**来源** ：[GO-S13 sync.WaitGroup](https://pkg.go.dev/sync#WaitGroup)；[GO-S14 errgroup](https://pkg.go.dev/golang.org/x/sync/errgroup)。
+**来源** ：[GO-S13 sync.WaitGroup 与 Go 合同](https://pkg.go.dev/sync#WaitGroup.Go)；[GO-S14 errgroup](https://pkg.go.dev/golang.org/x/sync/errgroup)。
 
 <a id="g10"></a>
 
