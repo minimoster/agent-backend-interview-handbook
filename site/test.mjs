@@ -252,6 +252,11 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   }
   assert.ok(boot('#/').html.includes('把知识连成一条主线'));
   assert.ok(boot('#/').html.includes('原创场景卡'));
+  assert.equal(boot('#/').title,'AI Agent 与后端开发学习手册');
+  assert.ok(boot('#/').html.includes('从 Agent 应用到后端工程，系统学习核心知识、项目实践与面试方法。'));
+  assert.ok(html.includes('class="brand-name">AI Agent 与后端开发学习手册'));
+  assert.ok(!html.includes('工程学习手册'));
+  assert.ok(boot('#/library?q=SC-A01').title.endsWith(' · AI Agent 与后端开发学习手册'));
   assert.ok(boot('#/library?q=SC-A01').html.includes('SC-A01'));
   assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-a01.md').html.includes('独立原创场景卡'));
   assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-b13.md',false).html.includes('TCP read边界'));
