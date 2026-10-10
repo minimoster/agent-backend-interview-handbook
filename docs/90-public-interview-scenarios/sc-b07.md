@@ -1,0 +1,42 @@
+# SC-B07 联合索引不能只回答“有无用到”
+
+[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+
+本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
+
+**原创起手问：** 有索引(a,b,c)，SQL把b写在a前面就失效吗？没a条件就一定不用索引吗？
+
+**知识点详解**： 索引键有自己的排序顺序，SQL的AND条件书写顺序不是这个顺序。正常的左前缀定位利用(a)、(a,b)、(a,b,c)等前缀；“索引被使用”又可能是定位、覆盖扫描、全索引扫描或其他访问方式，代价不同。
+
+## 参考答案
+
+我先看实际SQL、返回列、数据分布与执行计划。仅按b或c筛选通常不能按普通左前缀方式直接定位，但可能选择覆盖索引扫描，特定MySQL8.4条件下也存在Skip Scan；所以不能绝对说“不可能用索引”。比较扫描行数、回表、排序及实测时间，而不是只看到key字段就宣布优化成功。
+
+## 追问1：范围条件后的列都没有作用吗？
+
+后续列可能不能同样缩小索引定位区间，但仍可用于过滤或覆盖等。分清访问范围、过滤和返回数据三个层次，避免一句“失效”涵盖一切。
+
+## 追问2：有两个单列索引就等于联合索引吗？
+
+不等于。优化器可能选择Index Merge或单一路径，但执行结构和代价与联合索引不同。是否建联合索引取决于真实查询组合和写入开销。
+
+## 常见误区
+
+为每个字段建索引；用个位数测试数据预测真实计划；将EXPLAIN估算当实测，忘记EXPLAIN ANALYZE可能真正执行查询。
+
+## 练习与验收
+
+设计(a,b)小表的4种筛选和2种返回列，在专用测试库观察计划，并逐步扩大有偏斜的数据。验收写出为何选该路径、扫描/返回行数差和版本。本轮没有连接MySQL。
+
+**主题来源：** P09、P16、P17。**技术依据：** [MySQL8.4联合索引](https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html)、[MySQL8.4 Skip Scan范围访问](https://dev.mysql.com/doc/refman/8.4/en/range-optimization.html#range-access-skip-scan)。不把本卡推广到所有数据库。
+
+## 阅读与复验入口
+
+公开主题线索：[P09](../../sources/public-interviews/README.md#report-p09)、[P16](../../sources/public-interviews/README.md#report-p16)、[P17](../../sources/public-interviews/README.md#report-p17)。
+
+先读基础：
+
+- [02-databases-and-sql](../../docs/40-backend/02-databases-and-sql.md)
+- [20-mysql-mechanisms](../../docs/40-backend/20-mysql-mechanisms.md)
+
+[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

@@ -1,0 +1,598 @@
+{
+  "records": [
+    {
+      "id": "O01",
+      "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+      "labels": [
+        "AWS安全重试",
+        "AWS幂等API设计"
+      ],
+      "cards": [
+        "SC-A08",
+        "SC-B09",
+        "SC-B10"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O02",
+      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+      "labels": [
+        "AWS超时和退避",
+        "AWS超时重试与抖动"
+      ],
+      "cards": [
+        "SC-A08",
+        "SC-B05"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O03",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+      "labels": [
+        "MySQL8.4 InnoDB语句加锁"
+      ],
+      "cards": [
+        "SC-B08"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O04",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+      "labels": [
+        "MySQL8.4事务隔离"
+      ],
+      "cards": [
+        "SC-B08"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O05",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html",
+      "labels": [
+        "MySQL8.4联合索引"
+      ],
+      "cards": [
+        "SC-B07"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O06",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/range-optimization.html#range-access-skip-scan",
+      "labels": [
+        "MySQL8.4 Skip Scan范围访问"
+      ],
+      "cards": [
+        "SC-B07"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O12",
+      "url": "https://docs.langchain.com/langsmith/evaluation",
+      "labels": [
+        "LangSmith评测概念"
+      ],
+      "cards": [
+        "SC-A04"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O13",
+      "url": "https://docs.langchain.com/oss/python/integrations/splitters",
+      "labels": [
+        "LangChain分块接口"
+      ],
+      "cards": [
+        "SC-A02"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O14",
+      "url": "https://docs.langchain.com/oss/python/langchain/long-term-memory",
+      "labels": [
+        "LangChain长期记忆"
+      ],
+      "cards": [
+        "SC-A06"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O15",
+      "url": "https://docs.langchain.com/oss/python/langchain/retrieval",
+      "labels": [
+        "LangChain检索与知识库"
+      ],
+      "cards": [
+        "SC-A02"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O16",
+      "url": "https://docs.langchain.com/oss/python/langchain/short-term-memory",
+      "labels": [
+        "LangChain短期记忆"
+      ],
+      "cards": [
+        "SC-A06"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O17",
+      "url": "https://docs.langchain.com/oss/python/langgraph/durable-execution",
+      "labels": [
+        "LangGraph durable execution"
+      ],
+      "cards": [
+        "SC-A09"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O18",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "labels": [
+        "LangGraph持久化"
+      ],
+      "cards": [
+        "SC-A09"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O19",
+      "url": "https://docs.langchain.com/oss/python/langgraph/workflows-agents",
+      "labels": [
+        "LangGraph工作流与Agent"
+      ],
+      "cards": [
+        "SC-A01"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O20",
+      "url": "https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html",
+      "labels": [
+        "JDK21虚拟线程",
+        "Oracle JDK21虚拟线程"
+      ],
+      "cards": [
+        "SC-B04",
+        "SC-B06"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O21",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html",
+      "labels": [
+        "JDK21 ThreadLocal"
+      ],
+      "cards": [
+        "SC-B06"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O22",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html",
+      "labels": [
+        "JDK21 ThreadPoolExecutor"
+      ],
+      "cards": [
+        "SC-B05"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O23",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html",
+      "labels": [
+        "JDK21并发API入口"
+      ],
+      "cards": [
+        "SC-B03"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O24",
+      "url": "https://docs.oracle.com/en/java/javase/21/troubleshoot/diagnostic-tools.html",
+      "labels": [
+        "Oracle JDK21诊断工具"
+      ],
+      "cards": [
+        "SC-B12"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O25",
+      "url": "https://docs.oracle.com/en/java/javase/24/core/virtual-threads.html",
+      "labels": [
+        "Oracle JDK24虚拟线程"
+      ],
+      "cards": [
+        "SC-B04"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O26",
+      "url": "https://docs.oracle.com/en/java/javase/24/migrate/significant-changes-jdk-24.html",
+      "labels": [
+        "JDK24监视器pinning变化"
+      ],
+      "cards": [
+        "SC-B04"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O27",
+      "url": "https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html",
+      "labels": [
+        "JLS21内存模型"
+      ],
+      "cards": [
+        "SC-B03"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O28",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html",
+      "labels": [
+        "Spring bean作用域"
+      ],
+      "cards": [
+        "SC-B11"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O29",
+      "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html",
+      "labels": [
+        "Spring事务注解与代理"
+      ],
+      "cards": [
+        "SC-B11"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O31",
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "labels": [
+        "OWASP LLM Prompt Injection"
+      ],
+      "cards": [
+        "SC-A05"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O32",
+      "url": "https://git-scm.com/docs/git-merge",
+      "labels": [
+        "Git合并冲突机制"
+      ],
+      "cards": [
+        "SC-A10"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O33",
+      "url": "https://go.dev/doc/diagnostics",
+      "labels": [
+        "Go性能诊断",
+        "Go诊断",
+        "Go诊断与profiling",
+        "Go诊断工具"
+      ],
+      "cards": [
+        "SC-A12",
+        "SC-B02",
+        "SC-B12",
+        "SC-B14"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O34",
+      "url": "https://go.dev/ref/spec",
+      "labels": [
+        "Go语言规范"
+      ],
+      "cards": [
+        "SC-B01"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O35",
+      "url": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+      "labels": [
+        "WHATWG Server sent events"
+      ],
+      "cards": [
+        "SC-A11"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O36",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+      "labels": [
+        "MCP transports 2025-11-25"
+      ],
+      "cards": [
+        "SC-A07"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O37",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "labels": [
+        "MCP tools 2025-11-25",
+        "MCP工具安全要求"
+      ],
+      "cards": [
+        "SC-A05",
+        "SC-A07"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O38",
+      "url": "https://pkg.go.dev/context",
+      "labels": [
+        "context合同"
+      ],
+      "cards": [
+        "SC-B02"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O39",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "labels": [
+        "Anthropic Prompt caching"
+      ],
+      "cards": [
+        "SC-A12"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O45",
+      "url": "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/",
+      "labels": [
+        "Redis锁模式与故障边界"
+      ],
+      "cards": [
+        "SC-B09"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O46",
+      "url": "https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html",
+      "labels": [
+        "Sentence Transformers检索和重排"
+      ],
+      "cards": [
+        "SC-A03"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O47",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "labels": [
+        "Anthropic模式定义"
+      ],
+      "cards": [
+        "SC-A01"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O48",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "labels": [
+        "Anthropic Agent评测设计",
+        "Anthropic构建Agent评测"
+      ],
+      "cards": [
+        "SC-A04",
+        "SC-B14"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O49",
+      "url": "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion",
+      "labels": [
+        "Elastic RRF定义"
+      ],
+      "cards": [
+        "SC-A03"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O50",
+      "url": "https://www.rabbitmq.com/docs/confirms",
+      "labels": [
+        "RabbitMQ发布与消费确认"
+      ],
+      "cards": [
+        "SC-B10"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O51",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html#name-if-match",
+      "labels": [
+        "RFC9110 If-Match"
+      ],
+      "cards": [
+        "SC-A10"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    },
+    {
+      "id": "O52",
+      "url": "https://www.rfc-editor.org/rfc/rfc9293.html",
+      "labels": [
+        "RFC9293 TCP字节流",
+        "RFC9293 TCP字节流合同"
+      ],
+      "cards": [
+        "SC-A11",
+        "SC-B13"
+      ],
+      "authority": "official_vendor_project_or_standard_primary_source",
+      "checked_at": "2026-10-10",
+      "version_boundary": "按关联卡注明版本；动态网页需按实际依赖/目标版本重新核对",
+      "verification": "公开页面或官方源码已打开阅读；未执行其示例"
+    }
+  ],
+  "count": 41
+}

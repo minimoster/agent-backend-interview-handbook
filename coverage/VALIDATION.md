@@ -63,3 +63,9 @@ java examples/java/OrderedPrinter.java
 OpenJDK21.0.12.1再次运行顺序输出101个正常用例和三类中断/失败路径、单例16线程10000调用，均通过。SQLite/Python通过仍不表示MySQL目标引擎的锁、事务和恢复通过。
 
 [Go取消与SSE fixture](../examples/go/cancellation/README.md)已提供源码和测试，但本地缺少Go编译器，编译/测试/race仍未运行。仓库的[知识检查工作流](../.github/workflows/knowledge-checks.yml)将分别记录Node/Python/Java/Go实际版本及测试结果；只有对应提交的CI实际完成才能据此更新通过范围。MySQL/Redis/MQ故障实验保持待验证，未运行模型API、Spark集群或公开案例项目的故障注入。
+
+## 2026-10-10：已有fixture的CI实测记录
+
+提交[4ae3bfca6ad0925cae8b98522e1c4d82c5f3dbc4](https://github.com/minimoster/agent-backend-interview-handbook/commit/4ae3bfca6ad0925cae8b98522e1c4d82c5f3dbc4)的[知识检查38053168150](https://github.com/minimoster/agent-backend-interview-handbook/actions/runs/38053168150)已成功。该次Node22.23.3、Python3.12.3、Temurin17.0.20.1与Go1.24.13 linux/amd64在CI实际运行教学fixture；Go取消与模拟SSE使用`go test -race -count=1 -timeout=60s ./...`通过。上文“本地Go未运行”仍描述本地环境，这条记录另列CI结果。它不证明真实MySQL/Redis/MQ、模型API、Spark集群或案例仓库故障注入。
+
+新增[公开场景模块](../docs/90-public-interview-scenarios/README.md)的26卡、4个Python练习33项测试及12条未运行合成评测设计分别见[模块验证](../docs/90-public-interview-scenarios/VALIDATION.md)，不加入原有361/100/15题数。

@@ -221,6 +221,21 @@ check('知识修订可检索，36条Agent追问参考答案可折叠且题数独
   assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);
 });
+check('26张公开场景卡编号、搜索、原文、追问与既有题数独立',()=>{
+  const scenes=JSON.parse(fs.readFileSync(path.join(root,'sources/public-interviews/scenario-map.json'),'utf8')).records;
+  assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,17);
+  assert.equal(data.docs.filter(d=>d.kind==='scenario').length,26);
+  assert.equal(data.modules.find(m=>m.id==='scenarios').count,26);
+  for(const scene of scenes){
+    const doc=docs.get(scene.file);assert.equal(doc.scenarioCardId,scene.card_id);assert.deepEqual([...doc.questionIds],[scene.card_id]);
+    const found=engine.query(new URLSearchParams({q:scene.card_id})).results[0];assert.equal(found.d.path,scene.file,scene.card_id);
+    assert.ok(doc.html.includes('class="answer-section"'));assert.ok(doc.html.includes('class="knowledge-section"'));
+  }
+  assert.equal(engine.query(new URLSearchParams({q:'A01'})).results[0].d.scenarioCardId,null,'原讲义A01不应被SC-A01抢占');
+  assert.equal(engine.query(new URLSearchParams({module:'scenarios',topic:'Agent应用'})).results.filter(r=>r.d.kind==='scenario').length,12);
+  assert.equal(engine.query(new URLSearchParams({module:'scenarios',topic:'后端可靠性'})).results.filter(r=>r.d.kind==='scenario').length,14);
+  assert.equal(data.questionCount,461);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);
+});
 check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存储',()=>{
   // Minimal DOM stubs check runtime initialization only. They do not lay out or paint a page.
   function boot(hash,allowStorage=true){
@@ -236,6 +251,10 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
     return {html:nodes.get('main').innerHTML,title:doc.title,nodes,sandbox};
   }
   assert.ok(boot('#/').html.includes('把知识连成一条主线'));
+  assert.ok(boot('#/').html.includes('原创场景卡'));
+  assert.ok(boot('#/library?q=SC-A01').html.includes('SC-A01'));
+  assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-a01.md').html.includes('独立原创场景卡'));
+  assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-b13.md',false).html.includes('TCP read边界'));
   const searched=boot('#/library?q=A01');assert.ok(searched.html.includes('A01'));assert.ok(searched.html.includes('section=a01'));
   assert.ok(boot('#/library?q=绝不存在987XYZ').html.includes('暂时没有匹配'));
   assert.ok(boot('#/read/docs%2F80-hot100%2Fproblems%2F0001-two-sum.md').html.includes('两数之和'));

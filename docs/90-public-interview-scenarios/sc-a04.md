@@ -1,0 +1,45 @@
+# SC-A04 没有线上用户也能做有意义的评测
+
+[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+
+本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
+
+**原创起手问：** 项目只有演示版，如何证明修改分块和Prompt真的改善了质量？
+
+**知识点详解**： 评测集是明确输入、期望结果和判分标准的一组样本。评测不要求伪造线上流量。小项目可以做离线实验，但必须说清样本从哪里来、覆盖哪些场景、没覆盖什么。
+
+## 参考答案
+
+我按业务拆事实查找、跨段归纳、错误前提、无答案、权限隔离等场景，保留问题、参考证据、判分规则和来源。先人工做少量高质量样本，再用模型扩写表达变体，并人工抽查。按文档、模板或实体分组隔离调参与最终测试集，防止同一问题换个说法同时进入两边。固定数据和模型设置做消融，报告分母、失败样本和成本。
+
+## 追问1：模型生成题再由同一模型评分有什么问题？
+
+可能偏向自己的表达，且题目未必有正确证据。规则判分、人工复核和独立判分器组合使用；judge评分只是一项观测，不替代业务约束和安全断言。
+
+## 追问2：Recall@5提高，任务成功率为什么没提高？
+
+检索到证据不保证排进上下文，也不保证模型读懂或引用正确。把失败归为解析、召回、重排、上下文、生成和工具执行阶段，定位实际瓶颈。
+
+## 常见误区
+
+20个精心挑的样本全对不能写成“准确率100%且可生产使用”。新增框架、指标名和模型调用数都不是业务成果。
+
+## 练习与验收
+
+做12条原创评测样本，至少3条无答案、2条权限隔离、2条跨块。验收要求每条有可审查的期望结果；最终测试题不得参与Prompt调优。本轮提供设计方法，没有替用户跑模型评测。
+
+**主题来源：** P05、P06、P12、P17。**技术依据：** [LangSmith评测概念](https://docs.langchain.com/langsmith/evaluation)、[Anthropic构建Agent评测](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)。业务分层与样本数量是本补充示例，不是官方门槛。
+
+## 阅读与复验入口
+
+公开主题线索：[P05](../../sources/public-interviews/README.md#report-p05)、[P06](../../sources/public-interviews/README.md#report-p06)、[P12](../../sources/public-interviews/README.md#report-p12)、[P17](../../sources/public-interviews/README.md#report-p17)。
+
+先读基础：
+
+- [agent-labs](../../docs/70-practice/agent-labs.md)
+
+可检查的练习材料：
+
+- [evaluation_design_template.json](../../examples/public_interview_scenarios/evaluation_design_template.json)
+
+[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

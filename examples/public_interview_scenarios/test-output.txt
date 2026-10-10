@@ -1,0 +1,38 @@
+test_old_snapshot_cannot_overwrite (test_interview_lab.DocumentTests.test_old_snapshot_cannot_overwrite) ... ok
+test_only_one_concurrent_writer_wins (test_interview_lab.DocumentTests.test_only_one_concurrent_writer_wins) ... ok
+test_storage_partition_not_auth (test_interview_lab.DocumentTests.test_storage_partition_not_auth) ... ok
+test_version_advances (test_interview_lab.DocumentTests.test_version_advances) ... ok
+test_version_type_validation (test_interview_lab.DocumentTests.test_version_type_validation) ... ok
+test_all_split_positions (test_interview_lab.FrameTests.test_all_split_positions) ... ok
+test_chunk_bound (test_interview_lab.FrameTests.test_chunk_bound) ... ok
+test_empty_message_is_explicit_frame (test_interview_lab.FrameTests.test_empty_message_is_explicit_frame) ... ok
+test_eof_truncation (test_interview_lab.FrameTests.test_eof_truncation) ... ok
+test_large_declaration_poisoned (test_interview_lab.FrameTests.test_large_declaration_poisoned) ... ok
+test_multiple_frames (test_interview_lab.FrameTests.test_multiple_frames) ... ok
+test_split_header_and_payload (test_interview_lab.FrameTests.test_split_header_and_payload) ... ok
+test_utf8_split_is_kept_as_bytes (test_interview_lab.FrameTests.test_utf8_split_is_kept_as_bytes) ... ok
+test_valid_prefix_before_bad_header_independent_of_split (test_interview_lab.FrameTests.test_valid_prefix_before_bad_header_independent_of_split) ... ok
+test_concurrent_connections_same_key (test_interview_lab.InventoryTests.test_concurrent_connections_same_key) ... ok
+test_concurrent_distinct_keys_cannot_oversell (test_interview_lab.InventoryTests.test_concurrent_distinct_keys_cannot_oversell) ... ok
+test_different_keys_are_distinct_intentions (test_interview_lab.InventoryTests.test_different_keys_are_distinct_intentions) ... ok
+test_failure_rolls_back_business_and_dedup (test_interview_lab.InventoryTests.test_failure_rolls_back_business_and_dedup) ... ok
+test_invalid_quantity (test_interview_lab.InventoryTests.test_invalid_quantity) ... ok
+test_lost_reply_is_not_failed_effect (test_interview_lab.InventoryTests.test_lost_reply_is_not_failed_effect) ... ok
+test_no_oversell (test_interview_lab.InventoryTests.test_no_oversell) ... ok
+test_persistence_across_connection_reopen (test_interview_lab.InventoryTests.test_persistence_across_connection_reopen) ... ok
+test_rejected_request_does_not_bind_key_in_this_model (test_interview_lab.InventoryTests.test_rejected_request_does_not_bind_key_in_this_model) ... ok
+test_rolled_back_request_does_not_bind_key_in_this_model (test_interview_lab.InventoryTests.test_rolled_back_request_does_not_bind_key_in_this_model) ... ok
+test_same_key_different_parameters_conflict (test_interview_lab.InventoryTests.test_same_key_different_parameters_conflict) ... ok
+test_same_key_replays_same_result (test_interview_lab.InventoryTests.test_same_key_replays_same_result) ... ok
+test_tenant_key_partition (test_interview_lab.InventoryTests.test_tenant_key_partition) ... ok
+test_deterministic_tie (test_interview_lab.RRFTests.test_deterministic_tie) ... ok
+test_duplicate_policy (test_interview_lab.RRFTests.test_duplicate_policy) ... ok
+test_empty_lists (test_interview_lab.RRFTests.test_empty_lists) ... ok
+test_exact_fusion (test_interview_lab.RRFTests.test_exact_fusion) ... ok
+test_invalid_id (test_interview_lab.RRFTests.test_invalid_id) ... ok
+test_invalid_k (test_interview_lab.RRFTests.test_invalid_k) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.022s
+
+OK

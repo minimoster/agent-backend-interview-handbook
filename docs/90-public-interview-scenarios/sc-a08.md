@@ -1,0 +1,46 @@
+# SC-A08 超时后怎样避免重复产生副作用
+
+[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+
+本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
+
+**原创起手问：** Agent调用“创建工单”超时了，再调用一次可能生成两个工单，怎么办？
+
+**知识点详解**： 超时说明调用者未在预算内拿到结果，不说明服务器没有完成。客户端需要区分明确失败、明确成功与结果未知。重试安全由业务协议保证，不是指数退避保证。
+
+## 参考答案
+
+我让同一次业务请求带稳定的调用方幂等键，服务端唯一约束绑定调用者/租户与该键，另存首次被接受请求的指纹。对已保留的键，相同参数返回已有结果，换参数返回冲突；哪些失败保留、保留多久也是API合同。结果未知时先查询状态或复用同键重试。设置总截止时间、有限尝试和抖动，避免每层都独立放大重试。
+
+## 追问1：把请求内容hash作为唯一键够吗？
+
+不够。两个业务上不同但内容相同的请求可能被错误合并；同一调用方键换内容又可能变成新身份，失去冲突检测。身份与参数指纹应分开。
+
+## 追问2：本地记住“调用过了”就能保证一次吗？
+
+进程崩溃可能丢记录；“先记成功再执行”与“先执行再记成功”分别有不同失败窗口。必须把业务写入和去重记录置于同一事务，或者要求外部目标支持同一个幂等身份并能够查询。
+
+## 常见误区
+
+“MQ+Redis锁就exactly once”；超时即回滚；收到错误就换新幂等键。锁与去重解决的合同不同。
+
+## 练习与验收
+
+随包SQLite库存/订单练习验证：成功提交后重复请求只建一条订单、只扣一次库存，同键换参数冲突；提交前异常全部回滚，提交后丢回复用同键恢复结果。本模型只保留成功提交的键，库存拒绝或回滚不绑定键，所以之后换参数可以成功；这不等于保留第一次尝试及所有失败。迁移为工单服务须重新定义接受/保留合同、业务写入与权限。它不保证数据库外邮件或第三方API只执行一次。
+
+**主题来源：** P08、P10。**技术依据：** [AWS幂等API设计](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[AWS超时重试与抖动](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。练习为原创，非支付实现。
+
+## 阅读与复验入口
+
+公开主题线索：[P08](../../sources/public-interviews/README.md#report-p08)、[P10](../../sources/public-interviews/README.md#report-p10)。
+
+先读基础：
+
+- [04-streaming-and-reliable-execution](../../docs/10-agent/04-streaming-and-reliable-execution.md)
+- [04-messaging-and-idempotency](../../docs/40-backend/04-messaging-and-idempotency.md)
+
+可检查的练习材料：
+
+- [interview_lab.py#IdempotentInventory](../../examples/public_interview_scenarios/interview_lab.py#IdempotentInventory)
+
+[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

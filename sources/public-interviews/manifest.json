@@ -1,0 +1,32 @@
+{
+  "title": "Agent与后端公开面经原创场景模块",
+  "checked_at": "2026-10-10",
+  "status": "integrated_module",
+  "counts": {
+    "full_readable_self_report_pages": 17,
+    "distinct_public_authors": 16,
+    "new_pages_after_published_catalog_dedup": 14,
+    "net_new_authors": 13,
+    "existing_pages_revisited": 3,
+    "original_scenario_cards": 26,
+    "agent_cards": 12,
+    "backend_cards": 14,
+    "primary_technical_reference_urls": 41,
+    "local_python_exercises": 4,
+    "unittest_test_methods_passed": 33,
+    "synthetic_evaluation_design_cases_not_executed": 12,
+    "verified_xiaohongshu_platform_core_pages": 0,
+    "existing_lecture_questions_unchanged": 361,
+    "existing_hot100_unchanged": 100,
+    "existing_external_resources_unchanged": 15
+  },
+  "entrypoint": "docs/90-public-interview-scenarios/README.md",
+  "catalogs": {
+    "public_reports": "sources/public-interviews/source-catalog.json",
+    "scenario_map": "sources/public-interviews/scenario-map.json",
+    "official_technical": "sources/public-interviews/official-references.json",
+    "discovery_and_access": "sources/public-interviews/reference-and-access.json"
+  },
+  "test_command": "python3 -B -m unittest discover -s examples/public_interview_scenarios -v",
+  "evaluation_design_status": "design_only_not_executed"
+}

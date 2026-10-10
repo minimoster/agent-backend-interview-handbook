@@ -1,0 +1,42 @@
+# SC-B11 @Transactional必须经过正确的调用边界
+
+[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+
+本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
+
+**原创起手问：** 同一个service里A调用带@Transactional的B，为什么事务注解可能没生效？
+
+**知识点详解**： Spring默认代理模式拦截经过代理对象的调用。同对象内部直接调用常绕开代理，B自己的注解不会建立所声明的事务边界；若A已经在事务中，B仍可能在该外层事务中运行，不能说“自调用一定没有事务”。注解描述配置，不代表所有调用路径都被拦截；AspectJ等不同模式又有不同边界。
+
+## 参考答案
+
+我先检查调用对象是否是容器管理的代理、实际模式、方法边界与事务管理器。需要独立事务边界时优先拆出职责清晰的bean，避免为了绕代理写隐式技巧。异常是否导致回滚也要看规则：传统默认对RuntimeException和Error回滚，受检异常通常不自动回滚；配置和Spring版本可以改变策略。
+
+## 追问1：catch后正常返回为什么没回滚？
+
+异常若被方法消化，拦截器可能看不到应回滚的异常。根据业务重新抛出、显式回滚或采用正确的返回与事务设计，不能认为日志打印过异常就自然回滚。
+
+## 追问2：单例bean线程安全吗？
+
+singleton描述容器中实例作用域，不给可变业务字段自动加锁。多个请求共享字段时需要同步，或者把请求状态保持为局部/明确作用域数据。
+
+## 常见误区
+
+把默认异常回滚规则当所有Spring版本的唯一规则；把private或内部调用的注解当运行证据；混淆数据库事务和分布式事务。
+
+## 练习与验收
+
+测试正常外部代理调用、自调用、受检异常和RuntimeException四条路径，读取最终数据库值。记录Spring版本、代理模式与配置；本轮未运行Spring。
+
+**主题来源：** P15、P16。**技术依据：** [Spring事务注解与代理](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)、[Spring bean作用域](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html)。当前在线文档会更新，应按项目依赖版本核对。
+
+## 阅读与复验入口
+
+公开主题线索：[P15](../../sources/public-interviews/README.md#report-p15)、[P16](../../sources/public-interviews/README.md#report-p16)。
+
+先读基础：
+
+- [04-spring-and-backend](../../docs/20-java/04-spring-and-backend.md)
+- [14-spring-mechanisms](../../docs/20-java/14-spring-mechanisms.md)
+
+[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

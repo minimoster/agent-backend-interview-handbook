@@ -20,6 +20,8 @@
 7. [算法基础补充：15道代码随想录官方资源题](docs/85-algorithm-supplement/README.md)
    - [逐题资源覆盖与引用边界](sources/carl-hot100-resources.md)
 
+8. [公开面经原创场景：26张独立卡、17份自报与4个Python练习](docs/90-public-interview-scenarios/README.md)
+
 P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作为主语言，再把 HTTP、数据库、并发和模型工具调用串成可解释的小项目。
 
 ## 内容导航
@@ -94,6 +96,12 @@ P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作�
 [按分类打开补充题库](docs/85-algorithm-supplement/README.md)，包含组合、二分、双指针、滑动窗口、矩阵、链表、哈希、字符串、栈与队列基础题。15题独立于当前官方Hot100，均提供核验过的代码随想录官网讲解与Python区，视频区分本题配套和相关迁移。
 
 这是外部资源练习单与自主复习提示，没有新增这些题的原创实现、本地测试或在线AC记录；外部题解与视频未复制或镜像到仓库。题号、官方难度、资源归属和核验日期见[机器映射](sources/carl-hot100-resources.json)。
+
+### 公开面经原创场景 · 独立26卡
+
+[学习入口](docs/90-public-interview-scenarios/README.md)：17份完整可读牛客自报，16位作者；去重后14份新页面、13位净新增作者。12张Agent应用卡、14张后端可靠性卡，分别给原理、参考答案、追问与验收。4个Python练习的33项本地测试通过，12条合成评测设计尚未运行模型。
+
+SC-A/SC-B编号独立于361道讲义题、Hot100的100题和15道外部资源题。GitHub发现线索另列，本轮小红书平台核验核心样本为0，不能将牛客上的小红书公司面经计为小红书平台来源。[来源与日期边界](sources/public-interviews/README.md) · [验证范围](docs/90-public-interview-scenarios/VALIDATION.md)。
 
 ### 公开面经样本
 

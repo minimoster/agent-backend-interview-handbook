@@ -46,6 +46,10 @@ function compactCarl(entry,anchor){
     python:entry.has_direct_python_implementation?checkedUrl(entry.primary_python_url,['programmercarl.com','www.programmercarl.com']):null,
     directVideos:videos(entry.direct_videos,true),relatedVideos:videos(entry.related_videos,false)};
 }
+const scenarioMap=JSON.parse(fs.readFileSync(path.join(root,'sources/public-interviews/scenario-map.json'),'utf8'));
+const scenarios=scenarioMap.records;
+if(scenarios.length!==26||new Set(scenarios.map(s=>s.card_id)).size!==26)throw Error('公开场景应有26个唯一SC-A/SC-B编号。');
+const scenarioByPath=new Map(scenarios.map(s=>[s.file,s]));
 const moduleDefs = [
   ['guide','00-guide','学习路线','01','从哪里开始，怎样复习'],
   ['agent','10-agent','AI Agent','02','工具、检索与可靠执行'],
@@ -57,7 +61,8 @@ const moduleDefs = [
   ['practice','70-practice','实验与练习','08','动手验证，解释失败路径'],
   ['hot100','80-hot100','LeetCode Hot100','09','17 类模式，100 道原创题解'],
   ['supplement','85-algorithm-supplement','算法补充资源','10','15 道独立练习，官方外部资源'],
-  ['reference',null,'版本与来源','11','核查日期、证据与权利边界']
+  ['scenarios','90-public-interview-scenarios','公开场景练习','11','26张原创卡：公开主题、追问与验收'],
+  ['reference',null,'版本与来源','12','核查日期、证据与权利边界']
 ];
 // Every first-party Markdown target belongs in the same reading registry. A
 // Markdown file copied alone into assets/repo would retain relative links whose
@@ -80,6 +85,7 @@ for (const file of files) {
   sourceInputs.push([file,source]);
   const meta = indexed.get(file)||{};
   const problem = hotByPath.get(file);
+  const scenario = scenarioByPath.get(file);
   const moduleId = moduleDefs.find(m=>m[1] && file.startsWith(`docs/${m[1]}/`))?.[0] || 'reference';
   const module = moduleDefs.find(m=>m[0]===moduleId);
   const items = contentIndex.items.filter(i => (i.relative_path||i.path)===file);
@@ -159,7 +165,7 @@ for (const file of files) {
       if(section.text.trim()) sections.push(section);
       const rendered=marked.parser([token]);
       section={id:token.readingId,heading:plain(token.text),text:''};
-      if(token.depth>1 && /^(核心思路|为什么正确|Python 实现|参考解法|解答|参考答案)$/.test(plain(token.text))) {
+      if(token.depth>1 && /^(核心思路|为什么正确|Python 实现|参考解法|解答|参考答案|追问[12]：.+)$/.test(plain(token.text))) {
         html+=`<details class="answer-section" id="${esc(token.readingId)}" open><summary>${esc(plain(token.text))}<span class="summary-hint">展开 / 收起</span></summary><div class="answer-content">`;
         answerOpen=true;
       } else html+=rendered;
@@ -183,7 +189,7 @@ for (const file of files) {
   const carlEntry=carlByPath.get(file);
   const carlAnchor=carlEntry?headings.find(h=>h.text==='代码随想录延伸阅读')?.id:null;
   if(carlEntry&&!carlAnchor)throw Error(`${file}缺少Carl延伸阅读段落，须等待内容整合完成后构建。`);
-  docs.push({path:file,sourceUrl:sourceUrl(file),title,module:moduleId,moduleName:module[2],category:problem?.category||meta.category||module[2],difficulty:problem?.difficulty||null,problemId:problem?.id||null,questionIds:meta.question_ids||items.map(i=>i.id),items:items.map(i=>({id:i.id,title:i.title,anchor:i.anchor,priority:i.priority})),priorities:[...new Set(items.map(i=>i.priority).filter(Boolean))],kind:moduleId==='supplement'?'resource-bank':problem?'problem':path.basename(file)==='README.md'?'overview':'chapter',summary:summary.slice(0,180),minutes:Math.max(1,Math.ceil(length/450)),headings,sections,html,source,carl:carlEntry?compactCarl(carlEntry,carlAnchor):null});
+  docs.push({path:file,sourceUrl:sourceUrl(file),title,module:moduleId,moduleName:module[2],category:scenario?.category||problem?.category||meta.category||module[2],difficulty:problem?.difficulty||null,problemId:problem?.id||null,scenarioCardId:scenario?.card_id||null,questionIds:scenario?[scenario.card_id]:(meta.question_ids||items.map(i=>i.id)),items:items.map(i=>({id:i.id,title:i.title,anchor:i.anchor,priority:i.priority})),priorities:[...new Set(items.map(i=>i.priority).filter(Boolean))],kind:scenario?'scenario':moduleId==='supplement'?'resource-bank':problem?'problem':path.basename(file)==='README.md'?'overview':'chapter',summary:summary.slice(0,180),minutes:Math.max(1,Math.ceil(length/450)),headings,sections,html,source,carl:carlEntry?compactCarl(carlEntry,carlAnchor):null});
 }
 // Catalogue entries point into one canonical Markdown bank. They do not copy
 // answers, add algorithms to Hot100, or imply original executable source.
@@ -197,7 +203,7 @@ const supplementaryResources=supplementaryRecords.map(record=>{
 });
 for(const file of [...resourcePaths].sort()) sourceInputs.push([file,fs.readFileSync(path.join(root,file),'utf8')]);
 const sourceHash=crypto.createHash('sha256').update(sourceInputs.sort(([a],[b])=>a.localeCompare(b,'en')).map(([file,source])=>`${file}\0${source}`).join('\0')).digest('hex');
-const data={schemaVersion:'1.0',repositoryUrl:config.repository_url,sourceHash,checkedDate:hot.checked_date,questionCount:contentIndex.items.length,hot100Count:hot.problems.length,supplementaryCount:supplementaryResources.length,supplementaryResources,carlCheckedDate:carl?.checked_date||null,modules:moduleDefs.filter(([id])=>(id!=='supplement'||supplementaryResources.length)).map(([id,folder,label,number,description])=>({id,label,number,description,count:id==='supplement'?supplementaryResources.length:docs.filter(d=>d.module===id).length,countUnit:id==='supplement'?'题外部资源':'篇文档'})),hot100Categories:hot.categories.map(c=>c.name),docs};
+const data={schemaVersion:'1.0',repositoryUrl:config.repository_url,sourceHash,checkedDate:hot.checked_date,questionCount:contentIndex.items.length,hot100Count:hot.problems.length,scenarioCount:scenarios.length,publicSelfReportCount:17,supplementaryCount:supplementaryResources.length,supplementaryResources,carlCheckedDate:carl?.checked_date||null,modules:moduleDefs.filter(([id])=>(id!=='supplement'||supplementaryResources.length)).map(([id,folder,label,number,description])=>({id,label,number,description,count:id==='scenarios'?scenarios.length:id==='supplement'?supplementaryResources.length:docs.filter(d=>d.module===id).length,countUnit:id==='scenarios'?'张场景卡':id==='supplement'?'题外部资源':'篇文档'})),hot100Categories:hot.categories.map(c=>c.name),docs};
 // Small deterministic external scripts keep the offline reader self-contained.
 // The source digest in filenames also prevents stale cache combinations.
 const serialized=JSON.stringify(data);

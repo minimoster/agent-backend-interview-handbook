@@ -18,6 +18,7 @@
         let section=null,score=0;
         if(terms.length){
           score=terms.reduce((sum,t)=>sum+(item.title.includes(t)?100:0),0);
+          if(terms.some(t=>d.questionIds.some(id=>normalize(id)===t)))score+=200;
           const id=d.problemId||d.resourceProblemId;
           if(id&&terms.some(t=>t===String(id)||t==='lc'+id||t==='carl'+id))score+=200;
           let bestScore=-1;

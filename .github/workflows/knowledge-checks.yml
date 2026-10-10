@@ -36,6 +36,8 @@ jobs:
           python3 -B -m unittest examples.hot100.test_followup_algorithms -v
           python3 -B examples/interview_algorithms/test_solutions.py
           python3 -B examples/agent_contracts/test_contracts.py
+          python3 -B -m unittest discover -s examples/public_interview_scenarios -v
+          python3 -B tools/check_public_interview_scenarios.py
           python3 -B examples/backend/test_lru.py
           python3 -B examples/sql/check-relational-examples.py
           python3 -B examples/reasoning/verify-puzzles.py
