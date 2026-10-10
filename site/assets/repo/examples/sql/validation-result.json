@@ -1,0 +1,48 @@
+{
+  "python": "3.12.14",
+  "sqlite": "3.53.1",
+  "scope": "SQLite equivalents and Python reference only; MySQL not executed",
+  "checks": [
+    {
+      "name": "streak_sqlite_duplicate_leap_gap_year_empty_single",
+      "passed": true
+    },
+    {
+      "name": "streak_independent_python_reference",
+      "passed": true
+    },
+    {
+      "name": "streak_all_empty",
+      "passed": true
+    },
+    {
+      "name": "ranking_ties_and_unique_order",
+      "passed": true
+    },
+    {
+      "name": "department_empty_and_null_salary",
+      "passed": true
+    },
+    {
+      "name": "annual_half_open_total_threshold_and_status",
+      "passed": true
+    },
+    {
+      "name": "stable_pagination_first",
+      "passed": true
+    },
+    {
+      "name": "stable_pagination_second",
+      "passed": true
+    },
+    {
+      "name": "second_distinct_salary_ties_and_missing_rank",
+      "passed": true
+    },
+    {
+      "name": "annual_full_six_outputs_ge_threshold_and_two_orders",
+      "passed": true
+    }
+  ],
+  "passed": 10
+}

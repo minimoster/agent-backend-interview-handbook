@@ -1,0 +1,80 @@
+# 70. 爬楼梯
+
+[官方题目](https://leetcode.cn/problems/climbing-stairs/) · EASY · 官方分类：动态规划
+
+## 题意与接口
+
+接口：`Solution.climbStairs(n: int) -> int`。每次走 1 或 2 级，求恰好到达第 n 级的不同走法数；顺序不同算不同走法。官方 n 为 1 至 45。
+
+约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/climbing-stairs/)核对；以下为原创概述，并非完整题面转载。
+
+## 从朴素方法到优化
+
+递归尝试下一步走 1 或 2，会反复求同一剩余级数。缓存可消除重复；自底向上计算更直接。由于新状态只依赖前两个状态，再用两个变量代替整张表。
+
+## 核心思路
+
+令 f(i) 为到达第 i 级的走法。最后一步只有 1 级或 2 级两种互斥情况，故 f(i)=f(i−1)+f(i−2)。定义 f(0)=1，表示不走一步这一种空路径，f(1)=1。滚动变量始终保留相邻两项。
+
+## 手推一个小例子
+
+取 n=5：
+1. 初值 f(0)=1、f(1)=1。
+2. f(2)=2。
+3. f(3)=3。
+4. f(4)=5。
+5. f(5)=8，返回 8。最后一步走 1 的 5 种和走 2 的 3 种不会重叠。
+
+## 为什么正确
+
+任意到第 i 级的合法路径，删除最后一步后，唯一对应到第 i−1 或 i−2 级的路径；反过来给这两类路径补上对应的一步，总能得到合法路径。因此递推既不漏算也不重算。初值正确，逐级计算的所有结果便正确。
+
+## Python 实现
+
+[完整可导入源码](../../../examples/hot100/p0070_climbing_stairs.py)。节点结构来自 [structures.py](../../../examples/hot100/structures.py)；普通题使用 `Solution`，设计题使用题目类名。提交到 LeetCode 时保留算法主体，删除本地节点导入，使用平台提供的节点类型。
+
+```python
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        previous, current = 1, 1  # f(0), f(1)
+        for _ in range(2, n + 1):
+            previous, current = current, previous + current
+        return current
+```
+
+## 复杂度
+
+时间 O(n)，辅助空间 O(1)，采用题目范围内整数运算为常数成本的常见模型。若把 n 推广到任意大，大整数位数与加法成本也应计入。
+
+## 边界与易错点
+
+- 把 f(0) 设为 0 会让 f(2) 少算直接走 2 级的方案。
+- 同时赋值会先计算右侧，不能改成先覆盖 previous 再用它求 current。
+- 本实现以 n≥1 为契约，不为负数定义含义。
+
+## 本地测试与复习
+
+测试文件：[`test_greedy_dp_tricks.py`](../../../tests/hot100/test_greedy_dp_tricks.py)，对应 `test_p0070`。含合法最小输入、典型与关键边界；适用题使用固定随机种子与独立穷举或参考算法对拍。
+
+复习：若允许步长 1、3、5，状态转移和需要保存的历史怎样变化？
+
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+
+## 延伸阅读
+
+- [官方原题与约束](https://leetcode.cn/problems/climbing-stairs/)
+- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0070.Climbing%20Stairs/README.md)
+- [返回分类导航](../README.md)
+
+## 代码随想录延伸阅读
+
+外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
+
+- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0070.climbing-stairs.html)
+- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0070.climbing-stairs.html#python3)。可与上面的本仓库原创实现对照。
+- 本题配套视频：[70. 爬楼梯](https://www.bilibili.com/video/BV17h411h7UH)。上传者已核验为代码随想录（MID 525438321）。
+- 范围提醒：每步最多 m 阶的完全背包进阶题改变了原题条件，没有计入本题直接匹配资源。
+
+自主复习提示：先定义一阶和二阶的基础情况，再解释滚动变量覆盖前后各代表哪一个状态。
+
+资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。

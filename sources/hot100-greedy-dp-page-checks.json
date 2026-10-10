@@ -1,0 +1,175 @@
+{
+  "count": 24,
+  "checked_date": "2026-10-09",
+  "note": "逐一读取官方题目页核对题意与关键约束；没有在线提交。摘要为原创概述，不复制完整题面。",
+  "checks": [
+    {
+      "id": 121,
+      "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "非空价格数组，长度至多100000；价格非负；先买后卖，至多一次交易，可不交易。"
+    },
+    {
+      "id": 55,
+      "url": "https://leetcode.com/problems/jump-game/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "数组长度1至10000，跳跃上限非负；可选择不超过上限的前向距离；判断末尾可达性。"
+    },
+    {
+      "id": 45,
+      "url": "https://leetcode.com/problems/jump-game-ii/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "数组长度1至10000，跳跃上限0至1000；官方保证末尾可达；单位置需要0跳。"
+    },
+    {
+      "id": 763,
+      "url": "https://leetcode.com/problems/partition-labels/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "长度1至500的小写字母字符串；每种字母只属于一段；要求尽可能多段。"
+    },
+    {
+      "id": 70,
+      "url": "https://leetcode.com/problems/climbing-stairs/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "n为1至45；每步走1或2级；走法顺序不同计为不同方案。"
+    },
+    {
+      "id": 118,
+      "url": "https://leetcode.com/problems/pascals-triangle/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "numRows为1至30；输出每一行；两端为1，内部由上一行邻项相加。"
+    },
+    {
+      "id": 198,
+      "url": "https://leetcode.com/problems/house-robber/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "长度1至100，元素0至400；相邻下标不可同时选择；求最大收益。"
+    },
+    {
+      "id": 279,
+      "url": "https://leetcode.com/problems/perfect-squares/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "n为1至10000；正完全平方数允许重复使用；求最少项数。"
+    },
+    {
+      "id": 322,
+      "url": "https://leetcode.com/problems/coin-change/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "面额数1至12，面额为正且至多2^31-1；amount为0至10000；各面额无限使用，不可达返回-1。"
+    },
+    {
+      "id": 139,
+      "url": "https://leetcode.com/problems/word-break/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "s长度1至300；词典1至1000个不同非空词，每词最长20；均为小写字母；单词可重复使用。"
+    },
+    {
+      "id": 300,
+      "url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "数组长度1至2500；值-10000至10000；求严格递增子序列长度，元素不必连续。"
+    },
+    {
+      "id": 152,
+      "url": "https://leetcode.com/problems/maximum-product-subarray/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "非空数组长度至多20000；值-10至10；所有子数组乘积保证在32位整数范围；目标子数组非空连续。"
+    },
+    {
+      "id": 416,
+      "url": "https://leetcode.com/problems/partition-equal-subset-sum/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "长度1至200，每个值1至100；所有元素分为两组且组和相等，各下标最多选择一次。"
+    },
+    {
+      "id": 32,
+      "url": "https://leetcode.com/problems/longest-valid-parentheses/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "字符串仅含圆括号，长度0至30000；求连续合法括号片段长度，允许空串。"
+    },
+    {
+      "id": 62,
+      "url": "https://leetcode.com/problems/unique-paths/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "m、n均为1至100；只向右或向下；官方生成答案不超过2×10^9。"
+    },
+    {
+      "id": 64,
+      "url": "https://leetcode.com/problems/minimum-path-sum/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "非空矩形网格，行列各1至200，值0至200；仅向右或向下，路径和包含两端。"
+    },
+    {
+      "id": 5,
+      "url": "https://leetcode.com/problems/longest-palindromic-substring/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "字符串长度1至1000，数字或英文字母；最长连续回文片段，多个最优解均合法。"
+    },
+    {
+      "id": 1143,
+      "url": "https://leetcode.com/problems/longest-common-subsequence/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "两串各长1至1000，均为小写字母；子序列保留相对顺序，可不连续；无共同字符返回0。"
+    },
+    {
+      "id": 72,
+      "url": "https://leetcode.com/problems/edit-distance/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "两串各长0至500，均为小写字母；插入、删除、替换单字符，每次代价1；允许空串。"
+    },
+    {
+      "id": 136,
+      "url": "https://leetcode.com/problems/single-number/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "非空数组长度至多30000；仅一种值出现一次，其余各出现两次；要求线性时间和常量额外空间。"
+    },
+    {
+      "id": 169,
+      "url": "https://leetcode.com/problems/majority-element/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "非空数组长度至多50000；多数指次数严格超过一半；官方保证多数存在。"
+    },
+    {
+      "id": 75,
+      "url": "https://leetcode.com/problems/sort-colors/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "长度1至300，值仅0、1、2；原地排序且不使用库排序；进阶要求一遍扫描、常量空间。"
+    },
+    {
+      "id": 31,
+      "url": "https://leetcode.com/problems/next-permutation/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "长度1至100，值0至100；允许重复；原地下一个字典序排列，无更大排列则升序；常量额外空间。"
+    },
+    {
+      "id": 287,
+      "url": "https://leetcode.com/problems/find-the-duplicate-number/",
+      "checked_date": "2026-10-09",
+      "status": "read_official_problem_page",
+      "constraint_summary": "长度n+1，n为1至100000，值在1..n；恰一种值出现至少两次，允许重复多次；不改数组、常量额外空间。"
+    }
+  ]
+}

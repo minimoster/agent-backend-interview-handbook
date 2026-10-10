@@ -1,0 +1,2890 @@
+[
+  {
+    "id": "A01",
+    "title": "什么是 Agent？与聊天机器人、Workflow 有什么区别？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a01",
+    "priority": "P0",
+    "chars": 575
+  },
+  {
+    "id": "A02",
+    "title": "ReAct 如何工作？为什么不能只让模型一直“想”？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a02",
+    "priority": "P0",
+    "chars": 551
+  },
+  {
+    "id": "A03",
+    "title": "一次 Function Calling 到底是谁执行函数？如何设计工具？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a03",
+    "priority": "P0",
+    "chars": 615
+  },
+  {
+    "id": "A04",
+    "title": "JSON Schema 能解决什么？为什么解析成功还不安全？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a04",
+    "priority": "P0",
+    "chars": 575
+  },
+  {
+    "id": "A05",
+    "title": "Agent 的 state 应保存什么？为什么不能只存聊天记录？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a05",
+    "priority": "P0",
+    "chars": 534
+  },
+  {
+    "id": "A06",
+    "title": "ReAct 与 Plan–Execute 如何取舍？怎么防止无限循环？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a06",
+    "priority": "P1",
+    "chars": 562
+  },
+  {
+    "id": "A07",
+    "title": "多 Agent 真比单 Agent 好吗？怎么协作？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a07",
+    "priority": "P1",
+    "chars": 553
+  },
+  {
+    "id": "A08",
+    "title": "MCP、Function Calling、Tool 和 Skill 是一回事吗？",
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "anchor": "a08",
+    "priority": "P1",
+    "chars": 684
+  },
+  {
+    "id": "A09",
+    "title": "RAG 从文档到答案的完整流程是什么？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a09",
+    "priority": "P0",
+    "chars": 535
+  },
+  {
+    "id": "A10",
+    "title": "chunk 大小、overlap、父子块怎么选？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a10",
+    "priority": "P0",
+    "chars": 577
+  },
+  {
+    "id": "A11",
+    "title": "Embedding 是什么？余弦、点积、欧氏距离有什么区别？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a11",
+    "priority": "P0",
+    "chars": 546
+  },
+  {
+    "id": "A12",
+    "title": "BM25 和向量检索为什么要混合？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a12",
+    "priority": "P0",
+    "chars": 517
+  },
+  {
+    "id": "A13",
+    "title": "RRF 怎么算？为什么不直接加 BM25 和向量分数？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a13",
+    "priority": "P0",
+    "chars": 550
+  },
+  {
+    "id": "A14",
+    "title": "Rerank 做什么？Cross-Encoder 与 LLM rerank 有何不同？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a14",
+    "priority": "P0",
+    "chars": 735
+  },
+  {
+    "id": "A15",
+    "title": "Query rewrite、多 query、HyDE 为什么可能有用，也可能有害？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a15",
+    "priority": "P1",
+    "chars": 560
+  },
+  {
+    "id": "A16",
+    "title": "RAG 答错了，按什么顺序排查？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a16",
+    "priority": "P0",
+    "chars": 568
+  },
+  {
+    "id": "A17",
+    "title": "Recall@k、MRR、NDCG 分别衡量什么？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a17",
+    "priority": "P0",
+    "chars": 585
+  },
+  {
+    "id": "A18",
+    "title": "RAG、微调、LoRA 应怎么选？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a18",
+    "priority": "P1",
+    "chars": 635
+  },
+  {
+    "id": "A19",
+    "title": "短期记忆、长期记忆、RAG 的关系是什么？",
+    "path": "docs/10-agent/03-memory-and-context.md",
+    "anchor": "a19",
+    "priority": "P0",
+    "chars": 540
+  },
+  {
+    "id": "A20",
+    "title": "上下文太长怎么压缩？怎样验证没压坏？",
+    "path": "docs/10-agent/03-memory-and-context.md",
+    "anchor": "a20",
+    "priority": "P0",
+    "chars": 519
+  },
+  {
+    "id": "A21",
+    "title": "“三层记忆”应该怎样解释，才能不是背架构词？",
+    "path": "docs/10-agent/03-memory-and-context.md",
+    "anchor": "a21",
+    "priority": "P1",
+    "chars": 537
+  },
+  {
+    "id": "A22",
+    "title": "长期记忆不断增长、相互矛盾或过期怎么办？",
+    "path": "docs/10-agent/03-memory-and-context.md",
+    "anchor": "a22",
+    "priority": "P1",
+    "chars": 568
+  },
+  {
+    "id": "A23",
+    "title": "模型支持长上下文，还需要检索和压缩吗？",
+    "path": "docs/10-agent/03-memory-and-context.md",
+    "anchor": "a23",
+    "priority": "P1",
+    "chars": 540
+  },
+  {
+    "id": "A24",
+    "title": "SSE 与普通 HTTP、WebSocket 的区别是什么？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a24",
+    "priority": "P0",
+    "chars": 618
+  },
+  {
+    "id": "A25",
+    "title": "SSE 断线重连，如何避免漏事件或重复展示？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a25",
+    "priority": "P0",
+    "chars": 531
+  },
+  {
+    "id": "A26",
+    "title": "后端在逐条写 SSE，为什么前端还是最后一起显示？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a26",
+    "priority": "P0",
+    "chars": 548
+  },
+  {
+    "id": "A27",
+    "title": "长任务为什么要和 HTTP 连接解耦？恢复时从哪里继续？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a27",
+    "priority": "P0",
+    "chars": 612
+  },
+  {
+    "id": "A28",
+    "title": "Go 中如何取消 Agent、限制并发和避免 goroutine 泄漏？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a28",
+    "priority": "P0",
+    "chars": 660
+  },
+  {
+    "id": "A29",
+    "title": "模型或工具超时，怎么重试才不会越重试越糟？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a29",
+    "priority": "P0",
+    "chars": 502
+  },
+  {
+    "id": "A30",
+    "title": "Agent 工具副作用如何做到幂等？Exactly-once 能随口承诺吗？",
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "anchor": "a30",
+    "priority": "P0",
+    "chars": 597
+  },
+  {
+    "id": "FA22",
+    "title": "一次反思怎样成为可复用的改进 而不是把错误永久记住？",
+    "path": "docs/10-agent/14-controlled-improvement.md",
+    "anchor": "fa22",
+    "priority": "P1",
+    "chars": 720
+  },
+  {
+    "id": "FA23",
+    "title": "受控自改进的执行评估更新发布闭环怎样设计？",
+    "path": "docs/10-agent/14-controlled-improvement.md",
+    "anchor": "fa23",
+    "priority": "P1",
+    "chars": 724
+  },
+  {
+    "id": "FA24",
+    "title": "奖励信号怎样避免诱导Agent投机？",
+    "path": "docs/10-agent/14-controlled-improvement.md",
+    "anchor": "fa24",
+    "priority": "P2",
+    "chars": 767
+  },
+  {
+    "id": "FA25",
+    "title": "允许Agent改自己的技能时 安全边界应放在哪里？",
+    "path": "docs/10-agent/14-controlled-improvement.md",
+    "anchor": "fa25",
+    "priority": "P1",
+    "chars": 857
+  },
+  {
+    "id": "FA42",
+    "title": "MUSE-Autoskill案例能说明什么 怎样阅读自改进论文的数字？",
+    "path": "docs/10-agent/14-controlled-improvement.md",
+    "anchor": "fa42",
+    "priority": "P2",
+    "chars": 719
+  },
+  {
+    "id": "FA26",
+    "title": "MCP为什么是接入协议 与HTTP函数调用和Skill是什么关系？",
+    "path": "docs/10-agent/15-mcp-versions-and-integration.md",
+    "anchor": "fa26",
+    "priority": "P0",
+    "chars": 870
+  },
+  {
+    "id": "FA27",
+    "title": "MCP 2026-07-28和旧版生命周期 传输有何关键区别？",
+    "path": "docs/10-agent/15-mcp-versions-and-integration.md",
+    "anchor": "fa27",
+    "priority": "P0",
+    "chars": 1198
+  },
+  {
+    "id": "FA28",
+    "title": "MCP工具目录怎样发现 缓存和感知变化？",
+    "path": "docs/10-agent/15-mcp-versions-and-integration.md",
+    "anchor": "fa28",
+    "priority": "P1",
+    "chars": 855
+  },
+  {
+    "id": "FA29",
+    "title": "多个MCP服务怎样编排 谁负责失败预算和业务状态？",
+    "path": "docs/10-agent/15-mcp-versions-and-integration.md",
+    "anchor": "fa29",
+    "priority": "P0",
+    "chars": 789
+  },
+  {
+    "id": "FA30",
+    "title": "MCP部署时为什么仍需要鉴权 沙箱和审计？",
+    "path": "docs/10-agent/15-mcp-versions-and-integration.md",
+    "anchor": "fa30",
+    "priority": "P0",
+    "chars": 1003
+  },
+  {
+    "id": "FA31",
+    "title": "通用Agent Skill是什么包 自研技能服务和它相同吗？",
+    "path": "docs/10-agent/16-skills-routing-and-governance.md",
+    "anchor": "fa31",
+    "priority": "P0",
+    "chars": 817
+  },
+  {
+    "id": "FA32",
+    "title": "从用户意图到Skill执行 应该经过哪些路由和校验？",
+    "path": "docs/10-agent/16-skills-routing-and-governance.md",
+    "anchor": "fa32",
+    "priority": "P0",
+    "chars": 737
+  },
+  {
+    "id": "FA33",
+    "title": "Skill怎样组合 多轮追问和中断状态放在哪里？",
+    "path": "docs/10-agent/16-skills-routing-and-governance.md",
+    "anchor": "fa33",
+    "priority": "P1",
+    "chars": 822
+  },
+  {
+    "id": "FA34",
+    "title": "多个Agent共享Skill怎样管理版本 权限与淘汰？",
+    "path": "docs/10-agent/16-skills-routing-and-governance.md",
+    "anchor": "fa34",
+    "priority": "P1",
+    "chars": 782
+  },
+  {
+    "id": "FA35",
+    "title": "向量索引为什么能加速 HNSW IVF与精确搜索怎样取舍？",
+    "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
+    "anchor": "fa35",
+    "priority": "P1",
+    "chars": 883
+  },
+  {
+    "id": "FA36",
+    "title": "稠密稀疏向量与维数是什么关系 维度成本真是指数增长吗？",
+    "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
+    "anchor": "fa36",
+    "priority": "P1",
+    "chars": 786
+  },
+  {
+    "id": "FA37",
+    "title": "检索结果怎样变成可靠证据 怎样控制噪声和隐私？",
+    "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
+    "anchor": "fa37",
+    "priority": "P0",
+    "chars": 902
+  },
+  {
+    "id": "FA38",
+    "title": "固定长度 结构切片和语义切片怎样选？",
+    "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
+    "anchor": "fa38",
+    "priority": "P0",
+    "chars": 847
+  },
+  {
+    "id": "FA43",
+    "title": "多模态RAG怎样检索图片表格和页面 需要Diffusion吗？",
+    "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
+    "anchor": "fa43",
+    "priority": "P2",
+    "chars": 760
+  },
+  {
+    "id": "FA39",
+    "title": "Harness到底包含什么 与Prompt和Context工程怎样配合？",
+    "path": "docs/10-agent/18-harness-runtime-and-observability.md",
+    "anchor": "fa39",
+    "priority": "P0",
+    "chars": 851
+  },
+  {
+    "id": "FA40",
+    "title": "长任务的状态重置 持久恢复和控制流怎样一起设计？",
+    "path": "docs/10-agent/18-harness-runtime-and-observability.md",
+    "anchor": "fa40",
+    "priority": "P0",
+    "chars": 908
+  },
+  {
+    "id": "FA41",
+    "title": "Harness怎样治理工具生命周期 并把Trace变成可用评测？",
+    "path": "docs/10-agent/18-harness-runtime-and-observability.md",
+    "anchor": "fa41",
+    "priority": "P0",
+    "chars": 880
+  },
+  {
+    "id": "FA63",
+    "title": "Chroma怎样持久化 文本是谁转成Embedding的？",
+    "path": "docs/10-agent/22-chroma-persistence-and-embedding.md",
+    "anchor": "fa63",
+    "priority": "P1",
+    "chars": 962
+  },
+  {
+    "id": "J01",
+    "title": "为什么重写 equals 时通常也必须重写 hashCode",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j01",
+    "priority": "P0",
+    "chars": 720
+  },
+  {
+    "id": "J02",
+    "title": "ArrayList 和 LinkedList 怎么选",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j02",
+    "priority": "P0",
+    "chars": 656
+  },
+  {
+    "id": "J03",
+    "title": "HashMap 的 put 和 get 到底做了什么",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j03",
+    "priority": "P0",
+    "chars": 631
+  },
+  {
+    "id": "J04",
+    "title": "HashMap 扩容和树化阈值怎么正确回答",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j04",
+    "priority": "P0",
+    "chars": 616
+  },
+  {
+    "id": "J05",
+    "title": "ConcurrentHashMap 安全意味着什么",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j05",
+    "priority": "P0",
+    "chars": 657
+  },
+  {
+    "id": "J06",
+    "title": "fail fast 是什么 能拿它保证线程安全吗",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j06",
+    "priority": "P1",
+    "chars": 559
+  },
+  {
+    "id": "J07",
+    "title": "Java 泛型的类型擦除是什么意思",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j07",
+    "priority": "P0",
+    "chars": 633
+  },
+  {
+    "id": "J08",
+    "title": "extends 和 super 通配符怎么理解",
+    "path": "docs/20-java/01-language-and-collections.md",
+    "anchor": "j08",
+    "priority": "P1",
+    "chars": 690
+  },
+  {
+    "id": "J09",
+    "title": "JMM 和 JVM 内存区域是一回事吗",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j09",
+    "priority": "P0",
+    "chars": 553
+  },
+  {
+    "id": "J10",
+    "title": "happens before 和 volatile 如何保证可见性",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j10",
+    "priority": "P0",
+    "chars": 862
+  },
+  {
+    "id": "J11",
+    "title": "synchronized 锁住了什么",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j11",
+    "priority": "P0",
+    "chars": 624
+  },
+  {
+    "id": "J12",
+    "title": "synchronized 和 ReentrantLock 如何选择",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j12",
+    "priority": "P0",
+    "chars": 605
+  },
+  {
+    "id": "J13",
+    "title": "CAS 是什么 为什么还有 ABA 问题",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j13",
+    "priority": "P0",
+    "chars": 619
+  },
+  {
+    "id": "J14",
+    "title": "AQS 是一把锁吗",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j14",
+    "priority": "P1",
+    "chars": 575
+  },
+  {
+    "id": "J15",
+    "title": "线程池七个参数和任务提交顺序是什么",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j15",
+    "priority": "P0",
+    "chars": 650
+  },
+  {
+    "id": "J16",
+    "title": "怎么给 LLM 调用配置线程池和拒绝策略",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j16",
+    "priority": "P0",
+    "chars": 668
+  },
+  {
+    "id": "J17",
+    "title": "CompletableFuture 能解决什么 不能解决什么",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j17",
+    "priority": "P1",
+    "chars": 608
+  },
+  {
+    "id": "J18",
+    "title": "ThreadLocal 为什么会泄漏和串用户",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j18",
+    "priority": "P0",
+    "chars": 653
+  },
+  {
+    "id": "J19",
+    "title": "wait 和 sleep 有何区别 怎么防死锁",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j19",
+    "priority": "P1",
+    "chars": 564
+  },
+  {
+    "id": "J20",
+    "title": "CountDownLatch Semaphore 和队列如何分工",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j20",
+    "priority": "P1",
+    "chars": 670
+  },
+  {
+    "id": "J21",
+    "title": "虚拟线程适合 AI 后端吗",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j21",
+    "priority": "P1",
+    "chars": 772
+  },
+  {
+    "id": "J22",
+    "title": "中断和取消应该如何处理",
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "anchor": "j22",
+    "priority": "P1",
+    "chars": 643
+  },
+  {
+    "id": "J23",
+    "title": "JVM 运行时内存区域怎么讲",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j23",
+    "priority": "P0",
+    "chars": 587
+  },
+  {
+    "id": "J24",
+    "title": "GC 如何判断对象可以回收",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j24",
+    "priority": "P0",
+    "chars": 555
+  },
+  {
+    "id": "J25",
+    "title": "标记清除 复制 标记整理有什么取舍",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j25",
+    "priority": "P1",
+    "chars": 512
+  },
+  {
+    "id": "J26",
+    "title": "G1 和 ZGC 怎么选",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j26",
+    "priority": "P1",
+    "chars": 618
+  },
+  {
+    "id": "J27",
+    "title": "内存泄漏和 OOM 是一回事吗 怎么排查",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j27",
+    "priority": "P0",
+    "chars": 521
+  },
+  {
+    "id": "J28",
+    "title": "类加载的加载 连接 初始化分别做什么",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j28",
+    "priority": "P0",
+    "chars": 554
+  },
+  {
+    "id": "J29",
+    "title": "双亲委派是什么 现代类加载器如何回答",
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "anchor": "j29",
+    "priority": "P1",
+    "chars": 593
+  },
+  {
+    "id": "J30",
+    "title": "IoC 和依赖注入为什么有用",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j30",
+    "priority": "P0",
+    "chars": 595
+  },
+  {
+    "id": "J31",
+    "title": "Bean 生命周期要掌握到什么程度",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j31",
+    "priority": "P1",
+    "chars": 573
+  },
+  {
+    "id": "J32",
+    "title": "Spring 单例 Bean 线程安全吗",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j32",
+    "priority": "P0",
+    "chars": 616
+  },
+  {
+    "id": "J33",
+    "title": "Spring AOP 和两种代理如何工作",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j33",
+    "priority": "P0",
+    "chars": 593
+  },
+  {
+    "id": "J34",
+    "title": "为什么同类调用会让事务失效",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j34",
+    "priority": "P0",
+    "chars": 775
+  },
+  {
+    "id": "J35",
+    "title": "除了自调用 事务还会在哪些地方不符合预期",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j35",
+    "priority": "P0",
+    "chars": 767
+  },
+  {
+    "id": "J36",
+    "title": "REQUIRED REQUIRES_NEW NESTED 怎么区别",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j36",
+    "priority": "P1",
+    "chars": 594
+  },
+  {
+    "id": "J37",
+    "title": "一次 Spring MVC 请求怎么到 Controller",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j37",
+    "priority": "P0",
+    "chars": 749
+  },
+  {
+    "id": "J38",
+    "title": "参数校验和统一异常处理为什么都需要",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j38",
+    "priority": "P0",
+    "chars": 584
+  },
+  {
+    "id": "J39",
+    "title": "Spring Boot 自动配置怎么排查",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j39",
+    "priority": "P0",
+    "chars": 569
+  },
+  {
+    "id": "J40",
+    "title": "认证 授权 CSRF CORS 分别是什么",
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "anchor": "j40",
+    "priority": "P0",
+    "chars": 733
+  },
+  {
+    "id": "J41",
+    "title": "为什么流式回答常用 SSE 后端要处理什么",
+    "path": "docs/20-java/05-agent-integration.md",
+    "anchor": "j41",
+    "priority": "P0",
+    "chars": 692
+  },
+  {
+    "id": "J42",
+    "title": "HTTP 客户端为什么不能只设一个超时",
+    "path": "docs/20-java/05-agent-integration.md",
+    "anchor": "j42",
+    "priority": "P0",
+    "chars": 667
+  },
+  {
+    "id": "J43",
+    "title": "怎么让模型安全调用 Java 工具",
+    "path": "docs/20-java/05-agent-integration.md",
+    "anchor": "j43",
+    "priority": "P0",
+    "chars": 679
+  },
+  {
+    "id": "J44",
+    "title": "为什么不要用一个数据库事务包住整段 Agent 运行",
+    "path": "docs/20-java/05-agent-integration.md",
+    "anchor": "j44",
+    "priority": "P0",
+    "chars": 683
+  },
+  {
+    "id": "J45",
+    "title": "Agent 后端要怎么测试和监控",
+    "path": "docs/20-java/05-agent-integration.md",
+    "anchor": "j45",
+    "priority": "P0",
+    "chars": 660
+  },
+  {
+    "id": "J46",
+    "title": "AI Agent 和 Java javaagent 有什么区别",
+    "path": "docs/20-java/05-agent-integration.md",
+    "anchor": "j46",
+    "priority": "P2",
+    "chars": 668
+  },
+  {
+    "id": "FJ01",
+    "title": "JDK 8 到 25 的特性怎样回答才不会把预览当正式",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj01",
+    "priority": "P1",
+    "chars": 2359
+  },
+  {
+    "id": "FJ02",
+    "title": "JVM、JRE、JDK 是什么，为什么现代 JDK 没有传统 jre 目录",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj02",
+    "priority": "P0",
+    "chars": 954
+  },
+  {
+    "id": "FJ03",
+    "title": "基本类型、装箱和拆箱有哪些隐藏边界",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj03",
+    "priority": "P0",
+    "chars": 1307
+  },
+  {
+    "id": "FJ04",
+    "title": "String 不可变意味着什么，StringBuffer 就能保证整段业务安全吗",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj04",
+    "priority": "P0",
+    "chars": 1149
+  },
+  {
+    "id": "FJ05",
+    "title": "封装、继承、多态、重载和重写怎样放进同一个例子",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj05",
+    "priority": "P0",
+    "chars": 1612
+  },
+  {
+    "id": "FJ06",
+    "title": "身份相等、值相等、浅拷贝和深拷贝怎样区分",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj06",
+    "priority": "P0",
+    "chars": 1426
+  },
+  {
+    "id": "FJ07",
+    "title": "反射能做什么，为什么 setAccessible 不是万能钥匙",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj07",
+    "priority": "P1",
+    "chars": 1091
+  },
+  {
+    "id": "FJ08",
+    "title": "受检异常、RuntimeException 和 Error 应该怎样处理",
+    "path": "docs/20-java/10-language-foundations.md",
+    "anchor": "fj08",
+    "priority": "P0",
+    "chars": 1091
+  },
+  {
+    "id": "FJ09",
+    "title": "Collection 与 Map 如何选，ArrayList 究竟怎样增长",
+    "path": "docs/20-java/11-collections-and-io.md",
+    "anchor": "fj09",
+    "priority": "P0",
+    "chars": 1301
+  },
+  {
+    "id": "FJ10",
+    "title": "HashMap 与 ConcurrentHashMap 的树化、扩容、同步到底哪些能背",
+    "path": "docs/20-java/11-collections-and-io.md",
+    "anchor": "fj10",
+    "priority": "P1",
+    "chars": 2130
+  },
+  {
+    "id": "FJ11",
+    "title": "BIO、NIO、AIO 是三个互斥包名吗",
+    "path": "docs/20-java/11-collections-and-io.md",
+    "anchor": "fj11",
+    "priority": "P0",
+    "chars": 1100
+  },
+  {
+    "id": "FJ12",
+    "title": "并发容器怎样选，弱一致遍历与快照迭代有何不同",
+    "path": "docs/20-java/11-collections-and-io.md",
+    "anchor": "fj12",
+    "priority": "P0",
+    "chars": 1319
+  },
+  {
+    "id": "FJ13",
+    "title": "一个对象从创建到回收会经历什么，GC Roots 为什么不能死背",
+    "path": "docs/20-java/12-jvm-operation.md",
+    "anchor": "fj13",
+    "priority": "P0",
+    "chars": 1688
+  },
+  {
+    "id": "FJ14",
+    "title": "分代、CMS、G1 与 Full GC 的名词怎样连起来",
+    "path": "docs/20-java/12-jvm-operation.md",
+    "anchor": "fj14",
+    "priority": "P1",
+    "chars": 1502
+  },
+  {
+    "id": "FJ15",
+    "title": "频繁 Full GC、OOM、栈溢出该按什么顺序查",
+    "path": "docs/20-java/12-jvm-operation.md",
+    "anchor": "fj15",
+    "priority": "P0",
+    "chars": 1415
+  },
+  {
+    "id": "FJ16",
+    "title": "自定义类加载器为什么不能只写一段“先自己加载”",
+    "path": "docs/20-java/12-jvm-operation.md",
+    "anchor": "fj16",
+    "priority": "P1",
+    "chars": 1038
+  },
+  {
+    "id": "FJ17",
+    "title": "创建任务、创建线程和选择线程池为什么是三件事",
+    "path": "docs/20-java/13-concurrency-details.md",
+    "anchor": "fj17",
+    "priority": "P0",
+    "chars": 2672
+  },
+  {
+    "id": "FJ18",
+    "title": "AQS 怎样实现可重入锁，公平锁为什么仍可能插队",
+    "path": "docs/20-java/13-concurrency-details.md",
+    "anchor": "fj18",
+    "priority": "P1",
+    "chars": 1790
+  },
+  {
+    "id": "FJ19",
+    "title": "“偏向锁升级到重量锁”为什么不是现代 JDK 的通用答案",
+    "path": "docs/20-java/13-concurrency-details.md",
+    "anchor": "fj19",
+    "priority": "P1",
+    "chars": 1145
+  },
+  {
+    "id": "FJ20",
+    "title": "CAS 与乐观、悲观并发控制怎样选择",
+    "path": "docs/20-java/13-concurrency-details.md",
+    "anchor": "fj20",
+    "priority": "P0",
+    "chars": 1180
+  },
+  {
+    "id": "FJ21",
+    "title": "ThreadLocal 的弱键为什么仍会保留值，static 能解决吗",
+    "path": "docs/20-java/13-concurrency-details.md",
+    "anchor": "fj21",
+    "priority": "P0",
+    "chars": 1140
+  },
+  {
+    "id": "FJ22",
+    "title": "Bean 作用域和生命周期怎样一起决定状态与资源归属",
+    "path": "docs/20-java/14-spring-mechanisms.md",
+    "anchor": "fj22",
+    "priority": "P0",
+    "chars": 1253
+  },
+  {
+    "id": "FJ23",
+    "title": "Autowired、Resource 和循环依赖的“三级缓存”各解决什么",
+    "path": "docs/20-java/14-spring-mechanisms.md",
+    "anchor": "fj23",
+    "priority": "P0",
+    "chars": 1773
+  },
+  {
+    "id": "FJ24",
+    "title": "Starter、自动配置与 Boot 启动怎样串起来，Cloud 又负责什么",
+    "path": "docs/20-java/14-spring-mechanisms.md",
+    "anchor": "fj24",
+    "priority": "P1",
+    "chars": 2544
+  },
+  {
+    "id": "FJ25",
+    "title": "Spring 的 isolation 设置什么时候生效，怎样区分“没事务”和“没回滚”",
+    "path": "docs/20-java/14-spring-mechanisms.md",
+    "anchor": "fj25",
+    "priority": "P0",
+    "chars": 1332
+  },
+  {
+    "id": "FJ46",
+    "title": "三个线程如何按 ABC 顺序循环输出，并在中断时全部退出",
+    "path": "docs/20-java/15-thread-ordering-lab.md",
+    "anchor": "fj46",
+    "priority": "P0",
+    "chars": 9834
+  },
+  {
+    "id": "G01",
+    "title": "什么是 GMP？为什么 goroutine 比线程轻量？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g01",
+    "priority": "P0",
+    "chars": 822
+  },
+  {
+    "id": "G02",
+    "title": "网络 I/O、系统调用、CPU 密集任务如何影响调度？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g02",
+    "priority": "P1",
+    "chars": 737
+  },
+  {
+    "id": "G03",
+    "title": "什么是 goroutine 泄漏？如何保证每个任务退出？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g03",
+    "priority": "P0",
+    "chars": 752
+  },
+  {
+    "id": "G04",
+    "title": "无缓冲与有缓冲 channel 有什么区别？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g04",
+    "priority": "P0",
+    "chars": 682
+  },
+  {
+    "id": "G05",
+    "title": "nil、关闭、空的 channel 分别会怎样？谁负责 close？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g05",
+    "priority": "P0",
+    "chars": 710
+  },
+  {
+    "id": "G06",
+    "title": "select 如何工作？为什么 default 可能把 CPU 跑满？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g06",
+    "priority": "P0",
+    "chars": 787
+  },
+  {
+    "id": "G07",
+    "title": "context 到底传递什么？cancel 会杀掉 goroutine 吗？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g07",
+    "priority": "P0",
+    "chars": 766
+  },
+  {
+    "id": "G08",
+    "title": "一个请求要调用多个下游，超时预算怎样分配？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g08",
+    "priority": "P0",
+    "chars": 652
+  },
+  {
+    "id": "G09",
+    "title": "WaitGroup 与 errgroup 如何选择？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g09",
+    "priority": "P0",
+    "chars": 786
+  },
+  {
+    "id": "G10",
+    "title": "如何设计一个有界 worker pool？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g10",
+    "priority": "P0",
+    "chars": 699
+  },
+  {
+    "id": "G11",
+    "title": "什么是 data race？加 sleep 为什么不能同步？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g11",
+    "priority": "P0",
+    "chars": 708
+  },
+  {
+    "id": "G12",
+    "title": "Mutex、RWMutex 如何选择？锁住什么才正确？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g12",
+    "priority": "P0",
+    "chars": 659
+  },
+  {
+    "id": "G13",
+    "title": "atomic、Once 能替代锁吗？",
+    "path": "docs/30-go/01-concurrency.md",
+    "anchor": "g13",
+    "priority": "P1",
+    "chars": 698
+  },
+  {
+    "id": "G14",
+    "title": "map 使用有哪些必知边界？sync.Map 适合所有场景吗？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g14",
+    "priority": "P0",
+    "chars": 728
+  },
+  {
+    "id": "G15",
+    "title": "Go map 底层还是“8 个桶元素＋溢出桶”吗？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g15",
+    "priority": "P1",
+    "chars": 728
+  },
+  {
+    "id": "G16",
+    "title": "slice 的 len、cap、append、共享底层数组怎么理解？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g16",
+    "priority": "P0",
+    "chars": 757
+  },
+  {
+    "id": "G17",
+    "title": "只保留一个小切片，为何可能占用很多内存？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g17",
+    "priority": "P1",
+    "chars": 746
+  },
+  {
+    "id": "G18",
+    "title": "make、new、零值有什么区别？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g18",
+    "priority": "P0",
+    "chars": 760
+  },
+  {
+    "id": "G19",
+    "title": "为什么 interface 里放了 nil，比较却不等于 nil？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g19",
+    "priority": "P0",
+    "chars": 797
+  },
+  {
+    "id": "G20",
+    "title": "errors.Is、errors.As、%w 如何配合？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g20",
+    "priority": "P0",
+    "chars": 713
+  },
+  {
+    "id": "G21",
+    "title": "defer、panic、recover 的执行顺序是什么？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g21",
+    "priority": "P0",
+    "chars": 827
+  },
+  {
+    "id": "G22",
+    "title": "for 循环启动 goroutine 时，变量捕获还有坑吗？",
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "anchor": "g22",
+    "priority": "P1",
+    "chars": 756
+  },
+  {
+    "id": "G23",
+    "title": "什么是逃逸分析？返回局部变量指针安全吗？",
+    "path": "docs/30-go/03-memory-gc-and-performance.md",
+    "anchor": "g23",
+    "priority": "P0",
+    "chars": 701
+  },
+  {
+    "id": "G24",
+    "title": "Go GC 如何判断垃圾？三色、写屏障、STW 分别解决什么？",
+    "path": "docs/30-go/03-memory-gc-and-performance.md",
+    "anchor": "g24",
+    "priority": "P0",
+    "chars": 801
+  },
+  {
+    "id": "G25",
+    "title": "GOGC、GOMEMLIMIT 怎样影响延迟和内存？",
+    "path": "docs/30-go/03-memory-gc-and-performance.md",
+    "anchor": "g25",
+    "priority": "P1",
+    "chars": 731
+  },
+  {
+    "id": "G26",
+    "title": "sync.Pool 适合缓存数据库连接或任务结果吗？",
+    "path": "docs/30-go/03-memory-gc-and-performance.md",
+    "anchor": "g26",
+    "priority": "P1",
+    "chars": 649
+  },
+  {
+    "id": "G27",
+    "title": "HTTP Client 为什么要复用？响应 Body 怎么处理？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g27",
+    "priority": "P0",
+    "chars": 795
+  },
+  {
+    "id": "G28",
+    "title": "HTTP 服务端和客户端各有哪些超时？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g28",
+    "priority": "P0",
+    "chars": 751
+  },
+  {
+    "id": "G29",
+    "title": "SSE 为什么适合大模型输出？与 WebSocket 有何区别？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g29",
+    "priority": "P0",
+    "chars": 768
+  },
+  {
+    "id": "G30",
+    "title": "Go 写 SSE 时，如何处理 Flush、慢客户端和用户断连？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g30",
+    "priority": "P0",
+    "chars": 753
+  },
+  {
+    "id": "G31",
+    "title": "gRPC 的价值、deadline 与流控是什么？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g31",
+    "priority": "P1",
+    "chars": 767
+  },
+  {
+    "id": "G32",
+    "title": "下游失败要不要重试？怎样避免重复执行和雪崩？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g32",
+    "priority": "P0",
+    "chars": 679
+  },
+  {
+    "id": "G33",
+    "title": "限流与并发限制的区别？令牌桶如何工作？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g33",
+    "priority": "P0",
+    "chars": 721
+  },
+  {
+    "id": "G34",
+    "title": "Go HTTP 服务如何优雅退出？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g34",
+    "priority": "P0",
+    "chars": 769
+  },
+  {
+    "id": "G35",
+    "title": "Go HTTP 中间件怎样组织？Agent 接口额外防什么？",
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "anchor": "g35",
+    "priority": "P1",
+    "chars": 888
+  },
+  {
+    "id": "G36",
+    "title": "Go 后端怎样写有价值的测试？",
+    "path": "docs/30-go/05-testing-and-debugging.md",
+    "anchor": "g36",
+    "priority": "P0",
+    "chars": 663
+  },
+  {
+    "id": "G37",
+    "title": "race 检测、fuzz、普通测试分别能发现什么？",
+    "path": "docs/30-go/05-testing-and-debugging.md",
+    "anchor": "g37",
+    "priority": "P1",
+    "chars": 737
+  },
+  {
+    "id": "G38",
+    "title": "Benchmark 怎么写才不自欺欺人？",
+    "path": "docs/30-go/05-testing-and-debugging.md",
+    "anchor": "g38",
+    "priority": "P1",
+    "chars": 686
+  },
+  {
+    "id": "G39",
+    "title": "线上 CPU 突然变高，怎样用 pprof 排查？",
+    "path": "docs/30-go/05-testing-and-debugging.md",
+    "anchor": "g39",
+    "priority": "P0",
+    "chars": 704
+  },
+  {
+    "id": "G40",
+    "title": "内存、goroutine、延迟问题分别怎么看？",
+    "path": "docs/30-go/05-testing-and-debugging.md",
+    "anchor": "g40",
+    "priority": "P0",
+    "chars": 860
+  },
+  {
+    "id": "B01",
+    "title": "HTTP 的安全性、幂等性与状态码分别解决什么问题",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b01",
+    "priority": "P0",
+    "chars": 555
+  },
+  {
+    "id": "B02",
+    "title": "HTTP 缓存里的 no-cache、no-store 和协商缓存有什么区别",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b02",
+    "priority": "P1",
+    "chars": 508
+  },
+  {
+    "id": "B03",
+    "title": "TCP 为什么可靠，又为什么会出现所谓粘包",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b03",
+    "priority": "P0",
+    "chars": 549
+  },
+  {
+    "id": "B04",
+    "title": "三次握手、连接关闭与 TIME_WAIT 如何联系起来",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b04",
+    "priority": "P0",
+    "chars": 563
+  },
+  {
+    "id": "B05",
+    "title": "HTTP 1.1、2、3 的主要差别是什么",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b05",
+    "priority": "P0",
+    "chars": 584
+  },
+  {
+    "id": "B06",
+    "title": "HTTPS 中 TLS 到底保护了什么",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b06",
+    "priority": "P0",
+    "chars": 487
+  },
+  {
+    "id": "B07",
+    "title": "AI 输出流为什么常用 SSE，断线如何恢复",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b07",
+    "priority": "P0",
+    "chars": 641
+  },
+  {
+    "id": "B08",
+    "title": "WebSocket 与 SSE 怎么选择",
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "anchor": "b08",
+    "priority": "P1",
+    "chars": 541
+  },
+  {
+    "id": "B09",
+    "title": "索引为什么加速查询，B 树结构适合什么查询",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b09",
+    "priority": "P0",
+    "chars": 651
+  },
+  {
+    "id": "B10",
+    "title": "聚簇索引、二级索引、回表和覆盖索引是什么",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b10",
+    "priority": "P0",
+    "chars": 554
+  },
+  {
+    "id": "B11",
+    "title": "联合索引的最左前缀应该怎样理解",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b11",
+    "priority": "P0",
+    "chars": 677
+  },
+  {
+    "id": "B12",
+    "title": "慢 SQL 怎样用 EXPLAIN 排查",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b12",
+    "priority": "P0",
+    "chars": 511
+  },
+  {
+    "id": "B13",
+    "title": "ACID 是什么，为什么开了事务仍会写错业务",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b13",
+    "priority": "P0",
+    "chars": 613
+  },
+  {
+    "id": "B14",
+    "title": "四个隔离级别怎样区分，MySQL 与 PostgreSQL 哪里不同",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b14",
+    "priority": "P0",
+    "chars": 688
+  },
+  {
+    "id": "B15",
+    "title": "MVCC 怎样让读写并行，快照是什么",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b15",
+    "priority": "P0",
+    "chars": 718
+  },
+  {
+    "id": "B16",
+    "title": "快照读、锁定读、记录锁和间隙锁有什么关系",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b16",
+    "priority": "P0",
+    "chars": 615
+  },
+  {
+    "id": "B17",
+    "title": "死锁为什么发生，应用应该怎么处理",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b17",
+    "priority": "P0",
+    "chars": 479
+  },
+  {
+    "id": "B18",
+    "title": "两个请求同时抢最后一件商品，怎样避免超卖",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b18",
+    "priority": "P0",
+    "chars": 646
+  },
+  {
+    "id": "B19",
+    "title": "深分页为什么慢，游标分页怎样设计",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b19",
+    "priority": "P1",
+    "chars": 550
+  },
+  {
+    "id": "B20",
+    "title": "LEFT JOIN 为什么有时写着写着变成了 INNER JOIN",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b20",
+    "priority": "P0",
+    "chars": 632
+  },
+  {
+    "id": "B21",
+    "title": "每个用户取最近三条订单，窗口函数怎么用",
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "anchor": "b21",
+    "priority": "P0",
+    "chars": 622
+  },
+  {
+    "id": "B22",
+    "title": "Redis 常见数据结构怎样对应业务需求",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b22",
+    "priority": "P0",
+    "chars": 518
+  },
+  {
+    "id": "B23",
+    "title": "Redis 为什么仍可能很慢，KEYS 与 SCAN 怎么选",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b23",
+    "priority": "P0",
+    "chars": 642
+  },
+  {
+    "id": "B24",
+    "title": "RDB 和 AOF 怎样选择，持久化是否等于绝不丢数据",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b24",
+    "priority": "P1",
+    "chars": 533
+  },
+  {
+    "id": "B25",
+    "title": "TTL 过期与内存淘汰有什么区别",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b25",
+    "priority": "P0",
+    "chars": 508
+  },
+  {
+    "id": "B26",
+    "title": "先更新数据库再删除缓存，为什么仍不是强一致",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b26",
+    "priority": "P0",
+    "chars": 769
+  },
+  {
+    "id": "B27",
+    "title": "缓存击穿与雪崩怎样区分，如何保护数据库",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b27",
+    "priority": "P0",
+    "chars": 659
+  },
+  {
+    "id": "B28",
+    "title": "缓存穿透与布隆过滤器是怎么回事",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b28",
+    "priority": "P0",
+    "chars": 552
+  },
+  {
+    "id": "B29",
+    "title": "Redis 分布式锁的最小正确实现需要什么",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b29",
+    "priority": "P0",
+    "chars": 675
+  },
+  {
+    "id": "B30",
+    "title": "有 Redis 主从复制，为什么故障切换后仍可能丢写入",
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "anchor": "b30",
+    "priority": "P1",
+    "chars": 552
+  },
+  {
+    "id": "B31",
+    "title": "为什么引入消息队列，Kafka 怎样保证顺序",
+    "path": "docs/40-backend/04-messaging-and-idempotency.md",
+    "anchor": "b31",
+    "priority": "P0",
+    "chars": 478
+  },
+  {
+    "id": "B32",
+    "title": "消息为什么重复，消费端如何真正幂等",
+    "path": "docs/40-backend/04-messaging-and-idempotency.md",
+    "anchor": "b32",
+    "priority": "P0",
+    "chars": 641
+  },
+  {
+    "id": "B33",
+    "title": "Kafka 的 exactly-once 保证到哪里为止",
+    "path": "docs/40-backend/04-messaging-and-idempotency.md",
+    "anchor": "b33",
+    "priority": "P1",
+    "chars": 646
+  },
+  {
+    "id": "B34",
+    "title": "数据库写成功但消息发送失败，outbox 怎样解决",
+    "path": "docs/40-backend/04-messaging-and-idempotency.md",
+    "anchor": "b34",
+    "priority": "P0",
+    "chars": 757
+  },
+  {
+    "id": "B35",
+    "title": "坏消息一直失败怎么办，什么时候提交位点",
+    "path": "docs/40-backend/04-messaging-and-idempotency.md",
+    "anchor": "b35",
+    "priority": "P0",
+    "chars": 720
+  },
+  {
+    "id": "B36",
+    "title": "固定窗口、滑动窗口和令牌桶怎样选择",
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "anchor": "b36",
+    "priority": "P0",
+    "chars": 593
+  },
+  {
+    "id": "B37",
+    "title": "超时、deadline 和取消是什么关系",
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "anchor": "b37",
+    "priority": "P0",
+    "chars": 687
+  },
+  {
+    "id": "B38",
+    "title": "重试为什么可能把故障放大，怎样设计退避",
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "anchor": "b38",
+    "priority": "P0",
+    "chars": 577
+  },
+  {
+    "id": "B39",
+    "title": "限流、熔断和隔离分别防什么问题",
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "anchor": "b39",
+    "priority": "P0",
+    "chars": 613
+  },
+  {
+    "id": "B40",
+    "title": "日志、指标、链路追踪分别怎么看问题",
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "anchor": "b40",
+    "priority": "P0",
+    "chars": 617
+  },
+  {
+    "id": "B41",
+    "title": "什么是背压，为什么不能给每个任务无限开协程",
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "anchor": "b41",
+    "priority": "P0",
+    "chars": 525
+  },
+  {
+    "id": "B42",
+    "title": "进程、线程与协程有什么区别",
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "anchor": "b42",
+    "priority": "P0",
+    "chars": 543
+  },
+  {
+    "id": "B43",
+    "title": "epoll 的 I/O 多路复用为什么有用",
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "anchor": "b43",
+    "priority": "P1",
+    "chars": 502
+  },
+  {
+    "id": "B44",
+    "title": "容器与虚拟机怎么区分，namespace 和 cgroup 分别做什么",
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "anchor": "b44",
+    "priority": "P0",
+    "chars": 711
+  },
+  {
+    "id": "B45",
+    "title": "镜像构建和健康检查，实习生要懂到什么程度",
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "anchor": "b45",
+    "priority": "P1",
+    "chars": 638
+  },
+  {
+    "id": "B46",
+    "title": "优雅退出怎样避免发布时丢请求",
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "anchor": "b46",
+    "priority": "P0",
+    "chars": 603
+  },
+  {
+    "id": "B47",
+    "title": "服务突然变慢，如何从 Linux 走到应用定位",
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "anchor": "b47",
+    "priority": "P0",
+    "chars": 630
+  },
+  {
+    "id": "B48",
+    "title": "SQL 注入为什么发生，参数化查询解决了什么",
+    "path": "docs/40-backend/07-security-and-problem-solving.md",
+    "anchor": "b48",
+    "priority": "P0",
+    "chars": 619
+  },
+  {
+    "id": "B49",
+    "title": "算法题怎样从会背答案变成能现场写",
+    "path": "docs/40-backend/07-security-and-problem-solving.md",
+    "anchor": "b49",
+    "priority": "P0",
+    "chars": 634
+  },
+  {
+    "id": "B50",
+    "title": "SQL 手写应该练哪些能力，如何自测正确性",
+    "path": "docs/40-backend/07-security-and-problem-solving.md",
+    "anchor": "b50",
+    "priority": "P0",
+    "chars": 676
+  },
+  {
+    "id": "FJ26",
+    "title": "MySQL 慢 SQL 怎样定位，EXPLAIN 应看哪些字段",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj26",
+    "priority": "P0",
+    "chars": 1326
+  },
+  {
+    "id": "FJ27",
+    "title": "索引有哪些分类，“索引失效”为什么常常说得太粗",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj27",
+    "priority": "P0",
+    "chars": 1168
+  },
+  {
+    "id": "FJ28",
+    "title": "B+ 树、聚簇索引与覆盖查询怎样影响真正的页访问",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj28",
+    "priority": "P0",
+    "chars": 1254
+  },
+  {
+    "id": "FJ29",
+    "title": "索引 (A,B,C) 跳过 B、出现多个范围时，到底用了哪些列",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj29",
+    "priority": "P0",
+    "chars": 1449
+  },
+  {
+    "id": "FJ30",
+    "title": "隔离级别如何影响读异常，InnoDB RR 到底怎么处理幻读",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj30",
+    "priority": "P0",
+    "chars": 1169
+  },
+  {
+    "id": "FJ31",
+    "title": "undo、redo、binlog 与 Read View 怎样共同支撑事务",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj31",
+    "priority": "P0",
+    "chars": 1798
+  },
+  {
+    "id": "FJ32",
+    "title": "什么时候分库分表，单表“最大多少行”怎样回答",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj32",
+    "priority": "P1",
+    "chars": 1210
+  },
+  {
+    "id": "FJ33",
+    "title": "MySQL 复制如何工作，读写分离为什么会读不到刚写的数据",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj33",
+    "priority": "P1",
+    "chars": 1048
+  },
+  {
+    "id": "FJ34",
+    "title": "MySQL 与 Redis 应怎样分工，为什么不能只比较“毫秒与微秒”",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj34",
+    "priority": "P0",
+    "chars": 994
+  },
+  {
+    "id": "FJ35",
+    "title": "UNION 与 UNION ALL 去重什么，结果有默认顺序吗",
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "anchor": "fj35",
+    "priority": "P0",
+    "chars": 905
+  },
+  {
+    "id": "FJ36",
+    "title": "Mapper、XML、注解与参数绑定是什么关系，如何防止 SQL 注入",
+    "path": "docs/40-backend/21-mybatis.md",
+    "anchor": "fj36",
+    "priority": "P0",
+    "chars": 1380
+  },
+  {
+    "id": "FJ37",
+    "title": "Redis 逻辑类型与内部编码有什么区别，如何映射业务",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj37",
+    "priority": "P0",
+    "chars": 1375
+  },
+  {
+    "id": "FJ38",
+    "title": "Redis 为什么快，单线程与 I/O 多路复用怎样准确表述",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj38",
+    "priority": "P0",
+    "chars": 1118
+  },
+  {
+    "id": "FJ39",
+    "title": "RDB、AOF、复制与备份分别怎样帮助故障恢复",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj39",
+    "priority": "P0",
+    "chars": 1156
+  },
+  {
+    "id": "FJ40",
+    "title": "键到期一定马上释放内存吗，淘汰策略有哪些",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj40",
+    "priority": "P0",
+    "chars": 1009
+  },
+  {
+    "id": "FJ41",
+    "title": "看门狗续租能保证分布式锁永远安全吗",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj41",
+    "priority": "P0",
+    "chars": 1067
+  },
+  {
+    "id": "FJ42",
+    "title": "两级缓存如何失效，删缓存失败和旧读回填为什么是两类问题",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj42",
+    "priority": "P0",
+    "chars": 1631
+  },
+  {
+    "id": "FJ43",
+    "title": "大键与热键怎样识别，为什么“超过10KB”不是统一标准",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj43",
+    "priority": "P0",
+    "chars": 1120
+  },
+  {
+    "id": "FJ44",
+    "title": "Redis 全量复制、部分重同步与复制积压缓冲怎样配合",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj44",
+    "priority": "P1",
+    "chars": 904
+  },
+  {
+    "id": "FJ45",
+    "title": "Sentinel、Cluster 和持久化如何组合，怎样说明高可用边界",
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "anchor": "fj45",
+    "priority": "P0",
+    "chars": 1295
+  },
+  {
+    "id": "FB01",
+    "title": "如何比较 Kafka、RocketMQ 和 RabbitMQ，而不背吞吐排行榜",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb01",
+    "priority": "P0",
+    "chars": 958
+  },
+  {
+    "id": "FB02",
+    "title": "多副本为什么仍可能丢写或暂停服务",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb02",
+    "priority": "P0",
+    "chars": 1045
+  },
+  {
+    "id": "FB03",
+    "title": "如何把消息可靠性拆成可验证的三个交接点",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb03",
+    "priority": "P0",
+    "chars": 927
+  },
+  {
+    "id": "FB04",
+    "title": "Kafka 为什么吞吐高，什么情况下优化会失效",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb04",
+    "priority": "P1",
+    "chars": 772
+  },
+  {
+    "id": "FB05",
+    "title": "按业务键有序与生产者幂等各保证到哪一层",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb05",
+    "priority": "P0",
+    "chars": 740
+  },
+  {
+    "id": "FB06",
+    "title": "死信、延后重试与优先级为什么不能混为一谈",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb06",
+    "priority": "P0",
+    "chars": 760
+  },
+  {
+    "id": "FB07",
+    "title": "RocketMQ 半消息回查应查询什么事实",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb07",
+    "priority": "P1",
+    "chars": 658
+  },
+  {
+    "id": "FB08",
+    "title": "mmap 与 sendfile 的数据路径如何解释",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb08",
+    "priority": "P1",
+    "chars": 711
+  },
+  {
+    "id": "FB09",
+    "title": "订单超时关闭如何使用定时消息与 TTL",
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "anchor": "fb09",
+    "priority": "P1",
+    "chars": 667
+  },
+  {
+    "id": "FB10",
+    "title": "怎样识别创建型、结构型、行为型模式和 Spring 工厂抽象",
+    "path": "docs/40-backend/31-design-patterns-in-practice.md",
+    "anchor": "fb10",
+    "priority": "P1",
+    "chars": 855
+  },
+  {
+    "id": "FB11",
+    "title": "如何手写安全的延迟单例，DCL 为什么必须关注发布",
+    "path": "docs/40-backend/31-design-patterns-in-practice.md",
+    "anchor": "fb11",
+    "priority": "P0",
+    "chars": 2228
+  },
+  {
+    "id": "FB12",
+    "title": "代理和适配器怎样在真实 API 中区分",
+    "path": "docs/40-backend/31-design-patterns-in-practice.md",
+    "anchor": "fb12",
+    "priority": "P1",
+    "chars": 886
+  },
+  {
+    "id": "FB13",
+    "title": "拒绝策略为什么是策略模式，也是业务过载语义",
+    "path": "docs/40-backend/31-design-patterns-in-practice.md",
+    "anchor": "fb13",
+    "priority": "P0",
+    "chars": 728
+  },
+  {
+    "id": "FB14",
+    "title": "模板方法与模板加回调的扩展方式有什么不同",
+    "path": "docs/40-backend/31-design-patterns-in-practice.md",
+    "anchor": "fb14",
+    "priority": "P1",
+    "chars": 573
+  },
+  {
+    "id": "FB15",
+    "title": "从分层模型讲到 URL 请求与页面渲染",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb15",
+    "priority": "P0",
+    "chars": 883
+  },
+  {
+    "id": "FB16",
+    "title": "TCP 与 UDP 的服务模型如何影响应用设计",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb16",
+    "priority": "P0",
+    "chars": 705
+  },
+  {
+    "id": "FB17",
+    "title": "握手、半关闭和 TIME_WAIT 应怎样连起来",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb17",
+    "priority": "P0",
+    "chars": 606
+  },
+  {
+    "id": "FB18",
+    "title": "ARP 查询的是最终服务器还是下一跳",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb18",
+    "priority": "P1",
+    "chars": 612
+  },
+  {
+    "id": "FB19",
+    "title": "可靠传输、流量控制与拥塞控制分别保护什么",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb19",
+    "priority": "P0",
+    "chars": 624
+  },
+  {
+    "id": "FB20",
+    "title": "如何解释慢启动，而不把 Reno 当作所有 TCP",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb20",
+    "priority": "P1",
+    "chars": 724
+  },
+  {
+    "id": "FB21",
+    "title": "如何设计不会被拆包、粘连和超长输入破坏的分帧",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb21",
+    "priority": "P0",
+    "chars": 622
+  },
+  {
+    "id": "FB22",
+    "title": "HTTP/1.1、HTTP/2、HTTP/3 的阻塞分别在哪里",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb22",
+    "priority": "P0",
+    "chars": 765
+  },
+  {
+    "id": "FB23",
+    "title": "TLS 1.3 如何完成认证与密钥建立",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb23",
+    "priority": "P0",
+    "chars": 597
+  },
+  {
+    "id": "FB24",
+    "title": "DNS 递归、迭代和缓存如何影响排障",
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "anchor": "fb24",
+    "priority": "P1",
+    "chars": 550
+  },
+  {
+    "id": "FB25",
+    "title": "进程、线程和状态转换如何共同解释并发",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb25",
+    "priority": "P0",
+    "chars": 710
+  },
+  {
+    "id": "FB26",
+    "title": "死锁四条件与预防、避免、检测怎样区分",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb26",
+    "priority": "P0",
+    "chars": 648
+  },
+  {
+    "id": "FB27",
+    "title": "虚拟内存为什么不等于把磁盘当内存",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb27",
+    "priority": "P0",
+    "chars": 724
+  },
+  {
+    "id": "FB28",
+    "title": "内存对齐与大小端是同一个问题吗",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb28",
+    "priority": "P1",
+    "chars": 653
+  },
+  {
+    "id": "FB29",
+    "title": "哈希表加双向链表怎样实现 LRU 并验证边界",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb29",
+    "priority": "P0",
+    "chars": 2396
+  },
+  {
+    "id": "FB30",
+    "title": "用户态进入内核意味着什么，何时发生切换",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb30",
+    "priority": "P1",
+    "chars": 694
+  },
+  {
+    "id": "FB31",
+    "title": "删除文件名后空间为什么还在，软链接怎样解析",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb31",
+    "priority": "P0",
+    "chars": 644
+  },
+  {
+    "id": "FB32",
+    "title": "调度算法如何在吞吐、响应、公平之间取舍",
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "anchor": "fb32",
+    "priority": "P1",
+    "chars": 529
+  },
+  {
+    "id": "FB53",
+    "title": "CAP 的 C 和 A 应怎样按故障模型理解",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb53",
+    "priority": "P1",
+    "chars": 628
+  },
+  {
+    "id": "FB54",
+    "title": "分布式锁怎样实现所有权、重入和过期写保护",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb54",
+    "priority": "P0",
+    "chars": 942
+  },
+  {
+    "id": "FB55",
+    "title": "Redlock 的多数租约需要哪些假设",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb55",
+    "priority": "P1",
+    "chars": 644
+  },
+  {
+    "id": "FB56",
+    "title": "2PC、TCC、Saga、Outbox 怎样围绕不变量选择",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb56",
+    "priority": "P1",
+    "chars": 957
+  },
+  {
+    "id": "FB57",
+    "title": "唯一标识怎样在顺序、可用性和恢复之间取舍",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb57",
+    "priority": "P0",
+    "chars": 806
+  },
+  {
+    "id": "FB58",
+    "title": "RPC 和 HTTP 为什么不是同一层次的替代品",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb58",
+    "priority": "P0",
+    "chars": 793
+  },
+  {
+    "id": "FB59",
+    "title": "Dubbo 注册中心和调用路径怎样分工",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb59",
+    "priority": "P1",
+    "chars": 662
+  },
+  {
+    "id": "FB60",
+    "title": "消息积压怎样扩容才会真正追上",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb60",
+    "priority": "P0",
+    "chars": 753
+  },
+  {
+    "id": "FB61",
+    "title": "一致性哈希和虚拟节点解决了什么，没解决什么",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb61",
+    "priority": "P1",
+    "chars": 620
+  },
+  {
+    "id": "FB62",
+    "title": "复制、Sentinel、Cluster 的职责怎样区别",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb62",
+    "priority": "P0",
+    "chars": 849
+  },
+  {
+    "id": "FB63",
+    "title": "Quartz、XXL-JOB、ElasticJob 如何按任务语义选择",
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "anchor": "fb63",
+    "priority": "P1",
+    "chars": 840
+  },
+  {
+    "id": "FB64",
+    "title": "常用文件命令怎样操作才不把排障变成事故",
+    "path": "docs/40-backend/35-linux-operations-practice.md",
+    "anchor": "fb64",
+    "priority": "P0",
+    "chars": 984
+  },
+  {
+    "id": "FB65",
+    "title": "怎样定位进程并优雅终止，何时才用 KILL",
+    "path": "docs/40-backend/35-linux-operations-practice.md",
+    "anchor": "fb65",
+    "priority": "P0",
+    "chars": 710
+  },
+  {
+    "id": "FB66",
+    "title": "top、free、vmstat、df、du 各能证明什么",
+    "path": "docs/40-backend/35-linux-operations-practice.md",
+    "anchor": "fb66",
+    "priority": "P0",
+    "chars": 828
+  },
+  {
+    "id": "FB79",
+    "title": "Spring AI、Flux 和多人流式会话各负责哪一层",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb79",
+    "priority": "P0",
+    "chars": 1091
+  },
+  {
+    "id": "FB80",
+    "title": "关注、粉丝、点赞与会员系统怎样设计可验证的数据模型",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb80",
+    "priority": "P1",
+    "chars": 992
+  },
+  {
+    "id": "FB81",
+    "title": "通知和并发文件导出怎样定义成功及恢复",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb81",
+    "priority": "P0",
+    "chars": 905
+  },
+  {
+    "id": "FB82",
+    "title": "Git 分支和 CI/CD 怎样支持并行开发并保留回退",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb82",
+    "priority": "P0",
+    "chars": 904
+  },
+  {
+    "id": "FB83",
+    "title": "Tomcat 线程池与数据库连接池为何要一起算预算",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb83",
+    "priority": "P0",
+    "chars": 879
+  },
+  {
+    "id": "FB84",
+    "title": "Docker 与 Kubernetes 基础如何与发布可靠性相连",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb84",
+    "priority": "P1",
+    "chars": 967
+  },
+  {
+    "id": "FB85",
+    "title": "认证、RBAC、对象级权限与 Secret 如何贯穿工具链",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb85",
+    "priority": "P0",
+    "chars": 1141
+  },
+  {
+    "id": "FB86",
+    "title": "IP 和 TCP 报文头哪些字段与排障真正相关",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb86",
+    "priority": "P1",
+    "chars": 801
+  },
+  {
+    "id": "FB87",
+    "title": "Redis 消息、广播与备份恢复怎样避免能力混淆",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb87",
+    "priority": "P1",
+    "chars": 1234
+  },
+  {
+    "id": "FB88",
+    "title": "红黑树、跳表与 B+ 树为什么有不同的性能目标",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb88",
+    "priority": "P1",
+    "chars": 1031
+  },
+  {
+    "id": "FB89",
+    "title": "排序题如何从不变量推导快速排序的平均与最坏复杂度",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb89",
+    "priority": "P1",
+    "chars": 776
+  },
+  {
+    "id": "FB90",
+    "title": "列表尾删、按值查找和哈希碰撞如何按实际操作计算成本",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb90",
+    "priority": "P1",
+    "chars": 965
+  },
+  {
+    "id": "FB91",
+    "title": "强一致、最终一致、读己之写和几秒延迟如何区分",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb91",
+    "priority": "P0",
+    "chars": 895
+  },
+  {
+    "id": "FB92",
+    "title": "知识库增量更新怎样处理修改、删除与 ACL 变化",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb92",
+    "priority": "P1",
+    "chars": 862
+  },
+  {
+    "id": "FB93",
+    "title": "点评与订单教学案例的数据表如何按职责设计",
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "anchor": "fb93",
+    "priority": "P1",
+    "chars": 1130
+  },
+  {
+    "id": "A39",
+    "title": "Openresearch 的状态持久化和执行租约解决什么？有什么边界？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a39",
+    "priority": "P0",
+    "chars": 824
+  },
+  {
+    "id": "A40",
+    "title": "Openresearch 的 DAG、Agent routing 与 Eino 各负责什么？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a40",
+    "priority": "P0",
+    "chars": 803
+  },
+  {
+    "id": "A41",
+    "title": "Openresearch 有评测和修复循环，为什么还不能说“效果已被充分证明”？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a41",
+    "priority": "P0",
+    "chars": 835
+  },
+  {
+    "id": "A42",
+    "title": "Saber 到底解决什么问题？如何讲清完整架构而不是报组件名单？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a42",
+    "priority": "P0",
+    "chars": 649
+  },
+  {
+    "id": "A43",
+    "title": "Saber 检索的并行边界和重排实现，最容易说错什么？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a43",
+    "priority": "P0",
+    "chars": 802
+  },
+  {
+    "id": "A44",
+    "title": "Saber 长期记忆的 outbox、版本 hash 与 reconcile 为什么不是强一致？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a44",
+    "priority": "P0",
+    "chars": 893
+  },
+  {
+    "id": "FB33",
+    "title": "布隆过滤器怎样选参数并跟上实体增删",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb33",
+    "priority": "P0",
+    "chars": 746
+  },
+  {
+    "id": "FB34",
+    "title": "请求上下文怎样避免 ThreadLocal 泄漏和串用户",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb34",
+    "priority": "P0",
+    "chars": 896
+  },
+  {
+    "id": "FB35",
+    "title": "项目难点、规模与架构怎样讲出证据而不编经历",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb35",
+    "priority": "P0",
+    "chars": 683
+  },
+  {
+    "id": "FB36",
+    "title": "附近商户的距离、评分与营业条件怎样组合查询",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb36",
+    "priority": "P1",
+    "chars": 629
+  },
+  {
+    "id": "FB37",
+    "title": "突发流量如何变成容量模型和分层保护",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb37",
+    "priority": "P0",
+    "chars": 776
+  },
+  {
+    "id": "FB38",
+    "title": "Lua 怎样原子校验库存与一人一单，代码缺什么就不能声称防超卖",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb38",
+    "priority": "P0",
+    "chars": 1778
+  },
+  {
+    "id": "FB39",
+    "title": "两级缓存失效失败、乱序与旧值回填如何恢复",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb39",
+    "priority": "P0",
+    "chars": 875
+  },
+  {
+    "id": "FB40",
+    "title": "怎样把详情、库存、会话和对话的缓存边界分开",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb40",
+    "priority": "P0",
+    "chars": 814
+  },
+  {
+    "id": "FB41",
+    "title": "秒杀防刷怎样分层并控制误伤",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb41",
+    "priority": "P0",
+    "chars": 674
+  },
+  {
+    "id": "FB42",
+    "title": "穿透、击穿、雪崩与预热怎样形成闭环",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb42",
+    "priority": "P0",
+    "chars": 785
+  },
+  {
+    "id": "FB43",
+    "title": "Sentinel 的故障判定、授权与选副本为何是三件事",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb43",
+    "priority": "P0",
+    "chars": 775
+  },
+  {
+    "id": "FB44",
+    "title": "看门狗、异步复制和库存账本的安全边界是什么",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb44",
+    "priority": "P0",
+    "chars": 868
+  },
+  {
+    "id": "FB45",
+    "title": "关键依赖故障如何降级而不把故障扩大",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb45",
+    "priority": "P0",
+    "chars": 854
+  },
+  {
+    "id": "FB46",
+    "title": "异步订单怎样处理 Lua 成功、消息失败和落库重复",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb46",
+    "priority": "P0",
+    "chars": 1228
+  },
+  {
+    "id": "FB47",
+    "title": "Caffeine 如何用准入和淘汰抵抗一次性扫描",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb47",
+    "priority": "P1",
+    "chars": 712
+  },
+  {
+    "id": "FB48",
+    "title": "何时分库分表，路由、查询与扩容怎样一起设计",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb48",
+    "priority": "P1",
+    "chars": 666
+  },
+  {
+    "id": "FB49",
+    "title": "JWT 刷新、注销和共享会话如何设计",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb49",
+    "priority": "P0",
+    "chars": 724
+  },
+  {
+    "id": "FB50",
+    "title": "异步下单受理以后如何反馈真实结果",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb50",
+    "priority": "P0",
+    "chars": 699
+  },
+  {
+    "id": "FB51",
+    "title": "防超卖为什么应优先证明数据库不变量",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb51",
+    "priority": "P0",
+    "chars": 733
+  },
+  {
+    "id": "FB52",
+    "title": "客服工具与会话存储怎样明确权限、顺序和副作用",
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "anchor": "fb52",
+    "priority": "P0",
+    "chars": 972
+  },
+  {
+    "id": "X01",
+    "title": "原地反转句中单词，Python字符串可以直接改吗？",
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "anchor": "x01",
+    "priority": "P1",
+    "chars": 1364
+  },
+  {
+    "id": "X02",
+    "title": "奇数位递增、偶数位递减的链表，如何线性排序？",
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "anchor": "x02",
+    "priority": "P1",
+    "chars": 1872
+  },
+  {
+    "id": "X03",
+    "title": "不用大整数转换，怎样把两个十进制字符串相加？",
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "anchor": "x03",
+    "priority": "P0",
+    "chars": 1471
+  },
+  {
+    "id": "X04",
+    "title": "怎样构造小于N的最大整数，原题少条件时怎么办？",
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "anchor": "x04",
+    "priority": "P1",
+    "chars": 1947
+  },
+  {
+    "id": "X05",
+    "title": "删除排序链表里所有重复值，和保留一个重复值有什么区别？",
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "anchor": "x05",
+    "priority": "P0",
+    "chars": 1391
+  },
+  {
+    "id": "X06",
+    "title": "判断两个字符串是不是字母异位词，字符范围为什么重要？",
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "anchor": "x06",
+    "priority": "P0",
+    "chars": 1490
+  },
+  {
+    "id": "R01",
+    "title": "1000个候选中一个异常，二值测试需要多少位？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r01",
+    "priority": "P2",
+    "chars": 696
+  },
+  {
+    "id": "R02",
+    "title": "5升和6升容器，怎样量出3升？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r02",
+    "priority": "P2",
+    "chars": 629
+  },
+  {
+    "id": "R03",
+    "title": "10、7、3升容器，怎样把10升分成5和5？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r03",
+    "priority": "P2",
+    "chars": 606
+  },
+  {
+    "id": "R04",
+    "title": "7升和11升容器，怎样量2升，并把它写成通用算法？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r04",
+    "priority": "P2",
+    "chars": 678
+  },
+  {
+    "id": "R05",
+    "title": "4分钟和7分钟沙漏，怎样从开始时刻量9分钟？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r05",
+    "priority": "P2",
+    "chars": 662
+  },
+  {
+    "id": "R06",
+    "title": "每根燃尽一小时的不均匀绳子，怎样计75分钟？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r06",
+    "priority": "P2",
+    "chars": 622
+  },
+  {
+    "id": "R07",
+    "title": "25匹马、5赛道，怎样确定有序前三，并说明为什么6场不够？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r07",
+    "priority": "P2",
+    "chars": 1230
+  },
+  {
+    "id": "R08",
+    "title": "64匹马、8赛道找前四，“11场最少”能直接相信吗？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r08",
+    "priority": "P2",
+    "chars": 745
+  },
+  {
+    "id": "R09",
+    "title": "海盗分100枚金币，为什么97和98都可能出现？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r09",
+    "priority": "P2",
+    "chars": 677
+  },
+  {
+    "id": "R10",
+    "title": "七天工资用金条支付，为什么1、2、4需要允许找零？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r10",
+    "priority": "P2",
+    "chars": 550
+  },
+  {
+    "id": "R11",
+    "title": "五人顺序取100颗豆，最多和最少者淘汰，谁最安全？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r11",
+    "priority": "P2",
+    "chars": 656
+  },
+  {
+    "id": "R12",
+    "title": "20元汽水、2空瓶换1瓶，到底39还是40瓶？",
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "anchor": "r12",
+    "priority": "P2",
+    "chars": 1913
+  },
+  {
+    "id": "FB67",
+    "title": "只有十件库存，怎样让大量无效抢购早停",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb67",
+    "priority": "P0",
+    "chars": 815
+  },
+  {
+    "id": "FB68",
+    "title": "面试中的 QPS、并行流与扩容收益怎样证明",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb68",
+    "priority": "P0",
+    "chars": 829
+  },
+  {
+    "id": "FB69",
+    "title": "订单接口突然超时，按什么证据缩小范围",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb69",
+    "priority": "P0",
+    "chars": 794
+  },
+  {
+    "id": "FB70",
+    "title": "深分页怎样降低回表，又怎样真正避开大 OFFSET",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb70",
+    "priority": "P0",
+    "chars": 802
+  },
+  {
+    "id": "FB71",
+    "title": "秒杀和突增事故如何按不变量与应急顺序回答",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb71",
+    "priority": "P0",
+    "chars": 787
+  },
+  {
+    "id": "FB72",
+    "title": "高 CPU 与 OOM 怎样留下能解释原因的证据",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb72",
+    "priority": "P0",
+    "chars": 871
+  },
+  {
+    "id": "FB73",
+    "title": "下单幂等为什么需要结果状态，而不只是 SET NX",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb73",
+    "priority": "P0",
+    "chars": 805
+  },
+  {
+    "id": "FB74",
+    "title": "短链从创建到跳转有哪些必须解释的边界",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb74",
+    "priority": "P1",
+    "chars": 719
+  },
+  {
+    "id": "FB75",
+    "title": "支付超时与重复请求如何避免重复扣款",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb75",
+    "priority": "P0",
+    "chars": 997
+  },
+  {
+    "id": "FB76",
+    "title": "慢 HTTP 依赖怎样隔离，CompletableFuture 为何不够",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb76",
+    "priority": "P0",
+    "chars": 996
+  },
+  {
+    "id": "FB77",
+    "title": "唯一索引写入成本为什么不能一句“普通索引更快”",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb77",
+    "priority": "P1",
+    "chars": 817
+  },
+  {
+    "id": "FB78",
+    "title": "令牌桶、漏桶与分布式全局限额怎样取舍",
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "anchor": "fb78",
+    "priority": "P0",
+    "chars": 804
+  },
+  {
+    "id": "S01",
+    "title": "怎样生成稳定的行号，又不改变并列名次？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s01",
+    "priority": "P0",
+    "chars": 1687
+  },
+  {
+    "id": "S02",
+    "title": "怎样求每个用户最长连续登录天数？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s02",
+    "priority": "P0",
+    "chars": 1820
+  },
+  {
+    "id": "S03",
+    "title": "过滤后分页，为什么必须把排序条件补完整？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s03",
+    "priority": "P0",
+    "chars": 1167
+  },
+  {
+    "id": "S04",
+    "title": "统计所有部门的人数、平均工资，空部门怎么办？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s04",
+    "priority": "P0",
+    "chars": 1165
+  },
+  {
+    "id": "S05",
+    "title": "统计一整年的用户消费，WHERE和HAVING怎么分？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s05",
+    "priority": "P0",
+    "chars": 2282
+  },
+  {
+    "id": "S06",
+    "title": "怎样真实构造并解释两个事务的死锁？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s06",
+    "priority": "P1",
+    "chars": 1230
+  },
+  {
+    "id": "S07",
+    "title": "库存扣减一定要先FOR UPDATE吗？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s07",
+    "priority": "P0",
+    "chars": 1097
+  },
+  {
+    "id": "S08",
+    "title": "写“异常时ROLLBACK”就算完整转账了吗？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s08",
+    "priority": "P0",
+    "chars": 1512
+  },
+  {
+    "id": "S09",
+    "title": "怎样解释覆盖索引，而不是把SELECT列全部加进索引？",
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "anchor": "s09",
+    "priority": "P1",
+    "chars": 1434
+  }
+]

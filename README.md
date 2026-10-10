@@ -2,19 +2,23 @@
 
 从原理、例子和失败场景出发，练习能独立解释、验证和追问的技术回答。覆盖 AI Agent、Java、Go 与后端通用基础。
 
-> 本版包含409道讲义详解与Hot100独立100题，保留原180题。可读技术主题已逐项整合；原文空白、题设缺条件与未运行集成实验均保留说明。阅读站点UI的检查另行记录。
+> 部分章节暂未发布。本版包含361道讲义详解与Hot100独立100题，保留已发布题号。另列15道算法基础外部资源题，不计入Hot100或讲义题数。题设条件与未运行集成实验均保留说明。阅读站点UI的检查另行记录。
 
 ## 先从这里开始
 
-**想连续阅读？** 下载整个仓库后，用浏览器打开 [静态阅读页 `site/index.html`](site/index.html)。支持全文搜索、题号与分类筛选、折叠详解、阅读字号和本机收藏；电脑与手机使用同一份内容。[打开与更新说明](site/README.md)。GitHub 文件预览不是已经部署的在线站点。
+**在线阅读：** [打开学习讲义](https://minimoster.github.io/agent-backend-interview-handbook/)。支持全文搜索、题号与分类筛选、折叠详解、阅读字号和本机收藏；电脑与手机使用同一份内容。
+
+**离线阅读：** 下载整个仓库后，用浏览器打开 [静态阅读页 `site/index.html`](site/index.html)，不需要联网。[打开与更新说明](site/README.md)。
 
 1. [全主题地图与六周学习路线](docs/00-guide/expanded-map-and-study-plan.md)
 2. [基线与扩展题索引](QUESTION_INDEX.md)
 3. [来源、日期与证据边界](sources/catalog.md)
 4. [版本与纠错记录](errata/README.md)
-5. [拓展主题覆盖与来源例外](coverage/README.md)
+5. [主题范围与验证](coverage/README.md)
    - [本版验证记录](coverage/VALIDATION.md)
 6. [Hot100：按17类学习100道Python题](docs/80-hot100/README.md)
+7. [算法基础补充：15道代码随想录官方资源题](docs/85-algorithm-supplement/README.md)
+   - [逐题资源覆盖与引用边界](sources/carl-hot100-resources.md)
 
 P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作为主语言，再把 HTTP、数据库、并发和模型工具调用串成可解释的小项目。
 
@@ -28,7 +32,6 @@ P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作�
 - [RAG、检索与重排](docs/10-agent/02-rag-retrieval-and-reranking.md) · 10题
 - [Memory 与上下文管理](docs/10-agent/03-memory-and-context.md) · 5题
 - [SSE、异步任务与可靠执行](docs/10-agent/04-streaming-and-reliable-execution.md) · 7题
-- [评估、安全、成本与工程验证](docs/10-agent/05-evaluation-security-and-cost.md) · 8题
 - [两个公开仓库的技术案例与贡献边界](docs/50-projects/public-repository-case-studies.md) · 6题
 
 ### Java
@@ -84,6 +87,14 @@ P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作�
 
 按哈希、双指针、链表、树、图、回溯、二分、栈、堆、贪心与动态规划等分类阅读。每题包含思路、步骤、完整Python代码、复杂度、误区和练习方式；本地测试通过不等于在线判题提交通过。算法的官方难度与讲义P0/P1/P2学习优先级分别展示，不相互替代。
 
+每题另有“代码随想录延伸阅读”，提供核验过的官网讲解、Python区和官方视频外链，作者为代码随想录（程序员Carl）。本题精确资源与相关题迁移资源分别标注；本次未找到精确匹配时保留缺口，已有原创解答不变。[资源覆盖与权利说明](sources/carl-hot100-resources.md)。
+
+### 算法基础补充 · 15道外部资源题
+
+[按分类打开补充题库](docs/85-algorithm-supplement/README.md)，包含组合、二分、双指针、滑动窗口、矩阵、链表、哈希、字符串、栈与队列基础题。15题独立于当前官方Hot100，均提供核验过的代码随想录官网讲解与Python区，视频区分本题配套和相关迁移。
+
+这是外部资源练习单与自主复习提示，没有新增这些题的原创实现、本地测试或在线AC记录；外部题解与视频未复制或镜像到仓库。题号、官方难度、资源归属和核验日期见[机器映射](sources/carl-hot100-resources.json)。
+
 ### 公开面经样本
 
 - [AI Agent](docs/60-interviews/agent.md)
@@ -103,6 +114,10 @@ P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作�
 
 ## 维护入口
 
-[整合方案](coverage/INTEGRATION_PLAN.md) · [完成标准](coverage/ACCEPTANCE.md) · [版本记录](CHANGELOG.md) · [修订方式](CONTRIBUTING.md)
+[整合方案](coverage/INTEGRATION_PLAN.md) · [完成标准](coverage/ACCEPTANCE.md) · 部分章节暂未发布 · [修订方式](CONTRIBUTING.md)
 
-最后整理日期：2026-10-09。
+最后整理日期：2026-10-10。
+
+## 进阶主题
+
+[跨主题进阶学习路线](docs/00-guide/advanced-study-route.md)：Spark与作业生命周期、双模型路由、推理服务、ES父子关系和跨栈工程边界。

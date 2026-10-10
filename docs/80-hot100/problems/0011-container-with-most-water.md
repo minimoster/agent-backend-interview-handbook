@@ -1,0 +1,77 @@
+# 11. 盛最多水的容器
+
+[官方题目](https://leetcode.cn/problems/container-with-most-water/) · MEDIUM · 官方分类：双指针
+
+## 题意与接口
+
+选取两条竖线形成容器，面积为两者距离乘较短高度。`maxArea(height)` 返回最大面积，不修改输入。
+
+## 从朴素方法到优化
+
+枚举两端共有 O(n²) 对。若当前左端更短，固定它并把右端左移，只会让宽度更小且高度上限不变，因此这一整批候选可以丢弃。
+
+## 核心思路
+
+左右指针从两端开始，记录当前面积，移动较短一侧；相等时移动任一侧均安全。每一步都排除不可能优于已见面积的端点。
+
+## 手推一个小例子
+
+[2,7,3,5]：先取0和3，面积2×3=6，移动左端；取1和3，面积5×2=10，移动右端；取1和2，面积3，最终10。
+
+## 为什么正确
+
+假设左端高度不大于右端。任何仍使用该左端且右端更靠内的容器，高度至多为当前左高，宽度更小，因此面积不会超过当前已记录值。删除左端不会漏掉未记录的更优解；另一侧对称。
+
+## Python 实现
+
+[完整可导入源码](../../../examples/hot100/p0011_container_with_most_water.py)。节点结构来自 [structures.py](../../../examples/hot100/structures.py)；普通题使用 `Solution`，设计题使用题目类名。提交到 LeetCode 时保留算法主体，删除本地节点导入，使用平台提供的节点类型。
+
+```python
+class Solution:
+    def maxArea(self, height: list[int]) -> int:
+        left, right, best = 0, len(height) - 1, 0
+        while left < right:
+            best = max(best, (right - left) * min(height[left], height[right]))
+            # 固定较短边只会越缩越差，因此安全舍弃较短边。
+            if height[left] <= height[right]:
+                left += 1
+            else:
+                right -= 1
+        return best
+```
+
+## 复杂度
+
+时间 O(n)，辅助空间 O(1)。
+
+## 边界与易错点
+
+- 宽度是right-left，不加1。
+- 移动较高端不能得到相同的排除证明。
+- 零高度、两元素输入可直接处理。
+
+## 本地测试与复习
+
+测试零、两端相等、最优不在边界；随机与双层枚举面积对拍。
+
+复习：当两端同高时，为什么任选一端移动都不影响正确性？
+
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+
+## 延伸阅读
+
+- [官方原题与约束](https://leetcode.cn/problems/container-with-most-water/)
+- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0011.Container%20With%20Most%20Water/README.md)
+- [返回分类导航](../README.md)
+
+## 代码随想录延伸阅读
+
+外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
+
+- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0011.container-with-most-water.html)
+- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0011.container-with-most-water.html#python3)。可与上面的本仓库原创实现对照。
+- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+
+自主复习提示：固定较短的一端后，另一端向内移动为什么不会得到更大的面积？用这个结论解释每次移动的方向。
+
+资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。

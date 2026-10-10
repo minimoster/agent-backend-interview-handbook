@@ -1,0 +1,285 @@
+{
+  "count": 35,
+  "checks": [
+    {
+      "id": 1,
+      "url": "https://leetcode.cn/problems/two-sum/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 49,
+      "url": "https://leetcode.cn/problems/group-anagrams/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 128,
+      "url": "https://leetcode.cn/problems/longest-consecutive-sequence/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 283,
+      "url": "https://leetcode.cn/problems/move-zeroes/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 11,
+      "url": "https://leetcode.cn/problems/container-with-most-water/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 15,
+      "url": "https://leetcode.cn/problems/3sum/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 42,
+      "url": "https://leetcode.cn/problems/trapping-rain-water/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 3,
+      "url": "https://leetcode.cn/problems/longest-substring-without-repeating-characters/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 438,
+      "url": "https://leetcode.cn/problems/find-all-anagrams-in-a-string/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 560,
+      "url": "https://leetcode.cn/problems/subarray-sum-equals-k/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 239,
+      "url": "https://leetcode.cn/problems/sliding-window-maximum/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 76,
+      "url": "https://leetcode.cn/problems/minimum-window-substring/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 53,
+      "url": "https://leetcode.cn/problems/maximum-subarray/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 56,
+      "url": "https://leetcode.cn/problems/merge-intervals/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 189,
+      "url": "https://leetcode.cn/problems/rotate-array/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 238,
+      "url": "https://leetcode.cn/problems/product-of-array-except-self/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 41,
+      "url": "https://leetcode.cn/problems/first-missing-positive/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 73,
+      "url": "https://leetcode.cn/problems/set-matrix-zeroes/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 54,
+      "url": "https://leetcode.cn/problems/spiral-matrix/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 48,
+      "url": "https://leetcode.cn/problems/rotate-image/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "首次超时后以/description/读取成功"
+    },
+    {
+      "id": 240,
+      "url": "https://leetcode.cn/problems/search-a-2d-matrix-ii/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 35,
+      "url": "https://leetcode.cn/problems/search-insert-position/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 74,
+      "url": "https://leetcode.cn/problems/search-a-2d-matrix/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 34,
+      "url": "https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 33,
+      "url": "https://leetcode.cn/problems/search-in-rotated-sorted-array/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "首次超时后以/description/读取成功"
+    },
+    {
+      "id": 153,
+      "url": "https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "首次超时后以/description/读取成功"
+    },
+    {
+      "id": 4,
+      "url": "https://leetcode.cn/problems/median-of-two-sorted-arrays/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "首次超时后以/description/读取成功"
+    },
+    {
+      "id": 20,
+      "url": "https://leetcode.cn/problems/valid-parentheses/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 155,
+      "url": "https://leetcode.cn/problems/min-stack/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "首次超时后以/description/读取成功"
+    },
+    {
+      "id": 394,
+      "url": "https://leetcode.cn/problems/decode-string/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 739,
+      "url": "https://leetcode.cn/problems/daily-temperatures/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 84,
+      "url": "https://leetcode.cn/problems/largest-rectangle-in-histogram/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 215,
+      "url": "https://leetcode.cn/problems/kth-largest-element-in-an-array/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 347,
+      "url": "https://leetcode.cn/problems/top-k-frequent-elements/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    },
+    {
+      "id": 295,
+      "url": "https://leetcode.cn/problems/find-median-from-data-stream/",
+      "checked_date": "2026-10-09",
+      "status": "official_statement_read",
+      "scope": "已读取官方题页，核对问题语义、关键输入前提、返回/原地要求；未在在线判题器提交",
+      "retrieval_note": "官方题页内容读取成功"
+    }
+  ]
+}

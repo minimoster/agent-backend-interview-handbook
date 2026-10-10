@@ -1,0 +1,88 @@
+# 287. 寻找重复数
+
+[官方题目](https://leetcode.cn/problems/find-the-duplicate-number/) · MEDIUM · 官方分类：技巧
+
+## 题意与接口
+
+接口：`Solution.findDuplicate(nums: list[int]) -> int`。长度为 n+1，所有值在 1..n，只有一种值重复出现，但它可以出现两次以上。要求不改输入，且只用常量额外空间。官方 n 为 1 至 10⁵。
+
+约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/find-the-duplicate-number/)核对；以下为原创概述，并非完整题面转载。
+
+## 从朴素方法到优化
+
+哈希集合可找出重复但需要 O(n) 空间；排序或标记数组会改动输入。将下标到数值看成指针 `next(i)=nums[i]`，有限节点上从 0 反复跳转必进入环，可用 Floyd 算法找环入口。
+
+## 核心思路
+
+第一阶段 slow 每次走一步、fast 每次走两步，找到环内相遇点。第二阶段一个指针回到 0，另一个留在相遇点，两者每次走一步，首次相遇就是入口。入口的数值即重复数。实现只读 nums，不构建真实链表。
+
+## 手推一个小例子
+
+取 nums=`[2,4,1,3,1]`：指针链为 `0→2→1→4→1→4…`。
+1. 从 0 同时出发，第一轮 slow=2、fast=1。
+2. 第二轮 slow=1、fast=1，环内相遇。
+3. finder 回到 0，slow 留在 1。同步一步后为 2 与 4。
+4. 再走一步都到 1，返回重复值 1。
+
+## 为什么正确
+
+所有跳转目标都在 1..n，所以 0 不会被指回，是环外起点。轨迹第一次进入环的节点同时有环外前驱和环内前驱，两个不同下标指向它，故它对应重复值；官方仅一种重复值，入口就是目标。
+
+设起点到入口距离 μ，环长 λ。两指针相遇时慢指针走了 t 步，快指针走了 2t 步，故 t 是 λ 的倍数。相遇点在环内偏移为 (t−μ) mod λ，再走 μ 步便到入口；从 0 走 μ 步也到入口。重置后同步走必在入口相遇。
+
+## Python 实现
+
+[完整可导入源码](../../../examples/hot100/p0287_find_the_duplicate_number.py)。节点结构来自 [structures.py](../../../examples/hot100/structures.py)；普通题使用 `Solution`，设计题使用题目类名。提交到 LeetCode 时保留算法主体，删除本地节点导入，使用平台提供的节点类型。
+
+```python
+class Solution:
+    def findDuplicate(self, nums: list[int]) -> int:
+        slow = fast = 0
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+        finder = 0  # 重置到与第一阶段相同的轨迹起点。
+        while finder != slow:
+            finder = nums[finder]
+            slow = nums[slow]
+        return finder
+```
+
+## 复杂度
+
+时间 O(n)：首次入环与环内追及、第二阶段总步数均线性。辅助空间 O(1)，不修改输入。
+
+## 边界与易错点
+
+- 返回环入口，不是第一阶段的任意相遇位置。
+- 初始化从 0 出发时，第二阶段也必须重置到 0，不要混用不同版本的起点。
+- 重复值可出现多次，例如 `[2,2,2]` 仍合法。
+- 数值必须是合法下标；不要把本算法直接用于任意整数数组。
+
+## 本地测试与复习
+
+测试文件：[`test_greedy_dp_tricks.py`](../../../tests/hot100/test_greedy_dp_tricks.py)，对应 `test_p0287`。含合法最小输入、典型与关键边界；适用题使用固定随机种子与独立穷举或参考算法对拍。
+
+复习：为什么节点 0 不在环内？为什么有环本身还不足以证明入口就是重复值，必须再看入边？
+
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+
+## 延伸阅读
+
+- [官方原题与约束](https://leetcode.cn/problems/find-the-duplicate-number/)
+- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0200-0299/0287.Find%20the%20Duplicate%20Number/README.md)
+- [返回分类导航](../README.md)
+
+## 代码随想录延伸阅读
+
+外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
+
+- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
+- 官方Python：本次核验未找到本题精确匹配的官方实现区。
+- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+
+自主复习提示：把值解释为下一位置，检查形成环的依据；说明快慢指针找到的入口如何对应重复数。
+
+资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。

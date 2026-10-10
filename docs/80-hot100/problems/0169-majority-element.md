@@ -1,0 +1,82 @@
+# 169. 多数元素
+
+[官方题目](https://leetcode.cn/problems/majority-element/) · EASY · 官方分类：技巧
+
+## 题意与接口
+
+接口：`Solution.majorityElement(nums: list[int]) -> int`。找出出现次数严格超过数组长度一半的值。官方保证数组非空且多数元素存在，长度至多 5×10⁴。
+
+约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/majority-element/)核对；以下为原创概述，并非完整题面转载。
+
+## 从朴素方法到优化
+
+频次字典可在线性时间求解但需额外空间；排序取中位值需要 O(n log n)。Boyer–Moore 投票将不同值两两抵消，只保存候选和未抵消票数。
+
+## 核心思路
+
+票数为 0 时，让当前值成为新候选。当前值等于候选就加一，否则减一，视为一票候选与一票异值抵消。注意票数不是候选在整个数组中的真实出现次数。
+
+## 手推一个小例子
+
+取 `[5, 2, 5, 3, 5, 5, 2]`：
+1. 5 成为候选，票数 1；遇 2 抵消至 0。
+2. 下一个 5 重新成为候选，遇 3 又抵消至 0。
+3. 接连两个 5 使票数变为 2。
+4. 最后 2 抵消一票，候选仍为 5。它出现 4 次，严格超过 7/2。
+
+## 为什么正确
+
+删除一对不同元素时，多数元素要么被删去一次同时少一个其他值，要么完全不受影响。它相对于所有其他值的数量优势不会消失，因此不断成对抵消后，若剩余只属于一种值，该值必为多数元素。投票变量恰好压缩了这样的抵消过程；官方保证多数存在，最终候选必正确。
+
+## Python 实现
+
+[完整可导入源码](../../../examples/hot100/p0169_majority_element.py)。节点结构来自 [structures.py](../../../examples/hot100/structures.py)；普通题使用 `Solution`，设计题使用题目类名。提交到 LeetCode 时保留算法主体，删除本地节点导入，使用平台提供的节点类型。
+
+```python
+class Solution:
+    def majorityElement(self, nums: list[int]) -> int:
+        candidate = nums[0]
+        votes = 0
+        for value in nums:
+            if votes == 0:
+                # 之前的票已成对抵消，从当前值建立新候选。
+                candidate = value
+            votes += 1 if value == candidate else -1
+        return candidate
+```
+
+## 复杂度
+
+时间 O(n)，辅助空间 O(1)，不修改数组。
+
+## 边界与易错点
+
+- 多数是严格超过一半，不是“出现次数最多”。
+- 如果取消存在性保证，必须再扫描一次验证候选次数。
+- votes 为 0 时不能立即宣布没有多数，后面还可能建立新候选。
+
+## 本地测试与复习
+
+测试文件：[`test_greedy_dp_tricks.py`](../../../tests/hot100/test_greedy_dp_tricks.py)，对应 `test_p0169`。含合法最小输入、典型与关键边界；适用题使用固定随机种子与独立穷举或参考算法对拍。
+
+复习：请给出“最多但不超过一半”的输入，说明为什么取消保证后需要验证。
+
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+
+## 延伸阅读
+
+- [官方原题与约束](https://leetcode.cn/problems/majority-element/)
+- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0169.Majority%20Element/README.md)
+- [返回分类导航](../README.md)
+
+## 代码随想录延伸阅读
+
+外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
+
+- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
+- 官方Python：本次核验未找到本题精确匹配的官方实现区。
+- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+
+自主复习提示：手推候选和计数抵消，说明为什么“必有多数元素”的保证重要，缺少保证时还需要什么。
+
+资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。

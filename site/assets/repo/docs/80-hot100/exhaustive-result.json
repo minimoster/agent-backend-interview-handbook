@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-09T17:21:58.273443+00:00",
+  "source_sha256": {
+    "examples/hot100/p0084_largest_rectangle_in_histogram.py": "8b941e96b200c1130b5e75c82dabde244ada4b4b73bad6f139c6f115fab49797",
+    "examples/hot100/p0041_first_missing_positive.py": "c9ebe8dbc63ac6fd42692898c7ddf570dc00f4e184debc206d3111e6ed972b59",
+    "examples/hot100/p0076_minimum_window_substring.py": "85b8baefebb6cb70dbd6795fef9f7c84c10212cf7471d2e81a8cdaa7b4b778ac",
+    "examples/hot100/p0004_median_of_two_sorted_arrays.py": "b2eccf7d37134bc8bf66ac8bdf0723f172514cdb989436b7d1a8275c9000776d",
+    "examples/hot100/p0215_kth_largest_element_in_an_array.py": "82d85cfad2b593c123d244541b4c256b2d4c44347627518dfc2bc73e80c7b7eb"
+  },
+  "python": "3.12.14",
+  "case_counts": {
+    "84": 5461,
+    "41": 55987,
+    "76": 3810,
+    "4": 63503,
+    "215": 30948
+  },
+  "total_cases": 159709,
+  "seconds": 0.489,
+  "scope": "bounded local exhaustive checks; not online AC"
+}

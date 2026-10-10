@@ -1,0 +1,89 @@
+# 集合与 I/O 的实现边界
+
+[总目录](../../README.md) · [原集合题](01-language-and-collections.md)
+
+以下代码与时序均为未运行的教学示例。集合 API 语义以 Java 25 核查；源码细节明确限定 OpenJDK 25u，历史实现仅用于比较，不作为永久接口承诺。
+
+<a id="fj09"></a>
+### FJ09 Collection 与 Map 如何选，ArrayList 究竟怎样增长
+
+**优先级：P0。**
+
+**知识点详解**：Collection 表示一组元素：List 保留位置顺序、通常允许重复；Set 要求按其相等性规则唯一；Queue 表达取出顺序和入队/出队能力，Deque 支持两端。Map 则是键到值映射，不继承 Collection。Set 不能一概说无序：HashSet 不承诺迭代顺序，LinkedHashSet 有明确相遇顺序，TreeSet 根据比较规则排序。TreeSet 的比较结果与 equals 最好一致，否则会违反使用者对 Set 的通常理解。
+
+ArrayList 的 size 是实际元素数，capacity 是底层数组可容纳数。OpenJDK 25u 默认构造先引用共享空数组，第一次常规添加才分配默认容量 10；传入显式初始容量与默认构造路径不同。一般增长偏好旧容量加一半，但还会满足最小所需容量并处理上限，不能把 1.5 倍当所有边界都严格成立。扩容复制的是元素引用，不是深拷贝元素；单次增长可能 O(n)，尾部追加的均摊成本仍可接近 O(1)。
+
+**具体例子**：已知将接收约 500 条查询结果，可合理预设容量减少多次复制；若只是 3 条数据，不必为了“避免扩容”盲目申请百万容量。用 ArrayList 保存展示顺序，用 Set 去重，用 Map 以 id 定位对象，用 ArrayDeque 表达普通单线程队列，避免用名字代替需求分析。
+
+**面试答法**：先按重复、顺序、定位与队列语义选择接口，再选实现；ArrayList 是容量不足才复制增长，默认构造可延迟分配，增长倍率是实现细节。
+
+**追问**：ensureCapacity 增加 size 吗？不会。为什么 LinkedList 插删不一定快？定位、节点分配和局部性也有成本，见 [J02](01-language-and-collections.md#j02)。
+
+**误区**：Map 是 Collection 子接口；Set 全无序；默认构造立即 new 10 个元素；扩容复制出 500 个业务对象。
+
+**一手来源**：[FJ-S025 Collections 框架](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/package-summary.html)、[FJ-S026 OpenJDK ArrayList](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/ArrayList.java)、[FJ-S027 TreeSet](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/TreeSet.html)。
+
+<a id="fj10"></a>
+### FJ10 HashMap 与 ConcurrentHashMap 的树化、扩容、同步到底哪些能背
+
+**优先级：P1。**
+
+**知识点详解**：先掌握 [J03–J05](01-language-and-collections.md#j03) 的接口与并发语义，再看源码。OpenJDK 25u HashMap 使用 2 的幂桶数组，翻倍后一个旧桶分到原下标或“原下标＋旧容量”；判断依据是节点存储的 hash 与旧容量那一位，不需要重新调用用户 hashCode。树桶只为较严重碰撞优化，不能拿树形结构补救可变 key 破坏的相等性契约。
+
+HashMap 的 TREEIFY_THRESHOLD=8、MIN_TREEIFY_CAPACITY=64、UNTREEIFY_THRESHOLD=6 应连同路径解释：表小时尝试树化会转为扩容；扩容拆分树桶时按两边节点数决定是否退化；删除树节点的路径还含树形/结构判断。因此“少于 6 个必然立刻退化”不是所有删除路径的统一规则。也不要脱离 put/compute 的计数位置判断“第八次插入必定树化”。
+
+JDK 7 ConcurrentHashMap 用 Segment 协調；JDK 8 之后的主要结构改为节点桶，空桶更新可用 CAS，已有桶更新借同步等机制，读取与迁移有各自协议。树桶外层为 TreeBin，它维护树及协调信息，不应笼统说锁住红黑树根节点。扩容通过 forwarding 节点转向新表，线程可协助迁移。它的具体树删除判定同样应查对应源码，不能把 HashMap 的口号移植过去。
+
+**补充：Hashtable 与 HashMap**。两者都依赖键的 hashCode/equals。OpenJDK 25u Hashtable 用桶数组加链式冲突节点，不使用 HashMap 的树桶；默认容量 11，扩容路径通常为旧容量乘 2 加 1，而 HashMap 常用 2 的幂容量与翻倍分流。Hashtable 的 get/put 等关键方法在实例上同步，不允许 null 键和值；HashMap 允许一个 null 键及 null 值且本身不同步。单方法同步仍不把 `containsKey → put` 两次调用变成原子业务协议，必要时使用原子复合方法或同一把外部锁。高并发键值访问通常比较 ConcurrentHashMap，而非把 Hashtable 的整表监视器当默认方案。容量和节点是对应版本实现，不是 Map 接口合同。
+
+**具体例子**：容量从 16 变 32，某节点旧桶为 5；若存储 hash 的 16 位为零，新桶仍 5，否则为 21。并发 map 中两个请求做 containsKey 再 put 仍可能都通过检查，应改为 putIfAbsent。线程安全保证与树化阈值是两个层次。
+
+**面试答法**：我会讲扩容按新增哈希位分流、树桶缓解冲突、并发桶协调；阈值附带版本和路径，树桶的同步对象与树根区分。
+
+**追问**：能保证任意恶意 key 下都是 O(log n) 吗？不可把理想树查找条件泛化；相同 hash 且不可比较的 key 有额外查找边界。并发遍历是快照吗？不是，见 FJ12。
+
+**误区**：JDK 8+ 仍固定 Segment 锁；重新哈希必然调用 hashCode；有 ConcurrentHashMap 就能保证其可变 value 安全。
+
+**一手来源**：[FJ-S028 OpenJDK HashMap](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/HashMap.java)、[FJ-S029 OpenJDK ConcurrentHashMap](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/concurrent/ConcurrentHashMap.java)、[FJ-S030 JDK 7 ConcurrentHashMap](https://github.com/openjdk/jdk7u/blob/master/jdk/src/share/classes/java/util/concurrent/ConcurrentHashMap.java)、[FJ-S136 Hashtable API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Hashtable.html)、[FJ-S137 OpenJDK 25u Hashtable](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/Hashtable.java)。
+
+<a id="fj11"></a>
+### FJ11 BIO、NIO、AIO 是三个互斥包名吗
+
+**优先级：P0。**
+
+**知识点详解**：面试习惯将阻塞流模型叫 BIO：调用 read 时，当前执行线程可能一直等数据或结束。NIO 提供 Buffer、Channel、Selector 等能力；可选择通道配置成非阻塞，由 Selector 报告哪些连接“现在可能可读/可写”。这是就绪通知，不表示完整业务消息已读完。NIO 还包含阻塞调用和文件操作，不能把整个包等同于非阻塞。
+
+AIO 常指 AsynchronousSocketChannel、AsynchronousFileChannel 等异步接口：提交操作后，通过 Future 或 CompletionHandler 得到完成结果。底层可能使用平台原生异步设施，也可能用线程实现部分操作；API 异步不保证底层没有工作线程。阻塞不等于一定每连接手工新建一个线程，线程池及 Java 21+ 虚拟线程也可承载阻塞式代码。
+
+区分四件事：谁等待就绪、谁执行实际读写、何时通知调用方、业务任务是否独立调度。CPU 很忙的处理仍可能卡住事件循环；任何模型都需处理半包、回压、关闭和超时。
+
+**具体例子**：同一 Selector 管很多 TCP 连接；某连接可读后本次只读到 7 字节，而协议头说明消息共 100 字节。程序先保存已读数据，继续等待，不能当场假设读完并反序列化。写响应也可能只写出一部分。
+
+**面试答法**：阻塞模型等操作结果；多路复用模型等就绪再读写；异步接口等完成通知。NIO 不全非阻塞，实际平台实现和业务调度需要分别看。
+
+**追问**：为什么可读还可能读到 0 或 -1？就绪不是完整业务消息保证；返回语义还涉及非阻塞状态与 EOF。IO 密集应用一定必须改事件回调吗？应和虚拟线程、库兼容性一起评估。
+
+**误区**：Selector 自动完成读写；AIO 总不使用线程；非阻塞就没有任何等待或队列。
+
+**一手来源**：[FJ-S031 java.nio.channels](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/nio/channels/package-summary.html)、[FJ-S032 Selector](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/nio/channels/Selector.html)。
+
+<a id="fj12"></a>
+### FJ12 并发容器怎样选，弱一致遍历与快照迭代有何不同
+
+**优先级：P0。**
+
+**知识点详解**：键值并发更新可考虑 ConcurrentHashMap；有序键范围查找可考虑 ConcurrentSkipListMap/Set；线程之间传工作可用有界 BlockingQueue；ConcurrentLinkedQueue 适合非阻塞队列操作但没有自动容量约束；读多写少且列表较小可考虑 CopyOnWriteArrayList。选型不仅是“线程安全”，还包括容量、阻塞、中断、遍历视图与元素自身可变性。
+
+ConcurrentHashMap 的遍历是弱一致的：可与更新并发进行，可能反映部分后来变化，不构成某个时刻的完整 Map 快照。CopyOnWriteArrayList 的迭代器保存创建时的数组引用，不随之后列表修改变化，且迭代器不支持 remove/add/set。列表新的 get 则从发布的当前数组读取，不能把所有读取都说成“只能最终一致”。
+
+写时复制将常见结构修改成本移给写方：序列化写操作、复制数组、发布新数组，旧迭代器继续保留旧数组。OpenJDK 25u 用 synchronized 协調写，并非所有版本都用 ReentrantLock；其 set 在新旧元素是同一引用时可不复制数组，但仍执行相应发布写语义。快照只固定引用序列，内部可变对象仍可能被别处改动。
+
+**具体例子**：监听器注册表一秒遍历上万次、每天修改几次，COW 往往比每次遍历复制更合适；如果每秒添加十万条大列表元素，会造成大量复制和 GC。长时间持有迭代器也会保留旧数组及其元素。
+
+**面试答法**：我按操作语义与容量选择并发容器；CHM 遍历是弱一致，COW 迭代是数组快照，二者都不能自动冻结可变元素。
+
+**追问**：synchronizedList 就不能用吗？可以，但复合访问与遍历仍需遵守外部同步规则。队列线程安全会自动阻止内存耗尽吗？无界队列不会。
+
+**误区**：所有并发集合都复制快照；每次 COW set 必复制；“读多写少”是唯一条件而忽略列表规模。
+
+**一手来源**：[FJ-S033 JUC 包说明](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/package-summary.html)、[FJ-S034 CopyOnWriteArrayList API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/CopyOnWriteArrayList.html)、[FJ-S035 OpenJDK COW 源码](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/concurrent/CopyOnWriteArrayList.java)。

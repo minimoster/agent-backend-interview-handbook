@@ -1,0 +1,2499 @@
+[
+  {
+    "id": "FJ-S001",
+    "title": "Java 语言变更",
+    "url": "https://docs.oracle.com/en/java/javase/25/language/java-language-changes-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S002",
+    "title": "Java 8 新特性",
+    "url": "https://docs.oracle.com/javase/8/docs/technotes/guides/language/enhancements.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 8 historical documentation",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S003",
+    "title": "JEP 485",
+    "url": "https://openjdk.org/jeps/485",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S004",
+    "title": "Security Manager 永久禁用",
+    "url": "https://docs.oracle.com/en/java/javase/25/security/security-manager-is-permanently-disabled.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S005",
+    "title": "JEP 377",
+    "url": "https://openjdk.org/jeps/377",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S006",
+    "title": "JEP 454",
+    "url": "https://openjdk.org/jeps/454",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S007",
+    "title": "HTTP Client",
+    "url": "https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/package-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S008",
+    "title": "JDK 11 迁移指南",
+    "url": "https://docs.oracle.com/en/java/javase/11/migrate/index.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj02",
+        "question_id": "FJ02"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S009",
+    "title": "JVM 结构规范",
+    "url": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-2.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj02",
+        "question_id": "FJ02"
+      },
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj03",
+        "question_id": "FJ03"
+      },
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      },
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj15",
+        "question_id": "FJ15"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S010",
+    "title": "JLS 类型和值",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-4.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj03",
+        "question_id": "FJ03"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S011",
+    "title": "JLS 装箱/拆箱",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-5.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj03",
+        "question_id": "FJ03"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S012",
+    "title": "String API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj04",
+        "question_id": "FJ04"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S013",
+    "title": "StringBuffer API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/StringBuffer.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj04",
+        "question_id": "FJ04"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S014",
+    "title": "StringBuilder API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/StringBuilder.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj04",
+        "question_id": "FJ04"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S015",
+    "title": "JLS 类与方法",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-8.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj05",
+        "question_id": "FJ05"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S016",
+    "title": "JLS 接口",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-9.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj05",
+        "question_id": "FJ05"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S017",
+    "title": "JLS 方法调用",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-15.html#jls-15.12",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj05",
+        "question_id": "FJ05"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S018",
+    "title": "Object.clone/equals 契约",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj06",
+        "question_id": "FJ06"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S019",
+    "title": "Cloneable",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Cloneable.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj06",
+        "question_id": "FJ06"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S020",
+    "title": "List.copyOf",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html#copyOf(java.util.Collection)",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj06",
+        "question_id": "FJ06"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S021",
+    "title": "AccessibleObject",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/AccessibleObject.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj07",
+        "question_id": "FJ07"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S022",
+    "title": "Method.invoke",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/Method.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj07",
+        "question_id": "FJ07"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S023",
+    "title": "JLS 异常",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-11.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj08",
+        "question_id": "FJ08"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S024",
+    "title": "try-with-resources",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-14.html#jls-14.20.3",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj08",
+        "question_id": "FJ08"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S025",
+    "title": "Collections 框架",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/package-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj09",
+        "question_id": "FJ09"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S026",
+    "title": "OpenJDK ArrayList",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/ArrayList.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj09",
+        "question_id": "FJ09"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S027",
+    "title": "TreeSet",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/TreeSet.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj09",
+        "question_id": "FJ09"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S028",
+    "title": "OpenJDK HashMap",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/HashMap.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj10",
+        "question_id": "FJ10"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S029",
+    "title": "OpenJDK ConcurrentHashMap",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/concurrent/ConcurrentHashMap.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj10",
+        "question_id": "FJ10"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S030",
+    "title": "JDK 7 ConcurrentHashMap",
+    "url": "https://github.com/openjdk/jdk7u/blob/master/jdk/src/share/classes/java/util/concurrent/ConcurrentHashMap.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj10",
+        "question_id": "FJ10"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S031",
+    "title": "java.nio.channels",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/nio/channels/package-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj11",
+        "question_id": "FJ11"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S032",
+    "title": "Selector",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/nio/channels/Selector.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj11",
+        "question_id": "FJ11"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S033",
+    "title": "JUC 包说明",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/package-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj12",
+        "question_id": "FJ12"
+      },
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S034",
+    "title": "CopyOnWriteArrayList API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/CopyOnWriteArrayList.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj12",
+        "question_id": "FJ12"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S035",
+    "title": "OpenJDK COW 源码",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/concurrent/CopyOnWriteArrayList.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj12",
+        "question_id": "FJ12"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S036",
+    "title": "JLS 实例创建与类卸载",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-12.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      },
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj16",
+        "question_id": "FJ16"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S037",
+    "title": "引用处理",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ref/package-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S038",
+    "title": "HotSpot 同步与身份哈希源码",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/hotspot/share/runtime/synchronizer.cpp",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      },
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj19",
+        "question_id": "FJ19"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S039",
+    "title": "java 命令与逃逸分析选项",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      },
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj15",
+        "question_id": "FJ15"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S040",
+    "title": "G1 指南",
+    "url": "https://docs.oracle.com/en/java/javase/25/gctuning/garbage-first-g1-garbage-collector1.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj14",
+        "question_id": "FJ14"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S041",
+    "title": "JDK 14 迁移指南",
+    "url": "https://docs.oracle.com/en/java/javase/14/migrate/index.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj14",
+        "question_id": "FJ14"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S042",
+    "title": "Java 25 GC 指南",
+    "url": "https://docs.oracle.com/en/java/javase/25/gctuning/hotspot-virtual-machine-garbage-collection-tuning-guide.pdf",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj14",
+        "question_id": "FJ14"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S043",
+    "title": "JEP 379 Shenandoah",
+    "url": "https://openjdk.org/jeps/379",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj14",
+        "question_id": "FJ14"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S044",
+    "title": "Oracle 内存问题诊断",
+    "url": "https://docs.oracle.com/en/java/javase/25/troubleshoot/troubleshooting-memory-leaks.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj15",
+        "question_id": "FJ15"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S045",
+    "title": "ClassLoader",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ClassLoader.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj16",
+        "question_id": "FJ16"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S046",
+    "title": "Executors",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/Executors.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S047",
+    "title": "ScheduledThreadPoolExecutor",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/ScheduledThreadPoolExecutor.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S048",
+    "title": "ThreadPoolExecutor",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S049",
+    "title": "AQS",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj18",
+        "question_id": "FJ18"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S050",
+    "title": "ReentrantLock",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj18",
+        "question_id": "FJ18"
+      },
+      {
+        "path": "docs/20-java/15-thread-ordering-lab.md",
+        "anchor": "fj46",
+        "question_id": "FJ46"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S051",
+    "title": "JVM 同步指令",
+    "url": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-3.html#jvms-3.14",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj18",
+        "question_id": "FJ18"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S052",
+    "title": "JLS 等待与 sleep",
+    "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-17.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      },
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj18",
+        "question_id": "FJ18"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S053",
+    "title": "JEP 374",
+    "url": "https://openjdk.org/jeps/374",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj19",
+        "question_id": "FJ19"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S054",
+    "title": "移除偏向锁实现",
+    "url": "https://bugs.openjdk.org/browse/JDK-8256425",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj19",
+        "question_id": "FJ19"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S055",
+    "title": "JEP 491",
+    "url": "https://openjdk.org/jeps/491",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj19",
+        "question_id": "FJ19"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S056",
+    "title": "VarHandle",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/invoke/VarHandle.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj20",
+        "question_id": "FJ20"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S057",
+    "title": "AtomicStampedReference",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/atomic/AtomicStampedReference.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj20",
+        "question_id": "FJ20"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S058",
+    "title": "原子包说明",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/atomic/package-summary.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj20",
+        "question_id": "FJ20"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S059",
+    "title": "ThreadLocal API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ThreadLocal.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj21",
+        "question_id": "FJ21"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S060",
+    "title": "OpenJDK ThreadLocalMap",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/lang/ThreadLocal.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj21",
+        "question_id": "FJ21"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S061",
+    "title": "Bean scopes",
+    "url": "https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj22",
+        "question_id": "FJ22"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S062",
+    "title": "生命周期",
+    "url": "https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj22",
+        "question_id": "FJ22"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S063",
+    "title": "Autowired",
+    "url": "https://docs.spring.io/spring-framework/reference/core/beans/annotation-config/autowired.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj23",
+        "question_id": "FJ23"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S064",
+    "title": "Resource",
+    "url": "https://docs.spring.io/spring-framework/reference/core/beans/annotation-config/resource.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj23",
+        "question_id": "FJ23"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S065",
+    "title": "依赖注入与循环",
+    "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj23",
+        "question_id": "FJ23"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S066",
+    "title": "6.2.0 单例注册表源码",
+    "url": "https://github.com/spring-projects/spring-framework/blob/v6.2.0/spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj23",
+        "question_id": "FJ23"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S067",
+    "title": "Boot 2.6 变更",
+    "url": "https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6-Release-Notes",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj23",
+        "question_id": "FJ23"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S068",
+    "title": "官方自定义自动配置指南",
+    "url": "https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj24",
+        "question_id": "FJ24"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S069",
+    "title": "事务传播",
+    "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj25",
+        "question_id": "FJ25"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S070",
+    "title": "Transactional 注解边界",
+    "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj25",
+        "question_id": "FJ25"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S071",
+    "title": "EXPLAIN 字段",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/explain-output.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj26",
+        "question_id": "FJ26"
+      },
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj29",
+        "question_id": "FJ29"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S072",
+    "title": "EXPLAIN/ANALYZE",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/explain.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj26",
+        "question_id": "FJ26"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S073",
+    "title": "SHOW PROFILE 弃用",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/show-profile.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj26",
+        "question_id": "FJ26"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S074",
+    "title": "MySQL 建索引语义",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/create-index.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj27",
+        "question_id": "FJ27"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S075",
+    "title": "范围与 skip scan",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/range-optimization.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj27",
+        "question_id": "FJ27"
+      },
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj29",
+        "question_id": "FJ29"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S076",
+    "title": "index merge",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/index-merge-optimization.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj27",
+        "question_id": "FJ27"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S077",
+    "title": "生成列索引",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/generated-column-index-optimizations.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj27",
+        "question_id": "FJ27"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S078",
+    "title": "InnoDB 索引物理结构",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj28",
+        "question_id": "FJ28"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S079",
+    "title": "聚簇与二级索引",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj28",
+        "question_id": "FJ28"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S080",
+    "title": "二级索引与 MVCC",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj28",
+        "question_id": "FJ28"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S081",
+    "title": "ICP",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/index-condition-pushdown-optimization.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj28",
+        "question_id": "FJ28"
+      },
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj29",
+        "question_id": "FJ29"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S082",
+    "title": "多列索引",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj29",
+        "question_id": "FJ29"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S083",
+    "title": "InnoDB 隔离级别",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj30",
+        "question_id": "FJ30"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S084",
+    "title": "一致性读取",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj30",
+        "question_id": "FJ30"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S085",
+    "title": "InnoDB 锁",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj30",
+        "question_id": "FJ30"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S086",
+    "title": "InnoDB 与 ACID",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/mysql-acid.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      },
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj34",
+        "question_id": "FJ34"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S087",
+    "title": "redo",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-redo-log.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S088",
+    "title": "undo",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-undo-logs.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S089",
+    "title": "binlog",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/binary-log.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S090",
+    "title": "ReadView 源码",
+    "url": "https://github.com/mysql/mysql-server/blob/8.4/storage/innobase/include/read0types.h",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S091",
+    "title": "InnoDB 配置",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-parameters.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S092",
+    "title": "binlog 刷盘配置",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/replication-options-binary-log.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj31",
+        "question_id": "FJ31"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S093",
+    "title": "InnoDB 限制",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-limits.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj32",
+        "question_id": "FJ32"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S094",
+    "title": "Vitess 分片概念",
+    "url": "https://vitess.io/docs/23.0/reference/features/sharding/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj32",
+        "question_id": "FJ32"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S095",
+    "title": "分片隔离与原子性",
+    "url": "https://vitess.io/docs/23.0/user-guides/configuration-advanced/shard-isolation-atomicity/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj32",
+        "question_id": "FJ32"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S096",
+    "title": "复制线程",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/replication-threads.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj33",
+        "question_id": "FJ33"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S097",
+    "title": "半同步语义",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/replication-semisync.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj33",
+        "question_id": "FJ33"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S098",
+    "title": "GTID 等待函数",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/gtid-functions.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj33",
+        "question_id": "FJ33"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S099",
+    "title": "Redis 数据类型",
+    "url": "https://redis.io/docs/latest/develop/data-types/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj34",
+        "question_id": "FJ34"
+      },
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj37",
+        "question_id": "FJ37"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S100",
+    "title": "Redis 持久化",
+    "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj34",
+        "question_id": "FJ34"
+      },
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj39",
+        "question_id": "FJ39"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S101",
+    "title": "MySQL UNION",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/union.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj35",
+        "question_id": "FJ35"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S102",
+    "title": "集合操作语义",
+    "url": "https://dev.mysql.com/doc/refman/8.4/en/set-operations.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "MySQL 8.4",
+    "used_in": [
+      {
+        "path": "docs/40-backend/20-mysql-mechanisms.md",
+        "anchor": "fj35",
+        "question_id": "FJ35"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S103",
+    "title": "MyBatis XML 与字符串替换",
+    "url": "https://mybatis.org/mybatis-3/sqlmap-xml.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/21-mybatis.md",
+        "anchor": "fj36",
+        "question_id": "FJ36"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S104",
+    "title": "MyBatis Java API/Mapper",
+    "url": "https://mybatis.org/mybatis-3/java-api.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/21-mybatis.md",
+        "anchor": "fj36",
+        "question_id": "FJ36"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S105",
+    "title": "OBJECT ENCODING",
+    "url": "https://redis.io/docs/latest/commands/object-encoding/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj37",
+        "question_id": "FJ37"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S106",
+    "title": "编码版本与内存优化",
+    "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj37",
+        "question_id": "FJ37"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S107",
+    "title": "XADD 版本",
+    "url": "https://redis.io/docs/latest/commands/xadd/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj37",
+        "question_id": "FJ37"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S108",
+    "title": "Redis7.2官方配置I/O注释",
+    "url": "https://github.com/redis/redis/blob/7.2/redis.conf",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj38",
+        "question_id": "FJ38"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S109",
+    "title": "延迟诊断",
+    "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj38",
+        "question_id": "FJ38"
+      },
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj39",
+        "question_id": "FJ39"
+      },
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj43",
+        "question_id": "FJ43"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S110",
+    "title": "Redis7.2事件库源码",
+    "url": "https://github.com/redis/redis/blob/7.2/src/ae.c",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj38",
+        "question_id": "FJ38"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S111",
+    "title": "Redis复制",
+    "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/replication/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj39",
+        "question_id": "FJ39"
+      },
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj44",
+        "question_id": "FJ44"
+      },
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj45",
+        "question_id": "FJ45"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S112",
+    "title": "EXPIRE机制",
+    "url": "https://redis.io/docs/latest/commands/expire/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj40",
+        "question_id": "FJ40"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S113",
+    "title": "淘汰策略",
+    "url": "https://redis.io/docs/latest/develop/reference/eviction/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj40",
+        "question_id": "FJ40"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S114",
+    "title": "Redis分布式锁",
+    "url": "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj41",
+        "question_id": "FJ41"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S115",
+    "title": "Redisson锁与leaseTime",
+    "url": "https://redisson.pro/docs/data-and-services/locks-and-synchronizers/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj41",
+        "question_id": "FJ41"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S116",
+    "title": "Redis Pub/Sub",
+    "url": "https://redis.io/docs/latest/develop/pubsub/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj42",
+        "question_id": "FJ42"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S117",
+    "title": "客户端缓存失效",
+    "url": "https://redis.io/docs/latest/develop/reference/client-side-caching/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj42",
+        "question_id": "FJ42"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S118",
+    "title": "Kafka消费者模型",
+    "url": "https://kafka.apache.org/41/getting-started/introduction/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj42",
+        "question_id": "FJ42"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S119",
+    "title": "Debezium outbox",
+    "url": "https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj42",
+        "question_id": "FJ42"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S120",
+    "title": "Cache-Aside设计",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj42",
+        "question_id": "FJ42"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S121",
+    "title": "MEMORY USAGE",
+    "url": "https://redis.io/docs/latest/commands/memory-usage/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj43",
+        "question_id": "FJ43"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S122",
+    "title": "UNLINK",
+    "url": "https://redis.io/docs/latest/commands/unlink/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj43",
+        "question_id": "FJ43"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S123",
+    "title": "SCAN",
+    "url": "https://redis.io/docs/latest/commands/scan/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj43",
+        "question_id": "FJ43"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S124",
+    "title": "WAIT边界",
+    "url": "https://redis.io/docs/latest/commands/wait/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj44",
+        "question_id": "FJ44"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S125",
+    "title": "Sentinel官方机制",
+    "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj45",
+        "question_id": "FJ45"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S126",
+    "title": "Cluster规范",
+    "url": "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/40-backend/22-redis-mechanisms.md",
+        "anchor": "fj45",
+        "question_id": "FJ45"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S127",
+    "title": "Condition等待语义",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/Condition.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/15-thread-ordering-lab.md",
+        "anchor": "fj46",
+        "question_id": "FJ46"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S128",
+    "title": "Thread API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Thread.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      },
+      {
+        "path": "docs/20-java/15-thread-ordering-lab.md",
+        "anchor": "fj46",
+        "question_id": "FJ46"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S129",
+    "title": "Java8日期时间API",
+    "url": "https://docs.oracle.com/javase/8/docs/technotes/guides/datetime/index.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 8 historical documentation",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S130",
+    "title": "Java17 SecurityManager API",
+    "url": "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/SecurityManager.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 17",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S131",
+    "title": "Java17迁移与强封装",
+    "url": "https://docs.oracle.com/en/java/javase/17/migrate/migrating-jdk-8-later-jdk-releases.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 17",
+    "used_in": [
+      {
+        "path": "docs/20-java/10-language-foundations.md",
+        "anchor": "fj01",
+        "question_id": "FJ01"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S132",
+    "title": "HotSpot 字符串表弱句柄",
+    "url": "https://raw.githubusercontent.com/openjdk/jdk25u/master/src/hotspot/share/classfile/stringTable.cpp",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S133",
+    "title": "Java 8 历史 CMS 流程",
+    "url": "https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 8 historical documentation",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj14",
+        "question_id": "FJ14"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S134",
+    "title": "CPython 循环收集器",
+    "url": "https://docs.python.org/3/library/gc.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/12-jvm-operation.md",
+        "anchor": "fj13",
+        "question_id": "FJ13"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S135",
+    "title": "OpenJDK 25 AQS 队列实现",
+    "url": "https://raw.githubusercontent.com/openjdk/jdk25u/master/src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedSynchronizer.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj18",
+        "question_id": "FJ18"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S136",
+    "title": "Hashtable API",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Hashtable.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj10",
+        "question_id": "FJ10"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S137",
+    "title": "OpenJDK 25u Hashtable",
+    "url": "https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/Hashtable.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "OpenJDK 25u implementation",
+    "used_in": [
+      {
+        "path": "docs/20-java/11-collections-and-io.md",
+        "anchor": "fj10",
+        "question_id": "FJ10"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S138",
+    "title": "Java 线程六态",
+    "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Thread.State.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Java SE 25",
+    "used_in": [
+      {
+        "path": "docs/20-java/13-concurrency-details.md",
+        "anchor": "fj17",
+        "question_id": "FJ17"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S139",
+    "title": "SpringApplication 生命周期",
+    "url": "https://docs.spring.io/spring-boot/reference/features/spring-application.html",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj24",
+        "question_id": "FJ24"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S140",
+    "title": "Boot 3.5.0 启动入口源码",
+    "url": "https://raw.githubusercontent.com/spring-projects/spring-boot/v3.5.0/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj24",
+        "question_id": "FJ24"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  },
+  {
+    "id": "FJ-S141",
+    "title": "Spring Cloud 项目与兼容表",
+    "url": "https://spring.io/projects/spring-cloud/",
+    "source_type": "official_documentation_or_upstream_source",
+    "accessed_at": "2026-10-09",
+    "verification_status": "primary_source_body_checked",
+    "version_scope": "Version stated in target; rolling official page checked on access date",
+    "used_in": [
+      {
+        "path": "docs/20-java/14-spring-mechanisms.md",
+        "anchor": "fj24",
+        "question_id": "FJ24"
+      }
+    ],
+    "verification_note": "核对规范/API/官方说明或上游实现；源码细节仅适用于所标版本，未把文档核查写成运行验证。"
+  }
+]

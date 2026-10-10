@@ -1,0 +1,62 @@
+[
+  {
+    "id": "SQL-E01",
+    "topic": "连续登录的窗口嵌套",
+    "issue_type": "unsupported_sql_construct",
+    "corrected_statement": "MySQL不支持嵌套窗口函数。先按用户日期去重，再分CTE层编号、分岛、计数和取最大；NOT NULL或显式排除无效记录。",
+    "status": "confirmed_in_official_document",
+    "sources": ["https://dev.mysql.com/doc/refman/8.0/en/window-function-restrictions.html"],
+    "target": "docs/70-practice/sql-nine-worked-problems.md#s02",
+    "verification": "官方限制核对；SQLite等价查询和独立Python参考通过；未运行MySQL"
+  },
+  {
+    "id": "SQL-E02",
+    "topic": "未要求的部门聚合筛选",
+    "issue_type": "query_changes_problem_semantics",
+    "corrected_statement": "题意要求所有部门时，不能擅自加平均工资大于6000的HAVING。空部门用LEFT JOIN保留，COUNT员工主键为0；NULL工资与均值口径明示。",
+    "status": "confirmed_by_relational_counterexample",
+    "sources": ["https://dev.mysql.com/doc/refman/8.4/en/aggregate-functions.html"],
+    "target": "docs/70-practice/sql-nine-worked-problems.md#s04",
+    "verification": "空部门和未知工资反例已在SQLite等价查询核验；未运行MySQL"
+  },
+  {
+    "id": "SQL-E03",
+    "topic": "年度查询的表名、末日和聚合阈值",
+    "issue_type": "schema_and_boundary_error",
+    "corrected_statement": "使用本题明确定义的表名；年度采用当年年初到次年年初的左闭右开区间；总消费阈值在分组后HAVING，区别于单笔金额过滤。",
+    "status": "confirmed_by_boundary_counterexample",
+    "sources": ["https://dev.mysql.com/doc/refman/8.4/en/datetime.html", "https://dev.mysql.com/doc/refman/8.4/en/select.html"],
+    "target": "docs/70-practice/sql-nine-worked-problems.md#s05",
+    "verification": "年末微秒、次年零时和600+500总额案例通过SQLite等价核验；未运行MySQL"
+  },
+  {
+    "id": "SQL-E04",
+    "topic": "死锁实验缺交错顺序",
+    "issue_type": "incomplete_experiment",
+    "corrected_statement": "两个独立连接分别持有一行，再交错请求对方行，才能形成等待环；死锁检测与锁等待超时的回滚范围须区分。",
+    "status": "official_behavior_checked_experiment_not_run",
+    "sources": ["https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks-handling.html", "https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html"],
+    "target": "docs/70-practice/sql-nine-worked-problems.md#s06",
+    "verification": "官方行为与两连接操作顺序静态核对；InnoDB并发实验未运行"
+  },
+  {
+    "id": "SQL-E05",
+    "topic": "转账只有回滚注释",
+    "issue_type": "missing_error_control_flow",
+    "corrected_statement": "回滚注释不是异常处理。教学伪代码需包含校验、统一锁顺序、影响行数、提交前错误回滚、重复请求和提交结果未知的处理。",
+    "status": "control_flow_corrected_as_pseudocode",
+    "sources": ["https://dev.mysql.com/doc/refman/8.4/en/commit.html", "https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html"],
+    "target": "docs/70-practice/sql-nine-worked-problems.md#s08",
+    "verification": "带失败分支的设计审阅；不是可执行实现，未作并发或资金正确性认证"
+  },
+  {
+    "id": "SQL-E06",
+    "topic": "覆盖索引重复主键",
+    "issue_type": "missing_storage_engine_condition",
+    "corrected_statement": "InnoDB二级索引本来携带主键。显式再列主键须有排序方向等具体理由，不能只为覆盖主键而机械增加。",
+    "status": "confirmed_in_official_document",
+    "sources": ["https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html"],
+    "target": "docs/70-practice/sql-nine-worked-problems.md#s09",
+    "verification": "官方存储结构核对；具体EXPLAIN和性能实验未运行"
+  }
+]

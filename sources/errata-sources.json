@@ -1,0 +1,56 @@
+[
+  {
+    "id": "FS-O01",
+    "title": "LangGraph Interrupts",
+    "url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+    "accessed_date": "2026-10-09",
+    "source_type": "official_primary_documentation",
+    "supports": "E001",
+    "verification": "official_document_read; runtime_example_not_executed"
+  },
+  {
+    "id": "FS-O02",
+    "title": "LangGraph Checkpointers",
+    "url": "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+    "accessed_date": "2026-10-09",
+    "source_type": "official_primary_documentation",
+    "supports": "E002",
+    "verification": "official_document_read; runtime_example_not_executed"
+  },
+  {
+    "id": "FS-O03",
+    "title": "MCP 2026-07-28 specification announcement",
+    "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+    "accessed_date": "2026-10-09",
+    "source_type": "official_primary_documentation",
+    "supports": "E003",
+    "verification": "official_document_read; runtime_example_not_executed"
+  },
+  {
+    "id": "FS-O04",
+    "title": "MCP TypeScript SDK protocol versions",
+    "url": "https://ts.sdk.modelcontextprotocol.io/v2/protocol-versions",
+    "accessed_date": "2026-10-09",
+    "source_type": "official_primary_documentation",
+    "supports": "E003",
+    "verification": "official_document_read; runtime_example_not_executed"
+  },
+  {
+    "id": "FS-O05",
+    "title": "Java SE17 SecurityManager API",
+    "url": "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/SecurityManager.html",
+    "accessed_date": "2026-10-09",
+    "source_type": "official_primary_documentation",
+    "supports": "E004",
+    "verification": "official_document_read; runtime_example_not_executed"
+  },
+  {
+    "id": "FS-O06",
+    "title": "MySQL8.0 Window Function Restrictions",
+    "url": "https://dev.mysql.com/doc/refman/8.0/en/window-function-restrictions.html",
+    "accessed_date": "2026-10-09",
+    "source_type": "official_primary_documentation",
+    "supports": "E005",
+    "verification": "official_document_read; runtime_example_not_executed"
+  }
+]

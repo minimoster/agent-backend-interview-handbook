@@ -1,0 +1,25 @@
+{
+  "checked_on": "2026-10-09",
+  "runtime": "OpenJDK 21.0.12.1",
+  "normal_cases": 101,
+  "failure_paths": [
+    "worker_interruption",
+    "worker_exception",
+    "coordinator_interruption"
+  ],
+  "assertions": [
+    "ordered_roles_and_numbers",
+    "ABC_repeated_10_times",
+    "complete_normal_output",
+    "valid_cancelled_prefix",
+    "all_workers_joined"
+  ],
+  "independent_second_execution": "passed",
+  "exit_code": 0,
+  "published_source_matches_tested_source": true,
+  "not_claimed": [
+    "arbitrary_scheduling_formal_proof",
+    "JVM_crash_recovery",
+    "OOM_recovery"
+  ]
+}

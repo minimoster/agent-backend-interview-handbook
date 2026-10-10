@@ -1,0 +1,292 @@
+# 面经技术追问：补齐工程边界
+
+[返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
+
+本章为原创补充讲义。P0 为应能独立讲清并写出关键步骤；P1 为常见追问；P2 为理解边界。官方资料核查日：2026-10-09。示例参数均为教学设定，不是作者或读者的项目实测。代码与 SQL 的实际执行范围在对应题中标注；没有实测的吞吐、可用性和故障恢复效果不作为事实。
+
+- [FB79 Spring AI、Flux 和多人流式会话各负责哪一层](#fb79)
+- [FB80 关注、粉丝、点赞与会员系统怎样设计可验证的数据模型](#fb80)
+- [FB81 通知和并发文件导出怎样定义成功及恢复](#fb81)
+- [FB82 Git 分支和 CI/CD 怎样支持并行开发并保留回退](#fb82)
+- [FB83 Tomcat 线程池与数据库连接池为何要一起算预算](#fb83)
+- [FB84 Docker 与 Kubernetes 基础如何与发布可靠性相连](#fb84)
+- [FB85 认证、RBAC、对象级权限与 Secret 如何贯穿工具链](#fb85)
+- [FB86 IP 和 TCP 报文头哪些字段与排障真正相关](#fb86)
+- [FB87 Redis 消息、广播与备份恢复怎样避免能力混淆](#fb87)
+- [FB88 红黑树、跳表与 B+ 树为什么有不同的性能目标](#fb88)
+- [FB89 排序题如何从不变量推导快速排序的平均与最坏复杂度](#fb89)
+- [FB90 列表尾删、按值查找和哈希碰撞如何按实际操作计算成本](#fb90)
+- [FB91 强一致、最终一致、读己之写和几秒延迟如何区分](#fb91)
+- [FB92 知识库增量更新怎样处理修改、删除与 ACL 变化](#fb92)
+- [FB93 点评与订单教学案例的数据表如何按职责设计](#fb93)
+
+<a id="fb79"></a>
+
+### FB79 Spring AI、Flux 和多人流式会话各负责哪一层
+
+**优先级：P0**
+
+**知识点详解**：Spring AI 的 ChatModel/StreamingChatModel 等抽象隔离提供商调用与流式输出，新增模型通常涉及适配请求、选项、工具调用、usage、错误和增量事件，兼容不能只测一条正常文本。Flux 表示多元素异步序列，不等于每元素一个线程，也不保证整链非阻塞；阻塞 JDBC/文件/SDK 要隔离到合适有界资源。每个会话有独立身份、取消、预算与状态，背压和客户端断线清理也需应用实现。
+
+**具体例子**：100 个用户同时流式聊天，可以复用少量 I/O 线程，但每条流仍占连接、缓冲、模型配额与上下文内存。新供应商只返回累计文本时，适配器不能把累计内容当增量重复拼接；工具参数也应等完整再校验执行。
+
+**面试答法**：我区分模型适配、响应式信号与业务状态三层；框架减少接入代码，不自动完成 token 裁剪、权限或限流。
+
+**追问**：为何调用 subscribeOn/publishOn 也可能慢？它们只改变指定阶段调度，阻塞点、队列与下游资源仍有限，需实测与取消传播。
+
+**常见误区**：WebFlux 自动使所有驱动非阻塞；Flux 必比 MVC 快；Spring AI 替应用管理所有上下文预算。
+
+**来源**：[FB-S080 Spring WebFlux 概览](https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html)、[FB-S081 Spring AI Chat Model API](https://docs.spring.io/spring-ai/reference/api/chatmodel.html)、[FB-S082 Reactor 调度与线程模型](https://projectreactor.io/docs/core/release/reference/coreFeatures/schedulers.html)、[FB-S053 CompletableFuture Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb80"></a>
+
+### FB80 关注、粉丝、点赞与会员系统怎样设计可验证的数据模型
+
+**优先级：P1**
+
+**知识点详解**：先定义一行代表什么：follow(follower_id,followee_id) 用唯一对约束关系，主查询按 follower_id 列关注，反向索引按 followee_id 查粉丝；like(user_id,target_id) 记录当前关系，计数可派生为读模型。加入/取消用状态转换或幂等写，不能每收到重复事件就 +1/-1。高 QPS 会员读取可缓存权益版本，但扣权益、授权与金额操作仍依赖权威状态。社交 feed 在写扩散与读聚合间权衡，大 V 热点可混合处理。
+
+**具体例子**：点赞 API 采用“设为已点赞/未点赞”优于不带版本的“切换一次”；重复请求不应又取消。异步计数以 event_id 去重，定期与关系表对账；展示允许短暂误差，收费权益扣减不能用同样宽松语义。
+
+**面试答法**：我先画关系主表、双向查询索引与派生读模型，明确实时性和一致性，再讨论缓存与分片。
+
+**追问**：粉丝千万时是否一次查询全量？需要 keyset 分页、限额与异步导出；热门计数可分片聚合，但应说明误差和合并方式。
+
+**常见误区**：一个 Redis 计数就是全部点赞事实；关注与粉丝各写一份却没有一致性策略；表越多代表系统越高级。
+
+**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S074 Apache Cassandra Dynamo 架构与虚拟节点](https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb81"></a>
+
+### FB81 通知和并发文件导出怎样定义成功及恢复
+
+**优先级：P0**
+
+**知识点详解**：通知至少区分业务触发、服务端入队、供应商接受、送达设备、用户读取；送达率的分母、时间窗与回执来源必须明示，缺回执不能随意算成功。每阶段用业务 ID 关联，按错误类别处理无效地址、退订、限额、离线与超时。导出任务使用 task_id、独立临时文件/对象名和状态表，完成校验后原子发布可下载结果；并发任务不共用固定 output.csv，失败清理不能删除其他任务产物。
+
+**具体例子**：1000 条入队，供应商接受 990，截止 10 分钟确认送达 930，分别是不同指标。导出写到一半进程崩溃，恢复者看到 WRITING 不提供残缺文件，重试同任务键并校验大小/摘要后改 READY；下载再次检查用户权限。
+
+**面试答法**：我把接受、完成与用户可见拆成不同状态，给每一步可观测证据和重试身份；失败不能只在日志里消失。
+
+**追问**：HTTP 200 的通知调用代表用户看到吗？只按提供方明确契约解释，通常不能推断阅读或专业处置已经发生。
+
+**常见误区**：模型分类准确率就是通知送达率；供应商接收就是用户已读；所有并发导出写同一路径。
+
+**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb82"></a>
+
+### FB82 Git 分支和 CI/CD 怎样支持并行开发并保留回退
+
+**优先级：P0**
+
+**知识点详解**：功能分支围绕小而清晰的变更建立，频繁同步主干减少长时间偏离。merge 保留分支拓扑，rebase 重放提交并改变提交标识；已共享历史不能未经协作随意改写。整合主干后应重新测试冲突相关路径，而非只解决标记。CI 固定依赖与运行环境，执行静态检查、单元、集成及安全检查；CD 将构建产物以可追踪版本发布并验证健康，数据库兼容迁移与回滚必须单独设计。
+
+**具体例子**：功能 A 和 B 改同一个订单状态字段，即使 Git 自动合并无文本冲突，业务语义仍可冲突。把主干合到功能分支后补状态机回归，用确切 commit/镜像摘要标识发布与回滚目标。
+
+**面试答法**：我用短分支、小变更、审查与自动测试降低整合风险；技术合并成功只是起点，部署后的验证和回滚同样重要。
+
+**追问**：紧急修复合到主干后长期分支怎么办？同步该修复并重新验证，防止之后合并把修复覆盖。
+
+**常见误区**：无冲突即无缺陷；直接 force push 修所有协作问题；重建同一标签一定得到同样镜像。
+
+**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S085 Pro Git：分支工作流](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows)、[FB-S091 Pro Git：变基](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb83"></a>
+
+### FB83 Tomcat 线程池与数据库连接池为何要一起算预算
+
+**优先级：P0**
+
+**知识点详解**：Tomcat Connector 的连接数、请求工作线程与操作系统接入队列不同；Tomcat 10.1 中 maxConnections、maxThreads、acceptCount 各控制不同环节，使用共享 executor 时也要核对配置生效范围。数据库池复用昂贵连接，maximumPoolSize 限制可借连接，connectionTimeout 限制借用等待；maxLifetime、连接验证和泄漏诊断解决另一类生命周期问题。业务线程上限与连接上限不是同一个数，持连接等远端会压缩数据库有效容量。
+
+**具体例子**：200 个请求线程争 20 个数据库连接，若每个连接被网络调用占用 2 秒，队列快速增长。把池调到 200 可能把压力直接转移给数据库；应缩短事务/连接占用，并按数据库能力测合适上限。
+
+**面试答法**：我沿连接接纳→任务执行→借连接→SQL→归还画队列，分别设等待上限和观测指标。
+
+**追问**：异步 Servlet 会减少什么？可能释放等待中的请求线程，但连接、异步任务和后端配额仍消耗资源，不能无限并发。
+
+**常见误区**：acceptCount 就是业务线程数；连接池越大越快；连接泄漏检测自动替代正确 close。
+
+**来源**：[FB-S079 Tomcat 10.1 HTTP Connector](https://tomcat.apache.org/tomcat-10.1-doc/config/http.html)、[FB-S083 HikariCP 官方配置说明](https://github.com/brettwooldridge/HikariCP)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb84"></a>
+
+### FB84 Docker 与 Kubernetes 基础如何与发布可靠性相连
+
+**优先级：P1**
+
+**知识点详解**：镜像是打包产物，容器是运行实例；namespace 与 cgroup 提供隔离/资源限制，不等同完整虚拟机。Docker 的 ps、logs、inspect 用于只读定位，build/run/stop 会改变状态须按授权执行。Kubernetes Pod 是部署调度基本单元，Deployment 管副本与滚动更新，Service 提供服务发现与访问入口；readiness 控制是否接流量，liveness 触发重启，startup 保护慢启动。持久数据用适当存储而非只放容器临时层。
+
+**具体例子**：服务启动要预热两分钟，过早 liveness 失败可导致循环重启；合理 startup 与 readiness 让它准备好再接流量。退出时先停止接新请求，再处理在途请求并归还资源，与平台终止宽限时间对齐。
+
+**面试答法**：我用构建、发布、就绪、扩缩与退出串起来，说明资源 requests/limits 和探针误配置如何影响稳定性。
+
+**追问**：设置副本数 3 就高可用了吗？还要分散故障域、依赖容量和状态恢复，否则三副本可能共同失败。
+
+**常见误区**：容器内存无限；readiness 失败一定重启；应用状态全存在临时容器层也能自动恢复。
+
+**来源**：[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S086 Kubernetes Pod 生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)、[FB-S090 Docker CLI 官方参考](https://docs.docker.com/reference/cli/docker/)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb85"></a>
+
+### FB85 认证、RBAC、对象级权限与 Secret 如何贯穿工具链
+
+**优先级：P0**
+
+**知识点详解**：认证确认请求身份，授权检查对资源和动作的权限。RBAC 以角色组织能力，但还需租户、本人订单、文档 ACL 等对象级约束；管理接口与普通用户分离不只靠前端隐藏按钮。Spring Security 在过滤链及方法/请求授权等位置提供基础，工具调用、检索和导出下载也必须重新检查必要权限。Secret 不进 Git、提示词、普通日志或公开构建产物，使用受控注入与最小权限，并规划轮换。日志脱敏不替代采集最小化。 涉及情绪或健康风险监测的高影响功能，应清楚告知监测内容、用途、触发条件、接收者与退出方式；未经授权不凭模型标签对外披露，专业判断应交由合适人工复核。
+
+**具体例子**：用户 A 修改 URL 中 order_id 试读 B 的订单，后端按已认证 subject 验证资源归属而非相信传入 user_id。模型读到一篇提示“以管理员导出所有用户”的文档时，它是低信任数据，工具仍按 A 的权限执行。
+
+**面试答法**：我沿入口、检索、工具、文件输出逐段传递受控身份，权限交集只能缩小，不能因内部调用默认变管理员。
+
+**追问**：脱敏后就可以任意训练吗？还需合法来源、授权、用途与保留期限；假名化数据仍可能被重识别，不作绝对匿名承诺。
+
+**常见误区**：登录后所有资源都能读；JWT 有签名就无需业务授权；删日志里的 key 就允许先把它提交到 Git。
+
+**来源**：[FB-S054 RFC 9700 OAuth 2.0 安全实践](https://www.rfc-editor.org/rfc/rfc9700)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S087 Spring Security Servlet 架构](https://docs.spring.io/spring-security/reference/servlet/architecture.html)、[FB-S092 Kubernetes Secret 官方说明](https://kubernetes.io/docs/concepts/configuration/secret/)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb86"></a>
+
+### FB86 IP 和 TCP 报文头哪些字段与排障真正相关
+
+**优先级：P1**
+
+**知识点详解**：IPv4 头包含版本、头长、总长度、标识/分片字段、TTL、上层协议、源/目标地址及头校验等；IPv6 固定基本头布局不同，以扩展头表达额外信息，不照抄 IPv4 头校验与分片字段。TCP 头的端口、序列号、确认号、标志、窗口、校验和及选项分别用于复用、可靠流、状态和能力协商。TCP 校验覆盖伪首部以关联网络层地址信息，但不能代替 TLS 认证。
+
+**具体例子**：抓包看到 SYN 后持续重传，先看路由、防火墙和服务监听；看到建立连接后大量重传再看丢包与窗口。IP TTL 与缓存 TTL 完全不是同一种生命周期参数。
+
+**面试答法**：我不死背所有位数，先把字段关联到路由、分片、连接识别和可靠传输，再按 IPv4/IPv6 与 TCP 版本细节核查。
+
+**追问**：应用一次发送很大数据就会出现同样大小 IP 包吗？分段、MTU、分片及卸载使应用视角与抓包视角不同。
+
+**常见误区**：IP 校验保护应用内容不可篡改；IPv6 只是更长 IPv4 头；端口由 IP 头提供。
+
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S025 RFC 826 ARP](https://www.rfc-editor.org/rfc/rfc826)、[FB-S088 RFC 791 IPv4](https://www.rfc-editor.org/rfc/rfc791)、[FB-S089 RFC 8200 IPv6](https://www.rfc-editor.org/rfc/rfc8200)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb87"></a>
+
+### FB87 Redis 消息、广播与备份恢复怎样避免能力混淆
+
+**优先级：P1**
+
+**知识点详解**：Pub/Sub 适合在线通知但离线会丢，不是持久消息队列；List 可表达简单队列，可靠领取/处理中恢复需要额外设计；Streams 提供 ID、消费组和 pending 等机制，但 ACK 与业务事务仍是不同边界。广播缓存失效应确认每个节点都能收到，而普通竞争消费组只把消息交给组内某消费者，不能直接当全节点广播。RDB/AOF 恢复是数据恢复能力，不是跨业务系统对账自动完成；备份要验证恢复耗时和数据时间点。 RocketMQ 4.x Push Consumer官方文档明确：消息重试仅对集群模式有效，广播模式消费失败后不会由该机制重试，而会继续消费新消息。因此本地缓存广播监听失败需应用持久记录补偿/失败告警，或使用实体版本水位、短TTL及重连全量校验/清空来恢复；不能声称广播会自动进入集群重试主题或DLQ。
+
+**具体例子**：三台应用共用一个竞争消费组，商户变更只被一台处理，其余本地缓存还旧。可选择符合产品语义的广播/每节点订阅，再用 TTL 和重连清空兜底。恢复 Redis 后需检查最近订单流水和已失效租约，避免把旧锁当当前所有权。
+
+**面试答法**：我先选消息是否需要留存、重放、竞争或广播，再决定结构与消费协议；备份必须做恢复演练而非只检查文件存在。
+
+**追问**：Streams XACK 是否原子提交 MySQL？不是，数据库写入仍需去重与事务，崩溃窗口仍存在。
+
+**常见误区**：Pub/Sub 自动保留离线消息；消费组就是广播；备份文件可用等于所有业务状态一致。
+
+**来源**：[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S061 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S084 Redis XREADGROUP 消费组与 pending](https://redis.io/docs/latest/commands/xreadgroup/)、[FB-S106 RocketMQ 4.x Push Consumer 广播与重试](https://rocketmq.apache.org/docs/4.x/consumer/02push/#message-retry)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb88"></a>
+
+### FB88 红黑树、跳表与 B+ 树为什么有不同的性能目标
+
+**优先级：P1**
+
+**知识点详解**：标准红黑树把节点着红/黑色、根和空叶视黑、红节点不连红子、各条到空叶路径黑高相同，以约束高度，查询/插入/删除保持 O(log n)；旋转与重新着色恢复约束，树化不意味着并发安全。跳表在有序底层链上随机晋升索引层，查找平均 O(log n)，层数由实现上限与随机分布共同决定，不是所有集合固定同一层数。B/B+ 树以页为单位提高扇出；经典 B+ 树把数据记录集中叶层并支持范围遍历，内部节点不承载同样的完整行负担。
+
+**具体例子**：教学估算：若每页可容纳约 500 个子指针、叶页约 100 行，则三层（根、内部、叶）满占时约 500×500×100=2500 万行。真实容量还受键宽、元数据、填充率、页大小与删除影响，不能把这个数当 MySQL 固定上限。缓冲命中也使树高不等于磁盘 I/O 次数。
+
+**面试答法**：我用平衡高度解释内存有序查找，用页扇出解释存储索引，再用参数化估算而不是背固定三层容量。
+
+**追问**：有序集合为什么同时用跳表和字典？排序范围访问与按成员精确定位有不同需求；小集合紧凑编码是另外路径。
+
+**常见误区**：红黑树所有根叶路径长度完全相同；B+ 树固定三层；跳表最坏永远 log n；数据都放内部节点不会影响扇出。
+
+**来源**：[FB-S093 Cornell CS3110：红黑树不变量](https://www.cs.cornell.edu/courses/cs3110/2010fa/lectures/lec11.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)、[FB-S096 MySQL 8.4 索引物理结构](https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html)、[FB-S099 Redis 7.2 有序集合源码](https://github.com/redis/redis/blob/7.2/src/t_zset.c)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb89"></a>
+
+### FB89 排序题如何从不变量推导快速排序的平均与最坏复杂度
+
+**优先级：P1**
+
+**知识点详解**：插入排序适合近乎有序的小数据但一般平方复杂度；归并以合并有序段获得 O(n log n) 时间并需相应空间；堆排序以堆顶选择维持 O(n log n)；快速排序通过 pivot 分区再递归。若分区均衡，递推为 T(n)=2T(n/2)+O(n)，得到 O(n log n)；若每次只有一侧 n-1，求和变 O(n²)。固定端点 pivot 对已排序输入可能退化，大量相同键需考虑三路分区。随机化降低常见退化概率，但不把最坏复杂度改成确定 log 级。
+
+**具体例子**：数组 [1,2,3,4,5] 总选末尾最大值，朴素两路分区每次只去掉一个元素。三路分区将小于、等于、大于 pivot 分开，在大量重复键时避免反复处理相等段；若需要稳定排序，则应另选/说明实现。
+
+**面试答法**：我先讲分区后不变量，再列递推式和反例；时间、额外数组空间与递归栈分开算。
+
+**追问**：平均 O(n log n) 为何仍可能栈溢出？不均衡递归深度可达 n；可先递归较短侧并循环长侧，或采用有最坏保证的混合排序。
+
+**常见误区**：快排永远 n log n；原地等于递归栈 O(1)；随机 pivot 彻底消灭所有最坏情形。
+
+**来源**：[FB-S094 MIT 6.046：随机化快速排序分析](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/bdfdbc2391daad0b8c32606d6d3644a4_0VqawRl3Xzs.pdf)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb90"></a>
+
+### FB90 列表尾删、按值查找和哈希碰撞如何按实际操作计算成本
+
+**优先级：P1**
+
+**知识点详解**：ArrayList 按下标删除末尾没有后续元素需要搬移，通常 O(1)；按对象值删除仍需先线性寻找，不能混为一谈。LinkedList 的 removeLast 直接利用尾节点，也可 O(1)，但按任意下标寻找要遍历；局部性、节点分配和 GC 让同阶操作的常数不同。按已知值定位要先明确值是否唯一，可建立 value→对象/ID集合 的哈希反向索引，或需要排序时用树；额外索引有同步更新成本。恶意哈希碰撞会增加链/树操作成本，树化减轻但不等于全业务抗拒绝服务。
+
+**具体例子**：连续删除最后十个元素，两种列表都不需要每次从头扫描；若反复 remove(Integer.valueOf(7))，先找值的成本仍可能 O(n)。项目测试必须选同一种操作契约而非比较一个按下标、一个按值。
+
+**面试答法**：我将定位、修改和内存成本拆开；复杂度描述绑定具体方法和前置条件，并补并发安全边界。
+
+**追问**：反向索引的值重复怎么办？映射到集合并在更新时同步移除旧关系；不能假设所有 value 唯一。
+
+**常见误区**：链表所有删除都更快；ArrayList 尾删也搬全部元素；哈希结构任何情况下都是常数时间。
+
+**来源**：[FB-S097 ArrayList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html)、[FB-S098 LinkedList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb91"></a>
+
+### FB91 强一致、最终一致、读己之写和几秒延迟如何区分
+
+**优先级：P0**
+
+**知识点详解**：线性一致要求操作像在真实时间中原子排序；最终一致要求停止更新后，在相关假设成立时副本收敛；读己之写是单个会话后续读取不会退到自己已完成写之前的保证。它们与“平均同步 1 秒”不是同一维度，秒级延迟描述观测时间，不直接给出故障与并发语义。普通异步复制读从库可能看不到刚写内容，缓存又增加一层延迟。Group Replication 有自己的可配置一致性等待，不能搬成所有 MySQL 主从的默认承诺。
+
+**具体例子**：创建订单后立即跳详情，可携带已确认订单版本并访问权威主库，或等待副本达到相应进度；绕过缓存但仍读落后副本也不保证读己之写。普通商户推荐可接受陈旧，但付款结果不应使用同样策略。
+
+**面试答法**：我先给具体用户操作需要的保证，再选择路由、版本门槛或等待；等待有超时和降级，不能用一个平均延迟数字证明强一致。
+
+**追问**：只有“更新后一秒同步”够定义最终一致吗？还要说明更新停止、故障恢复、消息不丢与冲突解决等前提。
+
+**常见误区**：所有副本一秒内同步就是线性一致；把一致性哈希当一致性保障；读主库自动绕过所有旧缓存。
+
+**来源**：[FB-S069 Gilbert 与 Lynch：CAP 证明论文](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf)、[FB-S102 MySQL 8.4 Group Replication 一致性说明](https://dev.mysql.com/doc/refman/8.4/en/group-replication-consistency-guarantees.html)、[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb92"></a>
+
+### FB92 知识库增量更新怎样处理修改、删除与 ACL 变化
+
+**优先级：P1**
+
+**知识点详解**：触发可来自定时扫描、源系统 webhook、CDC 或明确重建任务；通知只是线索，仍需读取权威版本并校验权限。文档 ID、源版本、内容哈希与 chunk ID 形成幂等更新键；重分块后应移除旧版本残块，删除与 ACL 收紧要同步到检索过滤和缓存。向量模型变化通常需要新索引版本和重建，不能只因维数相同就混用。记录游标、失败队列和索引水位，允许恢复与审计。
+
+**具体例子**：文档从 5 块改成 3 块，若只 upsert 新 3 块而不删除其余旧块，召回仍可能引用已删除内容。可先构建版本 v2，验证后切换可见版本，再回收 v1；权限变严时先阻断旧内容可见性，不能等长批处理。
+
+**面试答法**：我区分发现变化、构建新索引、发布可见版本和回收旧数据，逐段设置幂等与失败恢复。
+
+**追问**：漏掉一次 webhook 怎么办？周期性版本对账补漏，不能假设通知永久可靠；重放事件不得把新版本覆盖成旧版本。
+
+**常见误区**：向量库持久化等于知识永远最新；upsert 自动删除所有旧块；检索后才过滤权限没有泄漏风险。
+
+**来源**：[FB-S101 Chroma 更新数据](https://docs.trychroma.com/docs/collections/update-data)、[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。业务组合、反例与答题组织为原创教学推导。
+
+<a id="fb93"></a>
+
+### FB93 点评与订单教学案例的数据表如何按职责设计
+
+**优先级：P1**
+
+**知识点详解**：先画实体与关系，再写一行语义与约束。教学模型可包含 users(id)、shops(id,owner_id,location,version)、campaigns(id,shop_id,start_at,end_at)、inventory(campaign_id,available,version)、orders(id,user_id,campaign_id,status,amount,currency,created_at)、request_dedup(key,subject_id,request_hash,state,result_ref)、outbox(event_id,aggregate_id,payload,published_at)。每个表只说明职责，实际项目可能合并或拆开，不伪造真实表数。订单按用户时间查询，需合适联合索引；一人一单按业务范围设置唯一约束。
+
+**具体例子**：若每人同活动仅一单，可唯一 (campaign_id,user_id)；若允许取消后重买则这条约束会阻挡合法流程，需重新定义“订单”与“购买资格”的生命周期。金额使用固定精度或最小货币单位并带币种；不能用浮点随意汇总付款。此为设计草图，未创建 MySQL 表。
+
+**面试答法**：我逐表回答它保存哪种事实、谁写、如何查、怎样去重和删除，再用事务边界证明关键更新一致。
+
+**追问**：为什么不能把所有字段都塞订单表？冗余可能用于保留成交快照，但要区分历史快照与当前商户资料，避免随资料更新篡改历史。
+
+**常见误区**：先背课程表数再解释业务；一切外键都不用或必须用的绝对断言；表设计与实际查询和索引脱节。
+
+**来源**：[FB-S100 MySQL 8.4 CREATE TABLE 与约束](https://dev.mysql.com/doc/refman/8.4/en/create-table.html)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。业务组合、反例与答题组织为原创教学推导。
+

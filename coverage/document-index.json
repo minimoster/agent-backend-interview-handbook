@@ -1,0 +1,727 @@
+[
+  {
+    "path": "docs/00-guide/backend-six-week-plan.md",
+    "title": "六周复习路线",
+    "question_ids": []
+  },
+  {
+    "path": "docs/00-guide/expanded-map-and-study-plan.md",
+    "title": "全主题怎么学：先建立主线，再按追问补深度",
+    "question_ids": []
+  },
+  {
+    "path": "docs/00-guide/study-method-and-six-week-plan.md",
+    "title": "阅读指南与六周路线",
+    "question_ids": []
+  },
+  {
+    "path": "docs/10-agent/00-reading-guide.md",
+    "title": "怎样使用这份资料",
+    "question_ids": []
+  },
+  {
+    "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
+    "title": "Agent loop、工具、状态与编排",
+    "question_ids": [
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06",
+      "A07",
+      "A08"
+    ]
+  },
+  {
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "title": "RAG、检索与重排",
+    "question_ids": [
+      "A09",
+      "A10",
+      "A11",
+      "A12",
+      "A13",
+      "A14",
+      "A15",
+      "A16",
+      "A17",
+      "A18"
+    ]
+  },
+  {
+    "path": "docs/10-agent/03-memory-and-context.md",
+    "title": "Memory 与上下文管理",
+    "question_ids": [
+      "A19",
+      "A20",
+      "A21",
+      "A22",
+      "A23"
+    ]
+  },
+  {
+    "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+    "title": "SSE、异步任务与可靠执行",
+    "question_ids": [
+      "A24",
+      "A25",
+      "A26",
+      "A27",
+      "A28",
+      "A29",
+      "A30"
+    ]
+  },
+  {
+    "path": "docs/10-agent/14-controlled-improvement.md",
+    "title": "受控自改进与反馈治理",
+    "question_ids": [
+      "FA22",
+      "FA23",
+      "FA24",
+      "FA25",
+      "FA42"
+    ]
+  },
+  {
+    "path": "docs/10-agent/15-mcp-versions-and-integration.md",
+    "title": "MCP版本边界与安全集成",
+    "question_ids": [
+      "FA26",
+      "FA27",
+      "FA28",
+      "FA29",
+      "FA30"
+    ]
+  },
+  {
+    "path": "docs/10-agent/16-skills-routing-and-governance.md",
+    "title": "Skill结构路由与生命周期",
+    "question_ids": [
+      "FA31",
+      "FA32",
+      "FA33",
+      "FA34"
+    ]
+  },
+  {
+    "path": "docs/10-agent/17-rag-indexes-and-evidence.md",
+    "title": "RAG索引表示与证据治理",
+    "question_ids": [
+      "FA35",
+      "FA36",
+      "FA37",
+      "FA38",
+      "FA43"
+    ]
+  },
+  {
+    "path": "docs/10-agent/18-harness-runtime-and-observability.md",
+    "title": "Harness执行治理与观测",
+    "question_ids": [
+      "FA39",
+      "FA40",
+      "FA41"
+    ]
+  },
+  {
+    "path": "docs/10-agent/22-chroma-persistence-and-embedding.md",
+    "title": "Chroma持久化与嵌入集成",
+    "question_ids": [
+      "FA63"
+    ]
+  },
+  {
+    "path": "docs/20-java/01-language-and-collections.md",
+    "title": "集合与语言基础",
+    "question_ids": [
+      "J01",
+      "J02",
+      "J03",
+      "J04",
+      "J05",
+      "J06",
+      "J07",
+      "J08"
+    ]
+  },
+  {
+    "path": "docs/20-java/02-concurrency-and-thread-pools.md",
+    "title": "并发基础与线程池",
+    "question_ids": [
+      "J09",
+      "J10",
+      "J11",
+      "J12",
+      "J13",
+      "J14",
+      "J15",
+      "J16",
+      "J17",
+      "J18",
+      "J19",
+      "J20",
+      "J21",
+      "J22"
+    ]
+  },
+  {
+    "path": "docs/20-java/03-jvm-and-classloading.md",
+    "title": "JVM 与类加载",
+    "question_ids": [
+      "J23",
+      "J24",
+      "J25",
+      "J26",
+      "J27",
+      "J28",
+      "J29"
+    ]
+  },
+  {
+    "path": "docs/20-java/04-spring-and-backend.md",
+    "title": "Spring 与后端基础",
+    "question_ids": [
+      "J30",
+      "J31",
+      "J32",
+      "J33",
+      "J34",
+      "J35",
+      "J36",
+      "J37",
+      "J38",
+      "J39",
+      "J40"
+    ]
+  },
+  {
+    "path": "docs/20-java/05-agent-integration.md",
+    "title": "Java 实现 AI Agent 的工程题",
+    "question_ids": [
+      "J41",
+      "J42",
+      "J43",
+      "J44",
+      "J45",
+      "J46"
+    ]
+  },
+  {
+    "path": "docs/20-java/10-language-foundations.md",
+    "title": "Java 语言基础补充：从对象语义到版本边界",
+    "question_ids": [
+      "FJ01",
+      "FJ02",
+      "FJ03",
+      "FJ04",
+      "FJ05",
+      "FJ06",
+      "FJ07",
+      "FJ08"
+    ]
+  },
+  {
+    "path": "docs/20-java/11-collections-and-io.md",
+    "title": "集合与 I/O 的实现边界",
+    "question_ids": [
+      "FJ09",
+      "FJ10",
+      "FJ11",
+      "FJ12"
+    ]
+  },
+  {
+    "path": "docs/20-java/12-jvm-operation.md",
+    "title": "JVM 运行、垃圾回收与诊断补充",
+    "question_ids": [
+      "FJ13",
+      "FJ14",
+      "FJ15",
+      "FJ16"
+    ]
+  },
+  {
+    "path": "docs/20-java/13-concurrency-details.md",
+    "title": "JUC 组件、执行器与锁的版本细节",
+    "question_ids": [
+      "FJ17",
+      "FJ18",
+      "FJ19",
+      "FJ20",
+      "FJ21"
+    ]
+  },
+  {
+    "path": "docs/20-java/14-spring-mechanisms.md",
+    "title": "Spring 容器、自动配置与事务边界补充",
+    "question_ids": [
+      "FJ22",
+      "FJ23",
+      "FJ24",
+      "FJ25"
+    ]
+  },
+  {
+    "path": "docs/20-java/15-thread-ordering-lab.md",
+    "title": "三线程顺序输出：包含取消协议的可运行练习",
+    "question_ids": [
+      "FJ46"
+    ]
+  },
+  {
+    "path": "docs/30-go/01-concurrency.md",
+    "title": "并发、取消与同步",
+    "question_ids": [
+      "G01",
+      "G02",
+      "G03",
+      "G04",
+      "G05",
+      "G06",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G11",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "path": "docs/30-go/02-types-containers-and-errors.md",
+    "title": "容器、类型与错误",
+    "question_ids": [
+      "G14",
+      "G15",
+      "G16",
+      "G17",
+      "G18",
+      "G19",
+      "G20",
+      "G21",
+      "G22"
+    ]
+  },
+  {
+    "path": "docs/30-go/03-memory-gc-and-performance.md",
+    "title": "内存、GC 与性能直觉",
+    "question_ids": [
+      "G23",
+      "G24",
+      "G25",
+      "G26"
+    ]
+  },
+  {
+    "path": "docs/30-go/04-http-sse-grpc.md",
+    "title": "HTTP、SSE、gRPC 与服务治理",
+    "question_ids": [
+      "G27",
+      "G28",
+      "G29",
+      "G30",
+      "G31",
+      "G32",
+      "G33",
+      "G34",
+      "G35"
+    ]
+  },
+  {
+    "path": "docs/30-go/05-testing-and-debugging.md",
+    "title": "测试与故障排查",
+    "question_ids": [
+      "G36",
+      "G37",
+      "G38",
+      "G39",
+      "G40"
+    ]
+  },
+  {
+    "path": "docs/30-go/06-version-boundaries.md",
+    "title": "版本核验与面试使用规则",
+    "question_ids": []
+  },
+  {
+    "path": "docs/40-backend/01-network-and-streaming.md",
+    "title": "网络与流式接口",
+    "question_ids": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08"
+    ]
+  },
+  {
+    "path": "docs/40-backend/02-databases-and-sql.md",
+    "title": "数据库与 SQL",
+    "question_ids": [
+      "B09",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B15",
+      "B16",
+      "B17",
+      "B18",
+      "B19",
+      "B20",
+      "B21"
+    ]
+  },
+  {
+    "path": "docs/40-backend/03-redis-and-caching.md",
+    "title": "Redis 与缓存正确性",
+    "question_ids": [
+      "B22",
+      "B23",
+      "B24",
+      "B25",
+      "B26",
+      "B27",
+      "B28",
+      "B29",
+      "B30"
+    ]
+  },
+  {
+    "path": "docs/40-backend/04-messaging-and-idempotency.md",
+    "title": "消息队列与幂等",
+    "question_ids": [
+      "B31",
+      "B32",
+      "B33",
+      "B34",
+      "B35"
+    ]
+  },
+  {
+    "path": "docs/40-backend/05-system-design-and-reliability.md",
+    "title": "系统设计与故障处理",
+    "question_ids": [
+      "B36",
+      "B37",
+      "B38",
+      "B39",
+      "B40",
+      "B41"
+    ]
+  },
+  {
+    "path": "docs/40-backend/06-linux-and-containers.md",
+    "title": "Linux 与容器",
+    "question_ids": [
+      "B42",
+      "B43",
+      "B44",
+      "B45",
+      "B46",
+      "B47"
+    ]
+  },
+  {
+    "path": "docs/40-backend/07-security-and-problem-solving.md",
+    "title": "安全与面试练习",
+    "question_ids": [
+      "B48",
+      "B49",
+      "B50"
+    ]
+  },
+  {
+    "path": "docs/40-backend/20-mysql-mechanisms.md",
+    "title": "MySQL 索引、事务、日志与扩展补充",
+    "question_ids": [
+      "FJ26",
+      "FJ27",
+      "FJ28",
+      "FJ29",
+      "FJ30",
+      "FJ31",
+      "FJ32",
+      "FJ33",
+      "FJ34",
+      "FJ35"
+    ]
+  },
+  {
+    "path": "docs/40-backend/21-mybatis.md",
+    "title": "MyBatis 参数与映射补充",
+    "question_ids": [
+      "FJ36"
+    ]
+  },
+  {
+    "path": "docs/40-backend/22-redis-mechanisms.md",
+    "title": "Redis 编码、缓存一致性与高可用补充",
+    "question_ids": [
+      "FJ37",
+      "FJ38",
+      "FJ39",
+      "FJ40",
+      "FJ41",
+      "FJ42",
+      "FJ43",
+      "FJ44",
+      "FJ45"
+    ]
+  },
+  {
+    "path": "docs/40-backend/30-message-queue-details.md",
+    "title": "消息队列：语义、复制与失败恢复",
+    "question_ids": [
+      "FB01",
+      "FB02",
+      "FB03",
+      "FB04",
+      "FB05",
+      "FB06",
+      "FB07",
+      "FB08",
+      "FB09"
+    ]
+  },
+  {
+    "path": "docs/40-backend/31-design-patterns-in-practice.md",
+    "title": "设计模式：从结构识别到可运行实现",
+    "question_ids": [
+      "FB10",
+      "FB11",
+      "FB12",
+      "FB13",
+      "FB14"
+    ]
+  },
+  {
+    "path": "docs/40-backend/32-network-protocol-details.md",
+    "title": "网络：分层、握手、窗口与安全",
+    "question_ids": [
+      "FB15",
+      "FB16",
+      "FB17",
+      "FB18",
+      "FB19",
+      "FB20",
+      "FB21",
+      "FB22",
+      "FB23",
+      "FB24"
+    ]
+  },
+  {
+    "path": "docs/40-backend/33-operating-system-details.md",
+    "title": "操作系统：资源、内存与调度",
+    "question_ids": [
+      "FB25",
+      "FB26",
+      "FB27",
+      "FB28",
+      "FB29",
+      "FB30",
+      "FB31",
+      "FB32"
+    ]
+  },
+  {
+    "path": "docs/40-backend/34-distributed-systems-details.md",
+    "title": "分布式：租约、事务、标识与调度",
+    "question_ids": [
+      "FB53",
+      "FB54",
+      "FB55",
+      "FB56",
+      "FB57",
+      "FB58",
+      "FB59",
+      "FB60",
+      "FB61",
+      "FB62",
+      "FB63"
+    ]
+  },
+  {
+    "path": "docs/40-backend/35-linux-operations-practice.md",
+    "title": "Linux：安全操作与证据采集",
+    "question_ids": [
+      "FB64",
+      "FB65",
+      "FB66"
+    ]
+  },
+  {
+    "path": "docs/40-backend/36-interview-followup-topics.md",
+    "title": "面经技术追问：补齐工程边界",
+    "question_ids": [
+      "FB79",
+      "FB80",
+      "FB81",
+      "FB82",
+      "FB83",
+      "FB84",
+      "FB85",
+      "FB86",
+      "FB87",
+      "FB88",
+      "FB89",
+      "FB90",
+      "FB91",
+      "FB92",
+      "FB93"
+    ]
+  },
+  {
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "title": "两个公开仓库的技术案例与贡献边界",
+    "question_ids": [
+      "A39",
+      "A40",
+      "A41",
+      "A42",
+      "A43",
+      "A44"
+    ]
+  },
+  {
+    "path": "docs/50-projects/teaching-case-review-and-seckill.md",
+    "title": "教学案例：点评、缓存、秒杀与客服",
+    "question_ids": [
+      "FB33",
+      "FB34",
+      "FB35",
+      "FB36",
+      "FB37",
+      "FB38",
+      "FB39",
+      "FB40",
+      "FB41",
+      "FB42",
+      "FB43",
+      "FB44",
+      "FB45",
+      "FB46",
+      "FB47",
+      "FB48",
+      "FB49",
+      "FB50",
+      "FB51",
+      "FB52"
+    ]
+  },
+  {
+    "path": "docs/60-interviews/agent.md",
+    "title": "公开面经：6 篇完整正文与 2 篇补充",
+    "question_ids": []
+  },
+  {
+    "path": "docs/60-interviews/backend.md",
+    "title": "真实公开面经样本",
+    "question_ids": []
+  },
+  {
+    "path": "docs/60-interviews/go.md",
+    "title": "真实公开面经摘要（与上面的教学问答分开）",
+    "question_ids": []
+  },
+  {
+    "path": "docs/60-interviews/java.md",
+    "title": "公开真实面经样本与使用边界",
+    "question_ids": []
+  },
+  {
+    "path": "docs/70-practice/agent-labs.md",
+    "title": "最后自测：把知识变成可以展示的能力",
+    "question_ids": []
+  },
+  {
+    "path": "docs/70-practice/algorithm-and-sql-plan.md",
+    "title": "算法与 SQL 的具体练习路线",
+    "question_ids": []
+  },
+  {
+    "path": "docs/70-practice/backend-self-check.md",
+    "title": "使用边界与自测方式",
+    "question_ids": []
+  },
+  {
+    "path": "docs/70-practice/go-labs.md",
+    "title": "四个小实验：把答案变成自己的理解",
+    "question_ids": []
+  },
+  {
+    "path": "docs/70-practice/interview-algorithm-supplements.md",
+    "title": "面经算法补充：六个明确题设的Python解法",
+    "question_ids": [
+      "X01",
+      "X02",
+      "X03",
+      "X04",
+      "X05",
+      "X06"
+    ]
+  },
+  {
+    "path": "docs/70-practice/java-labs.md",
+    "title": "练习顺序与自测",
+    "question_ids": []
+  },
+  {
+    "path": "docs/70-practice/reasoning-twelve-puzzles.md",
+    "title": "十二类推理题：条件、构造与证明",
+    "question_ids": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10",
+      "R11",
+      "R12"
+    ]
+  },
+  {
+    "path": "docs/70-practice/scenario-backend-worked-answers.md",
+    "title": "后端场景：有约束、有失败路径的答法",
+    "question_ids": [
+      "FB67",
+      "FB68",
+      "FB69",
+      "FB70",
+      "FB71",
+      "FB72",
+      "FB73",
+      "FB74",
+      "FB75",
+      "FB76",
+      "FB77",
+      "FB78"
+    ]
+  },
+  {
+    "path": "docs/70-practice/sql-nine-worked-problems.md",
+    "title": "SQL 九题：先澄清题意，再证明边界",
+    "question_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09"
+    ]
+  }
+]

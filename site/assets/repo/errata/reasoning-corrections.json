@@ -1,0 +1,56 @@
+[
+  {
+    "id": "R-E01",
+    "topic": "四七分钟沙漏",
+    "status": "timeline_corrected_and_simulated",
+    "corrected_statement": "从0同时启动，4翻四分钟、7翻七分钟、8再翻七分钟、9结束；不能错把第8分钟事件算作第16分钟。",
+    "target": "docs/70-practice/reasoning-twelve-puzzles.md#r05",
+    "evidence": "独立数学推导及examples/reasoning/verify-puzzles.py中相应检查；范围见正文",
+    "checked_on": "2026-10-09"
+  },
+  {
+    "id": "R-E02",
+    "topic": "六十四马最少场数",
+    "status": "claim_narrowed_to_proved_upper_bound",
+    "corrected_statement": "提供至多11场的条件策略，不声称全局最少11场；没有最优下界证据。",
+    "target": "docs/70-practice/reasoning-twelve-puzzles.md#r08",
+    "evidence": "独立数学推导及examples/reasoning/verify-puzzles.py中相应检查；范围见正文",
+    "checked_on": "2026-10-09"
+  },
+  {
+    "id": "R-E03",
+    "topic": "海盗投票规则",
+    "status": "assumptions_separated_and_recurrence_checked",
+    "corrected_statement": "含半通过可为98，严格过半可为97，取决门槛与同收益偏好；原题规则不足不能唯一作答。",
+    "target": "docs/70-practice/reasoning-twelve-puzzles.md#r09",
+    "evidence": "独立数学推导及examples/reasoning/verify-puzzles.py中相应检查；范围见正文",
+    "checked_on": "2026-10-09"
+  },
+  {
+    "id": "R-E04",
+    "topic": "取豆规则缺口",
+    "status": "unsupported_conclusion_removed",
+    "corrected_statement": "并列、取尽与策略/概率模型未定义，不能从全员取20推导第一人最安全。",
+    "target": "docs/70-practice/reasoning-twelve-puzzles.md#r11",
+    "evidence": "独立数学推导及examples/reasoning/verify-puzzles.py中相应检查；范围见正文",
+    "checked_on": "2026-10-09"
+  },
+  {
+    "id": "R-E05",
+    "topic": "汽水是否借瓶",
+    "status": "resource_invariant_and_simulation_checked",
+    "corrected_statement": "禁止借瓶为39；允许借一空瓶并归还才可40，必须将附加规则明示。",
+    "target": "docs/70-practice/reasoning-twelve-puzzles.md#r12",
+    "evidence": "独立数学推导及examples/reasoning/verify-puzzles.py中相应检查；范围见正文",
+    "checked_on": "2026-10-09"
+  },
+  {
+    "id": "R-E06",
+    "topic": "金条找零",
+    "status": "assumption_and_subset_enumeration_checked",
+    "corrected_statement": "1/2/4三块方案依赖允许收回找零，不能用于只允许单向每天交付的版本。",
+    "target": "docs/70-practice/reasoning-twelve-puzzles.md#r10",
+    "evidence": "独立数学推导及examples/reasoning/verify-puzzles.py中相应检查；范围见正文",
+    "checked_on": "2026-10-09"
+  }
+]

@@ -1,0 +1,79 @@
+# 128. 最长连续序列
+
+[官方题目](https://leetcode.cn/problems/longest-consecutive-sequence/) · MEDIUM · 官方分类：哈希
+
+## 题意与接口
+
+在无序整数数组中寻找由连续整数构成的最长序列长度，元素在原数组中不必相邻。`longestConsecutive(nums)` 返回长度，不修改输入。
+
+## 从朴素方法到优化
+
+排序去重后线性扫描需 O(n log n)。直接从每个数向右找会在长连续段上重复走 O(n²)；只从没有前驱的数启动即可消掉重复。
+
+## 核心思路
+
+先转为集合。如果 x-1 在集合里，x 不是段起点，跳过；否则依次查 x,x+1,…直到断开，并更新段长。
+
+## 手推一个小例子
+
+[12,9,3,10,11,9]去重后有{3,9,10,11,12}。3没有2，走一格；9没有8，走9→10→11→12共四格；10、11、12都有前驱，不再启动。
+
+## 为什么正确
+
+每个有限连续段都有唯一最小值，它没有前驱，因此该段必被扫描一次。非起点被跳过不丢失任何段。每个集合元素至多属于一次向右扩张，总扫描量线性。
+
+## Python 实现
+
+[完整可导入源码](../../../examples/hot100/p0128_longest_consecutive_sequence.py)。节点结构来自 [structures.py](../../../examples/hot100/structures.py)；普通题使用 `Solution`，设计题使用题目类名。提交到 LeetCode 时保留算法主体，删除本地节点导入，使用平台提供的节点类型。
+
+```python
+class Solution:
+    def longestConsecutive(self, nums: list[int]) -> int:
+        # 去重既保证段长正确，也避免重复的起点多次扫描。
+        values = set(nums)
+        best = 0
+        for value in values:
+            if value - 1 in values:
+                continue  # 只在连续段最左端起跑
+            end = value
+            while end in values:
+                end += 1
+            best = max(best, end - value)
+        return best
+```
+
+## 复杂度
+
+设 n 为输入长度，u 为不同值个数。平均时间 O(n)，空间 O(u)；虽然有嵌套循环，内层累计只访问每个连续段一次。
+
+## 边界与易错点
+
+- 空数组返回0；重复值不增加长度。
+- 必须遍历去重集合，否则重复的段起点可能重复长扫描。
+- 连续的是数值，不是原数组下标。
+
+## 本地测试与复习
+
+测试空数组、负数、重复段起点；随机对拍排序去重后扫描。
+
+复习：为什么嵌套while没有导致O(n²)？若流式持续插入整数，还能原样用本算法吗？
+
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+
+## 延伸阅读
+
+- [官方原题与约束](https://leetcode.cn/problems/longest-consecutive-sequence/)
+- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0128.Longest%20Consecutive%20Sequence/README.md)
+- [返回分类导航](../README.md)
+
+## 代码随想录延伸阅读
+
+外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
+
+- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0128.longest-consecutive-sequence.html)
+- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0128.longest-consecutive-sequence.html#python3)。可与上面的本仓库原创实现对照。
+- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+
+自主复习提示：用含重复值的输入检查“只从连续段起点扩展”的条件，说明为什么总扫描次数仍是线性的。
+
+资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。

@@ -1,0 +1,81 @@
+# 62. 不同路径
+
+[官方题目](https://leetcode.cn/problems/unique-paths/) · MEDIUM · 官方分类：多维动态规划
+
+## 题意与接口
+
+接口：`Solution.uniquePaths(m: int, n: int) -> int`。在 m 行 n 列的网格，从左上到右下，只能向右或向下，返回不同路径数。m、n 为 1 至 100；官方生成的答案不超过 2×10⁹。
+
+约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/unique-paths/)核对；以下为原创概述，并非完整题面转载。
+
+## 从朴素方法到优化
+
+递归枚举每条路径会重复到达同一格子。二维 DP 用“上方路径数+左方路径数”计算当前格；按行计算时只依赖上一行和当前行左侧，可压成一维。
+
+## 核心思路
+
+第一行每格只有一直向右这一条路径，初始化整行为 1。处理其余每行时从左到右：更新前 dp[col] 是上方格子的路径数，dp[col−1] 已经是本行左方格子的路径数，两者相加。第一列保持 1。
+
+## 手推一个小例子
+
+取 m=3、n=4：
+1. 第一行 dp=`[1,1,1,1]`。
+2. 第二行逐项更新后为 `[1,2,3,4]`。
+3. 第三行先得 1+2=3，再得 3+3=6，最后 4+6=10，得到 `[1,3,6,10]`。
+右下角答案为 10。
+
+## 为什么正确
+
+到达非边界格子的最后一步只能来自上方或左方，两类路径按最后一步区分，互不重叠且涵盖所有路径。因此二维递推成立。一维数组更新时保留了这两个依赖的正确版本，逐行逐列得到相同结果；边界只有一种路径，初始化正确。
+
+## Python 实现
+
+[完整可导入源码](../../../examples/hot100/p0062_unique_paths.py)。节点结构来自 [structures.py](../../../examples/hot100/structures.py)；普通题使用 `Solution`，设计题使用题目类名。提交到 LeetCode 时保留算法主体，删除本地节点导入，使用平台提供的节点类型。
+
+```python
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [1] * n
+        for _ in range(1, m):
+            for column in range(1, n):
+                # dp[column] 来自上一行，dp[column-1] 来自当前行。
+                dp[column] += dp[column - 1]
+        return dp[-1]
+```
+
+## 复杂度
+
+时间 O(mn)，辅助空间 O(n)。交换两维使较小者作列数可压至 O(min(m,n))；本实现保留直观的行列语义。
+
+## 边界与易错点
+
+- 1×1 网格有一条空移动路径，答案为 1。
+- 单行或单列也都只有一条路径。
+- 一维 DP 必须从左向右更新；这里与 0/1 背包的倒序原因不同。
+- 不要把 m、n 当作需移动的步数，步数分别为 m−1、n−1。
+
+## 本地测试与复习
+
+测试文件：[`test_greedy_dp_tricks.py`](../../../tests/hot100/test_greedy_dp_tricks.py)，对应 `test_p0062`。含合法最小输入、典型与关键边界；适用题使用固定随机种子与独立穷举或参考算法对拍。
+
+复习：如何用组合数独立验证答案？如果增加障碍格，边界初始化需要如何修改？
+
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+
+## 延伸阅读
+
+- [官方原题与约束](https://leetcode.cn/problems/unique-paths/)
+- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0062.Unique%20Paths/README.md)
+- [返回分类导航](../README.md)
+
+## 代码随想录延伸阅读
+
+外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
+
+- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0062.unique-paths.html)
+- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0062.unique-paths.html#python3)。可与上面的本仓库原创实现对照。
+- 本题配套视频：[62. 不同路径](https://www.bilibili.com/video/BV1ve4y1x7Eu/)。上传者已核验为代码随想录（MID 525438321）。
+
+自主复习提示：定义每格路径数的前驱，检查单行与单列；压成一维后说明旧值和新值各代表哪里。
+
+资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
