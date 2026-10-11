@@ -27,3 +27,5 @@ html[data-theme=dark]{--bg:#171e1b;--panel:#1d2722;--sidebar:#121a16;--ink:#e3ec
 @media(max-width:420px){.resource-card{padding:14px}.resource-card-heading{display:block}.resource-card-heading span{display:block;margin-top:4px}}
 
 @media(max-width:960px){.brand{padding-top:18px}}
+
+.reader-content .resource-download{display:inline-block;white-space:nowrap}

@@ -395,4 +395,10 @@ check('新追问正文搜索、源码下载及模型边界一致',()=>{
   assert.ok(docs.get('sources/interview-followups/README.md').source.includes('不计为原始候选人自报'));
 });
 
+check('显式源码下载控件不拆行且样式使用独立缓存版本',()=>{
+  const css=fs.readFileSync(path.join(site,'assets/style.css'),'utf8');
+  assert.ok(css.includes('.reader-content .resource-download{display:inline-block;white-space:nowrap}'));
+  assert.ok(html.includes('href="assets/style.css?v=source-download-nowrap-20261011"'));
+});
+
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);
