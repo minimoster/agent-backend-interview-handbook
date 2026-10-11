@@ -1,0 +1,389 @@
+# Transformer先修 从向量到一个可计算的注意力块
+
+[返回Agent目录](README.md) · [运行小实验](../../examples/transformer_prerequisite/README.md) · [一手参考与版本](../../sources/transformer-prerequisite-references.md)
+
+这篇讲义解决一个具体问题：看见 `Q/K/V`、多头、FFN、残差和LayerNorm时，能说清每一步在计算什么，并写对形状。它面向会基本Python、尚未系统学过Transformer的读者。先看算例，再跑代码，最后用面试问答检查理解。
+
+本章是原创先修补充，核查日期2026-10-11，不创建新的A/FA题号，不增加361道讲义题、100道Hot100、15道外部资源题或26张场景卡。它不复述[A18的RAG与微调选型](02-rag-retrieval-and-reranking.md#a18)，也不展开[24章的采样、KV缓存和服务优化](24-inference-and-serving-boundaries.md)。配套代码只计算小型、手设权重的CPU前向过程，没有训练、GPU、真实语言模型或生产部署。
+
+<a id="transformer-reading-route"></a>
+
+## 1 先看它在整条链路中的位置
+
+可以先把一个用于生成文本的模型理解为下面几段：
+
+1. Tokenizer把文本编码为token ID。一个token不一定对应一个汉字或一个完整单词。[Transformers 4.57.1分词说明](https://huggingface.co/docs/transformers/v4.57.1/en/tokenizer_summary)
+2. Embedding把ID查成向量。再按所选架构加入或应用位置机制。
+3. 多个Transformer块逐层更新各位置的表示。
+4. 输出层把某个位置的表示映射到词表logits，用它预测下一个token。
+
+本章只把第3步拆开算，不实现tokenizer、输出词表层或训练目标。知道如何计算一个块，不表示已经实现了一个能说话的大模型。
+
+原始Transformer是encoder-decoder架构：encoder更新输入表示；decoder除因果self-attention外，还可以用cross-attention读取encoder的输出。只用decoder式块的生成模型是另一种组织方式。“Transformer必定有encoder和decoder两部分”不能当作所有后续模型的定义。[原始论文第3节](https://arxiv.org/html/1706.03762v7#S3)
+
+先记两个动作：注意力让位置之间交换信息；FFN在每个位置内部处理特征。残差和归一化围绕这些子层组织表示与优化路径。它们不是Agent的工具执行器、检索器或工作流。
+
+### 先修数学只需三件事
+
+- 点积：`[a,b]·[c,d] = ac+bd`，输出一个数。
+- 矩阵乘法：`[m,n] @ [n,p] → [m,p]`，中间维度必须一致。
+- Softmax：把一组分数变成和为1的非负权重；先减去该组最大值，理论分布不变，并能减少指数溢出。
+
+本章使用“行是位置、列是特征”的记法。`X @ W`表示把每一行输入向量乘以同一个参数矩阵。写PyTorch时要注意`nn.Linear`的权重存储方向不同，不能只按本文矩阵外观照抄。[PyTorch 2.9 Linear定义](https://docs.pytorch.org/docs/2.9/generated/torch.nn.Linear.html)
+
+<a id="transformer-qkv"></a>
+
+## 2 Q K V是同一份输入的三种投影
+
+先忽略batch。假设`X`有3个位置，每个位置4个特征，形状是`[3,4]`。在一层self-attention中，可以写：
+
+```text
+Q = X @ W_Q
+K = X @ W_K
+V = X @ W_V
+```
+
+这里暂略bias。`W_Q/W_K/W_V`是不同的模型参数；`Q/K/V`是这次输入计算出来的中间表示。训练更新的是参数，输入变化时这些中间表示也会变化。对同一子层，各位置使用同一组投影参数，并非每个token拥有独立的投影矩阵。
+
+可以用一个有限的类比记住用途：
+
+- Q像当前读取位置的“查询特征”
+- K像各候选位置用于匹配的“索引特征”
+- V像匹配之后实际汇入的“内容特征”
+
+类比只帮助记忆，真实向量不是人为写好的问题、关键词和答案。一个头也不保证学到固定的“主语头”或“时间头”。
+
+Self-attention的Q/K/V源自同一条表示序列，但经过不同投影，通常不相等。Cross-attention中，Q可以来自一条序列，K和V来自另一条序列。框架调用中的三个输入张量名称，与内部投影之后的Q/K/V也要区分。[PyTorch 2.9 MultiheadAttention的输入与投影定义](https://docs.pytorch.org/docs/2.9/generated/torch.nn.MultiheadAttention.html)
+
+### 为什么既要K又要V
+
+看一个原创反例：你已经算好权重`[0.8,0.2]`。如果V是`[[10],[0]]`，汇总结果是8；把V改为`[[0],[10]]`，权重可以完全不变，结果变成2。匹配关系与汇入内容是两个不同的计算环节。
+
+反过来，V不变而K变了，匹配分数和汇总比例就可能变化。Q/K负责本次“如何分配注意力”，V负责“按这些比例带走什么”。这里讨论的是给定一层的算术；模型训练时三个投影可以共同调整。
+
+<a id="transformer-scaled-attention"></a>
+
+## 3 单头注意力逐步算一遍
+
+标准scaled dot-product attention可简记为：
+
+```text
+scores  = Q @ transpose(K) / sqrt(d_k)
+weights = softmax(scores + mask, axis=key)
+output  = weights @ V
+```
+
+`d_k`是单头Q/K的特征维数，不是序列长度，也不是batch大小。Mask是允许访问关系：允许的位置加0，禁止的位置在常见数学表述中加负无穷。公式依据见[原始论文3.2.1节](https://arxiv.org/html/1706.03762v7#S3.SS2.SSS1)。下面的数字是自行设计和计算的教学例子。
+
+### 一个查询读取两个候选位置
+
+给定：
+
+```text
+Q = [[1, 0]]             # [1,2]
+K = [[1, 0], [0, 1]]     # [2,2]
+V = [[10, 0], [0, 20]]   # [2,2]
+```
+
+第一步，点积得到`[1,0]`。除以`sqrt(2)`后约为`[0.707107,0]`。
+
+第二步，在这一行的两个key之间做softmax：
+
+```text
+p0 = exp(0.707107) / (exp(0.707107) + exp(0)) ≈ 0.669762
+p1 = 1 - p0 ≈ 0.330238
+```
+
+第三步，用这两个权重加权V：
+
+```text
+output = p0 * [10,0] + p1 * [0,20]
+       ≈ [6.697615, 6.604769]
+```
+
+权重0.67大于0.33，不表示输出第一维一定远大于第二维；V的各维数值也参与结果。这不是把最高分token拿出来，也不是把Q与K相乘后直接作为最终输出。
+
+把Q换成`[0,0]`，两个点积均为0，此时没有mask的权重是`[0.5,0.5]`。这是特定数值输入的结果，不意味着“所有注意力初始时都均匀”。
+
+### 为什么除以平方根
+
+可以自己推导一个受条件限制的直觉：若各维`q_i`和`k_i`满足独立、零均值、单位方差，并且各维乘积也互相独立，那么`sum(q_i*k_i)`的方差为`d_k`；除以`sqrt(d_k)`后方差为1。这样可缓和维数变大造成的分数尺度增长。
+
+这不是说训练后的Q/K一定独立，也不是说点积必定随维数单调变大。缩放针对softmax前的分数尺度，不是“让Q/K变成单位向量”，也不保证所有输入下都不会出现很尖的权重。上述假设与动机可对照[原始论文的缩放说明](https://arxiv.org/html/1706.03762v7#S3.SS2.SSS1)。
+
+### Softmax沿哪一维
+
+有3个query、5个key时，分数形状为`[3,5]`。每个query对应一行，在该行的5个key上归一化。并不是把整个`[3,5]`矩阵的15个数一起归一化。
+
+若`V`形状为`[5,7]`，结果为`[3,7]`。Q/K的宽度必须相同，K/V的位置数必须相同，但V的特征宽度可以不同于Q/K。这也是配套单头实验专门检查的边界。[PyTorch 2.9 scaled_dot_product_attention形状定义](https://docs.pytorch.org/docs/2.9/generated/torch.nn.functional.scaled_dot_product_attention.html)
+
+<a id="transformer-mask"></a>
+
+## 4 Mask决定哪个位置可以读取哪个位置
+
+以3个位置的因果self-attention为例，行表示query，列表示key：
+
+```text
+允许读取 = [[真, 假, 假],
+           [真, 真, 假],
+           [真, 真, 真]]
+```
+
+位置0只能读0；位置1可以读0和1；位置2可以读0、1、2。禁止位置应该在softmax之前排除，使其注意力权重为0。把softmax后的某些概率清零却不重新归一化，不等于同一个运算。
+
+因果mask与padding mask目的不同：前者防止读取未来，后者防止把填充位置当作有效key。真实数据可以需要二者的组合，但本实验只实现显式允许矩阵和方形因果mask，不处理变长batch。
+
+“能读当前位置”不等于泄漏下一个token。举例，输入为`[BOS, 我, 喜欢]`，与它对齐的下一个token目标是`[我, 喜欢, 猫]`。位置“我”的表示可以读取`[BOS,我]`，用于预测“喜欢”；不能读取输入中后面的“喜欢”。目标错位和mask应同时检查。
+
+如果一个query的所有key都禁止，不能把它解释为合法的均匀分布。本实验抛出明确错误。不同框架、数值类型和实现对这一边界的实际输出需要单独验证，不能用教学函数推定生产行为。
+
+### 框架布尔mask的含义会相反
+
+本实验的`allowed=True`表示允许。PyTorch 2.9的`functional.scaled_dot_product_attention`布尔mask也以True表示允许；`nn.MultiheadAttention`的布尔`attn_mask`则以True表示禁止。迁移代码时先读具体API，而不是凭变量名猜。[SDPA布尔mask](https://docs.pytorch.org/docs/2.9/generated/torch.nn.functional.scaled_dot_product_attention.html) · [MHA布尔mask](https://docs.pytorch.org/docs/2.9/generated/torch.nn.MultiheadAttention.html)
+
+<a id="transformer-multihead"></a>
+
+## 5 多头是分开计算再拼接投影
+
+单个头只有一套匹配和汇总。多头允许不同投影形成不同的表示子空间，然后把结果组合起来。经典形式是：
+
+```text
+head_i = Attention(X @ W_Q_i, X @ W_K_i, X @ W_V_i)
+MHA(X) = Concat(head_1, ..., head_h) @ W_O
+```
+
+注意两个动作：先沿特征维拼接，再做输出投影。不是先把每个头的softmax权重相加后只算一次V，也不是直接把所有头的输出求和。`W_O`可以组合不同头的输出特征。[PyTorch 2.9多头定义](https://docs.pytorch.org/docs/2.9/generated/torch.nn.MultiheadAttention.html)
+
+举一个只有一个位置的原创算例：两个头分别输出`[1,2]`和`[3,4]`。拼接结果为`[1,2,3,4]`。若输出投影按本章行向量约定选择：
+
+```text
+W_O = [[1,0,0,0],
+       [0,1,0,0],
+       [1,0,1,0],
+       [0,1,0,1]]
+```
+
+最终输出是`[4,6,3,4]`。前两维结合了两个头的信息，后两维保留相应特征。配套测试把“拼接”和“输出投影”分开断言，防止实现只做到拼接就结束。
+
+### 分头不是把句子分段
+
+常见等宽MHA设`d_k=d_v=d_model/h`。例如`d_model=4,h=2`时，每个头处理2维特征，但每个头仍可读取全部允许的位置。不是头1只看句子前半段、头2只看后半段。
+
+实现可以先计算一次较宽的Q/K/V投影，再reshape和transpose成多个头；这是概念上各头不同投影的组织方式，不要求物理上逐头启动独立计算。也不能推断“各头权重相同”：大矩阵中的不同列块对应不同参数。
+
+等宽与整除是本教学MHA和常见API的约束，不是所有注意力变体的普遍定律。更一般的公式允许不同的value维数；GQA/MQA等变体也不能直接用本实验的头布局代替。
+
+<a id="transformer-shapes"></a>
+
+## 6 把batch和维度放回去
+
+为了避免把“token数”和“特征数”混在一起，先约定这些符号：
+
+- B：batch中序列数量
+- Lq/Lk：query与key的序列长度；self-attention常为同一个L
+- d_model：一个位置的模型特征宽度
+- h：本例的注意力头数
+- d_k/d_v：每个头的Q/K与V特征宽度
+- d_ff：FFN中间特征宽度
+
+下面固定一个原创等宽self-attention示例：`B=2,L=3,d_model=4,h=2,d_k=d_v=2,d_ff=6`。文中的轴顺序是batch-first；实际库可能使用其他布局。
+
+| 阶段 | 形状 | 检查重点 |
+| --- | --- | --- |
+| 输入X | `[2,3,4]` | 两条序列，每条三个位置 |
+| 完整Q/K/V投影 | 各`[2,3,4]` | 本例投影矩阵各为`[4,4]` |
+| 拆分并调整轴后的每组Q/K/V | 各`[2,2,3,2]` | 轴为`[B,h,L,head_dim]` |
+| `Q @ K.transpose(-2,-1)` | `[2,2,3,3]` | 最后两轴是query位置与key位置 |
+| Softmax权重 | `[2,2,3,3]` | 对最后一个key轴归一化 |
+| 各头汇总V | `[2,2,3,2]` | 最后一轴变回value特征 |
+| 调轴后拼接各头 | `[2,3,4]` | 恢复`[B,L,h*d_v]` |
+| 输出投影与第一次残差 | `[2,3,4]` | 输出宽度要与X匹配 |
+| FFN第一层与激活 | `[2,3,6]` | 只改变特征宽度 |
+| FFN第二层与第二次残差 | `[2,3,4]` | 恢复d_model |
+| LayerNorm结果 | `[2,3,4]` | 本例对每个位置最后4维归一化 |
+
+张量的数值不因reshape自动改变，但元素与语义轴的对应关系会变。不能把`[B,L,h,d]`直接当成`[B,h,L,d]`用，通常需要transpose。把头轴和位置轴弄反，即使乘法仍能运行，也可能算出错误的注意力。
+
+配套纯Python代码为易读省略B，只接受二维`[L,d]`；MHA返回的权重按`[h,L,L]`组织。它与上表`B=2`的解释示例分别标明，不能把其列表维数当作完整batch实现。
+
+<a id="transformer-ffn"></a>
+
+## 7 FFN在每个位置内部处理特征
+
+本章采用基础ReLU FFN：
+
+```text
+FFN(x) = ReLU(x @ W1 + b1) @ W2 + b2
+W1: [d_model,d_ff]
+W2: [d_ff,d_model]
+```
+
+同一层的各位置使用相同W1/W2/bias，但逐位置单独计算；普通position-wise FFN这一步不直接把不同位置混合。不同Transformer层通常具有各自的FFN参数。[原始论文3.3节](https://arxiv.org/html/1706.03762v7#S3.SS3)
+
+用配套测试中的原创例子感受非线性：输入`[-2,3]`，第一次线性变换得到`[-2,3,1]`；ReLU后为`[0,3,1]`；第二次变换得到`[1,4]`。形状依次是`[1,2]→[1,3]→[1,2]`。
+
+没有中间激活时，两次线性变换可以合并为一次仿射变换；加了ReLU后通常不能这样合并。升维、激活再降维给了这一子层不同于单次线性投影的表达能力，不意味着“FFN在解码时直接查询数据库”。
+
+ReLU和`d_ff=4*d_model`来自特定基础设计及常见配置，不是所有模型都必须遵守的定义。PyTorch 2.9参考层也允许选择ReLU或GELU。[参考层参数](https://docs.pytorch.org/docs/2.9/generated/torch.nn.TransformerEncoderLayer.html) 本实验不实现门控FFN、MoE或生产模型的所有变体。
+
+<a id="transformer-residual-norm"></a>
+
+## 8 残差和LayerNorm不能只背Add and Norm
+
+### 残差是输入与子层输出相加
+
+对某个子层F，残差的基本形式是`x + F(x)`。两个张量的形状必须兼容；本实验要求完全相同。注意力里的输出投影与FFN的第二层都把宽度恢复到d_model，正是为了能和原表示相加。
+
+残差给原表示提供一条直接路径，让子层可以学增量。它有助于优化，但不是“绝对不会梯度消失”的保证。`x + F(x)`也不保证把输入各特征原封不动保存在一个可以单独取出的区域。
+
+原创算例：`x=[1,-1]`，`F(x)=[2,3]`，相加得到`[3,2]`。如果只保留`F(x)`，结果为`[2,3]`；这两个计算不能混写。
+
+### LayerNorm按约定轴计算输入统计量
+
+对一个位置的d维向量，本章的计算是：
+
+```text
+mean = sum(x_i) / d
+var  = sum((x_i - mean)^2) / d
+y_i  = gamma_i * (x_i - mean) / sqrt(var + eps) + beta_i
+```
+
+这里采用总体方差分母d，不是样本方差的d-1。对`[B,L,d_model]`且`normalized_shape=d_model`时，每个位置独立跨特征归一化；它不跨batch，也不把所有token一起求均值。API若选择多个尾轴，归一化范围会随配置改变。[PyTorch 2.9 LayerNorm的统计量与参数](https://docs.pytorch.org/docs/2.9/generated/torch.nn.LayerNorm.html)
+
+输入`[1,3]`时，mean=2，var=1；若gamma为1、beta为0、eps为0.00001，输出约为`[-0.999995,0.999995]`。因为eps参与分母，其方差只是接近1。加入不同的可学习gamma/beta后，输出也不再保证均值0、方差1。
+
+输入`[7,7]`时，var=0，正eps避免除零；gamma为`[2,3]`、beta为`[4,5]`时输出是`[4,5]`。LayerNorm不是L2单位长度归一化，不应把它与检索embedding的余弦归一化混为一谈。
+
+### Post LN与Pre LN顺序不同
+
+为突出顺序，先略去dropout，写出一个attention加FFN块：
+
+```text
+Post-LN:
+  z = LN1(x + MHA(x))
+  y = LN2(z + FFN(z))
+
+Pre-LN:
+  z = x + MHA(LN1(x))
+  y = z + FFN(LN2(z))
+```
+
+LN1和LN2是不同子层的归一化，各自可以有参数。真实架构还可能有最终归一化、dropout或其他结构；这里不能用简式替代完整模型配置。[PyTorch 2.9 norm_first参数](https://docs.pytorch.org/docs/2.9/generated/torch.nn.TransformerEncoderLayer.html)
+
+一个简单自检：假设MHA和FFN分支都输出零。Pre-LN块按上述公式输出x；Post-LN仍会归一化，通常不等于x。配套测试检查这一区别，而不是只验证输出shape正确。
+
+Pre-LN与Post-LN的位置会影响优化；相关论文在其假设和实验中讨论梯度尺度与warm-up。不能从中推广为“Pre-LN任何模型都不需要warm-up”或“Pre-LN始终更准”。[Xiong等人的原论文与实验边界](https://proceedings.mlr.press/v119/xiong20b.html)
+
+<a id="transformer-position"></a>
+
+## 9 为什么还需要位置机制
+
+考虑没有位置机制、没有mask或其他顺序结构的纯内容self-attention。把输入位置重排，Q/K/V也跟着重排，注意力结果对应重排；这称为对位置置换等变。它不会只因为第一个元素先进入矩阵，就自动学到“这个词在另一个词之前”。
+
+模型因此需要某种位置或顺序机制。原论文使用位置编码与embedding相加；这不是所有现代变体的唯一形式。[原始论文3.5节](https://arxiv.org/html/1706.03762v7#S3.SS5)
+
+不能把上述结论写成“任何attention都完全不知道顺序”：因果mask本身提供了方向约束，其他架构也可能有不同的位置机制。本实验直接输入手设向量，因果mask可见，没有实现位置编码，不能据此宣称完整复现原始Transformer。
+
+<a id="transformer-lab"></a>
+
+## 10 跑一个能看见每一步的实验
+
+在仓库根目录执行，无需安装第三方包：
+
+```bash
+python -B examples/transformer_prerequisite/attention_lab.py
+python -B -m unittest discover -s examples/transformer_prerequisite -p 'test_attention_lab.py' -v
+```
+
+输出先给本章单头手算的scores、weights和result，再给`L=3,d_model=4,h=2,d_ff=6`的小块。Q/K投影不同，输出投影还会混合头特征，因此不是“所有投影设为单位阵所以结构怎么写都对”的演示。MHA部分使用因果mask；代码分别运行Pre-LN和Post-LN。
+
+建议按下面的顺序改参数：
+
+1. 只改V，观察同一层权重不变而汇总结果变化。
+2. 只交换K投影的列，观察权重如何变化。
+3. 去掉因果mask，再修改最后一个位置，比较前面位置的结果。
+4. 把W_O设为不同矩阵，分别观察拼接结果与最终输出。
+5. 修改FFN激活前的正负值，观察ReLU如何改变结果。
+6. 把注意力和FFN分支设为零，解释Pre-LN和Post-LN输出的区别。
+
+[教学源码](../../examples/transformer_prerequisite/attention_lab.py)包含shape检查、稳定softmax、单头注意力、多头拼接投影、FFN、逐位置LayerNorm和块的两种顺序。[39项测试](../../examples/transformer_prerequisite/test_attention_lab.py)检查手算结果、mask方向、Q/K与V宽度边界、输出投影、逐位置计算及错误形状等。
+
+测试只证明所列小型有限输入的算术合同。本实验没有反向传播、优化器、训练数据、词表输出、tokenizer、padding batch、半精度、分布式计算、完整decoder cross-attention或KV缓存。也没有用PyTorch执行参考对照。详见[验证记录](../../coverage/TRANSFORMER_PREREQUISITE_VALIDATION.md)。
+
+<a id="transformer-interview"></a>
+
+## 11 面试检查 用维度和反例回答
+
+### Q K V到底是什么 能说是问题关键词和答案吗
+
+参考答案：它们是模型表示经参数投影得到的向量。Q/K计算匹配分数，分数归一化后加权V。问题、关键词、答案只可作为有限类比，不能说训练时就为每个token写好了这些含义。Self-attention同源不等于Q=K=V。
+
+追问：训练更新的是Q/K/V吗？答案：Q/K/V会通过反向传播参与梯度计算，但优化器通常更新可学习参数，如投影矩阵；它们本身是随输入变化的激活，不能与参数混淆。
+
+### 为什么除以sqrt d_k 为什么不是d_model
+
+参考答案：标准公式缩放每个头Q/K点积；维数是单头d_k。在独立零均值单位方差的简化假设下，点积方差随d_k增长，平方根缩放抵消这个尺度。不是长度归一化，也不是任意架构都强制使用该缩放。
+
+### 三个query五个key七维value 输出多大
+
+参考答案：若Q/K宽度一致，分数和权重为`[3,5]`；V为`[5,7]`，输出为`[3,7]`。每行在五个key上归一化。Q与K的位置数可以不同。
+
+### 多头注意力最后是相加还是拼接
+
+参考答案：经典MHA先按特征维拼接各头输出，再乘输出投影W_O。等宽例中每头`[L,d_model/h]`，拼接`[L,d_model]`，投影仍输出`[L,d_model]`，方便残差相加。各头仍覆盖所有允许位置。
+
+### 多头是不是一定比单头更准 每个头能固定解释吗
+
+参考答案：多头提供不同子空间的匹配和汇总能力，但效果要看模型、数据和训练。头的功能由训练形成，可能重复或难以简单解释，不能把固定语言学职责当作架构保证。
+
+### 一个attention输出是不是一个概率分布
+
+参考答案：softmax后的每行权重在有效key上是概率式权重，和为1；乘V后的输出是特征向量，其分量可以为负、和不为1。最终词表概率是另一处输出层和softmax的结果。
+
+### FFN是否让各token再做一次attention
+
+参考答案：普通position-wise FFN对每个位置使用同一组参数独立处理特征，不直接跨位置混合。它接收的表示可能已经包含此前attention聚合的上下文，所以“FFN逐位置”也不等于其输入完全没有上下文。
+
+### LayerNorm一定让输出均值0 方差1吗
+
+参考答案：在默认gamma=1、beta=0时，中心化后均值约为0；正eps使方差不一定精确为1。可学习的逐特征gamma/beta还会改变统计量。先说明归一化轴，再谈结果。
+
+### LayerNorm是对整个batch求均值吗
+
+参考答案：本例对每个位置的d_model维求统计量。归一化范围由normalized_shape指定，不能只背“不跨batch”却忽略API可配置多个尾轴。
+
+### 有残差就不会梯度消失吗
+
+参考答案：残差增加直接信息与梯度路径，但总体梯度还受归一化、参数、深度、初始化及优化设置影响，不能给绝对保证。先写出具体Pre-LN或Post-LN公式再讨论。
+
+### Causal mask为什么允许读取当前位置
+
+参考答案：当前位置的输入token已知，其输出用于预测下一个token；目标必须正确错位。限制的是未来位置，训练时已有完整序列也不能把未来输入泄漏给当前预测。
+
+### 能展示代码 就表示做过模型训练了吗
+
+参考答案：不能。本章能展示的是手设权重的前向算术和39项合同测试。真实训练需要数据、目标、梯度、优化器、评测和资源记录；没有这些证据就准确称为“实现过教学前向实验”。
+
+<a id="transformer-exercises"></a>
+
+## 12 三道短练习与验收
+
+### 练习一 不运行先写shape
+
+Q为`[2,4]`，K为`[6,4]`，V为`[6,3]`。先写QK转置、weights和output形状，再检查每行softmax的轴。
+
+参考结果：`[2,6]、[2,6]、[2,3]`；每个query对六个key归一化。若把V改成`[5,3]`，K/V位置对应关系不成立。
+
+### 练习二 找到一个mask错误
+
+有人先对分数`[0,0]`做softmax得到`[0.5,0.5]`，再把第二个禁止位置清零，最终用`[0.5,0]`汇总V。解释错误在哪里。
+
+参考结果：有效权重和变成0.5。若只有第一个key允许，正确masked softmax应为`[1,0]`。修改测试，使错误版本不能通过。
+
+### 练习三 检查归一化顺序
+
+输入`[1,3]`，两个分支均输出零。分别写Pre-LN和Post-LN输出；再把LayerNorm的beta设为非零，解释输出是否仍是零均值。
+
+参考结果：本章Pre-LN简式保留`[1,3]`；Post-LN执行两次归一化，通常不同于输入。Beta是仿射偏移，不保证零均值。
+
+完成本章的验收标准：能手算一个注意力输出；能区分位置轴、头轴和特征轴；能说明softmax轴与mask方向；能用零分支反例区分Pre-LN/Post-LN；能如实说清代码运行过什么、没有运行什么。接下来再读[推理与缓存](24-inference-and-serving-boundaries.md)，以及[A18的训练选型](02-rag-retrieval-and-reranking.md#a18)。

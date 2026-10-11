@@ -7,3 +7,5 @@
 - 示例数字、任务状态与测试方案是教学用的假设，不代表你的项目已有指标或生产流量。项目专属事实锁定在 [AG-P01](../../sources/catalog.md#ag-p01)、[AG-P02](../../sources/catalog.md#ag-p02) 对应提交；“建议改进”不能说成“我已完成”。
 - 技术答案只依官方文档、官方工程文章、原始规范/论文，再加明确标记的工程推演；面经仅说明有人报告被问过这些主题，不用来证明技术答案正确。
 - 本章源码涉及 Go，通用概念也适用于 Python。LangGraph 的例子用来解释状态编排，不表示你的 Go 项目使用了 LangGraph。
+
+如果Q/K/V、注意力形状或LayerNorm还不熟，先读[Transformer先修](05-transformer-prerequisite.md)并运行一个手设权重小实验，再读[推理与缓存](24-inference-and-serving-boundaries.md)。这条先修路线不要求先训练模型。

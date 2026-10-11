@@ -32,6 +32,8 @@ P0/P1/P2 是学习优先级建议，不是统计考频。先选 Java 或 Go 作�
 
 [查看本模块完整专题目录](docs/10-agent/README.md)，含以下基线及新增详解。
 
+- [Transformer先修与前向小实验](docs/10-agent/05-transformer-prerequisite.md) · 原创学习补充，不增加编号题数
+
 - [Agent loop、工具、状态与编排](docs/10-agent/01-agent-loop-tools-and-state.md) · 8题
 - [RAG、检索与重排](docs/10-agent/02-rag-retrieval-and-reranking.md) · 10题
 - [Memory 与上下文管理](docs/10-agent/03-memory-and-context.md) · 5题
@@ -126,7 +128,7 @@ SC-A/SC-B编号独立于361道讲义题、Hot100的100题和15道外部资源题
 
 [整合方案](coverage/INTEGRATION_PLAN.md) · [完成标准](coverage/ACCEPTANCE.md) · 部分章节暂未发布 · [修订方式](CONTRIBUTING.md)
 
-最后整理日期：2026-10-10。
+最后整理日期：2026-10-11。
 
 ## 进阶主题
 

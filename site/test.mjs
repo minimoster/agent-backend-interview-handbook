@@ -319,4 +319,25 @@ check('新专题正文检索能定位真实锚点且现代协议保持未测',()
   assert.ok(modern.includes('2025-11-25'));
   assert.ok(docs.get('coverage/AGENT_LABS_VALIDATION.md').source.includes('合计94项'));
 });
+
+
+check('Transformer原创先修导航、形状搜索与源码保持独立口径',()=>{
+  const chapterPath='docs/10-agent/05-transformer-prerequisite.md';
+  const chapter=docs.get(chapterPath);
+  assert.ok(chapter);
+  assert.equal(chapter.source,fs.readFileSync(path.join(root,chapterPath),'utf8'));
+  assert.equal(data.questionCount-data.hot100Count,361);
+  assert.equal(data.hot100Count,100);
+  assert.equal(data.supplementaryCount,15);
+  assert.equal(data.scenarioCount,26);
+  const entry=index.documents.find(d=>d.relative_path===chapterPath);
+  assert.ok(entry);assert.deepEqual(entry.question_ids,[]);
+  assert.ok(!index.items.some(i=>(i.relative_path||i.path)===chapterPath));
+  for(const id of ['transformer-qkv','transformer-scaled-attention','transformer-mask','transformer-multihead','transformer-shapes','transformer-ffn','transformer-residual-norm','transformer-interview'])assert.ok(chapter.headings.some(h=>h.id===id),id);
+  for(const q of ['总体方差','Post-LN','W_O','d_model','Q K V']){const r=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===chapterPath);assert.ok(r,q);assert.ok(chapter.headings.some(h=>h.id===r.section.id),q);}
+  for(const file of ['attention_lab.py','test_attention_lab.py']){const relative=`examples/transformer_prerequisite/${file}`;assert.ok(chapter.html.includes(`href="assets/repo/${relative}"`));assert.ok(fs.readFileSync(path.join(site,'assets/repo',relative)).equals(fs.readFileSync(path.join(root,relative))));}
+  for(const file of ['README.md','docs/10-agent/README.md','docs/10-agent/00-reading-guide.md'])assert.ok(docs.get(file).html.includes(encodeURIComponent(chapterPath)),file);
+  for(const file of ['sources/transformer-prerequisite-references.md','coverage/TRANSFORMER_PREREQUISITE_VALIDATION.md','examples/transformer_prerequisite/README.md'])assert.ok(docs.has(file),file);
+});
+
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);

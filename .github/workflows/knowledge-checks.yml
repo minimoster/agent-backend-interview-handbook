@@ -58,6 +58,7 @@ jobs:
           python -m pip install -r examples/requirements.txt -r examples/retrieval_contracts/requirements-mcp.txt
           (cd examples/agent_scenario_contracts && python -B -m unittest -v test_ordering)
           (cd examples && python -B -m unittest -v test_python_language_lab test_fastapi_lab test_coding_kernels test_kv_budget)
+          python -B -m unittest discover -s examples/transformer_prerequisite -p 'test_attention_lab.py' -v
           (cd examples/retrieval_contracts && python -B -m unittest -v test_lab test_store_skill && python -B test_mcp_legacy.py)
       - name: Verify Go cancellation and fake SSE fixtures
         working-directory: examples/go/cancellation

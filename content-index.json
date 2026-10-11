@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_on": "2026-10-10",
+  "updated_on": "2026-10-11",
   "content_status": "partial_chapters_unpublished",
   "path_base": "repository_root",
   "notes": [
@@ -8,7 +8,8 @@
     "relative_path/path/url均相对仓库根目录；anchor为null时打开整篇。",
     "进阶专题不改变原461题索引。",
     "部分章节暂未发布；本版361道讲义题、100道Hot100和15道外部资源题分别计数。",
-    "2026-10-10新增10篇Agent/后端/练习/面试专题；KV补充并入既有24章，不增加编号题或独立场景卡。"
+    "2026-10-10新增10篇Agent/后端/练习/面试专题；KV补充并入既有24章，不增加编号题或独立场景卡。",
+    "2026-10-11新增Transformer原创先修与39项前向算术合同，不创建题号或增加独立场景卡。"
   ],
   "counts": {
     "interview_questions": 361,
@@ -7263,6 +7264,14 @@
       "relative_path": "docs/10-agent/00-reading-guide.md",
       "path": "docs/10-agent/00-reading-guide.md",
       "url": "docs/10-agent/00-reading-guide.md",
+      "question_ids": []
+    },
+    {
+      "title": "Transformer先修 从向量到一个可计算的注意力块",
+      "category": "原创先修补充",
+      "relative_path": "docs/10-agent/05-transformer-prerequisite.md",
+      "path": "docs/10-agent/05-transformer-prerequisite.md",
+      "url": "docs/10-agent/05-transformer-prerequisite.md",
       "question_ids": []
     },
     {

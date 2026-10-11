@@ -3,6 +3,7 @@
 [返回总目录](../../README.md) · [题号索引](../../QUESTION_INDEX.md)
 
 - [怎样使用这份资料](00-reading-guide.md)
+- [Transformer先修 从向量到一个可计算的注意力块](05-transformer-prerequisite.md) · 原创先修与39项算术测试
 - [Agent loop、工具、状态与编排](01-agent-loop-tools-and-state.md) · 8题
 - [RAG、检索与重排](02-rag-retrieval-and-reranking.md) · 10题
 - [Memory 与上下文管理](03-memory-and-context.md) · 5题
