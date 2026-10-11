@@ -62,7 +62,8 @@ const moduleDefs = [
   ['hot100','80-hot100','LeetCode Hot100','09','17 类模式，100 道原创题解'],
   ['supplement','85-algorithm-supplement','算法补充资源','10','15 道独立练习，官方外部资源'],
   ['scenarios','90-public-interview-scenarios','公开场景练习','11','26张原创卡：公开主题、追问与验收'],
-  ['reference',null,'版本与来源','12','核查日期、证据与权利边界']
+  ['preparation','90-interview','面试准备','12','用真实证据回答技术与HR追问'],
+  ['reference',null,'版本与来源','13','核查日期、证据与权利边界']
 ];
 // Every first-party Markdown target belongs in the same reading registry. A
 // Markdown file copied alone into assets/repo would retain relative links whose

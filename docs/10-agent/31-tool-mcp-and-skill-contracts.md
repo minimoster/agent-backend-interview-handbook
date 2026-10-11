@@ -1,0 +1,136 @@
+# 工具 MCP与Skill的实用合同
+
+[返回Agent目录](README.md) · [验证范围](../../coverage/AGENT_LABS_VALIDATION.md)
+
+
+工具执行、协议接入和任务方法是三层合同。先读[A03–A08](01-agent-loop-tools-and-state.md#a03)、[FA26–FA30](15-mcp-versions-and-integration.md)及[FA31–FA34](16-skills-routing-and-governance.md)。本章补大量工具的按需发现、内容/错误边界、版本明确的本地实验和Skill作者验收，不再列一遍通用生产清单。核查日期：2026-10-10。
+
+<a id="tool-result-contract"></a>
+## 1 一次工具回合要保留哪些身份
+
+注册契约→模型选择工具与候选参数→应用解析/校验/授权→真实执行→用原call_id回注结果→核验目标，是一个完整回合。调用ID关联这次模型意图，业务operation_id关联真实外部操作，task_id关联更长任务，schema_version关联接口；不能拿到达顺序代替身份。
+
+输入Schema限制结构，业务校验核对对象/值，授权核对当前身份和资源。输出也需有界并验证schema、来源/操作ID与真实状态。成功的HTTP或JSON-RPC只表示该层结果，不等于用户任务完成。风险分类用于决定额外确认与隔离，工具自称readOnly或Skill声明安全不能替代运行时事实。
+
+自定义业务错误可以包含code、可公开message、retryable、operation_id和unknown_outcome；它不是MCP强制错误字段。机器判断与用户说明分开：例如“检索完成，上传结果尚未确认”，比一律“失败请重试”准确。内部堆栈、凭据、完整入参和私有内容不直接写给用户或日志。
+
+[A29–A30](04-streaming-and-reliable-execution.md#a29)已有重试与幂等。429/503/timeout是否重试还看副作用、查询/幂等能力和总预算；超时不等于未执行。排队工具在执行入口再次授权，执行后验证产物或状态，Trace只保留复现必要数据，工具evals分别测选择、参数、拒绝、结果关联及目标完成。
+
+<a id="schema-discovery-budget"></a>
+## 2 大量工具如何按需提供给模型
+
+这是独立新写的完整答案。工具定义太多，通常先表现为上下文token、费用、选择难度或请求体膨胀；只有测到进程分配问题，才叫内存池瓶颈。MCP不要求把全部tools/list响应都放进system prompt，工具也能渐进发现。
+
+1. 完整分页拉取当前身份可见目录，建立服务内部ID、工具名、用途、输入要求、标签、schema版本和测量长度的索引。服务内部ID由宿主配置生成，不依赖服务自报name唯一。
+2. 先按任务与当前权限筛候选，再比较功能相关性、前置依赖、成本和可用回退。分层路由例如“资料检索→具体来源”，但必要工具被一级路由漏掉后，后续不可能自动救回。
+3. 给模型加载少量候选的完整Schema，并保留加载版本。发现只有短描述不够构造合法调用；执行入口重新核对当前权限和真实契约，缓存命中不能恢复被撤销能力。
+4. 未命中或歧义时澄清、重新发现或用已授权替代能力；不要强迫总选一个工具。fallback改变目标、接收方或副作用时，按实际授权重新处理。
+
+测量工具发现Recall、正确选择率、错误调用/漏调用、Schema加载及结果token、总费用、尾延迟与任务完成。正例、相近工具、负例、禁用工具、同名不同服务、依赖缺失和预算不足都进测试；发现Recall高也不代表执行获准。对照全量Schema、按需Schema和候选筛选，固定模型/任务/工具能力。
+
+本地route_catalog只测试权限筛选和给定预算单位，未运行语义路由或真实tokenizer，不能报告token节省比例。目录缓存、分页和订阅变化基础沿用[FA28](15-mcp-versions-and-integration.md#fa28)。
+
+<a id="mcp-primitive-and-adapter"></a>
+## 3 MCP原语和REST适配别按读写机械划分
+
+Resource是由应用管理的上下文来源；Tool通常由模型选择完成能力，工具也可以只读；Prompt是用户可选的参数化任务模板。三者都需要权限。Prompt不因为来自服务就升级为可信系统指令；模板变量、输出目标、负例、版本和安全审查仍需固定。
+
+原创例子：统计一组本地合成数值，可以由应用函数直接执行add，也可由MCP server暴露同一个add。模型仍只产生调用意图，两条路径都由宿主校验和执行。MCP适配使多个宿主复用发现/契约，不保证比本地函数更复杂或更能组合；REST/gRPC业务服务可以保留，由适配层转换协议和错误。
+
+Host管理模型、交互、上下文与授权，Client是宿主内部的协议连接器，Server提供能力。模型不是与三者并列的连接角色。RAG资料、工单、本地开发和运维都能复用此接口，但接入不批准评论PR、上传文档或执行运维写操作。厂商tool-call消息通过宿主转换为MCP工具合同，不要求服务为每个模型重做业务逻辑；适配仍需验证Schema方言、调用ID、内容、拒绝与错误差异。本章没有厂商API互通测试。
+
+<a id="modern-protocol-boundary"></a>
+## 4 现代2026-07-28与legacy的线必须清楚
+
+本节以[2026-07-28规范](https://modelcontextprotocol.io/specification/2026-07-28)为现代基准，与[2025-11-25生命周期](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)对照。现代核心使用自包含请求，不再把initialize/initialized或协议Mcp-Session-Id当所有请求的前置；server/discover可以取得服务信息，但不是每次调用前的强制握手。业务任务状态和显式句柄仍可持久保存。
+
+按[现代基础字段表](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)，每个请求的_meta必须带io.modelcontextprotocol/protocolVersion与io.modelcontextprotocol/clientCapabilities；clientInfo是可选，但规范建议包含。客户端身份描述是自报信息，不是认证凭据。请求元数据字段的必需性以基础字段表为准，不把示例省略说明当成完整字段要求。
+
+工具目录有inputSchema和可选outputSchema；按声明方言校验structuredContent，不把Pydantic自动包装当跨实现保证。默认JSON Schema方言按采用规范核查；本章现代基准为2020-12。外部$ref不可自动联网解引用，防止Schema校验变成SSRF或无界资源访问；不支持的方言与无法解析引用要明确失败。
+
+现代需要补充输入时可以返回input_required，再按MRTR合同提供输入重发，新的JSON-RPC请求ID与原业务意图区分。现代消息方向不再允许Server主动发JSON-RPC请求；旧版sampling/createMessage是Server向声明能力的Client请求模型生成，不能把旧采样、补全、订阅和日志全部画成现代反向调用循环。具体扩展另按版本核对；能力支持不代表用户同意传数据或执行动作。
+
+目录变化声明与订阅、分页、缓存寿命、身份/权限作用域沿用[FA28](15-mcp-versions-and-integration.md#fa28)；取消、进度与日志必须按对应传输和请求合同。业务成功与进度100%分别验证，协议日志不自动成为完整持久审计。现代本节仅核验规范，未运行2026-07-28互通或迁移测试。
+
+<a id="transport-and-content"></a>
+## 5 传输 内容与运行上下文各有边界
+
+[现代传输规范](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)分别定义stdio与Streamable HTTP。stdio适合由宿主启动的本地子进程，要限制OS用户、环境变量、可读目录、执行/网络与时间；协议stdout不能混入print调试文本。Streamable HTTP适合远程服务，认证、Origin/Host防护、请求体/流大小和超时需落实；请求可返回JSON或请求范围的SSE，所以旧HTTP+SSE被替代不意味着SSE技术消失。
+
+远程OAuth及token audience等按采用版本执行；不随意透传上游token给另一受众。旧HTTP会话管理不能照搬到现代无协议会话设计。本地SDK Context只在对应请求内有效，可以帮助发日志/进度，不是长期记忆；业务状态放在应用任务表，并关联版本与操作身份。IDE/桌面只是宿主形态，配置命令启动能力服务不等于批准它读取所有用户文件。
+
+文本、image/audio内容和resource blob有不同类型与MIME/编码；资源链接只是引用，不保证宿主、接收模型或用户能打开。读取、展示、转发、保存媒体分别检查访问和数据接收方，不把任意二进制直接塞进不支持的文本模型。媒体/工具结果里的指令仍是输入数据，不能扩大执行权限。
+
+<a id="legacy-fastmcp-lab"></a>
+## 6 一个真正运行过的legacy FastMCP实验
+
+配套[mcp_legacy_server.py](../../examples/retrieval_contracts/mcp_legacy_server.py)和[test_mcp_legacy.py](../../examples/retrieval_contracts/test_mcp_legacy.py)固定CPython 3.12.14、mcp 1.29.0、Pydantic 2.13.4、AnyIO 4.14.2，使用官方Python SDK内置mcp.server.fastmcp，不与另一个独立FastMCP包混名。接口参照[v1.29.0官方源代码](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.0/src/mcp/server/fastmcp/server.py)。
+
+这个SDK的[支持版本文件](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.0/src/mcp/shared/version.py)结合实际常量包含2024-11-05、2025-03-26、2025-06-18、2025-11-25，不含2026-07-28。本次initialize实际协商到2025-11-25；最近SDK版本号不能作为现代协议支持证据。
+
+服务有有界加法工具、分阶段求和工具、参数化合成greeting资源和教学Prompt，无网络、凭据或私有文件。整数strict校验与范围约束由实际入参Schema和运行时共同验证；工具返回SumResult产生结构化结果。求和用Context发单调进度与合成日志，但没有持久任务、真实取消或事务副作用。
+
+**已运行：** 一次本地stdio会话通过11个断言，覆盖legacy协商、list输入/输出Schema、结构化调用、越界/缺参数/错误类型、未知工具、资源模板列举/读取、Prompt列举/取得、进度/日志和业务错误。初次探测发现最小FastMCP没有注册logging/setLevel处理器，返回Method not found；最终测试不再假定它支持该可选方法，仍实际验证请求关联日志。这个观察说明Context能发日志不等于服务器实现了每个日志控制方法。
+
+**未运行：** 现代2026-07-28、HTTP、OAuth、跨版本桥接、持久恢复、并发、取消和生产安全。安装文件或启动本地服务都不能证明这些通过。复现实验依赖和命令见[实验说明](../../examples/retrieval_contracts/README.md)。
+
+<a id="skill-package-contract"></a>
+## 7 Skill包要能发现 也要能完整执行
+
+[Agent Skills格式](https://agentskills.io/specification)中的SKILL.md是必需入口，name/description用于发现，正文描述方法；references、scripts、assets是可选资源。自研version、tags、executor、input_schema等属于业务清单扩展，不能说所有宿主必需；allowed-tools仍是实验字段，支持行为因宿主而异，文件不能自行授权。
+
+工具Skill侧重具体能力使用方法，产品/业务Skill可组织目标、质量与多个工具；这是本章解释层级，不是统一官方分类。全局约束与专业方法按作用域分开，Skill不是新增自治主体，也不天然附带沙箱。Skill可组织MCP能力，MCP也可动态提供工具Schema，二者互补。
+
+发现阶段提供短描述和适用/禁用条件，相关后读正文，再按需读取参考、模板或执行脚本。不要把所有schema、知识和资产塞进入口，也不要为了省上下文遗漏必需限制。脚本可完成确定性计算，调用/结果仍可能使用token，执行也有I/O、存储、依赖、输出与资源上限；不是无限容量或零成本。若做天气Skill，地点转换按实际API合同，不能把“城市必须拼音”写成通用规则。
+
+<a id="skill-evaluation-answer"></a>
+## 8 怎样评测一个Skill是否真的有用
+
+这是独立新写的完整答案。模型读到Skill内容不代表它可靠地判断了Skill质量；评价应由固定任务和实际结果支持。Skill在同一宿主里同时存在时，发现与共存也要测试。
+
+- 触发：正例是否选中、负例是否拒触发、相近Skill能否消歧；报告选择precision/recall及未选/误选，不只看名称匹配。
+- 流程：是否读必需参考、遵守步骤/约束、补问必需信息、处理空结果和异常；文字声称遵循不等于工具轨迹做到。
+- 结果：产物是否满足任务rubric、数值/引用是否可复查、未知是否留空；确定性结果优先代码检查。
+- 安全：包资源注入、越权脚本、禁用工具、异常扩网/外传、写操作和确认缺失；验证执行入口真的拦住。
+- 共存与升级：同时安装相近技能、技能版本变化、工具Schema变化、旧任务恢复和撤权；发布前不能只跑新Skill正例。
+- 成本：发现元数据、正文、资源、工具结果、重复读取和失败修复分别记录，再汇总token、费用、耗时与成功率。
+
+对照无Skill、精简指引、完整Skill和新版Skill，固定模型、工具能力、环境与总预算；数据分组隔离、判分与安全门槛沿用[评测章节](25-agent-evaluation-and-routing.md#eval-contract)。不能只看首次输入从16k到500，也不采用没有复现实验的96%、70%、71%或5秒结论。本章只跑包内确定性查询与结构检查，未测LLM触发、共存或端到端效果。
+
+<a id="synthetic-sql-skill"></a>
+## 9 原创六表数据Skill怎样写清口径
+
+[store-report技能包](../../examples/retrieval_contracts/skills/store-report/SKILL.md)使用完全虚构门店、商品、订单、明细、状态事件和服务样本六表，替代真实员工排名。入口负责发现和步骤，reference记录关系、时间/单位/NULL口径，script执行五个注册查询，asset提供解释模板。并无真实账号、员工或业务数据库。
+
+五种查询模式是基础商品查询、截至日期完成订单的top产品、LAG月度变化、跨表分别聚合后合并、CTE样本评分。日期由请求给出，历史查询不使用CURDATE；当日粒度和包含as-of当日是此fixture约定，不推广为通用时间规则。status_events选截至日期最后一条有效状态，未来取消不能污染之前快照。
+
+脚本只接受报告枚举、固定范围和参数化值，不接受模型任意SQL；连接使用只读约束与authorizer拒绝写和ATTACH。生产身份范围必须由认证上下文注入，fixture store ID不是授权系统。SQL的LIMIT、NULL、连接倍增、空结果、状态版本和单位都要验收；跨表先各自聚合，不把三条服务样本乘到每条订单明细上。
+
+CTE仅是表达方式，不承诺性能；实验实际生成EXPLAIN QUERY PLAN，但小数据不能说明大表快。评分是已公开的合成公式100×(1−失败样本占比)，无样本为NULL，既不是预测结论也不能用于人的资格或影响力。统计错误先核对分母、连接与时间，再解释结果；慢查询看计划、索引、数据分布和预算，不能简单多加CTE。
+
+**已运行：** 10项标准库/SQLite测试覆盖五模式、未来状态隔离、LAG首行NULL、聚合防倍增、范围、未知评分、空结果、非法参数、写/ATTACH拒绝与查询计划。**未运行：** 自然语言理解、模型生成SQL、真实数据库权限、并发/性能或业务指标。
+
+<a id="skill-author-workflow"></a>
+## 10 生成Skill后还要哪些验收
+
+收集任务对象、输入、输出、触发和禁用条件、依赖、数据边界与失败出口；确定缺信息要问什么，再写入口、短参考、脚本和模板。检查frontmatter、name与目录相同、相对引用存在、脚本依赖、许可和资源预算，之后用正/负例、异常、共存与权限测试。打包之前检查产物与路径，打包成功只是封装成功。升级/共享/淘汰流程沿用[FA34](16-skills-routing-and-governance.md#fa34)。
+
+原创会议纪要方案：先确认提供的会议内容与输出范围，提取决议、待办、负责人和期限；缺主持人/地点等字段写未提供，不补造。资产规定模板，参考描述抽取口径，脚本可检查必需字段与任务身份；涉及发给参会者是另一个明确动作。此方案未运行生成或真实会议处理，不从截图省略区域推断完整文件。
+
+<a id="original-review-workflow"></a>
+## 11 代码审查Skill的原创替代示例
+
+在用户明确要求审查时，读取指定提交差异和适用规范，按语言检查错误处理、边界、权限、依赖与测试，再输出问题、严重度、证据位置、复现或未验证条件和建议。MCP工具可以提供受控PR读取，Skill定义方法，运行时治理访问和执行；没有必要假设一个未验证的MCPTool包接口。
+
+“测试覆盖率80%”不能单独证明质量，也不该规定所有项目同一数字。运行现有测试需要合适环境和授权，只有实际输出才能称通过。发表评论、请求变更、修改代码或上传报告分别需要相应授权，不因为发现严重问题便默认发布。
+
+本段是新写的流程示例，不来自外部技能包，也没有运行代码审查或读取外部ZIP。面试问“你写过什么Skill”时，可据自己的真实文件、提交与测试回答；阅读或运行本章fixture不能说成已在业务上线。
+
+<a id="termination-and-polling"></a>
+## 12 结束条件与合理轮询别混淆
+
+循环保存最近行动签名、观察变化、待满足条件和总预算。同参数且没有新证据可以判停滞；轮询一个确实在进行的异步任务可能合理，要按目的、服务建议、deadline与授权的观察窗口等待。不能仅凭“相同调用三次”就判所有任务失败，也不能等无限循环自停。
+
+结束、失败、待用户信息、取消、预算耗尽和结果未知分别表达。需要缺失事实时先查获准来源或澄清，不反复生成猜测。基本停止条件见[A02/A06](01-agent-loop-tools-and-state.md#a06)；本地fixture没有运行长期轮询、外部副作用或自动重试。
+
+**30秒主线：** 工具表达执行能力，MCP表达接入合同，Skill表达方法。模型只提意图，运行时掌握校验与权限；大量能力按需发现，协议按版本讲，结果按真实产物验收。示例的legacy实测和现代规范核验不能互相代替。

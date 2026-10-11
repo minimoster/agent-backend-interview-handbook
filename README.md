@@ -131,3 +131,13 @@ SC-A/SC-B编号独立于361道讲义题、Hot100的100题和15道外部资源题
 ## 进阶主题
 
 [跨主题进阶学习路线](docs/00-guide/advanced-study-route.md)：Spark与作业生命周期、双模型路由、推理服务、ES父子关系和跨栈工程边界。
+
+## Agent应用实验与Python附录
+
+- [7篇原创Agent专题](docs/10-agent/README.md)：评测/路由、生产设计、业务场景、前沿决策、框架、RAG数据工程及工具/MCP/Skills
+- [Python与FastAPI工程附录](docs/40-backend/40-python-fastapi-lab.md)
+- [AI Coding原创练习与参考内核](docs/70-practice/ai-coding-exercises.md)
+- [技术、HR与负责人追问准备](docs/90-interview/01-evidence-based-interview-preparation.md)
+- [KV生命周期与容量预算](docs/10-agent/24-inference-and-serving-boundaries.md#kv-lifecycle)已合并到推理专题
+
+本批共10篇新文档与1项并入已有章节的补充，独立于361/100/15/26计数。35条仅有题面或空正文的问题获得明确标注的原创回答/准备框架，不冒充原材料答案。[运行范围与复现方法](coverage/AGENT_LABS_VALIDATION.md) · [一手技术参考](sources/agent-labs-references.md)。

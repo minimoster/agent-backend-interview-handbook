@@ -49,6 +49,16 @@ jobs:
           trap 'rm -rf "$output"' EXIT
           javac -d "$output" examples/backend/DclSingleton.java examples/backend/HolderSingleton.java examples/backend/SingletonTest.java
           java -cp "$output" SingletonTest
+      - name: Set up Python teaching lab runtime
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Verify Agent and Python teaching labs
+        run: |
+          python -m pip install -r examples/requirements.txt -r examples/retrieval_contracts/requirements-mcp.txt
+          (cd examples/agent_scenario_contracts && python -B -m unittest -v test_ordering)
+          (cd examples && python -B -m unittest -v test_python_language_lab test_fastapi_lab test_coding_kernels test_kv_budget)
+          (cd examples/retrieval_contracts && python -B -m unittest -v test_lab test_store_skill && python -B test_mcp_legacy.py)
       - name: Verify Go cancellation and fake SSE fixtures
         working-directory: examples/go/cancellation
         run: |

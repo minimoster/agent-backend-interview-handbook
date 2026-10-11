@@ -1,0 +1,8 @@
+# Reproduce the installed teaching-test baseline; not a latest-version recommendation.
+fastapi==0.141.1
+pydantic==2.13.4
+starlette==1.6.0
+httpx==0.28.1
+uvicorn==0.52.1
+numpy==2.3.5
+python-multipart==0.0.32

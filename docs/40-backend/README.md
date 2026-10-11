@@ -27,3 +27,9 @@
 - [跨栈原子写、在线迁移与Token边界](39-cross-stack-interview-boundaries.md)
 
 原题数不变，补充按专题阅读。[进阶学习入口](../00-guide/advanced-study-route.md)。
+
+### Python API工程附录
+
+- [Python对象语义与FastAPI合同实验](40-python-fastapi-lab.md)
+
+独立工程专题，已编号讲义题不变。另见[AI Coding练习](../70-practice/ai-coding-exercises.md)。

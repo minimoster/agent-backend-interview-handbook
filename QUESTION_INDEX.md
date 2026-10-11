@@ -574,3 +574,19 @@
 - [151. 翻转字符串里的单词](docs/85-algorithm-supplement/README.md#problem-151) · 字符串 · 中等 · 外部资源
 - [232. 用栈实现队列](docs/85-algorithm-supplement/README.md#problem-232) · 栈与队列 · 简单 · 外部资源
 - [225. 用队列实现栈](docs/85-algorithm-supplement/README.md#problem-225) · 栈与队列 · 简单 · 外部资源
+
+## 原创Agent专题与工程附录（不新增编号题）
+
+- [Agent评测、模型路由与上下文消融](docs/10-agent/25-agent-evaluation-and-routing.md)
+- [Agent生产设计与故障实验](docs/10-agent/26-agent-production-design-lab.md)
+- [实际业务场景与状态合同](docs/10-agent/27-practical-agent-scenarios.md)
+- [前沿模型与工程决策](docs/10-agent/28-frontier-and-engineering-decisions.md)
+- [框架选型与组件集成](docs/10-agent/29-framework-selection-and-integration.md)
+- [RAG数据工程与分块实验](docs/10-agent/30-rag-data-and-chunking-lab.md)
+- [工具、MCP与Skill合同](docs/10-agent/31-tool-mcp-and-skill-contracts.md)
+- [Python/FastAPI对象、请求与资源生命周期](docs/40-backend/40-python-fastapi-lab.md)
+- [AI Coding原创练习与参考内核](docs/70-practice/ai-coding-exercises.md)
+- [技术、HR与负责人追问准备](docs/90-interview/01-evidence-based-interview-preparation.md)
+- [KV生命周期与容量算例](docs/10-agent/24-inference-and-serving-boundaries.md#kv-lifecycle)
+
+沿用现有题号，361道讲义详解、100道Hot100、15道外部资源题与26张场景卡分别计数。

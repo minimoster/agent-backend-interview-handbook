@@ -282,4 +282,36 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   assert.ok(reading.nodes.get('main').focused&&reading.nodes.get('main').scrolled);
   assert.ok(reading.nodes.get('main').innerHTML.includes('LRU 缓存'));
 });
+check('原创Agent与Python专题保持既有题数和独立模块',()=>{
+  const chapters=[
+    'docs/10-agent/25-agent-evaluation-and-routing.md',
+    'docs/10-agent/26-agent-production-design-lab.md',
+    'docs/10-agent/27-practical-agent-scenarios.md',
+    'docs/10-agent/28-frontier-and-engineering-decisions.md',
+    'docs/10-agent/29-framework-selection-and-integration.md',
+    'docs/10-agent/30-rag-data-and-chunking-lab.md',
+    'docs/10-agent/31-tool-mcp-and-skill-contracts.md',
+    'docs/40-backend/40-python-fastapi-lab.md',
+    'docs/70-practice/ai-coding-exercises.md',
+    'docs/90-interview/01-evidence-based-interview-preparation.md'
+  ];
+  for(const file of chapters){assert.ok(docs.has(file),file);assert.equal(docs.get(file).questionIds.length,0,file);assert.equal(index.documents.filter(d=>d.relative_path===file).length,1,file);}
+  assert.equal(docs.get(chapters[9]).module,'preparation');
+  assert.equal(data.questionCount,461);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);
+  assert.ok(docs.get('docs/10-agent/24-inference-and-serving-boundaries.md').headings.some(h=>h.id==='kv-memory-budget'));
+  assert.ok(!docs.has('chapters/kv_cache_supplement.md'),'KV内容合并到既有章');
+});
+check('新专题正文检索能定位真实锚点且现代协议保持未测',()=>{
+  const expectations=[
+    ['校准阈值','docs/10-agent/25-agent-evaluation-and-routing.md'],
+    ['MMR','docs/10-agent/30-rag-data-and-chunking-lab.md'],
+    ['依赖缓存','docs/40-backend/40-python-fastapi-lab.md'],
+    ['ROUND_HALF_UP','docs/70-practice/ai-coding-exercises.md']
+  ];
+  for(const [q,file] of expectations){const result=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===file);assert.ok(result,`${q}: ${file}`);assert.ok(result.section.id);}
+  const modern=docs.get('docs/10-agent/31-tool-mcp-and-skill-contracts.md').source;
+  assert.ok(modern.includes('未运行2026-07-28互通或迁移测试'));
+  assert.ok(modern.includes('2025-11-25'));
+  assert.ok(docs.get('coverage/AGENT_LABS_VALIDATION.md').source.includes('合计94项'));
+});
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);

@@ -1,0 +1,5 @@
+# Optional legacy stdio smoke-test dependencies; runtime is CPython 3.12.14.
+# Recorded direct dependency versions, not a full transitive lockfile.
+mcp==1.29.0
+pydantic==2.13.4
+anyio==4.14.2

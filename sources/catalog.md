@@ -250,7 +250,7 @@
 
 [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 
-类型：官方工程文章；发布日期：2026-01-09；日期说明：论文首版/文章原页日期；访问日期：2026-10-09；对应内容：A31：任务/trial/grader/outcome与端到端评测
+类型：官方工程文章；发布日期：2026-01-09；日期说明：论文首版/文章原页日期；访问日期：2026-10-09；对应内容：Agent评测与路由专题：任务/trial/grader/outcome与端到端评测
 
 <a id="ag-t32"></a>
 
@@ -258,7 +258,7 @@
 
 [Ragas: Automated Evaluation of Retrieval Augmented Generation](https://arxiv.org/abs/2309.15217)
 
-类型：原始论文；发布日期：2023-09-26；日期说明：论文首版/文章原页日期；访问日期：2026-10-09；对应内容：A32：检索相关性、答案忠实性等分维度自动评测
+类型：原始论文；发布日期：2023-09-26；日期说明：论文首版/文章原页日期；访问日期：2026-10-09；对应内容：RAG数据与评测专题：检索相关性、答案忠实性等分维度自动评测
 
 <a id="ag-t33"></a>
 
@@ -266,7 +266,7 @@
 
 [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)
 
-类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A33：trace/span、时间、属性、状态
+类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：Harness观测与执行治理：trace/span、时间、属性、状态
 
 <a id="ag-t34"></a>
 
@@ -274,7 +274,7 @@
 
 [LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
 
-类型：安全组织官方指南；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A34：提示注入与分层防御
+类型：安全组织官方指南；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：Agent提示注入与权限边界：提示注入与分层防御
 
 <a id="ag-t35"></a>
 
@@ -282,7 +282,7 @@
 
 [Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 
-类型：安全组织官方指南；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A35：最小权限、逐请求授权、默认拒绝
+类型：安全组织官方指南；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：逐请求授权与最小权限：最小权限、逐请求授权、默认拒绝
 
 <a id="ag-t36"></a>
 
@@ -290,7 +290,7 @@
 
 [Server Side Request Forgery Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
 
-类型：安全组织官方指南；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A36：SSRF目标校验、重定向及网络边界
+类型：安全组织官方指南；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：工具网络访问与SSRF边界：SSRF目标校验、重定向及网络边界
 
 <a id="ag-t37"></a>
 
@@ -298,7 +298,7 @@
 
 [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
 
-类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A37：公共前缀缓存、命中与失效边界；不引用价格
+类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：推理与前缀缓存专题：公共前缀缓存、命中与失效边界；不引用价格
 
 <a id="ag-t38"></a>
 
@@ -306,7 +306,7 @@
 
 [Add a test — Go tutorial](https://go.dev/doc/tutorial/add-a-test)
 
-类型：语言官方教程；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A38：自动化断言与测试运行
+类型：语言官方教程；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：Go实验与自动化测试：自动化断言与测试运行
 
 <a id="ag-t39"></a>
 
@@ -346,7 +346,7 @@
 
 [Docker Engine security](https://docs.docker.com/engine/security/)
 
-类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A36补充：容器隔离和Docker守护进程权限风险
+类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：工具网络访问与SSRF边界补充：容器隔离和Docker守护进程权限风险
 
 <a id="ag-t44"></a>
 
@@ -370,7 +370,7 @@
 
 [RAG Evaluators for Generative AI](https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators?view=foundry)
 
-类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A16/A32补充：groundedness/relevance/retrieval分离
+类型：官方文档；日期说明：未标稳定发布日期；动态文档按访问当日核对；访问日期：2026-10-09；对应内容：A16/RAG数据与评测专题补充：groundedness/relevance/retrieval分离
 
 <a id="ag-t47"></a>
 
@@ -4856,3 +4856,6 @@
 - 核验日期：2026-10-09
 - 访问状态：official page body read
 
+## Agent应用实验与Python工程附录
+
+[按章节查看技术参考](agent-labs-references.md) · [测试与未测范围](../coverage/AGENT_LABS_VALIDATION.md)。新增正文与教学代码为原创组织；受限原资料、原图和外部技能包未镜像。只有题面或空正文的补充明确标注为新写答案，不赋予读者任何未证实经历。

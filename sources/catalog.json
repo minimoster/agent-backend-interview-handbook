@@ -286,7 +286,7 @@
     "date_note": "论文首版/文章原页日期",
     "accessed_date": "2026-10-09",
     "evidence_type": "官方工程文章",
-    "supports": "A31：任务/trial/grader/outcome与端到端评测"
+    "supports": "Agent评测与路由专题：任务/trial/grader/outcome与端到端评测"
   },
   {
     "id": "AG-T32",
@@ -296,7 +296,7 @@
     "date_note": "论文首版/文章原页日期",
     "accessed_date": "2026-10-09",
     "evidence_type": "原始论文",
-    "supports": "A32：检索相关性、答案忠实性等分维度自动评测"
+    "supports": "RAG数据与评测专题：检索相关性、答案忠实性等分维度自动评测"
   },
   {
     "id": "AG-T33",
@@ -305,7 +305,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "官方文档",
-    "supports": "A33：trace/span、时间、属性、状态"
+    "supports": "Harness观测与执行治理：trace/span、时间、属性、状态"
   },
   {
     "id": "AG-T34",
@@ -314,7 +314,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "安全组织官方指南",
-    "supports": "A34：提示注入与分层防御"
+    "supports": "Agent提示注入与权限边界：提示注入与分层防御"
   },
   {
     "id": "AG-T35",
@@ -323,7 +323,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "安全组织官方指南",
-    "supports": "A35：最小权限、逐请求授权、默认拒绝"
+    "supports": "逐请求授权与最小权限：最小权限、逐请求授权、默认拒绝"
   },
   {
     "id": "AG-T36",
@@ -332,7 +332,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "安全组织官方指南",
-    "supports": "A36：SSRF目标校验、重定向及网络边界"
+    "supports": "工具网络访问与SSRF边界：SSRF目标校验、重定向及网络边界"
   },
   {
     "id": "AG-T37",
@@ -341,7 +341,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "官方文档",
-    "supports": "A37：公共前缀缓存、命中与失效边界；不引用价格"
+    "supports": "推理与前缀缓存专题：公共前缀缓存、命中与失效边界；不引用价格"
   },
   {
     "id": "AG-T38",
@@ -350,7 +350,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "语言官方教程",
-    "supports": "A38：自动化断言与测试运行"
+    "supports": "Go实验与自动化测试：自动化断言与测试运行"
   },
   {
     "id": "AG-T39",
@@ -395,7 +395,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "官方文档",
-    "supports": "A36补充：容器隔离和Docker守护进程权限风险"
+    "supports": "工具网络访问与SSRF边界补充：容器隔离和Docker守护进程权限风险"
   },
   {
     "id": "AG-T44",
@@ -423,7 +423,7 @@
     "date_note": "未标稳定发布日期；动态文档按访问当日核对",
     "accessed_date": "2026-10-09",
     "evidence_type": "官方文档",
-    "supports": "A16/A32补充：groundedness/relevance/retrieval分离"
+    "supports": "A16/RAG数据与评测专题补充：groundedness/relevance/retrieval分离"
   },
   {
     "id": "AG-T47",

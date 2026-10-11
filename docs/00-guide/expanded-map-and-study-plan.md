@@ -97,3 +97,7 @@ AI辅助写代码也应具体说明：你负责定义什么需求，审查了哪
 - **第五层，证据与取舍：** 使用合成负载还是实际流量？哪些延迟分位、错误率和一致性失败被记录？如果只有小规模本地测试，就明确它不能证明生产容量。
 
 练习时每层只加一个新故障，并给自己2分钟画图、1分钟答题、1分钟说限制。可查[缓存基础](../40-backend/03-redis-and-caching.md)、[可靠性](../40-backend/05-system-design-and-reliability.md)与[项目事实边界](../50-projects/public-repository-case-studies.md)。如果某层无法解释，回到对应原理与实验，而不是往答案里继续堆组件名称。
+
+## 用新专题补实践证据
+
+第3–5周可选[Agent评测](../10-agent/25-agent-evaluation-and-routing.md)、[生产设计](../10-agent/26-agent-production-design-lab.md)和[RAG分块合同](../10-agent/30-rag-data-and-chunking-lab.md)，每次只运行一个可解释的小实验。Python方向从[对象语义与FastAPI](../40-backend/40-python-fastapi-lab.md)进入[AI Coding参考内核](../70-practice/ai-coding-exercises.md)。第6周按[面试证据准备](../90-interview/01-evidence-based-interview-preparation.md)组织真实贡献与未知项。代码、合成测试和模型/生产评测分别记录，不以完整阅读代替实际完成。

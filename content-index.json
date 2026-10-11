@@ -7,7 +7,8 @@
     "priority是学习优先级，不是难度；difficulty只沿用Hot100官方难度。",
     "relative_path/path/url均相对仓库根目录；anchor为null时打开整篇。",
     "进阶专题不改变原461题索引。",
-    "部分章节暂未发布；本版361道讲义题、100道Hot100和15道外部资源题分别计数。"
+    "部分章节暂未发布；本版361道讲义题、100道Hot100和15道外部资源题分别计数。",
+    "2026-10-10新增10篇Agent/后端/练习/面试专题；KV补充并入既有24章，不增加编号题或独立场景卡。"
   ],
   "counts": {
     "interview_questions": 361,
@@ -8192,6 +8193,86 @@
       "relative_path": "docs/50-projects/data-engineering-agent-case.md",
       "path": "docs/50-projects/data-engineering-agent-case.md",
       "url": "docs/50-projects/data-engineering-agent-case.md",
+      "question_ids": []
+    },
+    {
+      "title": "Agent评测、提示回归与模型路由",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/25-agent-evaluation-and-routing.md",
+      "path": "docs/10-agent/25-agent-evaluation-and-routing.md",
+      "url": "docs/10-agent/25-agent-evaluation-and-routing.md",
+      "question_ids": []
+    },
+    {
+      "title": "开放性问题：用条件、证据与实验作判断",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/28-frontier-and-engineering-decisions.md",
+      "path": "docs/10-agent/28-frontier-and-engineering-decisions.md",
+      "url": "docs/10-agent/28-frontier-and-engineering-decisions.md",
+      "question_ids": []
+    },
+    {
+      "title": "Agent生产设计：从模块图到可验证合同",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/26-agent-production-design-lab.md",
+      "path": "docs/10-agent/26-agent-production-design-lab.md",
+      "url": "docs/10-agent/26-agent-production-design-lab.md",
+      "question_ids": []
+    },
+    {
+      "title": "Agent场景题：目标、状态、证据与执行边界",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/27-practical-agent-scenarios.md",
+      "path": "docs/10-agent/27-practical-agent-scenarios.md",
+      "url": "docs/10-agent/27-practical-agent-scenarios.md",
+      "question_ids": []
+    },
+    {
+      "title": "面试准备：真实贡献、决策与证据",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/90-interview/01-evidence-based-interview-preparation.md",
+      "path": "docs/90-interview/01-evidence-based-interview-preparation.md",
+      "url": "docs/90-interview/01-evidence-based-interview-preparation.md",
+      "question_ids": []
+    },
+    {
+      "title": "Python 与 FastAPI 工程附录",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/40-backend/40-python-fastapi-lab.md",
+      "path": "docs/40-backend/40-python-fastapi-lab.md",
+      "url": "docs/40-backend/40-python-fastapi-lab.md",
+      "question_ids": []
+    },
+    {
+      "title": "AI Coding 练习附录",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/70-practice/ai-coding-exercises.md",
+      "path": "docs/70-practice/ai-coding-exercises.md",
+      "url": "docs/70-practice/ai-coding-exercises.md",
+      "question_ids": []
+    },
+    {
+      "title": "RAG数据工程与分块验证实验",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/30-rag-data-and-chunking-lab.md",
+      "path": "docs/10-agent/30-rag-data-and-chunking-lab.md",
+      "url": "docs/10-agent/30-rag-data-and-chunking-lab.md",
+      "question_ids": []
+    },
+    {
+      "title": "工具 MCP与Skill的实用合同",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/31-tool-mcp-and-skill-contracts.md",
+      "path": "docs/10-agent/31-tool-mcp-and-skill-contracts.md",
+      "url": "docs/10-agent/31-tool-mcp-and-skill-contracts.md",
+      "question_ids": []
+    },
+    {
+      "title": "Agent框架选型与组件集成",
+      "category": "原创专题与工程附录",
+      "relative_path": "docs/10-agent/29-framework-selection-and-integration.md",
+      "path": "docs/10-agent/29-framework-selection-and-integration.md",
+      "url": "docs/10-agent/29-framework-selection-and-integration.md",
       "question_ids": []
     }
   ]
