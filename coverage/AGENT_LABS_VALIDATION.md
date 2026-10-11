@@ -57,6 +57,14 @@ node site/test.mjs
 
 最终静态构建与26组非渲染检查通过，覆盖规范Markdown、相对链接、实际锚点、源码副本、正文搜索和独立计数。原有Python算法/合同、有限穷举、公开场景测试以及Java排序/单例实验重跑通过。Go语言运行时在本地执行环境中不可用，既有未改动Go实验本次没有重跑；不把历史记录称为本批新结果。
 
-云浏览器无法连接这个执行环境的本地候选预览，本批实际浏览器、屏幕尺寸与辅助技术渲染检查未完成。静态检查不代替渲染测试。
+发布前，云浏览器无法连接这个执行环境的本地候选预览，当时实际浏览器、屏幕尺寸与辅助技术渲染检查未完成。静态检查不代替渲染测试；发布后的独立结果另列如下。
 
 本地合同通过只支持所列合成分支；源码准备与远端发布/部署也分开。
+
+## 2026-10-11：发布后的CI与桌面浏览器实测
+
+提交[6dacaf1dd1f6f7bd5b71b8e74c017e9d5a91e833](https://github.com/minimoster/agent-backend-interview-handbook/commit/6dacaf1dd1f6f7bd5b71b8e74c017e9d5a91e833)的[知识检查](https://github.com/minimoster/agent-backend-interview-handbook/actions/runs/38103623825)与[Pages部署](https://github.com/minimoster/agent-backend-interview-handbook/actions/runs/38103623851)均成功。CI在CPython3.12.15中重跑94项新教学测试及11项旧MCP stdio检查，通过；实际仍协商2025-11-25。已有Python、Java与Go fixture检查通过，其中Go执行`go test -race -count=1 -timeout=60s ./...`。这条CI记录与前述本地环境记录分开。
+
+上线后的云桌面Chrome在1183×759 CSS像素、DPR1下，实测10篇新章节均可打开并渲染，已有推理章的7个小节锚点可定位。361/100/15/26计数仍分别显示；校准阈值、MMR、依赖缓存、ROUND_HALF_UP全文搜索与结果锚点正常，主题/优先级/难度筛选、清空和无结果状态正常。重复导航、浏览器前进/后退、明暗主题切换及代码和表格布局通过。配套MCP源码下载的HTTP响应和字节匹配已核实，GitHub源码页面已实际打开。
+
+这只是上述桌面浏览器流程的实测，不是所有设备、真实手机、屏幕阅读器或其他辅助技术验收，也没有扩大现代MCP、真实模型/GPU、生产服务或完整应用的未执行范围。

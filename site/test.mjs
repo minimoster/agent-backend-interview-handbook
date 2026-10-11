@@ -81,6 +81,11 @@ check('内部阅读链接及章内锚点有效',()=>{
 check('关联源码与资源使用当前文件的自动副本',()=>{
   for(const d of data.docs){for(const m of d.html.matchAll(/href="assets\/repo\/([^"#]+)(?:#[^"]*)?"/g)){const file=decodeURIComponent(m[1]);assert.ok(!file.startsWith('../'));assert.ok(fs.readFileSync(path.join(site,'assets/repo',file)).equals(fs.readFileSync(path.join(root,file))),file);}}
 });
+check('Pages关联资源不使用被隐藏目录排除的路径',()=>{
+  for(const d of data.docs){for(const m of d.html.matchAll(/href="assets\/repo\/([^"#]+)(?:#[^"]*)?"/g)){const file=decodeURIComponent(m[1]);assert.ok(!file.split('/').some(part=>part.startsWith('.')),`${d.path}: 隐藏路径应使用已核实的GitHub文件链接 ${file}`);}}
+  const validation=docs.get('coverage/VALIDATION.md');
+  assert.ok(validation.html.includes('href="https://github.com/minimoster/agent-backend-interview-handbook/blob/6dacaf1dd1f6f7bd5b71b8e74c017e9d5a91e833/.github/workflows/knowledge-checks.yml"'));
+});
 check('静态输出不执行原始脚本或危险链接',()=>{
   assert.ok(!dataText.includes('</script>'));
   for(const d of data.docs){assert.ok(!/<script\b|<iframe\b|<object\b|\bon\w+\s*=|href=["'](?:javascript|data):/i.test(d.html),d.path);assert.ok(d.sourceUrl.startsWith(data.repositoryUrl+'/blob/'));}

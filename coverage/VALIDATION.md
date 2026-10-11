@@ -62,7 +62,7 @@ java examples/java/OrderedPrinter.java
 
 OpenJDK21.0.12.1再次运行顺序输出101个正常用例和三类中断/失败路径、单例16线程10000调用，均通过。SQLite/Python通过仍不表示MySQL目标引擎的锁、事务和恢复通过。
 
-[Go取消与SSE fixture](../examples/go/cancellation/README.md)已提供源码和测试，但本地缺少Go编译器，编译/测试/race仍未运行。仓库的[知识检查工作流](../.github/workflows/knowledge-checks.yml)将分别记录Node/Python/Java/Go实际版本及测试结果；只有对应提交的CI实际完成才能据此更新通过范围。MySQL/Redis/MQ故障实验保持待验证，未运行模型API、Spark集群或公开案例项目的故障注入。
+[Go取消与SSE fixture](../examples/go/cancellation/README.md)已提供源码和测试，但本地缺少Go编译器，编译/测试/race仍未运行。仓库的[知识检查工作流](https://github.com/minimoster/agent-backend-interview-handbook/blob/6dacaf1dd1f6f7bd5b71b8e74c017e9d5a91e833/.github/workflows/knowledge-checks.yml)将分别记录Node/Python/Java/Go实际版本及测试结果；只有对应提交的CI实际完成才能据此更新通过范围。MySQL/Redis/MQ故障实验保持待验证，未运行模型API、Spark集群或公开案例项目的故障注入。
 
 ## 2026-10-10：已有fixture的CI实测记录
 
