@@ -91,7 +91,7 @@ check('静态输出不执行原始脚本或危险链接',()=>{
   for(const d of data.docs){assert.ok(!/<script\b|<iframe\b|<object\b|\bon\w+\s*=|href=["'](?:javascript|data):/i.test(d.html),d.path);assert.ok(d.sourceUrl.startsWith(data.repositoryUrl+'/blob/'));}
   const html=fs.readFileSync(path.join(site,'index.html'),'utf8');
   assert.ok(html.includes("connect-src 'none'"));
-  for(const m of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g))assert.ok(fs.existsSync(path.join(site,m[1])),m[1]);
+  for(const m of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g))assert.ok(fs.existsSync(path.join(site,m[1].split('?')[0])),m[1]);
 });
 check('中文全文搜索定位正文段落，而非只搜标题',()=>{
   const result=engine.query(new URLSearchParams({q:'极端哈希碰撞'})).results;
@@ -278,6 +278,19 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   assert.ok(carlReader.includes('本题精确讲解'));assert.ok(carlReader.includes('本题 Python 区'));assert.ok(carlReader.includes('代码随想录（程序员Carl）'));
   const relatedReader=boot('#/read/docs%2F80-hot100%2Fproblems%2F0199-binary-tree-right-side-view.md').html;
   assert.ok(relatedReader.includes('相关题迁移，非本题配套'));assert.ok(relatedReader.includes('本题直接视频：本次未找到'));
+  const javaReader=boot('#/read/docs%2F20-java%2F16-executor-failure-followups.md').html;
+  assert.ok(javaReader.includes('href="assets/repo/examples/interview_followups/ExecutorFailureLab.java" download="ExecutorFailureLab.java"'));
+  assert.ok(/<a class="source-fallback"[^>]+href="https:\/\/github\.com\/[^>]+>GitHub ↗<\/a>/.test(javaReader),'保留独立 GitHub 查看链接');
+  assert.ok(!/<a[^>]+href="https:\/\/github\.com\/[^>]+\bdownload=/.test(javaReader),'不能对外部 GitHub 链接强制下载');
+  const designReader=boot('#/read/docs%2F40-backend%2F42-system-design-debugging-clinic.md').html;
+  assert.ok(designReader.includes('href="assets/repo/examples/interview_followups/ExecutorFailureLab.java" download="ExecutorFailureLab.java"'),'设计章的同一源码入口');
+  const goReader=boot('#/read/examples%2Fgo%2Ffollowup_lifecycle%2FREADME.md').html;
+  for(const file of ['go.mod','pool.go','pool_test.go']){
+    assert.ok(goReader.includes(`href="assets/repo/examples/go/followup_lifecycle/${file}" download="${file}"`),file);
+    assert.ok(goReader.includes(`<a href="assets/repo/examples/go/followup_lifecycle/${file}">${file}</a>`),'普通源码浏览链接保持原样');
+  }
+  const storageReader=boot('#/read/docs%2F40-backend%2F41-storage-recovery-followups.md').html;
+  for(const file of ['storage_lab.py','test_storage_lab.py'])assert.ok(storageReader.includes(`href="assets/repo/examples/interview_followups/${file}" download="${file}"`),file);
   const readingHash='#/read/docs%2F80-hot100%2Fproblems%2F0146-lru-cache.md';
   const reading=boot(readingHash);
   let prevented=false;
