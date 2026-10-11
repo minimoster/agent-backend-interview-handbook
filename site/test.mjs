@@ -340,4 +340,46 @@ check('Transformer原创先修导航、形状搜索与源码保持独立口径',
   for(const file of ['sources/transformer-prerequisite-references.md','coverage/TRANSFORMER_PREREQUISITE_VALIDATION.md','examples/transformer_prerequisite/README.md'])assert.ok(docs.has(file),file);
 });
 
+
+check('面经六篇追问与一路线保持既有编号并有唯一真实锚点',()=>{
+  const paths=[
+    'docs/00-guide/interview-followup-study-paths.md',
+    'docs/10-agent/32-a2a-task-lifecycle-lab.md',
+    'docs/10-agent/33-tool-stream-assembly-lab.md',
+    'docs/20-java/16-executor-failure-followups.md',
+    'docs/30-go/07-concurrency-failure-followups.md',
+    'docs/40-backend/41-storage-recovery-followups.md',
+    'docs/40-backend/42-system-design-debugging-clinic.md'
+  ];
+  assert.equal(data.questionCount,461);assert.equal(data.questionCount-data.hot100Count,361);
+  assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,17);
+  for(const file of paths){
+    const d=docs.get(file);assert.ok(d,file);assert.equal(d.questionIds.length,0);
+    assert.equal(index.documents.filter(entry=>entry.relative_path===file).length,1,file);
+    assert.ok(!index.items.some(item=>(item.relative_path||item.path)===file),file);
+    const anchors=[...d.source.matchAll(/<a id="([^"]+)"><\/a>/g)].map(match=>match[1]);
+    assert.ok(anchors.length>=5,file);assert.equal(new Set(anchors).size,anchors.length,file);
+    for(const id of anchors)assert.equal(d.headings.filter(h=>h.id===id).length,1,`${file}#${id}`);
+  }
+  for(const file of ['sources/interview-followups/README.md','sources/agent-protocol-references.md','coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md','examples/interview_followups/README.md','examples/go/followup_lifecycle/README.md'])assert.ok(docs.has(file),file);
+  assert.ok(docs.get('README.md').html.includes(encodeURIComponent(paths[0])));
+  for(const [file,target] of [['docs/10-agent/README.md',paths[1]],['docs/10-agent/README.md',paths[2]],['docs/20-java/README.md',paths[3]],['docs/30-go/README.md',paths[4]],['docs/40-backend/README.md',paths[5]],['docs/40-backend/README.md',paths[6]]])assert.ok(docs.get(file).html.includes(encodeURIComponent(target)),`${file}: ${target}`);
+});
+check('新追问正文搜索、源码下载及模型边界一致',()=>{
+  for(const [q,file] of [
+    ['SubscribeToTask','docs/10-agent/32-a2a-task-lifecycle-lab.md'],
+    ['partial_json','docs/10-agent/33-tool-stream-assembly-lab.md'],
+    ['orTimeout','docs/20-java/16-executor-failure-followups.md'],
+    ['回调不合作','docs/30-go/07-concurrency-failure-followups.md'],
+    ['nextOffsets','docs/40-backend/41-storage-recovery-followups.md'],
+    ['灰度切读','docs/40-backend/42-system-design-debugging-clinic.md']
+  ]){const result=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===file);assert.ok(result,`${q}: ${file}`);assert.ok(docs.get(file).headings.some(h=>h.id===result.section.id),q);}
+  for(const relative of ['examples/interview_followups/ExecutorFailureLab.java','examples/interview_followups/storage_lab.py','examples/interview_followups/test_storage_lab.py','examples/interview_followups/agent_protocol_lab.py','examples/interview_followups/test_agent_protocol_lab.py','examples/go/followup_lifecycle/go.mod','examples/go/followup_lifecycle/pool.go','examples/go/followup_lifecycle/pool_test.go']){
+    assert.ok(fs.readFileSync(path.join(site,'assets/repo',relative)).equals(fs.readFileSync(path.join(root,relative))),relative);
+  }
+  assert.ok(docs.get('coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md').source.includes('本地未执行'));
+  assert.ok(docs.get('docs/40-backend/41-storage-recovery-followups.md').source.includes('不保证'));
+  assert.ok(docs.get('sources/interview-followups/README.md').source.includes('不计为原始候选人自报'));
+});
+
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);

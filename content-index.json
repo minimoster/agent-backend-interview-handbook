@@ -9,7 +9,8 @@
     "进阶专题不改变原461题索引。",
     "部分章节暂未发布；本版361道讲义题、100道Hot100和15道外部资源题分别计数。",
     "2026-10-10新增10篇Agent/后端/练习/面试专题；KV补充并入既有24章，不增加编号题或独立场景卡。",
-    "2026-10-11新增Transformer原创先修与39项前向算术合同，不创建题号或增加独立场景卡。"
+    "2026-10-11新增Transformer原创先修与39项前向算术合同，不创建题号或增加独立场景卡。",
+    "2026-10-11补充六篇原创追问深读与一篇路线；无新增编号题，361/100/15/26及原17份场景自报集合口径不变，平台来源类型和新批次样本独立说明。"
   ],
   "counts": {
     "interview_questions": 361,
@@ -8282,6 +8283,62 @@
       "relative_path": "docs/10-agent/29-framework-selection-and-integration.md",
       "path": "docs/10-agent/29-framework-selection-and-integration.md",
       "url": "docs/10-agent/29-framework-selection-and-integration.md",
+      "question_ids": []
+    },
+    {
+      "title": "面经补充学习路线：基础、追问、设计与排障",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/00-guide/interview-followup-study-paths.md",
+      "path": "docs/00-guide/interview-followup-study-paths.md",
+      "url": "docs/00-guide/interview-followup-study-paths.md",
+      "question_ids": []
+    },
+    {
+      "title": "A2A任务生命周期：身份、中断、终态与断线恢复",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/10-agent/32-a2a-task-lifecycle-lab.md",
+      "path": "docs/10-agent/32-a2a-task-lifecycle-lab.md",
+      "url": "docs/10-agent/32-a2a-task-lifecycle-lab.md",
+      "question_ids": []
+    },
+    {
+      "title": "工具调用流组装：从半段JSON到可验证执行意图",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/10-agent/33-tool-stream-assembly-lab.md",
+      "path": "docs/10-agent/33-tool-stream-assembly-lab.md",
+      "url": "docs/10-agent/33-tool-stream-assembly-lab.md",
+      "question_ids": []
+    },
+    {
+      "title": "Java 追问诊所：排队、超时、取消与线程上下文",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/20-java/16-executor-failure-followups.md",
+      "path": "docs/20-java/16-executor-failure-followups.md",
+      "url": "docs/20-java/16-executor-failure-followups.md",
+      "question_ids": []
+    },
+    {
+      "title": "Go 追问诊所：有界任务、取消竞争与资源收尾",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/30-go/07-concurrency-failure-followups.md",
+      "path": "docs/30-go/07-concurrency-failure-followups.md",
+      "url": "docs/30-go/07-concurrency-failure-followups.md",
+      "question_ids": []
+    },
+    {
+      "title": "存储追问诊所：未知提交、重放顺序与旧写保护",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/40-backend/41-storage-recovery-followups.md",
+      "path": "docs/40-backend/41-storage-recovery-followups.md",
+      "url": "docs/40-backend/41-storage-recovery-followups.md",
+      "question_ids": []
+    },
+    {
+      "title": "系统设计与排障诊所：从现象到可证伪假设",
+      "category": "原创面经追问与故障诊所",
+      "relative_path": "docs/40-backend/42-system-design-debugging-clinic.md",
+      "path": "docs/40-backend/42-system-design-debugging-clinic.md",
+      "url": "docs/40-backend/42-system-design-debugging-clinic.md",
       "question_ids": []
     }
   ]

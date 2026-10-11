@@ -17,3 +17,7 @@
 本批新增10篇原创专题，KV预算并入已有推理章；不改变原361题、Hot100100题、15道外部资源题或26张场景卡。35条空正文/仅题面的补充为新写答案或准备框架，正文保留来源范围。外部受限回答和未读技能ZIP保持缺口，不能算作已经读取或实现。[复现与验收边界](AGENT_LABS_VALIDATION.md)。
 
 - [Transformer先修算术合同与未测范围](TRANSFORMER_PREREQUISITE_VALIDATION.md)
+
+## 本轮面经追问补充
+
+六篇深读专题与一篇学习路线，覆盖协议、语言执行器、存储恢复和系统设计；独立于原题号与场景卡。[发布前验证与未测范围](INTERVIEW_FOLLOWUPS_VALIDATION.md)。

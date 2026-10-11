@@ -33,3 +33,10 @@
 - [Python对象语义与FastAPI合同实验](40-python-fastapi-lab.md)
 
 独立工程专题，已编号讲义题不变。另见[AI Coding练习](../70-practice/ai-coding-exercises.md)。
+
+## 面经追问与恢复实验
+
+- [未知提交、重放顺序与旧写保护](41-storage-recovery-followups.md)
+- [系统设计与排障诊所](42-system-design-debugging-clinic.md)
+
+新增深读不改变编号题口径。[本轮学习路线](../00-guide/interview-followup-study-paths.md)。

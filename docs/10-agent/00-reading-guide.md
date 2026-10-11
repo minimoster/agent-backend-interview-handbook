@@ -9,3 +9,7 @@
 - 本章源码涉及 Go，通用概念也适用于 Python。LangGraph 的例子用来解释状态编排，不表示你的 Go 项目使用了 LangGraph。
 
 如果Q/K/V、注意力形状或LayerNorm还不熟，先读[Transformer先修](05-transformer-prerequisite.md)并运行一个手设权重小实验，再读[推理与缓存](24-inference-and-serving-boundaries.md)。这条先修路线不要求先训练模型。
+
+## 接住协议与流式故障追问
+
+基础之后读[A2A任务生命周期](32-a2a-task-lifecycle-lab.md)与[工具流组装](33-tool-stream-assembly-lab.md)。用身份、快照、终态和执行条件解释失败，不把部分JSON直接交给工具。[跨栈复习路线](../00-guide/interview-followup-study-paths.md)。

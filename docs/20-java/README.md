@@ -13,3 +13,5 @@
 - [JUC 组件、执行器与锁的版本细节](13-concurrency-details.md) · 5题
 - [Spring 容器、自动配置与事务边界补充](14-spring-mechanisms.md) · 4题
 - [三线程顺序输出：包含取消协议的可运行练习](15-thread-ordering-lab.md) · 1题
+
+- [执行器故障追问：排队、超时、取消与上下文](16-executor-failure-followups.md) · 原创深读，不新增编号题

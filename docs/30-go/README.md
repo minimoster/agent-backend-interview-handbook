@@ -8,3 +8,5 @@
 - [HTTP、SSE、gRPC 与服务治理](04-http-sse-grpc.md) · 9题
 - [测试与故障排查](05-testing-and-debugging.md) · 5题
 - [版本核验与面试使用规则](06-version-boundaries.md)
+
+- [有界任务与取消竞争的追问诊所](07-concurrency-failure-followups.md) · 原创深读，不新增编号题

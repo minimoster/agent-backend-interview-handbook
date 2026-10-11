@@ -143,3 +143,9 @@ SC-A/SC-B编号独立于361道讲义题、Hot100的100题和15道外部资源题
 - [KV生命周期与容量预算](docs/10-agent/24-inference-and-serving-boundaries.md#kv-lifecycle)已合并到推理专题
 
 本批共10篇新文档与1项并入已有章节的补充，独立于361/100/15/26计数。35条仅有题面或空正文的问题获得明确标注的原创回答/准备框架，不冒充原材料答案。[运行范围与复现方法](coverage/AGENT_LABS_VALIDATION.md) · [一手技术参考](sources/agent-labs-references.md)。
+
+## 面经追问新深读
+
+[从基础到追问、系统设计与排障的七篇路线](docs/00-guide/interview-followup-study-paths.md)：新增A2A生命周期、工具流组装、Java执行器故障、Go任务退出、存储提交/重放、系统设计与诊断。包含原创参考回答、失败时间线和可复验代码，不是原帖转载或链接清单。
+
+[公开线索与平台可读性](sources/interview-followups/README.md) · [实验源码](examples/interview_followups/README.md) · [验证层次与未测范围](coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md)。新增六篇深读与一篇路线独立于361/100/15/26口径，不保证覆盖全部可能问题。

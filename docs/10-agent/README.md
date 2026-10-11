@@ -37,3 +37,10 @@
 另见[Python/FastAPI附录](../40-backend/40-python-fastapi-lab.md)、[AI Coding练习](../70-practice/ai-coding-exercises.md)与[面试证据准备](../90-interview/01-evidence-based-interview-preparation.md)。
 
 这批新增7篇Agent专题、2篇工程/练习附录和1篇面试准备，KV容量补充合并到已有推理章。它们不创建新的A/FA题号，不增加361道讲义题、100道Hot100、15道外部资源题或26张独立场景卡。[复现命令与未测范围](../../coverage/AGENT_LABS_VALIDATION.md)。
+
+## 协议交付与工具流追问
+
+- [A2A身份、终态与断线恢复](32-a2a-task-lifecycle-lab.md)
+- [多工具增量参数组装与验证](33-tool-stream-assembly-lab.md)
+
+原创深读不新增编号题；合成模型不等同真实供应商或跨Agent互通。[本轮路线](../00-guide/interview-followup-study-paths.md)。
