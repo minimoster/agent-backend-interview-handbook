@@ -28,6 +28,12 @@ const fullEngine=create([...data.docs,...(data.supplementaryResources||[])]);
 const carl=JSON.parse(fs.readFileSync(path.join(root,'sources/carl-hot100-resources.json'),'utf8'));
 let checks=0;
 const check=(name,fn)=>{fn();checks++;console.log(`PASS ${name}`);};
+check('资源提示以对照学习和练习为目标',()=>{
+  const app=fs.readFileSync(path.join(site,'assets/app.js'),'utf8');
+  assert.ok(app.includes('对照官方题解、Python 实现与视频，再用自己的样例练习。'));
+  assert.ok(app.includes('按题号与主题选择练习，用官方讲解、Python 实现和视频对照复习。'));
+  for(const phrase of ['外部 Python 和视频未复制到本仓库','没有新增原创实现或测试记录','外部资源练习单，无新增实现'])assert.ok(!app.includes(phrase),phrase);
+});
 const relativeLuminance=hex=>{
   const channel=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4);
   return channel[0]*0.2126+channel[1]*0.7152+channel[2]*0.0722;
