@@ -1,8 +1,8 @@
 # 系统设计与排障诊所：从现象到可证伪假设
 
-[后端目录](README.md) · [本轮路线](../00-guide/interview-followup-study-paths.md) · [原有系统设计](05-system-design-and-reliability.md)
+[后端目录](README.md) · [主学习路线](../00-guide/expanded-map-and-study-plan.md#topic-map) · [原有系统设计](05-system-design-and-reliability.md)
 
-这是一组原创完整演练，不是任何公司的固定题库。先复用网络、数据库、缓存、队列与Linux基础，再要求每一步说明证据、风险和回退。教学负载和指标不属于实际项目实测；本章没有运行数据库迁移、压测、容器发布或真实事故操作。
+本章把网络、数据库、缓存、队列与 Linux 基础组织成完整演练，要求每一步说明证据、风险和回退。负载与指标为教学设定；数据库迁移、压测、容器发布及真实事故操作尚未执行。
 
 <a id="design-latency-queue"></a>
 ## 1. QPS没涨，P99从200ms变成2s，先查什么

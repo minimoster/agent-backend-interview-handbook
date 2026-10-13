@@ -191,4 +191,4 @@ Shutdown 不等于处理所有后台任务，也不会替你管理全部被 hija
 
 **来源** ：[GO-S57 MaxBytesReader](https://go.dev/src/net/http/request.go)；[GO-S58 OWASP SSRF 防护](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)；[GO-S50 流式控制](https://go.dev/src/net/http/responsecontroller.go)。
 
-本节题号：G27、G28、G29、G30、G31、G32、G33、G34、G35。原有题号保持稳定，补充主题另行编号。
+本节题号：G27、G28、G29、G30、G31、G32、G33、G34、G35。

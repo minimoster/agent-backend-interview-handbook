@@ -1,10 +1,10 @@
 # 存储追问诊所：未知提交、重放顺序与旧写保护
 
-[后端目录](README.md) · [本轮路线](../00-guide/interview-followup-study-paths.md) · [源码与29项测试](../../examples/interview_followups/README.md)
+[后端目录](README.md) · [主学习路线](../00-guide/expanded-map-and-study-plan.md#topic-map) · [源码与29项测试](../../examples/interview_followups/README.md)
 
-先读[B21–B35](02-databases-and-sql.md#b21)、[Redis基础](03-redis-and-caching.md)、[消息与幂等](04-messaging-and-idempotency.md)、[分布式租约](34-distributed-systems-details.md#fb54)。已有章节解释名词，本章把它们放进可画时间线的失败窗口。业务与数值均为原创教学设定，面经不是技术答案来源。
+先读[B21–B35](02-databases-and-sql.md#b21)、[Redis基础](03-redis-and-caching.md)、[消息与幂等](04-messaging-and-idempotency.md)、[分布式租约](34-distributed-systems-details.md#fb54)。按教学情境画出提交、重放与过期写入的失败窗口。
 
-配套实验实际执行SQLite本地事务、文件重开和内存状态模型，不连接MySQL、Redis或Kafka；异常注入不等于真实断电或杀进程验证。一手结论按MySQL8.4、Kafka4.0系列API和核验日2026-10-11的Redis文档限定。
+配套实验执行 SQLite 本地事务、文件重开和内存状态模型；MySQL、Redis、Kafka 及真实断电、杀进程恢复尚未验证。一手结论按MySQL8.4、Kafka4.0系列API和核验日2026-10-11的Redis文档限定。
 
 <a id="storage-unknown-outcome"></a>
 ## 1. 客户端超时，为什么不能立即换个ID重做

@@ -3,7 +3,7 @@
 [返回总目录](../../README.md) · [题号索引](../../QUESTION_INDEX.md)
 
 - [怎样使用这份资料](00-reading-guide.md)
-- [Transformer先修 从向量到一个可计算的注意力块](05-transformer-prerequisite.md) · 原创先修与39项算术测试
+- [Transformer先修 从向量到一个可计算的注意力块](05-transformer-prerequisite.md) · 算例与 CPU 前向实验
 - [Agent loop、工具、状态与编排](01-agent-loop-tools-and-state.md) · 8题
 - [RAG、检索与重排](02-rag-retrieval-and-reranking.md) · 10题
 - [Memory 与上下文管理](03-memory-and-context.md) · 5题
@@ -15,39 +15,33 @@
 - [Harness执行治理与观测](18-harness-runtime-and-observability.md) · 3题
 - [Chroma持久化与嵌入集成](22-chroma-persistence-and-embedding.md) · 1题
 
-### 新增原创专题与合并阅读
+### 推理与检索进阶
 
 - [采样、KV缓存与推理服务边界](24-inference-and-serving-boundaries.md)
 - [动态Top-K与图谱消融](17-rag-indexes-and-evidence.md#dynamic-top-k-and-graph-ablation)
 
-这些是学习补充，已发布题号保持稳定。
-
-部分章节暂未发布，当前目录只列可读内容。
-
-### 原创应用实验与选型专题
+### 应用实验与选型
 
 - [Agent评测、模型路由与上下文消融](25-agent-evaluation-and-routing.md)
 - [Agent生产设计与故障实验](26-agent-production-design-lab.md)
-- [实际业务场景与状态合同](27-practical-agent-scenarios.md)
+- [实际业务场景与状态契约](27-practical-agent-scenarios.md)
 - [前沿模型与工程决策](28-frontier-and-engineering-decisions.md)
 - [框架选型与组件集成](29-framework-selection-and-integration.md)
 - [RAG数据工程与分块实验](30-rag-data-and-chunking-lab.md)
-- [工具、MCP与Skill合同](31-tool-mcp-and-skill-contracts.md)
+- [工具、MCP与Skill契约](31-tool-mcp-and-skill-contracts.md)
 
 另见[Python/FastAPI附录](../40-backend/40-python-fastapi-lab.md)、[AI Coding练习](../70-practice/ai-coding-exercises.md)与[面试证据准备](../90-interview/01-evidence-based-interview-preparation.md)。
 
-这批新增7篇Agent专题、2篇工程/练习附录和1篇面试准备，KV容量补充合并到已有推理章。它们不创建新的A/FA题号，不增加361道讲义题、100道Hot100、15道外部资源题或26张独立场景卡。[复现命令与未测范围](../../coverage/AGENT_LABS_VALIDATION.md)。
+[实验复现与验证范围](../../coverage/AGENT_LABS_VALIDATION.md)。
 
 ## 协议交付与工具流追问
 
 - [A2A身份、终态与断线恢复](32-a2a-task-lifecycle-lab.md)
 - [多工具增量参数组装与验证](33-tool-stream-assembly-lab.md)
 
-原创深读不新增编号题；合成模型不等同真实供应商或跨Agent互通。[本轮路线](../00-guide/interview-followup-study-paths.md)。
+沿着[学习路线](../00-guide/expanded-map-and-study-plan.md#followup-route-agent)练习任务交付与流式参数组装。
 
 ## 虾皮 Agent 一二面专项学习
 
 - [34题学习与追问](34-shopee-agent-interview-playbook.md)：独立SP-R1/SP-R2编号，每轮17题；基础答案与新追问交叉阅读
-- [来源与计数边界](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
-
-新增内容不改变原A/FA题号或361/100/15/26计数；PRD/TD Prompt及会议Skill合同为原创教学设计。
+- [题目来源](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)

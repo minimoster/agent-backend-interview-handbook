@@ -1,8 +1,8 @@
-# 两个公开仓库的技术案例与贡献边界
+# 两个公开仓库的机制走读
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-以下引用固定提交：Openresearch 为 5f876faabba238563001151fc7a573581ddaf869，Saber 为 6d5bb13dc74dc03a7a59c74b2396c3b10e84caef。这里描述代码，不认定作者贡献、不认定已经上线、不补造并发量和改进百分比。口头答题前，必须亲自沿文件和调用栈验证一次。
+以下引用固定提交：Openresearch 为 5f876faabba238563001151fc7a573581ddaf869，Saber 为 6d5bb13dc74dc03a7a59c74b2396c3b10e84caef。本章沿固定提交学习状态、调度、评测与投影机制；部署状态与性能仍需实际运行确认。练习时，从一个请求入口沿文件和调用栈走读。
 
 <a id="a39"></a>
 
@@ -30,7 +30,7 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：原子文件替换被说成分布式强一致；看到租约字段就宣称绝无双执行。
 
-**来源** ：[AG-P03](../../sources/catalog.md#ag-p03)、[AG-P04](../../sources/catalog.md#ag-p04)、[AG-T39](../../sources/catalog.md#ag-t39)。上述故障注入是建议验证项，不是已完成测试报告。
+**来源** ：[AG-P03](../../sources/catalog.md#ag-p03)、[AG-P04](../../sources/catalog.md#ag-p04)、[AG-T39](../../sources/catalog.md#ag-t39)。故障注入仍待执行。
 
 <a id="a40"></a>
 
@@ -61,7 +61,7 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 <a id="a41"></a>
 
-### A41 Openresearch 有评测和修复循环，为什么还不能说“效果已被充分证明”？
+### A41 Openresearch 的预检、正式评测与修复如何配合？
 
 **优先级：P0** 
 
@@ -72,7 +72,7 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **具体例子** ：预检8条全通过，只能说明这批输入下接口可运行；正式500条中正确450条才是这次运行的90% accuracy，仍须说明数据来源与划分。数字均为教学假设。
 
-**30 秒答题主线** ：我会把适配器预检和正式 benchmark 分开。前者最多8条、最多3次尝试；后者按配置运行并重算指标。代码提供评测能力，不等于已有可信效果结论；我会展示实际数据划分、日志和结果，没运行的部分不报指标。
+**30 秒答题主线** ：我会把适配器预检和正式 benchmark 分开。前者最多8条、最多3次尝试；后者按配置运行并重算指标。效果评估还需检查实际数据划分、日志与逐样本结果，并记录尚未运行的检查。
 
 **追问** ：谁生成标签？评测规则能被待评模型改动吗？多分类 F1 是哪种平均方式？
 
@@ -84,18 +84,18 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：把模型给出的分数直接当指标；不写样本数；把同组反复修复叫独立测试。
 
-**来源** ：[AG-P06](../../sources/catalog.md#ag-p06)、[AG-P07](../../sources/catalog.md#ag-p07)、[AG-T41](../../sources/catalog.md#ag-t41)；例子不是实际运行结果。
+**来源** ：[AG-P06](../../sources/catalog.md#ag-p06)、[AG-P07](../../sources/catalog.md#ag-p07)、[AG-T41](../../sources/catalog.md#ag-t41)；
 
 <a id="a42"></a>
 
-### A42 Saber 到底解决什么问题？如何讲清完整架构而不是报组件名单？
+### A42 Saber 怎样连接研究、文档生成与知识索引？
 
 **优先级：P0** 
 
 **知识点详解** 
 - 当前实现包含 Go/chi、Vue、PostgreSQL、Milvus、Elasticsearch，Neo4j 为可选；研究、写作、审阅后形成文档，再保存和建立索引。
 - 讲架构要沿数据生命周期：请求怎样进入、任务如何组织、证据怎样检索、文档怎样生成、主数据和派生索引怎样维护。
-- PostgreSQL、向量库和全文索引解决的需求不同；“用了很多中间件”本身不是技术成果。必须说明是否必需、失败能否降级以及维护代价。
+- PostgreSQL、向量库和全文索引解决的需求不同；分别说明各组件是否必需、故障时如何降级，以及维护代价。
 
 **具体例子** ：想比较向量和关键词召回效果，要保留同一文档/块标识，才能融合和追溯；若各系统 ID 不一致，问题首先是数据契约。
 
@@ -167,12 +167,11 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **来源** ：[AG-P10](../../sources/catalog.md#ag-p10)、[AG-P11](../../sources/catalog.md#ag-p11)、[AG-P12](../../sources/catalog.md#ag-p12)、[AG-T42](../../sources/catalog.md#ag-t42)。
 
-本节题号：A39、A40、A41、A42、A43、A44。原有题号保持稳定，补充主题另行编号。
 
 <a id="agentscope-pr-attribution"></a>
 
-## 补充案例：AgentScope沙箱工具的两个PR不能混用
+## 补充案例：AgentScope 的 Docker/E2B 与 Daytona 沙箱后端
 
-2026-10-10核对GitHub PR元信息：[PR1903](https://github.com/agentscope-ai/agentscope/pull/1903)为Docker/E2B工作区内置工具，作者DavdGao；[PR1943](https://github.com/agentscope-ai/agentscope/pull/1943)为Daytona工作区后端，作者BreezyB1n。本讲义按具体PR区分；他人的贡献不能当作读者或仓库维护者成果。
+2026-10-10核对GitHub PR元信息：[PR1903](https://github.com/agentscope-ai/agentscope/pull/1903)为Docker/E2B工作区内置工具，作者DavdGao；[PR1943](https://github.com/agentscope-ai/agentscope/pull/1943)为Daytona工作区后端，作者BreezyB1n。
 
-从案例可练习的原创问题是：同一个Read/Bash工具能否在宿主机与沙箱保持接口一致，同时让路径、工作目录、权限和输出契约落在对应backend？调用工具时显式携带工作区身份，适配层把操作发给获准执行环境；不能只改prompt中的“你在沙箱里”，却仍用宿主机文件API。测试应覆盖工作区外路径、软链接、取消、输出超限和不支持功能，且不把mock通过当云沙箱端到端通过。本次没有启动Docker、E2B或Daytona，也没有运行这两个第三方PR的测试。
+对照这两个后端，练习的问题是：同一个Read/Bash工具能否在宿主机与沙箱保持接口一致，同时让路径、工作目录、权限和输出契约落在对应backend？调用工具时显式携带工作区身份，适配层把操作发给获准执行环境；不能只改prompt中的“你在沙箱里”，却仍用宿主机文件API。测试应覆盖工作区外路径、软链接、取消、输出超限和不支持功能，且不把mock通过当云沙箱端到端通过。Docker、E2B、Daytona 及这两个第三方 PR 的测试尚未运行。

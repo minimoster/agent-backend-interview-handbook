@@ -1,8 +1,8 @@
-# 算法与 SQL 的具体练习路线
+# 算法与 SQL 练习单
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-**算法入口**： [LeetCode 75](https://leetcode.com/studyplan/leetcode-75/)。按数据结构分块学习，不照单全刷。建议六周完成约 30—40 道精选题并多次重做；若基础薄弱，减少新题、增加复盘。平台合集可能调整，收费题可跳过，不需要购买付费资料才能执行本计划。
+**算法入口**： [LeetCode 75](https://leetcode.com/studyplan/leetcode-75/)。按数据结构分块学习，不照单全刷。结合[统一学习路线](../00-guide/expanded-map-and-study-plan.md)少量选题并反复重做；基础薄弱时，减少新题、增加复盘。
 
 - 数组/哈希：两数之和、去重、频次统计。验收：解释哈希查找的常见复杂度假设与额外空间。
 - 双指针/窗口：有序数组去重、最长无重复子串、正数数组最短达标子数组。验收：说清左右边界与适用前提。可用[官方题页](https://leetcode.com/problems/minimum-size-subarray-sum/description/)练习 B49 的正数前提。
@@ -11,7 +11,7 @@
 - 树/堆：层序遍历、路径问题、Top-K。验收：区分递归栈空间、堆容量与排序成本。
 - 基础 DP：爬楼梯、打家劫舍、简单背包变体。验收：先定义状态与边界，再写转移；不以背代码替代推导。
 
-**SQL 入口**： [SQL 50](https://leetcode.com/studyplan/top-sql-50/)。建议先做约 15—20 道，至少用 5 个自造反例验证。以下表与问题是原创练习，可在选定数据库本地建表复现；暂未在本交付环境实际运行，不把示例当成经过数据库集成测试的代码。
+**SQL 入口**： [SQL 50](https://leetcode.com/studyplan/top-sql-50/)。建议先做约 15—20 道，至少用 5 个自造反例验证。以下表与问题可在选定数据库本地建表复现；这些练习尚未执行数据库集成测试。
 
 练习表：users(id,name)，orders(id,user_id,amount,status,created_at)，enrollments(student_id,course_id)。id 为各实体主键；课程记录故意允许重复，方便练习去重。
 

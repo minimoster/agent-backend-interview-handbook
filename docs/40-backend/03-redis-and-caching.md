@@ -164,4 +164,4 @@
 
 **来源**： [BS39 Redis 复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)。
 
-本节题号：B22、B23、B24、B25、B26、B27、B28、B29、B30。原有题号保持稳定，补充主题另行编号。
+本节题号：B22、B23、B24、B25、B26、B27、B28、B29、B30。

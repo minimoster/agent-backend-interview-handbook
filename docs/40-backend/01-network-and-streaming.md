@@ -146,4 +146,4 @@
 
 **来源**： [BS09 RFC 6455 WebSocket](https://www.rfc-editor.org/rfc/rfc6455.html)。
 
-本节题号：B01、B02、B03、B04、B05、B06、B07、B08。原有题号保持稳定，补充主题另行编号。
+本节题号：B01、B02、B03、B04、B05、B06、B07、B08。

@@ -2,9 +2,7 @@
 
 [返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
 
-本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
-
-**原创起手问：** 为什么不把BM25分数和向量相似度直接相加，然后取前五？
+**练习问题：** 为什么不把BM25分数和向量相似度直接相加，然后取前五？
 
 **知识点详解**： 关键词检索擅长精确词、编号和缩写；向量检索补语义相近表达。它们的原始分数来自不同计算，尺度和分布通常不同。融合先得到候选名单，重排再用更贵的模型检查查询与候选的匹配。
 
@@ -28,7 +26,7 @@
 
 对两个各含4个ID的列表手算RRF，加入重复ID及同分。附带的小练习会测试列表去重、确定性排序和非法k输入；它不代表真实检索效果已提升。
 
-**主题来源：** P05、P06。**技术依据：** [Elastic RRF定义](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)、[Sentence Transformers检索和重排](https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html)。本卡讲通用算法，不承诺具体Elasticsearch版本或许可证可用性。
+**主题来源：** P05、P06。**技术依据：** [Elastic RRF定义](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)、[Sentence Transformers检索和重排](https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html)。使用 Elasticsearch 时需按目标版本核对 API 与许可。
 
 ## 阅读与复验入口
 

@@ -110,4 +110,4 @@
 
 **来源**： [BS57 Go Pipelines and Cancellation](https://go.dev/blog/pipelines)。
 
-本节题号：B36、B37、B38、B39、B40、B41。原有题号保持稳定，补充主题另行编号。
+本节题号：B36、B37、B38、B39、B40、B41。

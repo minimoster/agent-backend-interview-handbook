@@ -110,4 +110,4 @@ heap profile 用于看存活堆对象，allocs 视角看累计分配；“一直
 
 **来源** ：[GO-S64 runtime/pprof](https://pkg.go.dev/runtime/pprof)；[GO-S65 runtime/trace](https://pkg.go.dev/runtime/trace)；[GO-S05 Go 1.27](https://go.dev/doc/go1.27)。
 
-本节题号：G36、G37、G38、G39、G40。原有题号保持稳定，补充主题另行编号。
+本节题号：G36、G37、G38、G39、G40。

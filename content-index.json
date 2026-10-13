@@ -4,14 +4,11 @@
   "content_status": "partial_chapters_unpublished",
   "path_base": "repository_root",
   "notes": [
-    "priority是学习优先级，不是难度；difficulty只沿用Hot100官方难度。",
-    "relative_path/path/url均相对仓库根目录；anchor为null时打开整篇。",
-    "进阶专题不改变原461题索引。",
-    "部分章节暂未发布；本版361道讲义题、100道Hot100和15道外部资源题分别计数。",
-    "2026-10-10新增10篇Agent/后端/练习/面试专题；KV补充并入既有24章，不增加编号题或独立场景卡。",
-    "2026-10-11新增Transformer原创先修与39项前向算术合同，不创建题号或增加独立场景卡。",
-    "2026-10-11补充六篇原创追问深读与一篇路线；无新增编号题，361/100/15/26及原17份场景自报集合口径不变，平台来源类型和新批次样本独立说明。",
-    "2026-10-13加入提供材料中的虾皮Agent一二面34题专项；SP-R1/SP-R2独立检索标识不加入items，原361/100/15/26与17份公开场景自报集合口径不变。"
+    "priority为学习优先级；difficulty沿用Hot100官方难度。",
+    "relative_path/path/url均相对仓库根目录；anchor为空时打开整篇。",
+    "items收录361道讲义题与100道Hot100题；独立专题、场景与资源练习在documents登记。",
+    "SP-R1/SP-R2标识用于34项专项练习的检索。",
+    "学习路线统一为docs/00-guide/expanded-map-and-study-plan.md；旧阅读地址在site/config.json登记别名。"
   ],
   "counts": {
     "interview_questions": 361,
@@ -4464,7 +4461,7 @@
       "title": "Openresearch 的状态持久化和执行租约解决什么？有什么边界？",
       "kind": "interview_question",
       "category": "项目设计",
-      "subcategory": "两个公开仓库的技术案例与贡献边界",
+      "subcategory": "两个公开仓库的机制走读",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
       "anchor": "a39",
@@ -4479,7 +4476,7 @@
       "title": "Openresearch 的 DAG、Agent routing 与 Eino 各负责什么？",
       "kind": "interview_question",
       "category": "项目设计",
-      "subcategory": "两个公开仓库的技术案例与贡献边界",
+      "subcategory": "两个公开仓库的机制走读",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
       "anchor": "a40",
@@ -4491,10 +4488,10 @@
     },
     {
       "id": "A41",
-      "title": "Openresearch 有评测和修复循环，为什么还不能说“效果已被充分证明”？",
+      "title": "Openresearch 的预检、正式评测与修复如何配合？",
       "kind": "interview_question",
       "category": "项目设计",
-      "subcategory": "两个公开仓库的技术案例与贡献边界",
+      "subcategory": "两个公开仓库的机制走读",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
       "anchor": "a41",
@@ -4506,10 +4503,10 @@
     },
     {
       "id": "A42",
-      "title": "Saber 到底解决什么问题？如何讲清完整架构而不是报组件名单？",
+      "title": "Saber 怎样连接研究、文档生成与知识索引？",
       "kind": "interview_question",
       "category": "项目设计",
-      "subcategory": "两个公开仓库的技术案例与贡献边界",
+      "subcategory": "两个公开仓库的机制走读",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
       "anchor": "a42",
@@ -4524,7 +4521,7 @@
       "title": "Saber 检索的并行边界和重排实现，最容易说错什么？",
       "kind": "interview_question",
       "category": "项目设计",
-      "subcategory": "两个公开仓库的技术案例与贡献边界",
+      "subcategory": "两个公开仓库的机制走读",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
       "anchor": "a43",
@@ -4539,7 +4536,7 @@
       "title": "Saber 长期记忆的 outbox、版本 hash 与 reconcile 为什么不是强一致？",
       "kind": "interview_question",
       "category": "项目设计",
-      "subcategory": "两个公开仓库的技术案例与贡献边界",
+      "subcategory": "两个公开仓库的机制走读",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
       "anchor": "a44",
@@ -4581,7 +4578,7 @@
     },
     {
       "id": "FB35",
-      "title": "项目难点、规模与架构怎样讲出证据而不编经历",
+      "title": "怎样用设计、规模与验证记录讲清项目难点",
       "kind": "interview_question",
       "category": "项目设计",
       "subcategory": "教学案例：点评、缓存、秒杀与客服",
@@ -7237,15 +7234,7 @@
   ],
   "documents": [
     {
-      "title": "六周复习路线",
-      "category": "学习路线",
-      "relative_path": "docs/00-guide/backend-six-week-plan.md",
-      "path": "docs/00-guide/backend-six-week-plan.md",
-      "url": "docs/00-guide/backend-six-week-plan.md",
-      "question_ids": []
-    },
-    {
-      "title": "全主题怎么学：先建立主线，再按追问补深度",
+      "title": "学习路线：用一个项目串起 Agent 与后端",
       "category": "学习路线",
       "relative_path": "docs/00-guide/expanded-map-and-study-plan.md",
       "path": "docs/00-guide/expanded-map-and-study-plan.md",
@@ -7253,15 +7242,7 @@
       "question_ids": []
     },
     {
-      "title": "阅读指南与六周路线",
-      "category": "学习路线",
-      "relative_path": "docs/00-guide/study-method-and-six-week-plan.md",
-      "path": "docs/00-guide/study-method-and-six-week-plan.md",
-      "url": "docs/00-guide/study-method-and-six-week-plan.md",
-      "question_ids": []
-    },
-    {
-      "title": "怎样使用这份资料",
+      "title": "Agent 先修与学习方法",
       "category": "AI Agent",
       "relative_path": "docs/10-agent/00-reading-guide.md",
       "path": "docs/10-agent/00-reading-guide.md",
@@ -7968,7 +7949,7 @@
       ]
     },
     {
-      "title": "两个公开仓库的技术案例与贡献边界",
+      "title": "两个公开仓库的机制走读",
       "category": "项目设计",
       "relative_path": "docs/50-projects/public-repository-case-studies.md",
       "path": "docs/50-projects/public-repository-case-studies.md",
@@ -8012,7 +7993,7 @@
       ]
     },
     {
-      "title": "公开面经：6 篇完整正文与 2 篇补充",
+      "title": "Agent 公开面经样本",
       "category": "公开面经",
       "relative_path": "docs/60-interviews/agent.md",
       "path": "docs/60-interviews/agent.md",
@@ -8020,7 +8001,7 @@
       "question_ids": []
     },
     {
-      "title": "真实公开面经样本",
+      "title": "后端公开面经样本",
       "category": "公开面经",
       "relative_path": "docs/60-interviews/backend.md",
       "path": "docs/60-interviews/backend.md",
@@ -8028,7 +8009,7 @@
       "question_ids": []
     },
     {
-      "title": "真实公开面经摘要（与上面的教学问答分开）",
+      "title": "Go 公开面经样本",
       "category": "公开面经",
       "relative_path": "docs/60-interviews/go.md",
       "path": "docs/60-interviews/go.md",
@@ -8036,7 +8017,7 @@
       "question_ids": []
     },
     {
-      "title": "公开真实面经样本与使用边界",
+      "title": "Java 公开面经样本",
       "category": "公开面经",
       "relative_path": "docs/60-interviews/java.md",
       "path": "docs/60-interviews/java.md",
@@ -8052,7 +8033,7 @@
       "question_ids": []
     },
     {
-      "title": "算法与 SQL 的具体练习路线",
+      "title": "算法与 SQL 练习单",
       "category": "实践与推理",
       "relative_path": "docs/70-practice/algorithm-and-sql-plan.md",
       "path": "docs/70-practice/algorithm-and-sql-plan.md",
@@ -8159,14 +8140,6 @@
       ]
     },
     {
-      "title": "跨主题进阶学习路线",
-      "category": "原创专题补充",
-      "relative_path": "docs/00-guide/advanced-study-route.md",
-      "path": "docs/00-guide/advanced-study-route.md",
-      "url": "docs/00-guide/advanced-study-route.md",
-      "question_ids": []
-    },
-    {
       "title": "采样、KV缓存与推理服务边界",
       "category": "原创专题补充",
       "relative_path": "docs/10-agent/24-inference-and-serving-boundaries.md",
@@ -8223,7 +8196,7 @@
       "question_ids": []
     },
     {
-      "title": "Agent生产设计：从模块图到可验证合同",
+      "title": "Agent生产设计：从模块图到可验证契约",
       "category": "原创专题与工程附录",
       "relative_path": "docs/10-agent/26-agent-production-design-lab.md",
       "path": "docs/10-agent/26-agent-production-design-lab.md",
@@ -8271,7 +8244,7 @@
       "question_ids": []
     },
     {
-      "title": "工具 MCP与Skill的实用合同",
+      "title": "工具 MCP与Skill的实用契约",
       "category": "原创专题与工程附录",
       "relative_path": "docs/10-agent/31-tool-mcp-and-skill-contracts.md",
       "path": "docs/10-agent/31-tool-mcp-and-skill-contracts.md",
@@ -8284,14 +8257,6 @@
       "relative_path": "docs/10-agent/29-framework-selection-and-integration.md",
       "path": "docs/10-agent/29-framework-selection-and-integration.md",
       "url": "docs/10-agent/29-framework-selection-and-integration.md",
-      "question_ids": []
-    },
-    {
-      "title": "面经补充学习路线：基础、追问、设计与排障",
-      "category": "原创面经追问与故障诊所",
-      "relative_path": "docs/00-guide/interview-followup-study-paths.md",
-      "path": "docs/00-guide/interview-followup-study-paths.md",
-      "url": "docs/00-guide/interview-followup-study-paths.md",
       "question_ids": []
     },
     {

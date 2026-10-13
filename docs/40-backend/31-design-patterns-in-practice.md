@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-本章为原创补充讲义。P0 为应能独立讲清并写出关键步骤；P1 为常见追问；P2 为理解边界。官方资料核查日：2026-10-09。示例参数均为教学设定，不是作者或读者的项目实测。代码与 SQL 的实际执行范围在对应题中标注；没有实测的吞吐、可用性和故障恢复效果不作为事实。
+官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB10 怎样识别创建型、结构型、行为型模式和 Spring 工厂抽象](#fb10)
 - [FB11 如何手写安全的延迟单例，DCL 为什么必须关注发布](#fb11)
@@ -26,7 +26,7 @@
 
 **常见误区**：每个 get 方法都是工厂方法；为了凑模式修改稳定代码；把 Spring 单例作用域等同全 JVM 只有一个对象。
 
-**来源**：[FB-S016 Spring 容器扩展点与 FactoryBean](https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html)、[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S016 Spring 容器扩展点与 FactoryBean](https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html)、[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)。
 
 <a id="fb11"></a>
 
@@ -86,7 +86,7 @@ public final class HolderSingleton {
 
 可复验源码与运行命令见 [examples/backend](../../examples/backend/README.md)。
 
-**来源**：[FB-S012 JLS 21 类初始化](https://docs.oracle.com/javase/specs/jls/se21/html/jls-12.html#jls-12.4)、[FB-S013 JLS 21 happens-before](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html#jls-17.4.5)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S012 JLS 21 类初始化](https://docs.oracle.com/javase/specs/jls/se21/html/jls-12.html#jls-12.4)、[FB-S013 JLS 21 happens-before](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html#jls-17.4.5)。
 
 <a id="fb12"></a>
 
@@ -104,7 +104,7 @@ public final class HolderSingleton {
 
 **常见误区**：子类代理能增强所有方法；代理等于适配器；将 Executors.callable 的转换方向写反。
 
-**来源**：[FB-S014 Executors Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Executors.html)、[FB-S015 Spring AOP 代理机制](https://docs.spring.io/spring-framework/reference/core/aop/proxying.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S014 Executors Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Executors.html)、[FB-S015 Spring AOP 代理机制](https://docs.spring.io/spring-framework/reference/core/aop/proxying.html)。
 
 <a id="fb13"></a>
 
@@ -122,7 +122,7 @@ public final class HolderSingleton {
 
 **常见误区**：所有场景 CallerRuns 都能优雅背压；拒绝只在队列满时发生而忽略关闭状态。
 
-**来源**：[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)。
 
 <a id="fb14"></a>
 
@@ -140,5 +140,4 @@ public final class HolderSingleton {
 
 **常见误区**：用了 Template 名称就完全等于 GoF 模板方法；框架管理资源就不必考虑事务边界。
 
-**来源**：[FB-S017 Spring JDBC 核心与回调](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)。业务组合、反例与答题组织为原创教学推导。
-
+**来源**：[FB-S017 Spring JDBC 核心与回调](https://docs.spring.io/spring-framework/reference/data-access/jdbc/core.html)。

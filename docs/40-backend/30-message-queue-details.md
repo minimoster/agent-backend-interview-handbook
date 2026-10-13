@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-本章为原创补充讲义。P0 为应能独立讲清并写出关键步骤；P1 为常见追问；P2 为理解边界。官方资料核查日：2026-10-09。示例参数均为教学设定，不是作者或读者的项目实测。代码与 SQL 的实际执行范围在对应题中标注；没有实测的吞吐、可用性和故障恢复效果不作为事实。
+官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB01 如何比较 Kafka、RocketMQ 和 RabbitMQ，而不背吞吐排行榜](#fb01)
 - [FB02 多副本为什么仍可能丢写或暂停服务](#fb02)
@@ -30,7 +30,7 @@
 
 **常见误区**：把某产品固定说成百万 TPS；把“没有内建业务死信队列”说成不能建立失败主题；为了履历热词同时引入三种 MQ。
 
-**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)、[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)、[FB-S008 RocketMQ 5.x 定时消息](https://rocketmq.apache.org/docs/featureBehavior/02delaymessage/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)、[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)、[FB-S008 RocketMQ 5.x 定时消息](https://rocketmq.apache.org/docs/featureBehavior/02delaymessage/)。
 
 <a id="fb02"></a>
 
@@ -48,7 +48,7 @@
 
 **常见误区**：多副本等于绝不丢；主从切换对客户端完全透明；把历史经典镜像队列当作现代 RabbitMQ 的通用推荐。
 
-**来源**：[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)、[FB-S003 Kafka 4.0 Broker 配置](https://kafka.apache.org/40/configuration/broker-configs/)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)、[FB-S009 RocketMQ 4.x DLedger](https://rocketmq.apache.org/docs/4.x/bestPractice/02dledger/)、[FB-S077 RabbitMQ 经典镜像队列移除说明](https://www.rabbitmq.com/docs/3.13/ha)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)、[FB-S003 Kafka 4.0 Broker 配置](https://kafka.apache.org/40/configuration/broker-configs/)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)、[FB-S009 RocketMQ 4.x DLedger](https://rocketmq.apache.org/docs/4.x/bestPractice/02dledger/)、[FB-S077 RabbitMQ 经典镜像队列移除说明](https://www.rabbitmq.com/docs/3.13/ha)。
 
 <a id="fb03"></a>
 
@@ -66,7 +66,7 @@
 
 **常见误区**：所有 MQ 都用“关闭自动提交”一句配置；同步调用就是同步落盘；消息堆积只监控条数而不监控最老消息年龄。
 
-**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)、[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)、[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)。
 
 <a id="fb04"></a>
 
@@ -84,7 +84,7 @@
 
 **常见误区**：顺序写完全不需要磁盘；批量没有延迟成本；零拷贝在加密路径无条件成立。
 
-**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)、[FB-S010 Linux sendfile(2)](https://man7.org/linux/man-pages/man2/sendfile.2.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)、[FB-S010 Linux sendfile(2)](https://man7.org/linux/man-pages/man2/sendfile.2.html)。
 
 <a id="fb05"></a>
 
@@ -102,7 +102,7 @@
 
 **常见误区**：扩分区后同一键仍永远路由原分区；相同消息体必被自动合并；只设置 key 就保证数据库更新顺序。
 
-**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S002 Kafka 4.0 生产者配置](https://kafka.apache.org/40/configuration/producer-configs/)。
 
 <a id="fb06"></a>
 
@@ -120,7 +120,7 @@
 
 **常见误区**：死信等于业务优先级；无限重放；只统计死信总数而不追最老未处理失败。
 
-**来源**：[FB-S005 RabbitMQ Dead Letter Exchanges](https://www.rabbitmq.com/docs/dlx)、[FB-S006 RabbitMQ TTL](https://www.rabbitmq.com/docs/ttl)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S005 RabbitMQ Dead Letter Exchanges](https://www.rabbitmq.com/docs/dlx)、[FB-S006 RabbitMQ TTL](https://www.rabbitmq.com/docs/ttl)、[FB-S004 RabbitMQ Quorum Queues](https://www.rabbitmq.com/docs/quorum-queues)。
 
 <a id="fb07"></a>
 
@@ -138,7 +138,7 @@
 
 **常见误区**：事务消息相当于跨所有服务的 ACID；示例里固定 return true 可以上线。
 
-**来源**：[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)。
 
 <a id="fb08"></a>
 
@@ -156,7 +156,7 @@
 
 **常见误区**：零拷贝等于没有任何物理数据移动；mmap 自动保证修改已持久化；映射大文件必须一次占用等量物理内存。
 
-**来源**：[FB-S010 Linux sendfile(2)](https://man7.org/linux/man-pages/man2/sendfile.2.html)、[FB-S011 Linux mmap(2)](https://man7.org/linux/man-pages/man2/mmap.2.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S010 Linux sendfile(2)](https://man7.org/linux/man-pages/man2/sendfile.2.html)、[FB-S011 Linux mmap(2)](https://man7.org/linux/man-pages/man2/mmap.2.html)。
 
 <a id="fb09"></a>
 
@@ -174,5 +174,4 @@
 
 **常见误区**：18 个延迟等级适用于所有 RocketMQ；TTL 到期等于立刻被消费者处理；插件维护状态未核验却当默认能力。
 
-**来源**：[FB-S006 RabbitMQ TTL](https://www.rabbitmq.com/docs/ttl)、[FB-S008 RocketMQ 5.x 定时消息](https://rocketmq.apache.org/docs/featureBehavior/02delaymessage/)。业务组合、反例与答题组织为原创教学推导。
-
+**来源**：[FB-S006 RabbitMQ TTL](https://www.rabbitmq.com/docs/ttl)、[FB-S008 RocketMQ 5.x 定时消息](https://rocketmq.apache.org/docs/featureBehavior/02delaymessage/)。

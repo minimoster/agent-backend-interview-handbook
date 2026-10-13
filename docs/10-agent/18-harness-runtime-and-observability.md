@@ -4,7 +4,7 @@
 
 本章将工具、状态、安全与验证放回完整执行系统中。先复习[A01–A08的工具与状态](01-agent-loop-tools-and-state.md)、[A16–A17的诊断与指标](02-rag-retrieval-and-reranking.md#a16)、[A24–A30的异步可靠性](04-streaming-and-reliable-execution.md)，再完成[先修阅读与验收清单](14-controlled-improvement.md#prerequisite-reading-checklist)。这里补充边界、跨上下文恢复与工具生命周期。
 
-本文核验日期为 2026-10-09。原理与示例为独立整理；设计建议不冒充框架的强制规范。文中的实验是待执行的验证方案，除非另有运行记录，不表示已经通过。
+技术资料核查于2026-10-09。设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
 
 <a id="fa39"></a>
 

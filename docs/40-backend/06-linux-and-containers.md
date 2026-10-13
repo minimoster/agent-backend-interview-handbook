@@ -110,4 +110,4 @@
 
 **来源**： [BS67 Linux /proc 文档](https://docs.kernel.org/filesystems/proc.html)、[BS68 Go Diagnostics](https://go.dev/doc/diagnostics)。
 
-本节题号：B42、B43、B44、B45、B46、B47。原有题号保持稳定，补充主题另行编号。
+本节题号：B42、B43、B44、B45、B46、B47。

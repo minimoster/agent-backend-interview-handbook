@@ -2,11 +2,11 @@
 
 [返回总目录](README.md) · [完整学习路线](docs/00-guide/expanded-map-and-study-plan.md) · [覆盖状态](coverage/README.md)
 
-已发布题目的题号保持不变。扩展题使用FA/FJ/FB、SQL用S、推理用R；重复来源可合并到同一题，题数不是面经命中率。
+按题号、主题与优先级查找：A/G/J/B 为基础题，FA/FJ/FB 为扩展题，S 为 SQL，R 为推理。
 
-本版详解题：361道，另附Hot100独立100题。源文缺失与验证边界见覆盖状态和验证记录。
+收录361道讲义题和100道 Hot100 题。[验证记录](coverage/VALIDATION.md)提供测试方法与执行结果。
 
-独立练习入口：[15道算法基础外部资源题](docs/85-algorithm-supplement/README.md)，按题号、分类与官方难度检索；不增加上述361/100计数，不提供新增原创实现。[代码随想录资源归属与覆盖](sources/carl-hot100-resources.md)。
+另有[15道算法基础资源题](docs/85-algorithm-supplement/README.md)，按题号、分类和难度检索。[代码随想录资源目录](sources/carl-hot100-resources.md)。
 
 ## Agent基线 · 36题
 
@@ -42,8 +42,8 @@
 - [A30 Agent 工具副作用如何做到幂等？Exactly-once 能随口承诺吗？](docs/10-agent/04-streaming-and-reliable-execution.md#a30) · P0
 - [A39 Openresearch 的状态持久化和执行租约解决什么？有什么边界？](docs/50-projects/public-repository-case-studies.md#a39) · P0
 - [A40 Openresearch 的 DAG、Agent routing 与 Eino 各负责什么？](docs/50-projects/public-repository-case-studies.md#a40) · P0
-- [A41 Openresearch 有评测和修复循环，为什么还不能说“效果已被充分证明”？](docs/50-projects/public-repository-case-studies.md#a41) · P0
-- [A42 Saber 到底解决什么问题？如何讲清完整架构而不是报组件名单？](docs/50-projects/public-repository-case-studies.md#a42) · P0
+- [A41 Openresearch 的预检、正式评测与修复如何配合？](docs/50-projects/public-repository-case-studies.md#a41) · P0
+- [A42 Saber 怎样连接研究、文档生成与知识索引？](docs/50-projects/public-repository-case-studies.md#a42) · P0
 - [A43 Saber 检索的并行边界和重排实现，最容易说错什么？](docs/50-projects/public-repository-case-studies.md#a43) · P0
 - [A44 Saber 长期记忆的 outbox、版本 hash 与 reconcile 为什么不是强一致？](docs/50-projects/public-repository-case-studies.md#a44) · P0
 
@@ -303,7 +303,7 @@
 - [FB32 调度算法如何在吞吐、响应、公平之间取舍](docs/40-backend/33-operating-system-details.md#fb32) · P1
 - [FB33 布隆过滤器怎样选参数并跟上实体增删](docs/50-projects/teaching-case-review-and-seckill.md#fb33) · P0
 - [FB34 请求上下文怎样避免 ThreadLocal 泄漏和串用户](docs/50-projects/teaching-case-review-and-seckill.md#fb34) · P0
-- [FB35 项目难点、规模与架构怎样讲出证据而不编经历](docs/50-projects/teaching-case-review-and-seckill.md#fb35) · P0
+- [FB35 怎样用设计、规模与验证记录讲清项目难点](docs/50-projects/teaching-case-review-and-seckill.md#fb35) · P0
 - [FB36 附近商户的距离、评分与营业条件怎样组合查询](docs/50-projects/teaching-case-review-and-seckill.md#fb36) · P1
 - [FB37 突发流量如何变成容量模型和分层保护](docs/50-projects/teaching-case-review-and-seckill.md#fb37) · P0
 - [FB38 Lua 怎样原子校验库存与一人一单，代码缺什么就不能声称防超卖](docs/50-projects/teaching-case-review-and-seckill.md#fb38) · P0

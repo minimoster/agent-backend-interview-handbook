@@ -36,7 +36,7 @@
 
 **常见误区**： 沉默写代码；背过题就跳过约束；把“看懂题解”记成“独立掌握”。
 
-**来源**： [BS71 LeetCode 75 官方练习入口](https://leetcode.com/studyplan/leetcode-75/)、[BS73 LeetCode 209 官方题目](https://leetcode.com/problems/minimum-size-subarray-sum/description/)。学习顺序、算法例子和答题方法是原创教学建议，不是该页面的难度统计或岗位保证。
+**来源**： [BS71 LeetCode 75 官方练习入口](https://leetcode.com/studyplan/leetcode-75/)、[BS73 LeetCode 209 官方题目](https://leetcode.com/problems/minimum-size-subarray-sum/description/)。
 
 <a id="b50"></a>
 
@@ -54,6 +54,6 @@
 
 **常见误区**： 在 WHERE 写聚合条件；忽略排序并列；认为通过样例就证明所有边界正确。
 
-**来源**： [BS72 LeetCode SQL 50 官方练习入口](https://leetcode.com/studyplan/top-sql-50/)、[BS28 PostgreSQL 表表达式与连接](https://www.postgresql.org/docs/18/queries-table-expressions.html)。课程例子与练习验收为原创设计。
+**来源**： [BS72 LeetCode SQL 50 官方练习入口](https://leetcode.com/studyplan/top-sql-50/)、[BS28 PostgreSQL 表表达式与连接](https://www.postgresql.org/docs/18/queries-table-expressions.html)。
 
-本节题号：B48、B49、B50。原有题号保持稳定，补充主题另行编号。
+本节题号：B48、B49、B50。

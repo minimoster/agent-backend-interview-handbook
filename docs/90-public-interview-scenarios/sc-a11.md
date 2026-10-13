@@ -2,9 +2,7 @@
 
 [返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
 
-本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
-
-**原创起手问：** Agent结果通过SSE流式显示，浏览器断开又连接。是否应该重新启动Agent任务？
+**练习问题：** Agent结果通过SSE流式显示，浏览器断开又连接。是否应该重新启动Agent任务？
 
 **知识点详解**： SSE传服务器到客户端的事件；业务任务是否运行是另一份状态。网络连接断开不代表任务失败，连接重建也不应默认产生新任务。
 
@@ -26,9 +24,9 @@
 
 ## 练习与验收
 
-创建编号1–5的事件，客户端在3处断开，从3续传，并模拟重复3。验收界面最终只出现1–5一次；缺失历史应给出明确恢复路径。本卡不声称实现了完整SSE解析器。
+创建编号1–5的事件，客户端在3处断开，从3续传，并模拟重复3。验收界面最终只出现1–5一次；缺失历史应给出明确恢复路径。完整 SSE 解析器仍待实现与测试。
 
-**主题来源：** 公开Agent/后端服务主题扩展；没有将本卡冒充某篇新面经原题。**技术依据：** [WHATWG Server sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html)、[RFC9293 TCP字节流](https://www.rfc-editor.org/rfc/rfc9293.html)。
+**主题来源：** 公开 Agent/后端服务主题扩展。**技术依据：** [WHATWG Server sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html)、[RFC9293 TCP字节流](https://www.rfc-editor.org/rfc/rfc9293.html)。
 
 ## 阅读与复验入口
 

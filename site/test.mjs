@@ -46,6 +46,36 @@ check('索引 461 项与 Hot100 100 题均有阅读文档',()=>{
 check('阅读产物逐篇保留当前 Markdown 原文',()=>{
   for(const d of data.docs)assert.equal(d.source,fs.readFileSync(path.join(root,d.path),'utf8'),d.path);
 });
+check('小分片可逐个审阅并完整还原阅读数据',()=>{
+  const scripts=[...html.matchAll(/<script src="(assets\/data\.[^"]+\.js)" defer><\/script>/g)].map(m=>m[1]);
+  assert.ok(scripts.length>100);
+  const filenames=new Set(scripts);
+  assert.equal(filenames.size,scripts.length);
+  for(const file of scripts){
+    const bytes=fs.readFileSync(path.join(site,file));
+    assert.ok(bytes.length<=100000,`${file}: 分片超过100KB`);
+    assert.equal(Buffer.from(bytes.toString('utf8'),'utf8').length,bytes.length,`${file}: UTF-8无效`);
+  }
+  assert.equal(data.docs.length,docs.size);
+  assert.equal(data.readingAliases['docs/00-guide/backend-six-week-plan.md'].sections['第3周-缓存与并发控制'],'week-2');
+});
+check('学习路线只有一个正文和索引条目，进阶与独特练习仍可找到',()=>{
+  const canonical='docs/00-guide/expanded-map-and-study-plan.md';
+  const guide=data.docs.filter(d=>d.module==='guide');
+  assert.deepEqual([...guide].map(d=>d.path),[canonical]);
+  assert.equal(index.documents.filter(d=>d.category==='学习路线').length,1);
+  assert.equal(fs.readdirSync(path.join(root,'docs/00-guide')).filter(p=>p.endsWith('.md')).length,1);
+  const route=docs.get(canonical);
+  for(const id of ['learning-main-language','six-week-plan','week-1','week-2','week-3','week-4','week-5','week-6','daily-practice','project-workflow','followup-route-agent','followup-route-java','followup-route-go','followup-route-storage','followup-route-practice','advanced-topics','resume-to-questions','cache-interview-ladder'])assert.ok(route.headings.some(h=>h.id===id),id);
+  for(const q of ['RC/RR','位点提交','回源并发','Spark','LC395','ES 父子','KV'])assert.ok(route.source.includes(q),q);
+  assert.equal((docs.get('docs/70-practice/algorithm-and-sql-plan.md').source.match(/^\d\. /gm)||[]).length,8);
+  assert.equal(Object.keys(data.readingAliases).length,4);
+  for(const [old,alias] of Object.entries(data.readingAliases)){
+    assert.equal(alias.path,canonical);assert.ok(!docs.has(old));
+    assert.ok(!index.documents.some(d=>d.relative_path===old));
+    for(const section of [alias.section,...Object.values(alias.sections)])assert.ok(route.headings.some(h=>h.id===section),`${old}#${section}`);
+  }
+});
 check('全部规范 Markdown 进入阅读层，不复制有相对链接的孤立 Markdown',()=>{
   const walk=dir=>fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(`${dir}/${e.name}`):[`${dir}/${e.name}`]);
   for(const file of ['docs','examples','coverage','errata','sources'].flatMap(walk).filter(p=>p.endsWith('.md')))assert.ok(docs.has(file),file);
@@ -243,11 +273,11 @@ check('26张公开场景卡编号、搜索、原文、追问与既有题数独�
 });
 check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存储',()=>{
   // Minimal DOM stubs check runtime initialization only. They do not lay out or paint a page.
-  function boot(hash,allowStorage=true){
+  function boot(hash,allowStorage=true,initialState={}){
     const nodes=new Map();
     const stub=()=>({innerHTML:'',textContent:'',value:'',hidden:true,dataset:{},listeners:{},style:{setProperty(){}},classList:{add(){},remove(){},contains(){return false;},toggle(){}},setAttribute(){},removeAttribute(){},getAttribute(){return '';},addEventListener(name,fn){this.listeners[name]=fn;},querySelectorAll(){return [];},contains(){return false;},focus(){this.focused=true;},scrollIntoView(){this.scrolled=true;},select(){}});
     const doc={getElementById(id){if(!nodes.has(id))nodes.set(id,stub());return nodes.get(id);},querySelector(selector){return this.getElementById(selector);},querySelectorAll(){return [];},addEventListener(){},documentElement:stub(),activeElement:null};
-    const sandbox={window:{},document:doc,innerWidth:390,location:{hash},URLSearchParams,localStorage:{getItem(){if(!allowStorage)throw Error('disabled');return null;},setItem(){if(!allowStorage)throw Error('disabled');}},history:{replaceState(){}},setTimeout(){return 1;},clearTimeout(){},requestAnimationFrame(fn){fn();},getComputedStyle(){return {display:'block'};}};
+    const sandbox={window:{},document:doc,innerWidth:390,location:{hash},URLSearchParams,localStorage:{getItem(){if(!allowStorage)throw Error('disabled');return JSON.stringify(initialState);},setItem(key,value){if(!allowStorage)throw Error('disabled');sandbox.savedState=JSON.parse(value);}},history:{replaceState(a,b,hash){sandbox.location.hash=hash;}},setTimeout(){return 1;},clearTimeout(){},requestAnimationFrame(fn){fn();},getComputedStyle(){return {display:'block'};}};
     sandbox.window.matchMedia=()=>({matches:false});sandbox.window.scrollTo=()=>{};sandbox.window.addEventListener=()=>{};
     for(const match of html.matchAll(/<script src="(assets\/data\.[^"]+\.js)" defer><\/script>/g))vm.runInNewContext(fs.readFileSync(path.join(site,match[1]),'utf8'),sandbox,{timeout:10000});
     vm.runInNewContext(dataText,sandbox,{timeout:10000});
@@ -255,8 +285,32 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
     vm.runInNewContext(fs.readFileSync(path.join(site,'assets/app.js'),'utf8'),sandbox,{timeout:10000});
     return {html:nodes.get('main').innerHTML,title:doc.title,nodes,sandbox};
   }
+  const canonical='docs/00-guide/expanded-map-and-study-plan.md';
+  const aliases=Object.entries(data.readingAliases);
+  for(const [old,alias] of aliases){
+    assert.ok(!docs.has(old),old);
+    for(const [original,expected] of [['',alias.section],['unknown-deleted-section',alias.section],...Object.entries(alias.sections)]){
+      const legacy=boot(`#/read/${encodeURIComponent(old)}${original?'?section='+encodeURIComponent(original):''}`);
+      const query=new URLSearchParams(legacy.sandbox.location.hash.split('?')[1]);
+      assert.ok(legacy.sandbox.location.hash.startsWith('#/read/'+encodeURIComponent(canonical)),old);
+      assert.equal(query.get('section'),expected,`${old}#${original}`);
+      assert.ok(legacy.html.includes('学习路线：用一个项目串起 Agent 与后端'));
+    }
+  }
+  for(const [old,section] of Object.entries(data.readingSectionAliases[canonical])){
+    const legacy=boot(`#/read/${encodeURIComponent(canonical)}?section=${encodeURIComponent(old)}`);
+    assert.equal(new URLSearchParams(legacy.sandbox.location.hash.split('?')[1]).get('section'),section);
+    assert.ok(docs.get(canonical).headings.some(h=>h.id===section));
+  }
+  const migrated=boot('#/',true,{saved:[...aliases.map(([old])=>old),canonical],done:[...aliases.map(([old])=>old),canonical],lastPath:aliases[0][0]});
+  assert.deepEqual([...migrated.sandbox.savedState.saved],[canonical]);
+  assert.deepEqual([...migrated.sandbox.savedState.done],[canonical]);
+  assert.equal(migrated.sandbox.savedState.lastPath,canonical);
+  assert.equal(migrated.nodes.get('saved-count').textContent,1);
+  assert.equal(migrated.nodes.get('done-count').textContent,1);
+  assert.ok(migrated.html.includes('继续阅读'));
   assert.ok(boot('#/').html.includes('把知识连成一条主线'));
-  assert.ok(boot('#/').html.includes('原创场景卡'));
+  assert.ok(boot('#/').html.includes('场景卡'));
   assert.equal(boot('#/').title,'AI Agent 与后端开发学习手册');
   assert.ok(boot('#/').html.includes('从 Agent 应用到后端工程，系统学习核心知识、项目实践与面试方法。'));
   assert.ok(html.includes('aria-label="AI Agent 与后端开发学习手册首页"'));
@@ -265,7 +319,7 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   assert.ok(!html.includes('工程学习手册'));
   assert.ok(boot('#/library?q=SC-A01').title.endsWith(' · AI Agent 与后端开发学习手册'));
   assert.ok(boot('#/library?q=SC-A01').html.includes('SC-A01'));
-  assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-a01.md').html.includes('独立原创场景卡'));
+  assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-a01.md').html.includes('练习问题'));
   assert.ok(boot('#/read/docs%2F90-public-interview-scenarios%2Fsc-b13.md',false).html.includes('TCP read边界'));
   const searched=boot('#/library?q=A01');assert.ok(searched.html.includes('A01'));assert.ok(searched.html.includes('section=a01'));
   assert.ok(boot('#/library?q=绝不存在987XYZ').html.includes('暂时没有匹配'));
@@ -356,7 +410,7 @@ check('Transformer原创先修导航、形状搜索与源码保持独立口径',
 
 check('面经六篇追问与一路线保持既有编号并有唯一真实锚点',()=>{
   const paths=[
-    'docs/00-guide/interview-followup-study-paths.md',
+    'docs/00-guide/expanded-map-and-study-plan.md',
     'docs/10-agent/32-a2a-task-lifecycle-lab.md',
     'docs/10-agent/33-tool-stream-assembly-lab.md',
     'docs/20-java/16-executor-failure-followups.md',
@@ -424,7 +478,7 @@ check('虾皮Agent补充保留34个唯一题号、六栏目与独立计数',()=>
     for(const label of ['新手概念','面试口述','落地设计','指标与失败边界','追问与误区','延伸阅读'])assert.ok(section.text.includes(label),`${r.id}: ${label}`);
   }
   assert.ok(!/libfile_|file_00000000|IMG_276[1-4]|oai-library:/.test(d.source));
-  assert.ok(d.source.includes('不增加原361/100/15/26计数'));
+  assert.ok(d.source.includes('示例指标为教学设定'));
 });
 check('虾皮Agent新题号与新增二面正文可搜索，导航相互连接',()=>{
   const file='docs/10-agent/34-shopee-agent-interview-playbook.md';

@@ -1,8 +1,8 @@
 # Go 追问诊所：有界任务、取消竞争与资源收尾
 
-[Go目录](README.md) · [本轮学习路线](../00-guide/interview-followup-study-paths.md) · [完整worker pool](../../examples/go/followup_lifecycle/pool.go)
+[Go目录](README.md) · [主学习路线](../00-guide/expanded-map-and-study-plan.md#topic-map) · [完整worker pool](../../examples/go/followup_lifecycle/pool.go)
 
-先读[G03–G10](01-concurrency.md#g03)、[G27–G34](04-http-sse-grpc.md#g27)与[G39–G40](05-testing-and-debugging.md#g39)。原章节解释概念，这里要求你画出失败后每个goroutine、队列和连接的去向。本章情境为原创，公开面经只提供主题线索。实验使用标准库与Go1.23语法下限；本地没有Go编译工具，编译与race运行以本轮同提交CI结果为准，不能把源码审阅当成运行通过。
+先读[G03–G10](01-concurrency.md#g03)、[G27–G34](04-http-sse-grpc.md#g27)与[G39–G40](05-testing-and-debugging.md#g39)。本章要求画出失败后每个 goroutine、队列和连接的去向。实验使用标准库，语法下限为 Go 1.23；编译与 race 的验证记录见[实验说明](../../examples/go/followup_lifecycle/README.md)。
 
 <a id="go-owner-join"></a>
 ## 1. context都传了，为什么goroutine还在增长
@@ -53,7 +53,7 @@ HTTP Client应复用，响应Body由调用方按合同读取并关闭。读尽�
 
 **追问：数量回落一次就证明没泄漏？** 不够。固定负载、重复取消/错误/正常三种路径，检查相似阻塞栈是否积累、活对象是否增长、是否仍保留Body与结果缓冲。先看goroutine和heap/allocs，再按需要启用block/mutex profile或trace；诊断采样范围和开销要受控，不把pprof直接暴露到公网。[Go Diagnostics](https://go.dev/doc/diagnostics)
 
-**原创建议答法：** “我会列所有者、阻塞点、退出信号和join证据。若任务不响应取消，我先定位它卡在哪个资源合同，不把cancel函数当强杀。”
+**参考答法：** “我会列所有者、阻塞点、退出信号和join证据。若任务不响应取消，我先定位它卡在哪个资源合同，不把cancel函数当强杀。”
 
 <a id="go-lab-reproduction"></a>
 ## 6. 从口述到验收

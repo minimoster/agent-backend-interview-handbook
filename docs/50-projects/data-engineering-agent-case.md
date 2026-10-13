@@ -2,16 +2,16 @@
 
 [返回总目录](../../README.md) · [项目案例](README.md) · [Spark 执行与诊断](../40-backend/37-spark-execution-and-diagnostics.md)
 
-本篇是原创学习补充，用一个自然语言驱动的批处理任务讲清计划、提交、尝试、状态对账、取消和长任务交互。它不是新增面试题，不改变已有题号或统计，也不是读者的项目经历。
+本章通过一个自然语言驱动的批处理任务，学习计划、提交、执行尝试、状态对账、取消和长任务交互。
 
-技术参照为 Apache Spark 4.0.1，核查日 2026-10-10。下文的任务、ID、状态协议、schema 和测试场景都是教学设计，没有执行 Spark 集群实验。源码路径、测试名或文章描述仅能提示应当核对哪里，不能替代亲自运行或贡献证明。
+技术参照为 Apache Spark 4.0.1，核查日2026-10-10。任务、ID、状态协议、schema 与测试场景为教学设计；Spark 集群实验尚未执行。
 
 - [案例范围与请求收敛](#data-agent-scope)
 - [业务任务与执行尝试](#job-lifecycle)
 - [提交双写与重启对账](#job-reconciliation)
 - [长任务 UI 与流式事件](#long-task-ui)
 - [可组合 Skill 与有界计划](#composable-data-skills)
-- [验证矩阵与讲解边界](#data-agent-verification)
+- [验证矩阵与下一步](#data-agent-verification)
 
 <a id="data-agent-scope"></a>
 
@@ -120,7 +120,7 @@ SUBMITTING/SUBMITTED/RUNNING -> RECONCILING  （外部结果不确定）
 | Submit intent | attempt_id、待发送/已接受/未知、领取者、租约、下一次处理时间 |
 | Artifact | attempt_id、内容摘要、schema、输入版本、临时/已验证/已发布、可见范围 |
 
-Outbox 使“需要提交”不会随进程内存丢失，通常仍是至少一次交付。外部系统没有幂等提交或按稳定身份查询的能力时，它不能创造跨系统 exactly-once。不能从 `save`、UUID 或 upsert 推导出“永远不会双执行”。这是本篇的恢复设计与限制说明。
+Outbox 使“需要提交”不会随进程内存丢失，通常仍是至少一次交付。外部系统没有幂等提交或按稳定身份查询的能力时，它不能创造跨系统 exactly-once。不能从 `save`、UUID 或 upsert 推导出“永远不会双执行”。
 
 ### 启动与周期对账的确定分支
 
@@ -186,7 +186,7 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 
 本篇建议四道边界：描述说明输入输出，注册表记录已审核能力，planner 生成候选步骤，执行器校验能力、参数、授权与预算。Skill 文件、Catalog 文本、日志和数据行都是可能含恶意指令的输入，不能让它们动态导入代码、扩大工具集或改写用户授权。
 
-下面是原创有界计划片段，所有资源标识均为教学值：
+下面用有界计划连接各阶段；资源标识为教学值：
 
 ```json
 {
@@ -221,7 +221,7 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 
 <a id="data-agent-verification"></a>
 
-## 验证矩阵与讲解边界
+## 验证矩阵与下一步
 
 以下是建议实现时运行的测试，当前均未执行：
 
@@ -238,7 +238,7 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 | Spark 环境缺失 | 返回规划/运行不可用状态，不声称计算成功 |
 | 优化后更快但行数错误 | 质量失败，禁止发布，保存诊断与比较证据 |
 
-讲解时可以说“我理解业务任务与外部执行不同，设计会保留 attempt 与对账证据”；只有亲自实现、走读和运行后，才能把某能力说成自己的工作。本文不声称完成了部署、取消恢复或性能提升。可以沿本篇选一条失败轨迹实现最小原型，再用 [Spark 诊断补充](../40-backend/37-spark-execution-and-diagnostics.md#spark-diagnostics) 定义观察证据。
+选一条失败轨迹实现最小原型，再用[Spark 诊断补充](../40-backend/37-spark-execution-and-diagnostics.md#spark-diagnostics)定义观察证据。部署、取消恢复与性能改进仍待验证。
 
 
-可先运行[幂等身份内存反例](../../examples/agent_contracts/README.md)核对同键异参数合同。该实验没有连接Spark或数据库，不替代上表的集成验收。
+可先运行[幂等身份内存反例](../../examples/agent_contracts/README.md)核对同键异参数契约。该实验没有连接Spark或数据库，不替代上表的集成验收。

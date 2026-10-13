@@ -1,4 +1,78 @@
 {
   "repository_url": "https://github.com/minimoster/agent-backend-interview-handbook",
-  "branch": "main"
+  "branch": "main",
+  "reading_aliases": {
+    "docs/00-guide/study-method-and-six-week-plan.md": {
+      "path": "docs/00-guide/expanded-map-and-study-plan.md",
+      "section": "daily-practice",
+      "sections": {
+        "阅读指南与六周路线": "six-week-plan",
+        "从哪里开始": "daily-practice",
+        "每道题怎样学": "daily-practice",
+        "六周学习路线": "six-week-plan",
+        "每天两小时的安排": "daily-practice",
+        "用一个小项目串起四章": "project-workflow",
+        "请求与风险的主流程": "project-workflow",
+        "建议保留的项目证据": "project-workflow",
+        "使用-ai-辅助代码时怎样诚实回答": "resume-to-questions",
+        "当你不知道时": "resume-to-questions",
+        "项目贡献自查": "resume-to-questions",
+        "来源与阅读边界": "daily-practice",
+        "面试前一晚与当天": "resume-to-questions",
+        "一页学习记录模板": "followup-route-practice"
+      }
+    },
+    "docs/00-guide/backend-six-week-plan.md": {
+      "path": "docs/00-guide/expanded-map-and-study-plan.md",
+      "section": "six-week-plan",
+      "sections": {
+        "六周复习路线": "six-week-plan",
+        "第1周-打通请求与-go-基础": "week-1",
+        "第2周-把-sql-与事务真正跑起来": "week-2",
+        "第3周-缓存与并发控制": "week-2",
+        "第4周-消息与可靠执行": "week-4",
+        "第5周-把项目做成可检查的工程作品": "week-5",
+        "第6周-按岗位说明查漏补缺并投递": "week-6"
+      }
+    },
+    "docs/00-guide/advanced-study-route.md": {
+      "path": "docs/00-guide/expanded-map-and-study-plan.md",
+      "section": "advanced-topics",
+      "sections": {
+        "跨主题进阶学习路线": "advanced-topics",
+        "先复用基础再看工程边界": "advanced-topics",
+        "阅读与验证分开": "advanced-topics",
+        "agent应用实验路线": "followup-route-agent"
+      }
+    },
+    "docs/00-guide/interview-followup-study-paths.md": {
+      "path": "docs/00-guide/expanded-map-and-study-plan.md",
+      "section": "topic-map",
+      "sections": {
+        "面经补充学习路线基础追问设计与排障": "topic-map",
+        "agent线先分层再解释失败": "followup-route-agent",
+        "java线从执行器参数到真实等待图": "followup-route-java",
+        "go线每个goroutine都要有结束故事": "followup-route-go",
+        "后端线先写不变量再选中间件": "followup-route-storage",
+        "每次复习用同一个五层模板": "followup-route-practice",
+        "followup-route-agent": "followup-route-agent",
+        "followup-route-java": "followup-route-java",
+        "followup-route-go": "followup-route-go",
+        "followup-route-storage": "followup-route-storage",
+        "followup-route-practice": "followup-route-practice"
+      }
+    }
+  },
+  "reading_section_aliases": {
+    "docs/00-guide/expanded-map-and-study-plan.md": {
+      "全主题怎么学先建立主线再按追问补深度": "six-week-plan",
+      "先选一门主语言": "learning-main-language",
+      "六周节奏": "six-week-plan",
+      "每道题的五步练法": "daily-practice",
+      "从主题到任务": "topic-map",
+      "项目面试的诚实表达": "resume-to-questions",
+      "面经的用法": "week-6",
+      "用新专题补实践证据": "topic-map"
+    }
+  }
 }

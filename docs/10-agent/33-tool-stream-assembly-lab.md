@@ -2,9 +2,9 @@
 
 [返回Agent目录](README.md) · [Function Calling与Schema](01-agent-loop-tools-and-state.md#a03) · [SSE与可靠执行](04-streaming-and-reliable-execution.md) · [工具身份合同](31-tool-mcp-and-skill-contracts.md#tool-result-contract)
 
-本章是原创补充。已有章节讲“模型提出调用，执行器负责校验”，这里把容易被省略的中间部分做成可运行实验：怎样把多个调用的碎片组装成完整候选，怎样在部分JSON、重复、失序、截断和断线时阻止错误执行。
+本章将多个工具调用的碎片组装成完整候选，通过可运行实验学习部分 JSON、重复、失序、截断和断线时的处理方式。基础章节先介绍模型提出调用、执行器负责校验。
 
-核验日2026-10-11。厂商部分分别依据当日可读的OpenAI Responses/Chat Completions与Claude Messages官方文档，不把三者事件名混成一种API。没有安装SDK、发模型请求或验证特定模型兼容性，因此没有虚构SDK版本、模型快照或API版本头。配套代码接受原创规范化事件，不接受厂商原始HTTP字节。[技术来源与访问边界](../../sources/agent-protocol-references.md)
+核验日2026-10-11。厂商部分分别依据当日的 OpenAI Responses、Chat Completions 与 Claude Messages 官方文档，事件字段按接口分别说明。SDK、模型请求及模型兼容性尚未验证。配套代码接收本地规范化事件；厂商原始 HTTP 字节需要先经适配器转换。[技术参考](../../sources/agent-protocol-references.md)
 
 [标准库源码](../../examples/interview_followups/agent_protocol_lab.py) · [38项联合测试](../../examples/interview_followups/test_agent_protocol_lab.py)
 
@@ -20,7 +20,7 @@
 
 同一个“解析错误”可能属于不同层。半个SSE事件不该进入事件JSON解析；一个完整事件里的arguments delta则可以合法地只有半段参数JSON。把它每次都当完整对象json.loads，会把正常分片误判成模型幻觉。[OpenAI函数调用流](https://developers.openai.com/api/docs/guides/function-calling#streaming)、[Claude输入JSON分片](https://platform.claude.com/docs/en/build-with-claude/streaming#input-json-delta)
 
-原创例子：工具输入最终是{"document_id":"guide-A","limit":2}。前一个参数片段可能只有{"document_id":"gui，后一个才补de-A","limit":2}。前半段不能执行查询，也没必要要求模型立即修复它。
+例子：工具输入最终是{"document_id":"guide-A","limit":2}。前一个参数片段可能只有{"document_id":"gui，后一个才补de-A","limit":2}。前半段不能执行查询，也没必要要求模型立即修复它。
 
 **追问：** 遇到JSONDecodeError应立刻重试模型吗？
 
@@ -48,7 +48,7 @@ OpenAI Responses原始事件有sequence_number，但“只挑出工具事件后�
 <a id="stream-call-buffers"></a>
 ## 3 多个调用交错回来，为什么必须分缓冲区
 
-原创时间线：
+失败时间线：
 
 - start：调用a，call-a，lookup_doc
 - start：调用b，call-b，lookup_doc
@@ -162,7 +162,7 @@ validate_lookup只返回经过验证的预览字典，不查数据库、不执�
 python -m unittest discover -s examples/interview_followups -p 'test_agent_protocol_lab.py' -v
 ```
 
-Python3.12.14本地通过。工具测试包括所有两段切分位置的合成JSON、中文/emoji及转义、同名调用交错且倒序结束、完整JSON未提交、重复与真实重复文本、冲突与缺口、最终快照不一致、停止后片段、跨请求、错误身份、截断/取消/断线、空调用、已完成后连接关闭、字节/事件/深度/节点边界、权限与防修改副本。38是unittest方法数，循环子样本未冒充额外独立任务。
+Python3.12.14本地通过。工具测试包括所有两段切分位置的合成JSON、中文/emoji及转义、同名调用交错且倒序结束、完整JSON未提交、重复与真实重复文本、冲突与缺口、最终快照不一致、停止后片段、跨请求、错误身份、截断/取消/断线、空调用、已完成后连接关闭、字节/事件/深度/节点边界、权限与防修改副本。38项按 unittest 方法计数，循环子样本在各方法内部执行。
 
 练习：
 
@@ -174,4 +174,4 @@ Python3.12.14本地通过。工具测试包括所有两段切分位置的合成J
 
 **未测：** 原始UTF-8字节/SSE framing、真实socket、厂商事件适配、模型/SDK/网络、工具执行、完整JSON Schema、异步并发/背压、磁盘恢复、真实认证、外部副作用或API续传。这里测试的字符串含Unicode，但没有证明网络在UTF-8码点中间断开的字节解码实现正确。
 
-**30秒主线：** 流式工具调用先分事件与参数片段，再按调用身份有界累积。完成标记后得到候选，严格解析与服务端业务/权限校验后才可执行。重复靠可靠事件身份，断线和失败不冒充完成；厂商适配与真实执行要另外验证。
+**30秒主线：** 流式工具调用先分事件与参数片段，再按调用身份有界累积。完成标记后得到候选，严格解析与服务端业务/权限校验后才可执行。重复靠可靠事件身份，断线与失败分别返回明确状态；厂商适配与真实执行要另外验证。

@@ -2,9 +2,7 @@
 
 [返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
 
-本卡是原创教学场景，编号独立于361道讲义题、Hot100的100题与15道外部资源题。原帖仅支持作者报告过相关主题，不是公司认证题库；参考答案依据正文所列技术一手来源。
-
-**原创起手问：** 为什么同样没初始化，map读起来没事，写入却崩；channel收发又一直不返回？
+**练习问题：** 为什么同样没初始化，map读起来没事，写入却崩；channel收发又一直不返回？
 
 **知识点详解**： nil map可读取，得到元素类型的零值，`ok`为false；向nil map写元素会panic。nil channel的收发会阻塞，放在select中的相应分支不会就绪。closed channel是另一种状态：缓冲区先被读完，然后接收返回零值和false；向已关闭channel发送、再次关闭它以及关闭nil channel都会panic。
 

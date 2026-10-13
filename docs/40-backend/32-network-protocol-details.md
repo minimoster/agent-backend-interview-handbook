@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-本章为原创补充讲义。P0 为应能独立讲清并写出关键步骤；P1 为常见追问；P2 为理解边界。官方资料核查日：2026-10-09。示例参数均为教学设定，不是作者或读者的项目实测。代码与 SQL 的实际执行范围在对应题中标注；没有实测的吞吐、可用性和故障恢复效果不作为事实。
+官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB15 从分层模型讲到 URL 请求与页面渲染](#fb15)
 - [FB16 TCP 与 UDP 的服务模型如何影响应用设计](#fb16)
@@ -31,7 +31,7 @@
 
 **常见误区**：每次访问必须新建 TCP；TLS 统一叫 SSL；DNS 一定发生在建连之前且绝无缓存。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S021 RFC 9114 HTTP/3](https://www.rfc-editor.org/rfc/rfc9114)、[FB-S022 RFC 8446 TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446)、[FB-S027 RFC 1034 DNS](https://www.rfc-editor.org/rfc/rfc1034)、[FB-S058 RFC 9110 HTTP 语义](https://datatracker.ietf.org/doc/html/rfc9110)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S021 RFC 9114 HTTP/3](https://www.rfc-editor.org/rfc/rfc9114)、[FB-S022 RFC 8446 TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446)、[FB-S027 RFC 1034 DNS](https://www.rfc-editor.org/rfc/rfc1034)、[FB-S058 RFC 9110 HTTP 语义](https://datatracker.ietf.org/doc/html/rfc9110)。
 
 <a id="fb16"></a>
 
@@ -49,7 +49,7 @@
 
 **常见误区**：一次 write 对应一次 read；用 TCP 就不必做幂等；UDP 就不能做可靠下载。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S020 RFC 9000 QUIC](https://www.rfc-editor.org/rfc/rfc9000)、[FB-S027 RFC 1034 DNS](https://www.rfc-editor.org/rfc/rfc1034)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S020 RFC 9000 QUIC](https://www.rfc-editor.org/rfc/rfc9000)、[FB-S027 RFC 1034 DNS](https://www.rfc-editor.org/rfc/rfc1034)。
 
 <a id="fb17"></a>
 
@@ -67,7 +67,7 @@
 
 **常见误区**：三次握手只为证明收发能力；客户端永远 TIME_WAIT；关连接只能四次报文。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)。
 
 <a id="fb18"></a>
 
@@ -85,7 +85,7 @@
 
 **常见误区**：每个远端网站都在本地广播查其 MAC；IPv6 没有地址解析问题。
 
-**来源**：[FB-S025 RFC 826 ARP](https://www.rfc-editor.org/rfc/rfc826)、[FB-S026 RFC 4861 IPv6 邻居发现](https://www.rfc-editor.org/rfc/rfc4861)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S025 RFC 826 ARP](https://www.rfc-editor.org/rfc/rfc826)、[FB-S026 RFC 4861 IPv6 邻居发现](https://www.rfc-editor.org/rfc/rfc4861)。
 
 <a id="fb19"></a>
 
@@ -103,7 +103,7 @@
 
 **常见误区**：窗口越大越快；有 TCP ACK 即业务成功；校验和等同加密完整性保护。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S023 RFC 5681 TCP 拥塞控制](https://www.rfc-editor.org/rfc/rfc5681)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S023 RFC 5681 TCP 拥塞控制](https://www.rfc-editor.org/rfc/rfc5681)。
 
 <a id="fb20"></a>
 
@@ -121,7 +121,7 @@
 
 **常见误区**：所有 Linux 都用相同算法；1 MSS 是通用初始值；拥塞窗口就是接收窗口。
 
-**来源**：[FB-S023 RFC 5681 TCP 拥塞控制](https://www.rfc-editor.org/rfc/rfc5681)、[FB-S024 RFC 6928 初始拥塞窗口](https://www.rfc-editor.org/rfc/rfc6928)、[FB-S057 RFC 9438 CUBIC](https://datatracker.ietf.org/doc/html/rfc9438)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S023 RFC 5681 TCP 拥塞控制](https://www.rfc-editor.org/rfc/rfc5681)、[FB-S024 RFC 6928 初始拥塞窗口](https://www.rfc-editor.org/rfc/rfc6928)、[FB-S057 RFC 9438 CUBIC](https://datatracker.ietf.org/doc/html/rfc9438)。
 
 <a id="fb21"></a>
 
@@ -139,7 +139,7 @@
 
 **常见误区**：关闭 Nagle 就不粘包；读到多少就是一条；信任客户端提供任意长度直接分配。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S029 RFC 9112 HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S029 RFC 9112 HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112)。
 
 <a id="fb22"></a>
 
@@ -157,7 +157,7 @@
 
 **常见误区**：HTTP/2 完全没有队头阻塞；HTTP/3 不可靠；把所有 HTTP 都称短连接文本协议。
 
-**来源**：[FB-S028 RFC 9113 HTTP/2](https://www.rfc-editor.org/rfc/rfc9113)、[FB-S029 RFC 9112 HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112)、[FB-S021 RFC 9114 HTTP/3](https://www.rfc-editor.org/rfc/rfc9114)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S028 RFC 9113 HTTP/2](https://www.rfc-editor.org/rfc/rfc9113)、[FB-S029 RFC 9112 HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112)、[FB-S021 RFC 9114 HTTP/3](https://www.rfc-editor.org/rfc/rfc9114)。
 
 <a id="fb23"></a>
 
@@ -175,7 +175,7 @@
 
 **常见误区**：公钥私钥只是用来互相加密；HTTPS 能证明网站内容可信；证书检查失败只影响体验。
 
-**来源**：[FB-S022 RFC 8446 TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S022 RFC 8446 TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446)。
 
 <a id="fb24"></a>
 
@@ -193,5 +193,4 @@
 
 **常见误区**：DNS 每次从根开始；改记录等于现有 TCP 连接自动换地址；DNS 只能使用 UDP。
 
-**来源**：[FB-S027 RFC 1034 DNS](https://www.rfc-editor.org/rfc/rfc1034)。业务组合、反例与答题组织为原创教学推导。
-
+**来源**：[FB-S027 RFC 1034 DNS](https://www.rfc-editor.org/rfc/rfc1034)。

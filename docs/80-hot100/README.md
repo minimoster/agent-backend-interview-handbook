@@ -1,6 +1,6 @@
 # LeetCode Hot100：Python原创学习模块
 
-以[力扣中国官方热题100](https://leetcode.cn/studyplan/top-100-liked/)的17类、100题为范围（核对日期2026-10-09），与国际站同名计划的题号/slug集合交叉核对一致。这里用简短自主概述、原创推导与实现帮助理解，不转载完整官方题面。
+按[力扣中国官方热题100](https://leetcode.cn/studyplan/top-100-liked/)的17类、100题学习（题单核对日期2026-10-09）。每题配合思路、手推例子、Python 实现与边界测试。
 
 ## 怎样使用
 
@@ -14,9 +14,9 @@ python -m unittest discover -s tests/hot100 -p "test_*.py" -v
 python examples/hot100/check_hot100.py
 ```
 
-入口：[接口与本地运行](../../examples/hot100/README.md) · [测试说明](TESTING.md) · [方法迁移与复习路线](PATTERNS.md) · [来源与权利边界](SOURCES.md) · [机器题单](manifest.json)
+入口：[接口与本地运行](../../examples/hot100/README.md) · [测试说明](TESTING.md) · [方法迁移与复习](PATTERNS.md) · [来源与权利边界](SOURCES.md) · [机器题单](manifest.json)
 
-没有将本地有限测试冒充LeetCode在线AC；每页源码、测试与约束核对范围可追溯。
+本地测试范围见[测试说明](TESTING.md)；在线判题需自行提交。
 
 ## 官方17分类与100题
 
@@ -204,4 +204,3 @@ DP先说状态含义，再说转移、初始化和遍历顺序。滚动数组只
 - [75. 颜色分类](problems/0075-sort-colors.md) · 中等
 - [31. 下一个排列](problems/0031-next-permutation.md) · 中等
 - [287. 寻找重复数](problems/0287-find-the-duplicate-number.md) · 中等
-

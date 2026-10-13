@@ -7,13 +7,16 @@
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalize = window.STUDY_SEARCH.normalize;
   const byPath = new Map(data.docs.map(d => [d.path, d]));
+  const readingAliases = data.readingAliases || {};
+  const canonicalPath = path => readingAliases[path]?.path || path;
   const catalogueDocs = [...data.docs,...(data.supplementaryResources||[])];
   const difficultyName = { EASY:'简单', MEDIUM:'中等', HARD:'困难' };
   let state = { saved:[], done:[], lastPath:'', fontSize:17, lineHeight:1.95, theme:'' };
   let storageOK = true;
   try { const old = JSON.parse(localStorage.getItem('zhixing.reader.v1') || '{}'); state = {...state,...old}; } catch { storageOK = false; }
-  state.saved = Array.isArray(state.saved) ? state.saved.filter(p => byPath.has(p)) : [];
-  state.done = Array.isArray(state.done) ? state.done.filter(p => byPath.has(p)) : [];
+  state.saved = Array.isArray(state.saved) ? [...new Set(state.saved.map(canonicalPath).filter(p => byPath.has(p)))] : [];
+  state.done = Array.isArray(state.done) ? [...new Set(state.done.map(canonicalPath).filter(p => byPath.has(p)))] : [];
+  state.lastPath = byPath.has(canonicalPath(state.lastPath)) ? canonicalPath(state.lastPath) : '';
   state.fontSize = Math.min(22,Math.max(15,Number(state.fontSize)||17));
   state.lineHeight = [1.8,1.95,2.15].includes(state.lineHeight) ? state.lineHeight : 1.95;
   if (!['light','dark'].includes(state.theme)) state.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -76,6 +79,18 @@
     const query=new URLSearchParams(index<0?'':raw.slice(index+1));
     let path='';
     try { path=decodeURIComponent(pathname.replace(/^\/read\//,'')); } catch { path=''; }
+    if (pathname.startsWith('/read/') && readingAliases[path]) {
+      const alias=readingAliases[path];
+      const section=alias.sections?.[query.get('section')] || alias.section || '';
+      path=alias.path;
+      if(section)query.set('section',section);else query.delete('section');
+      history.replaceState(null,'',`#/read/${encodeURIComponent(path)}${query.size?'?'+query.toString():''}`);
+    }
+    const renamedSection=data.readingSectionAliases?.[path]?.[query.get('section')];
+    if(pathname.startsWith('/read/') && renamedSection) {
+      query.set('section',renamedSection);
+      history.replaceState(null,'',`#/read/${encodeURIComponent(path)}?${query.toString()}`);
+    }
     return {type:pathname.startsWith('/read/')?'read':pathname==='/library'?'library':'home',path,query};
   }
   function buildNav() {
@@ -110,7 +125,7 @@
   function renderHome() {
     const resume=byPath.get(state.lastPath);
     main.className='home-main';
-    main.innerHTML=`<section class="home-hero"><div><div class="eyebrow">AI Agent 与后端开发学习手册</div><h1 class="home-title">把知识连成一条主线。<br>从看懂，到讲清，<span class="hero-final-clause">再到做到。</span></h1><p class="hero-description">从 Agent 应用到后端工程，系统学习核心知识、项目实践与面试方法。</p><div class="hero-tags"><span class="quiet-tag">原创讲解</span><span class="quiet-tag">可运行示例</span><span class="quiet-tag">来源可追溯</span><span class="quiet-tag">离线阅读</span></div><div class="hero-stats"><div class="stat"><strong>${data.questionCount-data.hot100Count}</strong>讲义题</div><div class="stat"><strong>${data.hot100Count}</strong>Hot100 题解</div><div class="stat"><strong>17</strong>算法模式</div>${data.scenarioCount?`<a class="stat" href="${libraryHash({module:'scenarios'})}"><strong>${data.scenarioCount}</strong>原创场景卡 ↗</a>`:''}${data.supplementaryCount?`<a class="stat" href="${libraryHash({module:'supplement'})}"><strong>${data.supplementaryCount}</strong>外部补充题 ↗</a>`:''}</div></div>${art()}</section><section class="reading-note" aria-label="开始阅读建议"><span class="note-icon" aria-hidden="true">↗</span><div class="note-content"><strong>${resume?'接着上次的章节，慢慢往前走':'第一次来？先建立你的学习主线。'}</strong><p>${resume?esc(resume.title)+' · '+esc(resume.moduleName):'P0 / P1 / P2 表示学习优先级。先解释机制，再手推例子，最后用代码验证边界。'}</p></div><a class="text-link" href="${resume?hashForRead(resume.path):hashForRead('docs/00-guide/expanded-map-and-study-plan.md')}">${resume?'继续阅读':'查看学习路线'} →</a></section><section aria-labelledby="modules-heading"><div class="section-heading"><h2 id="modules-heading">按专题慢慢读</h2><p>每个模块都从一条清晰的主线开始</p></div><div class="module-grid">${data.modules.filter(m=>m.id!=='reference').map(m=>`<a class="module-card ${m.id==='hot100'?'hot100':''}" href="${libraryHash({module:m.id})}"><div class="card-topline"><span class="card-number">${m.number} /</span><span class="card-count">${m.count} ${esc(m.countUnit||'篇文档')}</span></div><h3>${esc(m.label)}</h3><p>${esc(m.description)}</p><span class="card-arrow" aria-hidden="true">↗</span></a>`).join('')}</div></section><div class="home-bottom"><section class="small-section"><h3>为理解留一点空间</h3><p>先试着独立解释，再展开知识区对照。遇到不熟悉的概念，用顶部搜索定位标题、题号或正文关键词。字号与行距可以随时调整。</p></section><section class="small-section"><h3>知道结论，也知道它的边界</h3><p>本地测试提供有限输入上的证据；面经样本不代表统一考频。核查日期与一手链接保留在原章节中。<a href="${libraryHash({module:'reference'})}">查看版本与来源 →</a></p></section></div>`;
+    main.innerHTML=`<section class="home-hero"><div><div class="eyebrow">AI Agent 与后端开发学习手册</div><h1 class="home-title">把知识连成一条主线。<br>从看懂，到讲清，<span class="hero-final-clause">再到做到。</span></h1><p class="hero-description">从 Agent 应用到后端工程，系统学习核心知识、项目实践与面试方法。</p><div class="hero-tags"><span class="quiet-tag">原创讲解</span><span class="quiet-tag">可运行示例</span><span class="quiet-tag">来源可追溯</span><span class="quiet-tag">离线阅读</span></div><div class="hero-stats"><div class="stat"><strong>${data.questionCount-data.hot100Count}</strong>讲义题</div><div class="stat"><strong>${data.hot100Count}</strong>Hot100 题解</div><div class="stat"><strong>17</strong>算法模式</div>${data.scenarioCount?`<a class="stat" href="${libraryHash({module:'scenarios'})}"><strong>${data.scenarioCount}</strong>场景卡 ↗</a>`:''}${data.supplementaryCount?`<a class="stat" href="${libraryHash({module:'supplement'})}"><strong>${data.supplementaryCount}</strong>外部补充题 ↗</a>`:''}</div></div>${art()}</section><section class="reading-note" aria-label="开始阅读建议"><span class="note-icon" aria-hidden="true">↗</span><div class="note-content"><strong>${resume?'接着上次的章节，慢慢往前走':'第一次来？先建立你的学习主线。'}</strong><p>${resume?esc(resume.title)+' · '+esc(resume.moduleName):'P0 / P1 / P2 表示学习优先级。先解释机制，再手推例子，最后用代码验证边界。'}</p></div><a class="text-link" href="${resume?hashForRead(resume.path):hashForRead('docs/00-guide/expanded-map-and-study-plan.md')}">${resume?'继续阅读':'查看学习路线'} →</a></section><section aria-labelledby="modules-heading"><div class="section-heading"><h2 id="modules-heading">按专题慢慢读</h2><p>按当前项目的问题选择专题</p></div><div class="module-grid">${data.modules.filter(m=>m.id!=='reference').map(m=>`<a class="module-card ${m.id==='hot100'?'hot100':''}" href="${libraryHash({module:m.id})}"><div class="card-topline"><span class="card-number">${m.number} /</span><span class="card-count">${m.count} ${esc(m.countUnit||'篇文档')}</span></div><h3>${esc(m.label)}</h3><p>${esc(m.description)}</p><span class="card-arrow" aria-hidden="true">↗</span></a>`).join('')}</div></section><div class="home-bottom"><section class="small-section"><h3>为理解留一点空间</h3><p>先试着独立解释，再展开知识区对照。遇到不熟悉的概念，用顶部搜索定位标题、题号或正文关键词。字号与行距可以随时调整。</p></section><section class="small-section"><h3>把理解变成一次小实验</h3><p>给输入加一个边界条件，观察结果怎样变化，再记录解释与测试。需要核对版本和 API 时，从章节中的官方参考继续阅读。<a href="${libraryHash({module:'reference'})}">查看版本与来源 →</a></p></section></div>`;
   }
   function resultRows(params) { return searchEngine.query(params,state); }
   function renderLibrary() {

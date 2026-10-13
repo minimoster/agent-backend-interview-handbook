@@ -92,4 +92,4 @@
 
 **来源**： [BS46 Amazon SQS 死信队列](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)、[BS47 Kafka 4.0 Consumer Configs](https://kafka.apache.org/40/configuration/consumer-configs/)。死信模式用于对照，Kafka 流程需自行设计或选支持它的框架。
 
-本节题号：B31、B32、B33、B34、B35。原有题号保持稳定，补充主题另行编号。
+本节题号：B31、B32、B33、B34、B35。

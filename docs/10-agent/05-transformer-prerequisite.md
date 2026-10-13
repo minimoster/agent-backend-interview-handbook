@@ -4,7 +4,7 @@
 
 这篇讲义解决一个具体问题：看见 `Q/K/V`、多头、FFN、残差和LayerNorm时，能说清每一步在计算什么，并写对形状。它面向会基本Python、尚未系统学过Transformer的读者。先看算例，再跑代码，最后用面试问答检查理解。
 
-本章是原创先修补充，核查日期2026-10-11，不创建新的A/FA题号，不增加361道讲义题、100道Hot100、15道外部资源题或26张场景卡。它不复述[A18的RAG与微调选型](02-rag-retrieval-and-reranking.md#a18)，也不展开[24章的采样、KV缓存和服务优化](24-inference-and-serving-boundaries.md)。配套代码只计算小型、手设权重的CPU前向过程，没有训练、GPU、真实语言模型或生产部署。
+本章核查于2026-10-11。配套代码用手设权重演示小型 CPU 前向计算，未涉及训练、GPU 或真实语言模型。[RAG 与微调选型](02-rag-retrieval-and-reranking.md#a18)和[采样、KV 缓存与服务优化](24-inference-and-serving-boundaries.md)在后续章节学习。
 
 <a id="transformer-reading-route"></a>
 

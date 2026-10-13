@@ -20,23 +20,23 @@
 - [Linux：安全操作与证据采集](35-linux-operations-practice.md) · 3题
 - [面经技术追问：补齐工程边界](36-interview-followup-topics.md) · 15题
 
-### 新增原创工程专题
+### 数据工程与跨栈专题
 
 - [Spark执行、Shuffle与诊断](37-spark-execution-and-diagnostics.md)
 - [ES父子关系与RAG父子分块](38-search-parent-child-joins.md)
 - [跨栈原子写、在线迁移与Token边界](39-cross-stack-interview-boundaries.md)
 
-原题数不变，补充按专题阅读。[进阶学习入口](../00-guide/advanced-study-route.md)。
+按需要补充[进阶专题](../00-guide/expanded-map-and-study-plan.md#advanced-topics)。
 
 ### Python API工程附录
 
 - [Python对象语义与FastAPI合同实验](40-python-fastapi-lab.md)
 
-独立工程专题，已编号讲义题不变。另见[AI Coding练习](../70-practice/ai-coding-exercises.md)。
+另见[AI Coding练习](../70-practice/ai-coding-exercises.md)。
 
 ## 面经追问与恢复实验
 
 - [未知提交、重放顺序与旧写保护](41-storage-recovery-followups.md)
 - [系统设计与排障诊所](42-system-design-debugging-clinic.md)
 
-新增深读不改变编号题口径。[本轮学习路线](../00-guide/interview-followup-study-paths.md)。
+按[学习路线](../00-guide/expanded-map-and-study-plan.md#followup-route-storage)练习提交、重放与旧写保护。

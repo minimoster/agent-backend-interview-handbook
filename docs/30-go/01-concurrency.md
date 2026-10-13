@@ -292,4 +292,4 @@ Once 用于一次性初始化，其他调用者会等初始化函数完成，而
 
 **来源** ：[GO-S19 sync/atomic](https://pkg.go.dev/sync/atomic)；[GO-S20 sync.Once](https://go.dev/src/sync/once.go)。
 
-本节题号：G01、G02、G03、G04、G05、G06、G07、G08、G09、G10、G11、G12、G13。原有题号保持稳定，补充主题另行编号。
+本节题号：G01、G02、G03、G04、G05、G06、G07、G08、G09、G10、G11、G12、G13。

@@ -1,8 +1,8 @@
 # Java 追问诊所：排队、超时、取消与线程上下文
 
-[Java目录](README.md) · [本轮学习路线](../00-guide/interview-followup-study-paths.md) · [源码与复验](../../examples/interview_followups/README.md)
+[Java目录](README.md) · [主学习路线](../00-guide/expanded-map-and-study-plan.md#topic-map) · [源码与复验](../../examples/interview_followups/README.md)
 
-基础先读[J15–J22](02-concurrency-and-thread-pools.md#j15)、[FJ17–FJ21](13-concurrency-details.md#fj17)。本章不再背七参数，而把参数接成故障时间线。所有情境、数值和参考回答为原创教学设计；面经只提示主题，不证明公司统一要求。本章采用 Java SE 21 API，配套源文件本地执行了19个有限合同场景，没有数据库、Spring容器、压测或真实请求链路。
+基础先读[J15–J22](02-concurrency-and-thread-pools.md#j15)、[FJ17–FJ21](13-concurrency-details.md#fj17)。本章把线程池参数接成故障时间线，练习排队、取消和资源收尾。采用 Java SE 21 API，配套源文件已在本地执行19个契约场景；数据库、Spring 容器、压测及真实请求链路尚未验证。
 
 ## 先画四条线
 

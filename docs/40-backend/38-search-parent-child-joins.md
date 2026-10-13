@@ -2,7 +2,7 @@
 
 [返回后端目录](README.md) · [RAG索引与证据](../10-agent/17-rag-indexes-and-evidence.md)
 
-本章为原创补充，不增加面试题计数。核查日期：2026-10-10。API概念按读取日的Elasticsearch官方参考说明；示例未连接真实集群运行。
+API 概念依据2026-10-10读取的 Elasticsearch 官方参考整理；示例尚未连接真实集群运行。
 
 <a id="es-parent-join"></a>
 
@@ -31,4 +31,3 @@ Join查询会消耗额外内存与计算，并可能构建global ordinals。高�
 [Elasticsearch官方join字段说明](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/parent-join) · [官方nested说明](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/nested)
 
 ### 来源边界
-

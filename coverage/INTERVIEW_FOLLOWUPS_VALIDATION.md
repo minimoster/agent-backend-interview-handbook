@@ -1,6 +1,6 @@
 # 面经追问补充：发布前验证与未测范围
 
-[本轮学习路线](../docs/00-guide/interview-followup-study-paths.md) · [公开来源边界](../sources/interview-followups/README.md) · [原有验证](README.md)
+[本轮学习路线](../docs/00-guide/expanded-map-and-study-plan.md#topic-map) · [公开来源边界](../sources/interview-followups/README.md) · [原有验证](README.md)
 
 记录日2026-10-11。本记录描述候选的发布前检查，发布后CI、Pages和浏览器验收是另一个阶段；确切提交的Actions结果及线上检查不能由这个静态记录预先保证。
 

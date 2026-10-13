@@ -211,4 +211,4 @@ class TaskService {
 
 来源：[J-S51](../../sources/catalog.md#j-s51)、[J-S52](../../sources/catalog.md#j-s52)、[J-S53](../../sources/catalog.md#j-s53)、[J-S69](../../sources/catalog.md#j-s69)。
 
-本节题号：J30、J31、J32、J33、J34、J35、J36、J37、J38、J39、J40。原有题号保持稳定，补充主题另行编号。
+本节题号：J30、J31、J32、J33、J34、J35、J36、J37、J38、J39、J40。

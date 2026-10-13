@@ -2,18 +2,18 @@
 
 [返回Agent目录](README.md) · [执行与工具基础](01-agent-loop-tools-and-state.md) · [异步可靠性](04-streaming-and-reliable-execution.md)
 
-这是一章原创面试补充，解决跨Agent交付的协议边界。泛化的多Agent分工已见A07，checkpoint与外部副作用已见FA40、SC-A09，本章不再重写它们。先掌握任务、状态、工具、幂等，再读这里的身份和失败时间线。
+本章学习跨 Agent 交付中的身份与失败时间线。先掌握任务、状态、工具与幂等；多 Agent 分工见 A07，checkpoint 与外部副作用见 FA40、SC-A09。
 
 核验日：2026-10-11。技术基准固定为A2A官方仓库v1.0.1，提交3303592588e388e62e0f69f701af531d2f4e3991；协议接口版本字符串为1.0，与仓库补丁发布号1.0.1区分。官网渲染页仍标1.0.0，因此本章不使用含糊的“最新版”。[v1.0.1发布](https://github.com/a2aproject/A2A/releases/tag/v1.0.1)、[固定版规范](https://github.com/a2aproject/A2A/blob/v1.0.1/docs/specification.md)、[规范数据定义](https://github.com/a2aproject/A2A/blob/v1.0.1/specification/a2a.proto)
 
-配套实验只用Python标准库模拟一个任务的客户端视图，没有启动A2A服务、调用SDK或远程Agent。38项测试覆盖本章与下一章的有限合同，不是38次真实面试或互通测试。[源码](../../examples/interview_followups/agent_protocol_lab.py) · [测试](../../examples/interview_followups/test_agent_protocol_lab.py) · [来源与验证边界](../../sources/agent-protocol-references.md)
+配套实验只用Python标准库模拟一个任务的客户端视图，没有启动A2A服务、调用SDK或远程Agent。本章与下一章共用38项测试，覆盖标准库模拟中的任务与工具流契约。[源码](../../examples/interview_followups/agent_protocol_lab.py) · [测试](../../examples/interview_followups/test_agent_protocol_lab.py) · [来源与验证边界](../../sources/agent-protocol-references.md)
 
 <a id="a2a-versus-mcp"></a>
 ## 1 A2A补的是哪一层，为什么不能只说“多Agent框架”
 
 本地函数解决一项明确能力；MCP为工具、资源等提供接入合同；A2A为独立Agent系统之间的发现、交互和任务交付提供合同。接收方可以隐藏内部提示、记忆、工具和框架，只公开能力、接收消息、任务状态和产物。协议不替你决定任务怎样拆、哪种模型最好或何时相信结果。[官方比较](https://github.com/a2aproject/A2A/blob/v1.0.1/docs/topics/a2a-and-mcp.md)
 
-原创例子：本地报告助手把“生成带出处的三页摘要”交给另一个组织的文献Agent。后者内部可以使用MCP检索，客户端只需知道交付格式、允许的数据、状态与产物。若只是调用本进程内的求和函数，没有必要为了“多Agent”再造远程任务协议。
+例子：本地报告助手把“生成带出处的三页摘要”交给另一个组织的文献Agent。后者内部可以使用MCP检索，客户端只需知道交付格式、允许的数据、状态与产物。若只是调用本进程内的求和函数，没有必要为了“多Agent”再造远程任务协议。
 
 **追问链：** 为什么不是普通REST接口？→ 哪些独立系统需要互通？→ 什么需要协议统一，什么仍是业务合同？→ 接收方换掉内部框架，客户端哪些接口不变？
 
@@ -58,7 +58,7 @@ v1.0数据枚举用TASK_STATE前缀的大写名字。本章在本地教学代码
 
 TASK_STATE_UNSPECIFIED表示未知/不确定，实验拒绝把它当可继续执行的确定状态。input-required和auth-required并不代表已经成功、永远失败或获得了权限。接到认证要求，应回到受控认证流程；不能因为对方说“需要权限”就自行创建凭据。
 
-**原创时间线：** submitted → working → input-required；用户补充目标版本后，仍是同一个task → working → completed。另一条路径可能在working时被拒绝，进入rejected。实验只验证已知状态与终态不可改变，没有宣称规范定义了一个必须逐边遵守的完整状态转移图，也不模拟输入或认证的有效性。
+**失败时间线：** submitted → working → input-required；用户补充目标版本后，仍是同一个task → working → completed。另一条路径可能在working时被拒绝，进入rejected。实验只验证已知状态与终态不可改变，没有宣称规范定义了一个必须逐边遵守的完整状态转移图，也不模拟输入或认证的有效性。
 
 **追问：** 收到“正在等用户输入”，客户端应继续每秒重复发同一句话吗？
 
@@ -69,7 +69,7 @@ TASK_STATE_UNSPECIFIED表示未知/不确定，实验拒绝把它当可继续执
 
 终态任务不能重新启动。后续修改可在同一context中建立新Task，并明确参考原任务和目标artifact；不要把旧Task改回working来掩盖新需求。客户端还需自行管理“哪一份新产物被接受”及版本关系，不能从同名文件推出它一定是最新认可版本。[任务不可变与后续修订](https://github.com/a2aproject/A2A/blob/v1.0.1/docs/topics/life-of-a-task.md)
 
-原创例子：task-1产出brief-v1，用户要求加一段失败分析。新工作记录输入来源为task-1的brief-v1，并有新的taskId。新产物未通过检查前，已接受的brief-v1保持可回查。若同context下已有两份简报，先确认指的是哪份，不自行选择最后到达的一份。
+例子：task-1产出brief-v1，用户要求加一段失败分析。新工作记录输入来源为task-1的brief-v1，并有新的taskId。新产物未通过检查前，已接受的brief-v1保持可回查。若同context下已有两份简报，先确认指的是哪份，不自行选择最后到达的一份。
 
 **实验验收：** 分别让completed、failed、canceled、rejected收到“改回working”，均拒绝且保持原状态；给终态任务追加产物也拒绝。实验对“增量事件不再修改已标complete的artifact”采用较严格的本地政策；非终态任务的较新权威快照仍可重建产物视图。终态Task的状态和产物则不能由快照改写。这些是本地验证选择，不等于A2A对每种产物修订方式都作了同样限制。
 

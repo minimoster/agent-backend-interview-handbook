@@ -3,16 +3,16 @@
 [返回后端目录](README.md) · [本批验证范围](../../coverage/AGENT_LABS_VALIDATION.md)
 
 
-本附录把 Python 对象语义和 API 工程连成一条学习路线：先判断数据怎样共享，再判断请求怎样验证、授权、执行与清理。目标是能解释失效条件，并用小测试证明关键行为。这里的任务 API 是新编的教学程序，不是作者或读者的项目经历。
+本附录把 Python 对象语义和 API 工程通过实验连接起来：先判断数据怎样共享，再判断请求怎样验证、授权、执行与清理。目标是能解释失效条件，并用小测试证明关键行为。配套任务 API 用于教学实验。
 
-版本与验收：语言例子在 CPython 3.12.14 运行；API 例子固定 FastAPI 0.141.1、Pydantic 2.13.4、Starlette 1.6.0、HTTPX 0.28.1；NumPy 例子在 2.3.5 运行。核查日期 2026-10-10。FastAPI 引用指向 0.141.1 官方文档源码；Python 文档固定 3.12 系列。这是复现基线，不表示这些都是最新版本或生产推荐组合。
+版本与验收：语言例子在 CPython 3.12.14 运行；API 例子固定 FastAPI 0.141.1、Pydantic 2.13.4、Starlette 1.6.0、HTTPX 0.28.1；NumPy 例子在 2.3.5 运行。核查日期 2026-10-10。FastAPI 引用指向 0.141.1 官方文档源码；Python 文档固定 3.12 系列。复现时先使用这组固定版本；生产选型需另做兼容性与负载验证。
 
 ## 一 对象与容器
 
 <a id="containers"></a>
 ### 怎样选择 list tuple dict 和 set
 
-顺序且允许重复的结果集用 list；固定位置结构可用 tuple；按键查找用 dict；去重和成员测试用 set。dict 保留插入顺序，set 没有承诺插入顺序。list、tuple 都可包含不同类型；dict 的键和 set 的成员要求可哈希。tuple 包含 list 时仍不可哈希。哈希查找的平均效率不等于任意输入都保证常数时间。原创例子：工具目录按名字放入 dict，执行轨迹按发生顺序放入 list。[Python 3.12 内置类型](https://docs.python.org/3.12/library/stdtypes.html)
+顺序且允许重复的结果集用 list；固定位置结构可用 tuple；按键查找用 dict；去重和成员测试用 set。dict 保留插入顺序，set 没有承诺插入顺序。list、tuple 都可包含不同类型；dict 的键和 set 的成员要求可哈希。tuple 包含 list 时仍不可哈希。哈希查找的平均效率不等于任意输入都保证常数时间。例子：工具目录按名字放入 dict，执行轨迹按发生顺序放入 list。[Python 3.12 内置类型](https://docs.python.org/3.12/library/stdtypes.html)
 
 <a id="mutability"></a>
 ### 可变对象和名称绑定有什么区别

@@ -75,6 +75,13 @@ const files = [...new Set([
   ...(fs.existsSync(path.join(site,'README.md'))?['site/README.md']:[])
 ])];
 const fileSet = new Set(files);
+const readingAliases = config.reading_aliases || {};
+const readingSectionAliases = config.reading_section_aliases || {};
+for (const [old, alias] of Object.entries(readingAliases)) {
+  if (fileSet.has(old) || !old.endsWith('.md') || old.startsWith('../') || !fileSet.has(alias.path)) {
+    throw Error(`阅读别名必须从已合并的页面指向现有正文：${old}`);
+  }
+}
 const resourcePaths = new Set();
 const brokenLinks = [];
 const sourceInputs = [['site/config.json',fs.readFileSync(path.join(site,'config.json'),'utf8')],['content-index.json',fs.readFileSync(path.join(root,'content-index.json'),'utf8')],['docs/80-hot100/manifest.json',fs.readFileSync(path.join(root,'docs/80-hot100/manifest.json'),'utf8')]];
@@ -101,13 +108,24 @@ for (const file of files) {
     if (/^(https?:|mailto:)/i.test(href)) return href;
     if (/^[a-z][\w+.-]*:/i.test(href)) return '';
     const [local,fragment=''] = href.split('#');
-    if (!local) return `#/read/${encodeURIComponent(file)}${fragment?`?section=${encodeURIComponent(decodeURIComponent(fragment))}`:''}`;
+    if (!local) {
+      const section=readingSectionAliases[file]?.[decodeURIComponent(fragment)] || decodeURIComponent(fragment);
+      return `#/read/${encodeURIComponent(file)}${section?`?section=${encodeURIComponent(section)}`:''}`;
+    }
     let decoded;
     try { decoded = decodeURIComponent(local.split('?')[0]); } catch { decoded = local; }
     const target = path.posix.normalize(path.posix.join(path.posix.dirname(file),decoded));
     if (target.startsWith('../') || path.posix.isAbsolute(target)) return '';
     if(target==='site'||target==='site/'||target==='site/index.html')return '#/';
-    if (fileSet.has(target)) return `#/read/${encodeURIComponent(target)}${fragment?`?section=${encodeURIComponent(decodeURIComponent(fragment))}`:''}`;
+    if (readingAliases[target]) {
+      const alias=readingAliases[target];
+      const section=alias.sections?.[decodeURIComponent(fragment)] || alias.section || '';
+      return `#/read/${encodeURIComponent(alias.path)}${section?`?section=${encodeURIComponent(section)}`:''}`;
+    }
+    if (fileSet.has(target)) {
+      const section=readingSectionAliases[target]?.[decodeURIComponent(fragment)] || decodeURIComponent(fragment);
+      return `#/read/${encodeURIComponent(target)}${section?`?section=${encodeURIComponent(section)}`:''}`;
+    }
     const absolute = path.join(root,target);
     if(fs.existsSync(absolute)&&fs.statSync(absolute).isFile()) {
       resourcePaths.add(target);
@@ -192,6 +210,18 @@ for (const file of files) {
   if(carlEntry&&!carlAnchor)throw Error(`${file}缺少Carl延伸阅读段落，须等待内容整合完成后构建。`);
   docs.push({path:file,sourceUrl:sourceUrl(file),title,module:moduleId,moduleName:module[2],category:scenario?.category||problem?.category||meta.category||module[2],difficulty:problem?.difficulty||null,problemId:problem?.id||null,scenarioCardId:scenario?.card_id||null,questionIds:scenario?[scenario.card_id]:(meta.question_ids||items.map(i=>i.id)),items:items.map(i=>({id:i.id,title:i.title,anchor:i.anchor,priority:i.priority})),priorities:[...new Set(items.map(i=>i.priority).filter(Boolean))],kind:scenario?'scenario':moduleId==='supplement'?'resource-bank':problem?'problem':path.basename(file)==='README.md'?'overview':'chapter',summary:summary.slice(0,180),minutes:Math.max(1,Math.ceil(length/450)),headings,sections,html,source,carl:carlEntry?compactCarl(carlEntry,carlAnchor):null});
 }
+for (const [old, alias] of Object.entries(readingAliases)) {
+  const target=docs.find(d=>d.path===alias.path);
+  for (const section of new Set([alias.section,...Object.values(alias.sections || {})].filter(Boolean))) {
+    if (!target.headings.some(h=>h.id===section)) throw Error(`阅读别名缺少目标段落：${old} -> ${section}`);
+  }
+}
+for (const [file, aliases] of Object.entries(readingSectionAliases)) {
+  const target=docs.find(d=>d.path===file);
+  for (const section of Object.values(aliases)) {
+    if (!target?.headings.some(h=>h.id===section)) throw Error(`旧小节缺少目标段落：${file} -> ${section}`);
+  }
+}
 // Catalogue entries point into one canonical Markdown bank. They do not copy
 // answers, add algorithms to Hot100, or imply original executable source.
 const supplementaryResources=supplementaryRecords.map(record=>{
@@ -203,15 +233,18 @@ const supplementaryResources=supplementaryRecords.map(record=>{
   return {path:bank.path,sourceUrl:sourceUrl(bank.path,anchor),title:`${record.id}. ${record.title_zh}`,module:'supplement',moduleName:'算法补充资源',category:record.topic,difficulty:record.difficulty,problemId:null,resourceProblemId:record.id,questionIds:[`LC${record.id}`,`CARL${record.id}`],priorities:[],kind:'external-resource',targetAnchor:anchor,resourceOrder:record.supplementary_order,summary:record.original_review_prompt,minutes:Math.max(1,Math.ceil(section.text.length/450)),sections:[section],carl:compactCarl(record,anchor)};
 });
 for(const file of [...resourcePaths].sort()) sourceInputs.push([file,fs.readFileSync(path.join(root,file),'utf8')]);
+sourceInputs.push(['site/build.mjs',fs.readFileSync(fileURLToPath(import.meta.url),'utf8')]);
 const sourceHash=crypto.createHash('sha256').update(sourceInputs.sort(([a],[b])=>a.localeCompare(b,'en')).map(([file,source])=>`${file}\0${source}`).join('\0')).digest('hex');
-const data={schemaVersion:'1.0',repositoryUrl:config.repository_url,sourceHash,checkedDate:hot.checked_date,questionCount:contentIndex.items.length,hot100Count:hot.problems.length,scenarioCount:scenarios.length,publicSelfReportCount:17,supplementaryCount:supplementaryResources.length,supplementaryResources,carlCheckedDate:carl?.checked_date||null,modules:moduleDefs.filter(([id])=>(id!=='supplement'||supplementaryResources.length)).map(([id,folder,label,number,description])=>({id,label,number,description,count:id==='scenarios'?scenarios.length:id==='supplement'?supplementaryResources.length:docs.filter(d=>d.module===id).length,countUnit:id==='scenarios'?'张场景卡':id==='supplement'?'题外部资源':'篇文档'})),hot100Categories:hot.categories.map(c=>c.name),docs};
+const data={schemaVersion:'1.0',readingAliases,readingSectionAliases,repositoryUrl:config.repository_url,sourceHash,checkedDate:hot.checked_date,questionCount:contentIndex.items.length,hot100Count:hot.problems.length,scenarioCount:scenarios.length,publicSelfReportCount:17,supplementaryCount:supplementaryResources.length,supplementaryResources,carlCheckedDate:carl?.checked_date||null,modules:moduleDefs.filter(([id])=>(id!=='supplement'||supplementaryResources.length)).map(([id,folder,label,number,description])=>({id,label,number,description,count:id==='scenarios'?scenarios.length:id==='supplement'?supplementaryResources.length:docs.filter(d=>d.module===id).length,countUnit:id==='scenarios'?'张场景卡':id==='supplement'?'题外部资源':'篇文档'})),hot100Categories:hot.categories.map(c=>c.name),docs};
 // Small deterministic external scripts keep the offline reader self-contained.
 // The source digest in filenames also prevents stale cache combinations.
 const serialized=JSON.stringify(data);
 const parts=[];
-for(let offset=0;offset<serialized.length;offset+=135000){
+// Keep each generated script small enough to review as plain UTF-8 text.
+const partCharacters=30000;
+for(let offset=0;offset<serialized.length;offset+=partCharacters){
   const filename=`data.${sourceHash.slice(0,16)}.${String(parts.length+1).padStart(3,'0')}.js`;
-  const literal=JSON.stringify(serialized.slice(offset,offset+135000)).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
+  const literal=JSON.stringify(serialized.slice(offset,offset+partCharacters)).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
   parts.push({filename,content:`window.STUDY_DATA_TEXT = (window.STUDY_DATA_TEXT || "") + ${literal};\n`});
 }
 const js=`/* Generated by node site/build.mjs. Source SHA-256: ${sourceHash} */\nwindow.STUDY_DATA = JSON.parse(window.STUDY_DATA_TEXT);\ndelete window.STUDY_DATA_TEXT;\n`;

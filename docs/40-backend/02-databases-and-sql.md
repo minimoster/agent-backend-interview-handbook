@@ -236,4 +236,4 @@
 
 **来源**： [BS29 PostgreSQL 窗口函数教程](https://www.postgresql.org/docs/18/tutorial-window.html)。
 
-本节题号：B09、B10、B11、B12、B13、B14、B15、B16、B17、B18、B19、B20、B21。原有题号保持稳定，补充主题另行编号。
+本节题号：B09、B10、B11、B12、B13、B14、B15、B16、B17、B18、B19、B20、B21。

@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-本章为原创补充讲义。P0 为应能独立讲清并写出关键步骤；P1 为常见追问；P2 为理解边界。官方资料核查日：2026-10-09。示例参数均为教学设定，不是作者或读者的项目实测。代码与 SQL 的实际执行范围在对应题中标注；没有实测的吞吐、可用性和故障恢复效果不作为事实。
+官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB79 Spring AI、Flux 和多人流式会话各负责哪一层](#fb79)
 - [FB80 关注、粉丝、点赞与会员系统怎样设计可验证的数据模型](#fb80)
@@ -36,7 +36,7 @@
 
 **常见误区**：WebFlux 自动使所有驱动非阻塞；Flux 必比 MVC 快；Spring AI 替应用管理所有上下文预算。
 
-**来源**：[FB-S080 Spring WebFlux 概览](https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html)、[FB-S081 Spring AI Chat Model API](https://docs.spring.io/spring-ai/reference/api/chatmodel.html)、[FB-S082 Reactor 调度与线程模型](https://projectreactor.io/docs/core/release/reference/coreFeatures/schedulers.html)、[FB-S053 CompletableFuture Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S080 Spring WebFlux 概览](https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html)、[FB-S081 Spring AI Chat Model API](https://docs.spring.io/spring-ai/reference/api/chatmodel.html)、[FB-S082 Reactor 调度与线程模型](https://projectreactor.io/docs/core/release/reference/coreFeatures/schedulers.html)、[FB-S053 CompletableFuture Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)。
 
 <a id="fb80"></a>
 
@@ -54,7 +54,7 @@
 
 **常见误区**：一个 Redis 计数就是全部点赞事实；关注与粉丝各写一份却没有一致性策略；表越多代表系统越高级。
 
-**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S074 Apache Cassandra Dynamo 架构与虚拟节点](https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S074 Apache Cassandra Dynamo 架构与虚拟节点](https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)。
 
 <a id="fb81"></a>
 
@@ -72,7 +72,7 @@
 
 **常见误区**：模型分类准确率就是通知送达率；供应商接收就是用户已读；所有并发导出写同一路径。
 
-**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。
 
 <a id="fb82"></a>
 
@@ -90,7 +90,7 @@
 
 **常见误区**：无冲突即无缺陷；直接 force push 修所有协作问题；重建同一标签一定得到同样镜像。
 
-**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S085 Pro Git：分支工作流](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows)、[FB-S091 Pro Git：变基](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S085 Pro Git：分支工作流](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows)、[FB-S091 Pro Git：变基](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)。
 
 <a id="fb83"></a>
 
@@ -108,7 +108,7 @@
 
 **常见误区**：acceptCount 就是业务线程数；连接池越大越快；连接泄漏检测自动替代正确 close。
 
-**来源**：[FB-S079 Tomcat 10.1 HTTP Connector](https://tomcat.apache.org/tomcat-10.1-doc/config/http.html)、[FB-S083 HikariCP 官方配置说明](https://github.com/brettwooldridge/HikariCP)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S079 Tomcat 10.1 HTTP Connector](https://tomcat.apache.org/tomcat-10.1-doc/config/http.html)、[FB-S083 HikariCP 官方配置说明](https://github.com/brettwooldridge/HikariCP)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)。
 
 <a id="fb84"></a>
 
@@ -126,7 +126,7 @@
 
 **常见误区**：容器内存无限；readiness 失败一定重启；应用状态全存在临时容器层也能自动恢复。
 
-**来源**：[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S086 Kubernetes Pod 生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)、[FB-S090 Docker CLI 官方参考](https://docs.docker.com/reference/cli/docker/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S086 Kubernetes Pod 生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)、[FB-S090 Docker CLI 官方参考](https://docs.docker.com/reference/cli/docker/)。
 
 <a id="fb85"></a>
 
@@ -144,7 +144,7 @@
 
 **常见误区**：登录后所有资源都能读；JWT 有签名就无需业务授权；删日志里的 key 就允许先把它提交到 Git。
 
-**来源**：[FB-S054 RFC 9700 OAuth 2.0 安全实践](https://www.rfc-editor.org/rfc/rfc9700)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S087 Spring Security Servlet 架构](https://docs.spring.io/spring-security/reference/servlet/architecture.html)、[FB-S092 Kubernetes Secret 官方说明](https://kubernetes.io/docs/concepts/configuration/secret/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S054 RFC 9700 OAuth 2.0 安全实践](https://www.rfc-editor.org/rfc/rfc9700)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S087 Spring Security Servlet 架构](https://docs.spring.io/spring-security/reference/servlet/architecture.html)、[FB-S092 Kubernetes Secret 官方说明](https://kubernetes.io/docs/concepts/configuration/secret/)。
 
 <a id="fb86"></a>
 
@@ -162,7 +162,7 @@
 
 **常见误区**：IP 校验保护应用内容不可篡改；IPv6 只是更长 IPv4 头；端口由 IP 头提供。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S025 RFC 826 ARP](https://www.rfc-editor.org/rfc/rfc826)、[FB-S088 RFC 791 IPv4](https://www.rfc-editor.org/rfc/rfc791)、[FB-S089 RFC 8200 IPv6](https://www.rfc-editor.org/rfc/rfc8200)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S025 RFC 826 ARP](https://www.rfc-editor.org/rfc/rfc826)、[FB-S088 RFC 791 IPv4](https://www.rfc-editor.org/rfc/rfc791)、[FB-S089 RFC 8200 IPv6](https://www.rfc-editor.org/rfc/rfc8200)。
 
 <a id="fb87"></a>
 
@@ -180,7 +180,7 @@
 
 **常见误区**：Pub/Sub 自动保留离线消息；消费组就是广播；备份文件可用等于所有业务状态一致。
 
-**来源**：[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S061 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S084 Redis XREADGROUP 消费组与 pending](https://redis.io/docs/latest/commands/xreadgroup/)、[FB-S106 RocketMQ 4.x Push Consumer 广播与重试](https://rocketmq.apache.org/docs/4.x/consumer/02push/#message-retry)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S061 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S084 Redis XREADGROUP 消费组与 pending](https://redis.io/docs/latest/commands/xreadgroup/)、[FB-S106 RocketMQ 4.x Push Consumer 广播与重试](https://rocketmq.apache.org/docs/4.x/consumer/02push/#message-retry)。
 
 <a id="fb88"></a>
 
@@ -198,7 +198,7 @@
 
 **常见误区**：红黑树所有根叶路径长度完全相同；B+ 树固定三层；跳表最坏永远 log n；数据都放内部节点不会影响扇出。
 
-**来源**：[FB-S093 Cornell CS3110：红黑树不变量](https://www.cs.cornell.edu/courses/cs3110/2010fa/lectures/lec11.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)、[FB-S096 MySQL 8.4 索引物理结构](https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html)、[FB-S099 Redis 7.2 有序集合源码](https://github.com/redis/redis/blob/7.2/src/t_zset.c)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S093 Cornell CS3110：红黑树不变量](https://www.cs.cornell.edu/courses/cs3110/2010fa/lectures/lec11.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)、[FB-S096 MySQL 8.4 索引物理结构](https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html)、[FB-S099 Redis 7.2 有序集合源码](https://github.com/redis/redis/blob/7.2/src/t_zset.c)。
 
 <a id="fb89"></a>
 
@@ -216,7 +216,7 @@
 
 **常见误区**：快排永远 n log n；原地等于递归栈 O(1)；随机 pivot 彻底消灭所有最坏情形。
 
-**来源**：[FB-S094 MIT 6.046：随机化快速排序分析](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/bdfdbc2391daad0b8c32606d6d3644a4_0VqawRl3Xzs.pdf)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S094 MIT 6.046：随机化快速排序分析](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/bdfdbc2391daad0b8c32606d6d3644a4_0VqawRl3Xzs.pdf)。
 
 <a id="fb90"></a>
 
@@ -234,7 +234,7 @@
 
 **常见误区**：链表所有删除都更快；ArrayList 尾删也搬全部元素；哈希结构任何情况下都是常数时间。
 
-**来源**：[FB-S097 ArrayList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html)、[FB-S098 LinkedList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S097 ArrayList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html)、[FB-S098 LinkedList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)。
 
 <a id="fb91"></a>
 
@@ -252,7 +252,7 @@
 
 **常见误区**：所有副本一秒内同步就是线性一致；把一致性哈希当一致性保障；读主库自动绕过所有旧缓存。
 
-**来源**：[FB-S069 Gilbert 与 Lynch：CAP 证明论文](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf)、[FB-S102 MySQL 8.4 Group Replication 一致性说明](https://dev.mysql.com/doc/refman/8.4/en/group-replication-consistency-guarantees.html)、[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S069 Gilbert 与 Lynch：CAP 证明论文](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf)、[FB-S102 MySQL 8.4 Group Replication 一致性说明](https://dev.mysql.com/doc/refman/8.4/en/group-replication-consistency-guarantees.html)、[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)。
 
 <a id="fb92"></a>
 
@@ -270,7 +270,7 @@
 
 **常见误区**：向量库持久化等于知识永远最新；upsert 自动删除所有旧块；检索后才过滤权限没有泄漏风险。
 
-**来源**：[FB-S101 Chroma 更新数据](https://docs.trychroma.com/docs/collections/update-data)、[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。业务组合、反例与答题组织为原创教学推导。
+**来源**：[FB-S101 Chroma 更新数据](https://docs.trychroma.com/docs/collections/update-data)、[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。
 
 <a id="fb93"></a>
 
@@ -288,5 +288,4 @@
 
 **常见误区**：先背课程表数再解释业务；一切外键都不用或必须用的绝对断言；表设计与实际查询和索引脱节。
 
-**来源**：[FB-S100 MySQL 8.4 CREATE TABLE 与约束](https://dev.mysql.com/doc/refman/8.4/en/create-table.html)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。业务组合、反例与答题组织为原创教学推导。
-
+**来源**：[FB-S100 MySQL 8.4 CREATE TABLE 与约束](https://dev.mysql.com/doc/refman/8.4/en/create-table.html)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。

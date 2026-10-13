@@ -1,6 +1,6 @@
 # 本轮面经线索、技术核验与引用边界
 
-[学习路线](../../docs/00-guide/interview-followup-study-paths.md) · [验证范围](../../coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md) · [原有17份场景自报集合](../public-interviews/README.md)
+[学习路线](../../docs/00-guide/expanded-map-and-study-plan.md#topic-map) · [验证范围](../../coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md) · [原有17份场景自报集合](../public-interviews/README.md)
 
 核验日：2026-10-11。以下是有界便利样本。已读取公开正文不等于公司、岗位或经历获得独立认证；自报、回顾、题单和二手整理分开记录。时间展示不猜缺失年份，发布时间不冒充面试时间，不由少量帖子推导全行业频率或公司固定题库。
 

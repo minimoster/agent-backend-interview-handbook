@@ -207,4 +207,4 @@ func f() (n int) {
 
 **来源** ：[GO-S36 Go 1.22](https://go.dev/doc/go1.22)；[GO-S37 Fixing For Loops](https://go.dev/blog/loopvar-preview)。
 
-本节题号：G14、G15、G16、G17、G18、G19、G20、G21、G22。原有题号保持稳定，补充主题另行编号。
+本节题号：G14、G15、G16、G17、G18、G19、G20、G21、G22。
