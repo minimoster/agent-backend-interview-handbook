@@ -128,7 +128,7 @@ SC-A/SC-B编号独立于361道讲义题、Hot100的100题和15道外部资源题
 
 [整合方案](coverage/INTEGRATION_PLAN.md) · [完成标准](coverage/ACCEPTANCE.md) · 部分章节暂未发布 · [修订方式](CONTRIBUTING.md)
 
-最后整理日期：2026-10-11。
+最后整理日期：2026-10-13。
 
 ## 进阶主题
 
@@ -149,3 +149,9 @@ SC-A/SC-B编号独立于361道讲义题、Hot100的100题和15道外部资源题
 [从基础到追问、系统设计与排障的七篇路线](docs/00-guide/interview-followup-study-paths.md)：新增A2A生命周期、工具流组装、Java执行器故障、Go任务退出、存储提交/重放、系统设计与诊断。包含原创参考回答、失败时间线和可复验代码，不是原帖转载或链接清单。
 
 [公开线索与平台可读性](sources/interview-followups/README.md) · [实验源码](examples/interview_followups/README.md) · [验证层次与未测范围](coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md)。新增六篇深读与一篇路线独立于361/100/15/26口径，不保证覆盖全部可能问题。
+
+## 虾皮 Agent 一二面专项学习
+
+[34题学习与追问](docs/10-agent/34-shopee-agent-interview-playbook.md)：一面17题、二面17题，涵盖RAG、评测、长期记忆、Coding Agent、PRD/TD、上下文和会议Skill。每题有新手概念、口述、落地设计、指标、追问与误区，并链接已有基础章。
+
+SP编号为独立补充，不增加原361/100/15/26计数；材料真实性与未运行模型实验的边界见[来源说明](sources/shopee-agent-interview-supplement.md)与[本批验证](coverage/SHOPEE_AGENT_VALIDATION.md)。

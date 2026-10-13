@@ -13,3 +13,7 @@
 ## 接住协议与流式故障追问
 
 基础之后读[A2A任务生命周期](32-a2a-task-lifecycle-lab.md)与[工具流组装](33-tool-stream-assembly-lab.md)。用身份、快照、终态和执行条件解释失败，不把部分JSON直接交给工具。[跨栈复习路线](../00-guide/interview-followup-study-paths.md)。
+
+## 用34题检验能否回答工程追问
+
+读完基础后进入[虾皮Agent一二面专项](34-shopee-agent-interview-playbook.md)，依次练RAG/评测、记忆/代码定位和需求到交付。先说明事实与设计的边界，再回答状态、预算、指标与失败处理。复用基础原章，不用同时背两套相同定义。

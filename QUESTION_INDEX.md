@@ -590,3 +590,42 @@
 - [KV生命周期与容量算例](docs/10-agent/24-inference-and-serving-boundaries.md#kv-lifecycle)
 
 沿用现有题号，361道讲义详解、100道Hot100、15道外部资源题与26张场景卡分别计数。
+
+## 虾皮Agent一二面：独立34题专项补充
+
+一面17题、二面17题；与原361道讲义题、Hot100及SC场景卡分开计数。基础主题已有答案时链接原章，SP编号用于本材料的复习与核对。[来源及验证边界](sources/shopee-agent-interview-supplement.md)。
+
+- [SP-R1-01 怎样选择检索方式，向量没结果怎么办？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-01)
+- [SP-R1-02 知识库怎样增量更新与处理局部修改？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-02)
+- [SP-R1-03 RAG幻觉怎样处理？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-03)
+- [SP-R1-04 长工具结果怎样压缩并保留后续信息？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-04)
+- [SP-R1-05 模型网关有什么作用？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-05)
+- [SP-R1-06 怎样用Trace定位bad case并回归？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-06)
+- [SP-R1-07 怎样构建评测集、计算成本和验证缓存？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-07)
+- [SP-R1-08 RRF全称、作用与Rerank区别是什么？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-08)
+- [SP-R1-09 Skill与Working Memory有什么差别？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-09)
+- [SP-R1-10 长期记忆怎样组织，何时直接注入](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-10)
+- [SP-R1-11 什么值得记住，规则与Prompt各管什么](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-11)
+- [SP-R1-12 关系库、向量库和原始对话各有什么作用](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-12)
+- [SP-R1-13 偏好变化怎样更新并保留历史](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-13)
+- [SP-R1-14 怎样评测记忆抽取与召回](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-14)
+- [SP-R1-15 Coding Agent怎样定位代码](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-15)
+- [SP-R1-16 跨语言解析与Go符号导出有什么难点](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-16)
+- [SP-R1-17 工具发现怎样评测准确性与Token收益](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-17)
+- [SP-R2-01 从需求到编码测试的完整流程](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-01)
+- [SP-R2-02 需求不清时怎样澄清](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-02)
+- [SP-R2-03 Spec、技术设计与任务拆解有何区别](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-03)
+- [SP-R2-04 技术设计Agent的输入、工具与输出](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-04)
+- [SP-R2-05 新系统、改造、重构与数据迁移怎样分模板](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-05)
+- [SP-R2-06 PRD与TD Agent的System Prompt怎样写](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-06)
+- [SP-R2-07 用户不同意方案时怎样修改](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-07)
+- [SP-R2-08 不看下游代码，怎样比较PRD与TD质量](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-08)
+- [SP-R2-09 Coding Agent幻觉怎样影响交付](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-09)
+- [SP-R2-10 知识库入库前怎样解析、标准化与切分](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-10)
+- [SP-R2-11 检索结果何时达标，何时继续或停止](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-11)
+- [SP-R2-12 检索有哪些策略，工具与策略有何区别](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-12)
+- [SP-R2-13 上线后怎样衡量质量与真实反馈](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-13)
+- [SP-R2-14 无限检索或重复调用怎样处理](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-14)
+- [SP-R2-15 Function Calling原理与职责边界](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-15)
+- [SP-R2-16 多轮对话超出上下文怎样处理](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-16)
+- [SP-R2-17 现场设计会议转写总结Skill](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r2-17)

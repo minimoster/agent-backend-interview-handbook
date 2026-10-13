@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_on": "2026-10-11",
+  "updated_on": "2026-10-13",
   "content_status": "partial_chapters_unpublished",
   "path_base": "repository_root",
   "notes": [
@@ -10,7 +10,8 @@
     "部分章节暂未发布；本版361道讲义题、100道Hot100和15道外部资源题分别计数。",
     "2026-10-10新增10篇Agent/后端/练习/面试专题；KV补充并入既有24章，不增加编号题或独立场景卡。",
     "2026-10-11新增Transformer原创先修与39项前向算术合同，不创建题号或增加独立场景卡。",
-    "2026-10-11补充六篇原创追问深读与一篇路线；无新增编号题，361/100/15/26及原17份场景自报集合口径不变，平台来源类型和新批次样本独立说明。"
+    "2026-10-11补充六篇原创追问深读与一篇路线；无新增编号题，361/100/15/26及原17份场景自报集合口径不变，平台来源类型和新批次样本独立说明。",
+    "2026-10-13加入提供材料中的虾皮Agent一二面34题专项；SP-R1/SP-R2独立检索标识不加入items，原361/100/15/26与17份公开场景自报集合口径不变。"
   ],
   "counts": {
     "interview_questions": 361,
@@ -8340,6 +8341,49 @@
       "path": "docs/40-backend/42-system-design-debugging-clinic.md",
       "url": "docs/40-backend/42-system-design-debugging-clinic.md",
       "question_ids": []
+    },
+    {
+      "title": "虾皮 Agent 一二面：34题学习与追问",
+      "category": "AI Agent",
+      "relative_path": "docs/10-agent/34-shopee-agent-interview-playbook.md",
+      "path": "docs/10-agent/34-shopee-agent-interview-playbook.md",
+      "url": "docs/10-agent/34-shopee-agent-interview-playbook.md",
+      "question_ids": [
+        "SP-R1-01",
+        "SP-R1-02",
+        "SP-R1-03",
+        "SP-R1-04",
+        "SP-R1-05",
+        "SP-R1-06",
+        "SP-R1-07",
+        "SP-R1-08",
+        "SP-R1-09",
+        "SP-R1-10",
+        "SP-R1-11",
+        "SP-R1-12",
+        "SP-R1-13",
+        "SP-R1-14",
+        "SP-R1-15",
+        "SP-R1-16",
+        "SP-R1-17",
+        "SP-R2-01",
+        "SP-R2-02",
+        "SP-R2-03",
+        "SP-R2-04",
+        "SP-R2-05",
+        "SP-R2-06",
+        "SP-R2-07",
+        "SP-R2-08",
+        "SP-R2-09",
+        "SP-R2-10",
+        "SP-R2-11",
+        "SP-R2-12",
+        "SP-R2-13",
+        "SP-R2-14",
+        "SP-R2-15",
+        "SP-R2-16",
+        "SP-R2-17"
+      ]
     }
   ]
 }

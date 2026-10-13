@@ -401,4 +401,41 @@ check('显式源码下载控件不拆行且样式使用独立缓存版本',()=>{
   assert.ok(html.includes('href="assets/style.css?v=source-download-nowrap-20261011"'));
 });
 
+check('虾皮Agent补充保留34个唯一题号、六栏目与独立计数',()=>{
+  const file='docs/10-agent/34-shopee-agent-interview-playbook.md';
+  const d=docs.get(file);
+  const mapping=JSON.parse(fs.readFileSync(path.join(root,'sources/shopee-agent-question-map.json'),'utf8'));
+  assert.ok(d,file);
+  assert.equal(mapping.unique_question_count,34);
+  assert.equal(mapping.records.length,34);
+  assert.equal(new Set(mapping.records.map(r=>r.id)).size,34);
+  assert.deepEqual(mapping.records.map(r=>[r.round,r.original_number]),[1,2].flatMap(round=>Array.from({length:17},(_,i)=>[round,i+1])));
+  assert.equal(d.questionIds.length,34);
+  assert.equal(data.questionCount,461);
+  assert.equal(data.hot100Count,100);
+  assert.equal(data.scenarioCount,26);
+  assert.equal(data.publicSelfReportCount,17);
+  assert.equal(data.supplementaryCount,15);
+  for(const r of mapping.records){
+    assert.equal(r.path,file);
+    assert.ok(d.headings.some(h=>h.id===r.anchor&&h.text.includes(r.id)),r.id);
+    const section=d.sections.find(s=>s.id===r.anchor);
+    assert.ok(section,r.id);
+    for(const label of ['新手概念','面试口述','落地设计','指标与失败边界','追问与误区','延伸阅读'])assert.ok(section.text.includes(label),`${r.id}: ${label}`);
+  }
+  assert.ok(!/libfile_|file_00000000|IMG_276[1-4]|oai-library:/.test(d.source));
+  assert.ok(d.source.includes('不增加原361/100/15/26计数'));
+});
+check('虾皮Agent新题号与新增二面正文可搜索，导航相互连接',()=>{
+  const file='docs/10-agent/34-shopee-agent-interview-playbook.md';
+  for(const q of ['SP-R1-01','SP-R1-17','SP-R2-07','SP-R2-17','说话人分离','缓存读token']){
+    const result=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===file);
+    assert.ok(result,`${q} 未命中新章`);
+    assert.ok(docs.get(file).headings.some(h=>h.id===result.section.id),q);
+  }
+  for(const p of ['README.md','QUESTION_INDEX.md','docs/10-agent/README.md','docs/10-agent/00-reading-guide.md','docs/60-interviews/README.md','docs/60-interviews/agent.md'])assert.ok(docs.get(p).html.includes(encodeURIComponent(file)),p);
+  assert.ok(docs.has('sources/shopee-agent-interview-supplement.md'));
+  assert.ok(docs.has('coverage/SHOPEE_AGENT_VALIDATION.md'));
+});
+
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);

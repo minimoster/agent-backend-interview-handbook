@@ -44,3 +44,10 @@
 - [多工具增量参数组装与验证](33-tool-stream-assembly-lab.md)
 
 原创深读不新增编号题；合成模型不等同真实供应商或跨Agent互通。[本轮路线](../00-guide/interview-followup-study-paths.md)。
+
+## 虾皮 Agent 一二面专项学习
+
+- [34题学习与追问](34-shopee-agent-interview-playbook.md)：独立SP-R1/SP-R2编号，每轮17题；基础答案与新追问交叉阅读
+- [来源与计数边界](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
+
+新增内容不改变原A/FA题号或361/100/15/26计数；PRD/TD Prompt及会议Skill合同为原创教学设计。
