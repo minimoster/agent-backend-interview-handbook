@@ -287,3 +287,13 @@
 本轮小红书平台核心样本为0。牛客上的小红书公司面经仍归牛客；GitHub教程、索引与二手整理另列在[发现与访问边界](reference-and-access.json)，不能充当新增第一手面经。
 
 [26张原创场景卡](../../docs/90-public-interview-scenarios/README.md) · [结构化来源](source-catalog.json) · [技术一手依据](official-references.json)
+
+<a id="agent-sources-20261015"></a>
+## 2026-10-15 Agent 自述补充
+
+同一[source-catalog.json](source-catalog.json)现登记19条公开报告、18个作者标签：原P01–P17记录保持不变，新增P18、P19。上文17篇、16作者及26场景统计仍指2026-10-10批次，不能据此声称新增了场景卡。
+
+- P18：[字节AI Agent开发秋招一面面经](https://www.nowcoder.com/feed/main/detail/7b1b40fda3244715a82bcb4a821ca887)，N次求offer。
+- P19：[字节跳动9.3 Agent开发一面面经](https://www.nowcoder.com/discuss/925342611194286080)，小妞脂。
+
+公开主帖与作者栏已读；月份日期不补年份，不同访问环境的时间差异记录在[新讲解](../../docs/60-interviews/agent-followups-20261015.md)。四道练习明确标为原创模拟，非新增真实面试问题；技术结论引用对应官方资料及原论文。

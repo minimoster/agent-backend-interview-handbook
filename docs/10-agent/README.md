@@ -44,4 +44,10 @@
 ## 虾皮 Agent 一二面专项学习
 
 - [34题学习与追问](34-shopee-agent-interview-playbook.md)：独立SP-R1/SP-R2编号，每轮17题；基础答案与新追问交叉阅读
-- [题目来源](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
+- [练习安排与技术参考](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
+
+## 检索手算与算法练习
+
+- [同例手算检索指标、分母与配对回归](35-retrieval-evaluation-worked-example.md)
+- [稳定 Top-K、堆与 RRF](../70-practice/retrieval-ranking-algorithms.md)
+- [两篇公开自述逐项答案、项目对应与四道深入练习](../60-interviews/agent-followups-20261015.md)

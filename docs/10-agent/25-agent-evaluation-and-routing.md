@@ -4,6 +4,8 @@
 
 先从[A01–A08](01-agent-loop-tools-and-state.md)掌握工具与状态，从[A16–A18](02-rag-retrieval-and-reranking.md#a16)掌握检索诊断，再结合[Harness](18-harness-runtime-and-observability.md)记录版本与 Trace。本章练习评测设计、提示回归与模型路由，核查日期2026-10-10。模型实验、在线 A/B 和公开基准尚未运行。
 
+检索指标可接着做[同一数据集手算与配对回归](35-retrieval-evaluation-worked-example.md)，明确无答案、未标注项和均值分母。
+
 <a id="eval-contract"></a>
 ## 1. 怎样定义“做得好”，而不是让模型自称完成？
 

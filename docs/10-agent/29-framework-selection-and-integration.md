@@ -69,7 +69,7 @@ LangChain或其他工作流调用这个组件，再用受控证据构造上下�
 
 模型输出工具名和参数意图，应用在执行入口校验，再由HTTP客户端或MCP适配器真正调用。REST包装处理URL、身份、序列化、超时、响应大小及错误转换；模型厂商的tool-call消息处理调用ID与结果回注。两种合同都要验证，不能说“LLM直接访问API”。
 
-工具注册至少说明名称、用途、必需输入、输出、错误和副作用。增加工具后先验证可发现、可选中、合法调用、非法参数拒绝与结果关联，再加入任务回归。厂商消息、旧RequestsTool或旧functions字段不能凭名称直接套用；本章不复制不完整上传样例。工具细节见[实用工具合同](31-tool-mcp-and-skill-contracts.md#tool-result-contract)。
+工具注册至少说明名称、用途、必需输入、输出、错误和副作用。增加工具后先验证可发现、可选中、合法调用、非法参数拒绝与结果关联，再加入任务回归。厂商消息、旧RequestsTool或旧functions字段不能凭名称直接套用。工具细节见[实用工具合同](31-tool-mcp-and-skill-contracts.md#tool-result-contract)。
 
 <a id="selection-experiment"></a>
 ## 8 怎样证明采用框架值得

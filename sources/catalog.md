@@ -4858,7 +4858,7 @@
 
 ## Agent应用实验与Python工程附录
 
-[按章节查看技术参考](agent-labs-references.md) · [测试与未测范围](../coverage/AGENT_LABS_VALIDATION.md)。新增正文与教学代码为原创组织；受限原资料、原图和外部技能包未镜像。只有题面或空正文的补充明确标注为新写答案，不赋予读者任何未证实经历。
+[按章节查看技术参考](agent-labs-references.md) · [测试与未测范围](../coverage/AGENT_LABS_VALIDATION.md)。新增正文与教学代码为原创组织，沿概念、算例和练习展开。使用面试回答框架时，请结合自己的实现与测量记录。
 
 ## 2026-10-11公开面经追问线索
 

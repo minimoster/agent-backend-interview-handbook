@@ -1,6 +1,7 @@
 {
   "title": "Agent与后端公开面经原创场景模块",
   "checked_at": "2026-10-10",
+  "count_scope": "本manifest固定记录2026-10-10的P01–P17场景批次；source-catalog.json后续增加P18/P19，总目录19条，原批次计数不回写。",
   "status": "integrated_module",
   "counts": {
     "full_readable_self_report_pages": 17,

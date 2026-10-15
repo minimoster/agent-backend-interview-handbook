@@ -9,7 +9,7 @@
 - [Go 公开面经样本](go.md)
 - [Java 公开面经样本](java.md)
 
-## 提供材料的专项学习
+## 专项学习
 
-- [虾皮Agent一二面34题](../10-agent/34-shopee-agent-interview-playbook.md)：材料标识来自提供的题目图片，尚未独立核验原作者、岗位与日期；与上面的公开原帖样本分开使用
-- [题目来源与整理说明](../../sources/shopee-agent-interview-supplement.md)
+- [虾皮Agent一二面34题](../10-agent/34-shopee-agent-interview-playbook.md)：按检索、评测、记忆、工具与交付流程练习；独立于上面的公开面经样本计数
+- [练习安排与技术参考](../../sources/shopee-agent-interview-supplement.md)

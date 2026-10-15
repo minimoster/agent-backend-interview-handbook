@@ -264,7 +264,7 @@ check('知识修订可检索，36条Agent追问参考答案可折叠且题数独
 });
 check('26张公开场景卡编号、搜索、原文、追问与既有题数独立',()=>{
   const scenes=JSON.parse(fs.readFileSync(path.join(root,'sources/public-interviews/scenario-map.json'),'utf8')).records;
-  assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,17);
+  assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,19);
   assert.equal(data.docs.filter(d=>d.kind==='scenario').length,26);
   assert.equal(data.modules.find(m=>m.id==='scenarios').count,26);
   for(const scene of scenes){
@@ -425,7 +425,7 @@ check('面经六篇追问与一路线保持既有编号并有唯一真实锚点'
     'docs/40-backend/42-system-design-debugging-clinic.md'
   ];
   assert.equal(data.questionCount,461);assert.equal(data.questionCount-data.hot100Count,361);
-  assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,17);
+  assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,19);
   for(const file of paths){
     const d=docs.get(file);assert.ok(d,file);assert.equal(d.questionIds.length,0);
     assert.equal(index.documents.filter(entry=>entry.relative_path===file).length,1,file);
@@ -474,7 +474,7 @@ check('虾皮Agent补充保留34个唯一题号、六栏目与独立计数',()=>
   assert.equal(data.questionCount,461);
   assert.equal(data.hot100Count,100);
   assert.equal(data.scenarioCount,26);
-  assert.equal(data.publicSelfReportCount,17);
+  assert.equal(data.publicSelfReportCount,19);
   assert.equal(data.supplementaryCount,15);
   for(const r of mapping.records){
     assert.equal(r.path,file);
@@ -496,6 +496,58 @@ check('虾皮Agent新题号与新增二面正文可搜索，导航相互连接',
   for(const p of ['README.md','QUESTION_INDEX.md','docs/10-agent/README.md','docs/10-agent/00-reading-guide.md','docs/60-interviews/README.md','docs/60-interviews/agent.md'])assert.ok(docs.get(p).html.includes(encodeURIComponent(file)),p);
   assert.ok(docs.has('sources/shopee-agent-interview-supplement.md'));
   assert.ok(docs.has('coverage/SHOPEE_AGENT_VALIDATION.md'));
+});
+
+check('检索手算、稳定排序与原创模拟可搜索且来源计数独立',()=>{
+  for(const [q,file] of [
+    ['unjudged_returned','docs/10-agent/35-retrieval-evaluation-worked-example.md'],
+    ['heapreplace','docs/70-practice/retrieval-ranking-algorithms.md'],
+    ['独立环','docs/60-interviews/agent-followups-20261015.md']
+  ]){
+    const result=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===file);
+    assert.ok(result,`${q}: ${file}`);
+    assert.ok(docs.get(file).headings.some(h=>h.id===result.section.id),q);
+    assert.equal(docs.get(file).questionIds.length,0);
+    assert.ok(!/libfile_|file_00000000|oai-library:|INTEGRATION\.md/.test(docs.get(file).source));
+  }
+  const chapter=docs.get('docs/60-interviews/agent-followups-20261015.md').source;
+  assert.equal((chapter.match(/^## [^\n]*原创模拟追问 [1-4]：/gm)||[]).length,4);
+  assert.ok(chapter.includes('页面未显示年份'));
+  assert.equal(data.questionCount,461);
+  assert.equal(data.publicSelfReportCount,19);
+  assert.equal(data.scenarioCount,26);
+  assert.equal((docs.get('docs/70-practice/sql-nine-worked-problems.md').source.match(/^## S0[1-9] /gm)||[]).length,9);
+  for(const name of ['retrieval_worked_examples.py','test_retrieval_worked_examples.py','interview_build_forest.py','test_interview_build_forest.py']){
+    const relative=`examples/retrieval_worked_examples/${name}`;
+    assert.ok(fs.readFileSync(path.join(site,'assets/repo',relative)).equals(fs.readFileSync(path.join(root,relative))),relative);
+  }
+});
+
+check('阅读内容仅展示学习正文与可公开引用的技术依据',()=>{
+  const disallowed=/feishu\.(?:cn|com)|larksuite\.com|私人飞书|私人来源|私有来源|提供给本手册整理|四张有重叠|题目来自[^\n]*图片|provided_interview_material|外部Skill ZIP|未读外部技能ZIP|受限原资料|不完整上传样例|截图省略区域|外部技能包实验|提供材料的专项学习|题目材料用于|材料范围：|未由材料精确给定|猜材料中的/;
+  for(const d of data.docs)assert.ok(!disallowed.test(d.source),d.path);
+  const mapping=fs.readFileSync(path.join(root,'sources/shopee-agent-question-map.json'),'utf8');
+  assert.ok(!disallowed.test(mapping));
+  assert.equal(JSON.parse(mapping).source_type,'learning_exercise_topic_map');
+});
+
+check('两篇新面经34项均有答案、口述与固定项目边界',()=>{
+  const file='docs/60-interviews/agent-followups-20261015.md';
+  const chapter=docs.get(file);
+  const cards=[...chapter.source.matchAll(/^#### (P(?:18|19)-\d{2}) ([^\n]+)\n([\s\S]*?)(?=^#### |^<a id=|^### |$(?![\s\S]))/gm)];
+  const ids=cards.map(m=>m[1]);
+  assert.deepEqual(ids,[...Array.from({length:23},(_,i)=>`P18-${String(i+1).padStart(2,'0')}`),...Array.from({length:11},(_,i)=>`P19-${String(i+1).padStart(2,'0')}`)]);
+  for(const card of cards){assert.ok(card[3].includes('**答案与口述：**'),card[1]);assert.ok(card[3].includes('**原理与'),card[1]);assert.ok(card[3].length>=180,card[1]);}
+  for(const anchor of ['source-question-answers','p18-answers','p19-answers'])assert.ok(chapter.headings.some(h=>h.id===anchor),anchor);
+  for(const file of ['docs/10-agent/35-retrieval-evaluation-worked-example.md','docs/70-practice/retrieval-ranking-algorithms.md']){
+    const source=docs.get(file).source;
+    assert.ok(source.includes('6d5bb13dc74dc03a7a59c74b2396c3b10e84caef'),file);
+    assert.ok(source.includes('internal/domain/rag/hybrid.go'),file);
+    assert.ok(source.includes('口述版'),file);
+  }
+  assert.ok(docs.get('docs/10-agent/35-retrieval-evaluation-worked-example.md').source.includes('0.523434'));
+  assert.ok(docs.get('docs/70-practice/retrieval-ranking-algorithms.md').source.includes('不能继续无条件声称只用 O(K) 空间'));
+  assert.equal(data.questionCount,461);assert.equal(data.scenarioCount,26);
 });
 
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_on": "2026-10-13",
+  "updated_on": "2026-10-15",
   "content_status": "partial_chapters_unpublished",
   "path_base": "repository_root",
   "notes": [
@@ -8349,6 +8349,30 @@
         "SP-R2-16",
         "SP-R2-17"
       ]
+    },
+    {
+      "title": "检索评测手算：从一条问题到可解释的回归结果",
+      "category": "原创检索手算与模拟练习",
+      "relative_path": "docs/10-agent/35-retrieval-evaluation-worked-example.md",
+      "path": "docs/10-agent/35-retrieval-evaluation-worked-example.md",
+      "url": "docs/10-agent/35-retrieval-evaluation-worked-example.md",
+      "question_ids": []
+    },
+    {
+      "title": "Agent 检索算法实练：稳定 Top-K、堆与 RRF",
+      "category": "原创检索手算与模拟练习",
+      "relative_path": "docs/70-practice/retrieval-ranking-algorithms.md",
+      "path": "docs/70-practice/retrieval-ranking-algorithms.md",
+      "url": "docs/70-practice/retrieval-ranking-algorithms.md",
+      "question_ids": []
+    },
+    {
+      "title": "从两篇公开面经练习评测、长上下文与运行诊断",
+      "category": "原创检索手算与模拟练习",
+      "relative_path": "docs/60-interviews/agent-followups-20261015.md",
+      "path": "docs/60-interviews/agent-followups-20261015.md",
+      "url": "docs/60-interviews/agent-followups-20261015.md",
+      "question_ids": []
     }
   ]
 }

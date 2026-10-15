@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Repository-local contract checks; no external service or model calls."""
-import json,re
+import json,re,hashlib
 from pathlib import Path
 from urllib.parse import urlsplit
 ROOT=Path(__file__).resolve().parents[1]
@@ -9,7 +9,23 @@ def read(name):return json.loads((S/name).read_text())
 def stable(url):
  u=urlsplit(url);return (u.netloc.lower(),u.path.rstrip('/'))
 catalog=read('source-catalog.json'); reports=catalog['records']; cards=read('scenario-map.json')['records']; manifest=read('manifest.json')
-assert len(reports)==17 and len({stable(x['url']) for x in reports})==17
+assert len(reports)==19 and len({stable(x['url']) for x in reports})==19
+assert [r['id'] for r in reports]==[f'P{i:02d}' for i in range(1,20)]
+original_reports=reports[:17]
+assert hashlib.sha256(json.dumps(original_reports,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()=='0ac5a85bcb7732f0ebb3c6cc03b473295da0bde7786829b7546fb9c675f3ad4c'
+assert len({x['author'] for x in reports})==18
+for record in reports[17:]:
+ assert set(original_reports[0]) <= set(record)
+ assert record['class']=='first_person_self_report' and record['cards']==[]
+ assert record['checked_at']=='2026-10-15'
+ assert record['date_precision']=='displayed_month_day_time_year_unknown'
+ assert record['exercise_origin']=='original_simulation_not_reported_questions'
+ assert record['url'].startswith('https://www.nowcoder.com/')
+ chapter=(ROOT/record['learning_document']).read_text()
+ assert record['url'] in chapter and record['author'] in chapter
+ assert len(re.findall(r'^## [^\n]*原创模拟追问 [1-4]：',chapter,re.M))==4
+ assert record['url'] in (S/'README.md').read_text()
+reports=original_reports
 assert len({x['author'] for x in reports})==16
 assert {x['id'] for x in reports if x['novelty']=='existing_public_page'}=={'P01','P03','P06'}
 assert sum(x['novelty']=='new_public_page' for x in reports)==14
@@ -42,6 +58,7 @@ assert '不是防泄漏分组键' in model['split_policy']
 assert manifest['counts']['original_scenario_cards']==26 and manifest['counts']['verified_xiaohongshu_platform_core_pages']==0
 assert all(urlsplit(x['url']).netloc=='www.nowcoder.com' for x in reports)
 assert sum(x.get('platform')=='小红书' for x in reports)==0
+print('PASS: 19 total public reports / 18 author labels; original batch unchanged; 2 new source contracts checked')
 print('PASS: 17 public reports / 16 author labels / 14 new pages / 13 net-new author labels')
 print('PASS: 26 independent scene cards / 41 official URLs / 4 Python exercises / 12 unexecuted model designs')
 print('PASS: existing 361 lecture / 100 Hot100 / 15 external resource counts unchanged')

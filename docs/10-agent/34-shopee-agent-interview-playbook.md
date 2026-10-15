@@ -1,8 +1,8 @@
 # 虾皮 Agent 一二面：34题学习与追问
 
-[返回Agent目录](README.md) · [题目索引](../../QUESTION_INDEX.md) · [来源与使用边界](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
+[返回Agent目录](README.md) · [题目索引](../../QUESTION_INDEX.md) · [练习安排与技术参考](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
 
-本章按一面17题、二面17题组织34项练习。题目来自标注“虾皮 Agent 面经”的图片，作者、岗位和面试日期尚未独立核实。
+本章按一面17题、二面17题组织34项练习，串联检索、评测、记忆、工具与多Agent设计。
 
 题目使用 SP-R1/SP-R2 编号。基础机制链接原章，本章重点练习口述、实现契约、指标与失败处理；示例指标为教学设定。
 

@@ -19,3 +19,10 @@
 - [Python与FastAPI工程附录](../40-backend/40-python-fastapi-lab.md)
 
 [实验复现范围](../../coverage/AGENT_LABS_VALIDATION.md)。
+
+## 检索排序与结构校验
+
+- [稳定 Top-K、堆不变量与 RRF 聚合](retrieval-ranking-algorithms.md)
+- [乱序列表构树、独立环与深链](../60-interviews/agent-followups-20261015.md)
+
+这些原创练习独立于原有题号计数。[复验范围](../../coverage/RETRIEVAL_WORKED_EXAMPLES_VALIDATION.md)。

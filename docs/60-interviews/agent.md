@@ -62,6 +62,10 @@
 
 ## 虾皮Agent 34题专项学习补充
 
-[一面17题、二面17题的学习与追问](../10-agent/34-shopee-agent-interview-playbook.md)。题目图片已按原轮次与编号去重，补齐配套文字缺少的二面7–17；每题连接概念、口述、落地与验收。
+[一面17题、二面17题的学习与追问](../10-agent/34-shopee-agent-interview-playbook.md)。每题连接概念、口述、落地与验收，按题号复习或按知识主题交叉练习。
 
-这份题目材料的公开原帖、作者和面试日期尚未独立核验，整理说明见[题目来源](../../sources/shopee-agent-interview-supplement.md)。
+详见[练习安排与技术参考](../../sources/shopee-agent-interview-supplement.md)。
+
+## 评测、长上下文与运行诊断补充
+
+[两篇公开自述与四道原创模拟追问](agent-followups-20261015.md)：会议转写评价、证据位置实验、长任务时间线与乱序构树。原帖仅作主题线索；练习答案和数字推演为原创，不冒充原帖真实问答。

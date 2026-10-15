@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-10",
+  "checked_at": "2026-10-15",
   "scope": "Agent/LLM应用与Java/Go后端公开面试补充",
   "method": "逐条访问公开原页；first_person表示作者以自身经历叙述，不等于身份或面试已由公司核实。标题、时间、公司、岗位、轮次只记原页明确项。月份日期不猜年份，发布时间不冒充面试日期。",
   "sampling_boundary": "有界便利样本，不能估计全行业频率、固定公司题库或命中率；同一作者多轮/多公司不算多位独立作者。",
@@ -520,6 +520,63 @@
         "SC-B14"
       ],
       "novelty": "new_public_page"
+    },
+    {
+      "id": "P18",
+      "platform": "牛客",
+      "url": "https://www.nowcoder.com/feed/main/detail/7b1b40fda3244715a82bcb4a821ca887",
+      "title": "字节AI Agent开发秋招一面面经",
+      "author": "N次求offer",
+      "published_display": "08-13 16:09",
+      "interview_date": "8月9号（年份未显示）",
+      "company": "字节跳动（作者自述）",
+      "role": "AI Agent开发秋招（作者称TikTok方向）",
+      "stage": "一面",
+      "class": "first_person_self_report",
+      "topics": [
+        "ASR评测",
+        "长上下文位置",
+        "多Agent编排",
+        "列表构树"
+      ],
+      "summary": "以会议转写项目串联识别质量、上下文使用和结构转换算法。",
+      "access": "2026-10-15读取公开原帖作者栏与主帖正文；不同访问环境显示时间有差异，不推测时区或年份。",
+      "date_precision": "displayed_month_day_time_year_unknown",
+      "confidence": "个人作者自述；身份、岗位和面试发生未由公司独立核实",
+      "cards": [],
+      "novelty": "new_public_page",
+      "checked_at": "2026-10-15",
+      "learning_document": "docs/60-interviews/agent-followups-20261015.md",
+      "exercise_origin": "original_simulation_not_reported_questions"
+    },
+    {
+      "id": "P19",
+      "platform": "牛客",
+      "url": "https://www.nowcoder.com/discuss/925342611194286080",
+      "title": "字节跳动9.3 Agent开发一面面经",
+      "author": "小妞脂",
+      "published_display": "09-04 11:04（已编辑）",
+      "interview_date": null,
+      "company": "字节跳动（作者自述）",
+      "role": "Agent开发（正文未完整说明招聘类型）",
+      "stage": "一面",
+      "class": "first_person_self_report",
+      "topics": [
+        "Harness",
+        "长任务延迟",
+        "工具可靠性",
+        "上下文压缩",
+        "限定数位构造"
+      ],
+      "summary": "从项目输出进入运行时、长任务排障和工具可靠性；数位题复用已有X04。",
+      "access": "2026-10-15读取公开原帖作者栏与主帖正文；不同访问环境显示时间有差异，不推测时区或年份。",
+      "date_precision": "displayed_month_day_time_year_unknown",
+      "confidence": "个人作者自述；身份、岗位和面试发生未由公司独立核实",
+      "cards": [],
+      "novelty": "new_public_page",
+      "checked_at": "2026-10-15",
+      "learning_document": "docs/60-interviews/agent-followups-20261015.md",
+      "exercise_origin": "original_simulation_not_reported_questions"
     }
   ],
   "deduplication": {
@@ -536,5 +593,6 @@
     "net_new_authors": 13,
     "existing_pages_revisited": 3,
     "verified_xiaohongshu_platform_core_pages": 0
-  }
+  },
+  "batch_note": "P01–P17保留2026-10-10原批次；P18–P19为2026-10-15新增公开自述。原26场景与4道新增原创模拟追问分开计数。"
 }
