@@ -1,12 +1,12 @@
 # 437. 路径总和 III
 
-[官方题目](https://leetcode.cn/problems/path-sum-iii/) · MEDIUM · 官方分类：二叉树
+难度：MEDIUM · 分类：二叉树
 
 ## 题意与接口
 
-统计向下的连续父子路径中，节点值之和等于 targetSum 的条数；起点和终点均可任意。接口：`pathSum(root, targetSum)`。官方页已核实可有负值、空树，至多 1000 节点。
+统计向下的连续父子路径中，节点值之和等于 targetSum 的条数；起点和终点均可任意。接口：`pathSum(root, targetSum)`。本题约定可有负值、空树，至多 1000 节点。
 
-约束核对（2026-10-09）：节点数 0..1000，值可达正负 10^9；路径必须向下，起终点不限于根/叶。 [官方来源](https://leetcode.com/problems/path-sum-iii/)
+约束核对（2026-10-09）：节点数 0..1000，值可达正负 10^9；路径必须向下，起终点不限于根/叶。
 
 ## 从朴素方法到优化
 
@@ -67,22 +67,12 @@ class Solution:
 
 复习：全零的 n 节点单链，目标为 0 时为什么答案是 n(n+1)/2？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/path-sum-iii/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0400-0499/0437.Path%20Sum%20III/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
-- 官方Python：本次核验未找到本题精确匹配的官方实现区。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：沿一条路径维护前缀和频次，说明回溯时为何必须撤销，否则相邻分支会互相污染。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

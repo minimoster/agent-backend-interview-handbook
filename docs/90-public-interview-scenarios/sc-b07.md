@@ -1,6 +1,6 @@
 # SC-B07 联合索引不能只回答“有无用到”
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 有索引(a,b,c)，SQL把b写在a前面就失效吗？没a条件就一定不用索引吗？
 
@@ -26,15 +26,13 @@
 
 设计(a,b)小表的4种筛选和2种返回列，在专用测试库观察计划，并逐步扩大有偏斜的数据。验收写出为何选该路径、扫描/返回行数差和版本。本轮没有连接MySQL。
 
-**主题来源：** P09、P16、P17。**技术依据：** [MySQL8.4联合索引](https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html)、[MySQL8.4 Skip Scan范围访问](https://dev.mysql.com/doc/refman/8.4/en/range-optimization.html#range-access-skip-scan)。不把本卡推广到所有数据库。
+不把本卡推广到所有数据库。
 
 ## 阅读与复验入口
-
-公开主题线索：[P09](../../sources/public-interviews/README.md#report-p09)、[P16](../../sources/public-interviews/README.md#report-p16)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [02-databases-and-sql](../../docs/40-backend/02-databases-and-sql.md)
 - [20-mysql-mechanisms](../../docs/40-backend/20-mysql-mechanisms.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

@@ -1,6 +1,6 @@
 # 295. 数据流的中位数
 
-[官方题目](https://leetcode.cn/problems/find-median-from-data-stream/) · HARD · 官方分类：堆
+难度：HARD · 分类：堆
 
 ## 题意与接口
 
@@ -51,7 +51,7 @@ class MedianFinder:
 
 ## 复杂度
 
-已有n项时，addNum均摊O(log(n+1))，findMedian为O(1)，存储O(n)。这里按CPython常见动态列表模型计算：heapq先向底层列表追加再调整堆，堆操作中的尾部pop也可能缩容；单次扩缩容可能搬移O(n)项，不承诺每次插入严格对数时间。没有假定堆内所有元素有序。容器依据见[CPython列表实现](https://github.com/python/cpython/blob/3.12/Objects/listobject.c)与[heapq实现](https://github.com/python/cpython/blob/3.12/Lib/heapq.py)。
+已有n项时，addNum均摊O(log(n+1))，findMedian为O(1)，存储O(n)。这里按CPython常见动态列表模型计算：heapq先向底层列表追加再调整堆，堆操作中的尾部pop也可能缩容；单次扩缩容可能搬移O(n)项，不承诺每次插入严格对数时间。没有假定堆内所有元素有序。这里的容器复杂度按CPython动态列表与heapq的组合计算。
 
 ## 边界与易错点
 
@@ -67,13 +67,17 @@ class MedianFinder:
 
 答案核对：标准堆只能高效取根，不支持由任意值直接定位并删除对应项；列表搜索会花O(n)。可用带索引的堆，或延迟删除计数并在根失效时清理，同时维护有效大小；重复值、堆归属和重平衡都要另设不变量。
 
-### 官方追问一：所有值都在[0,100]
+<a id="官方追问一所有值都在0100"></a>
+
+### 追问一：所有值都在[0,100]
 
 维护101个频次和总数n即可。按一基排名取`r1=(n+1)//2`与`r2=(n+2)//2`；奇数时二者相同，偶数时取这两项的平均。累加频次到首次不少于r的位置，该位置就是第r小的值。插入O(1)，精确查询O(101)，固定101个频次槽。这里“固定空间”按主题有界整数/机器字模型计算；无限长流的计数器位数另算。
 
 例子：频次只有0出现2次、100出现2次，n=4，排名2和3分别为0、100，中位数50。实现`BoundedMedianFinder`对带外输入报ValueError，不截断数值。
 
-### 官方追问二：99%的值在[0,100]
+<a id="官方追问二99的值在0100"></a>
+
+### 追问二：99%的值在[0,100]
 
 先说明99%保证对哪些查询成立。设b为小于0的数量，a为大于100的数量，m为带内数量。若**每次查询的数据集**均满足`100*m >= 99*n`，则b、a都不超过0.01n，小于中央排名距两端的距离；两个中央排名必在带内。因此只保存101个频次、b和a，无需保存每个离群值。带内查找的排名为`r1-b`与`r2-b`，不能忽略低端离群值造成的偏移。
 
@@ -83,24 +87,14 @@ class MedianFinder:
 
 `ExactPrefixMedianFinder`保留低端与高端的有序离群值列表，并按全局排名分别从低端、频次表或高端精确选择。设当前离群值有k个：带内插入O(1)，这个便于核对的列表版本带外插入O(k+1)，查询O(101)，空间O(101+k)。若改用支持排名选择的平衡树，可优化离群插入/查询；不能把本列表版本误称为对数插入。99%只在结束时成立时，中间k可能等于整个前缀长度。
 
-这三种[可运行实现](../../../examples/hot100/followup_algorithms.py)均沿用主题整数范围−100000至100000，查询前须非空；主类`MedianFinder`及其双堆代码不变。[独立测试](../../../examples/hot100/test_followup_algorithms.py)覆盖带内有限穷举、19,607个混合带内/离群流的每个前缀、中央排名偏移、最终99%但早期带外的情形。根目录运行`python -B -m unittest examples.hot100.test_followup_algorithms -v`。两条追问见[官方英文题页](https://leetcode.com/problems/find-median-from-data-stream/)；保证作用范围与排名论证为本仓库原创分析。
+这三种[可运行实现](../../../examples/hot100/followup_algorithms.py)均沿用主题整数范围−100000至100000，查询前须非空；主类`MedianFinder`及其双堆代码不变。[独立测试](../../../examples/hot100/test_followup_algorithms.py)覆盖带内有限穷举、19,607个混合带内/离群流的每个前缀、中央排名偏移、最终99%但早期带外的情形。根目录运行`python -B -m unittest examples.hot100.test_followup_algorithms -v`。保证作用范围与排名论证在上述解析中明确。
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/find-median-from-data-stream/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0200-0299/0295.Find%20Median%20from%20Data%20Stream/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
-- 官方Python：本次核验未找到本题精确匹配的官方实现区。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：在每次插入后检查堆的大小差和跨堆顺序，手推奇数与偶数数量时的中位数。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

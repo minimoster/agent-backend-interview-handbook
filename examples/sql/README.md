@@ -154,4 +154,4 @@ SELECT IF(COUNT(*)=0,1,0) AS unique_user_invariant FROM (
 
 两条应输出 1。自动化时可用客户端 batch 模式取得该列，并在测试程序断言整数等于 1、预期错误码出现；不能只断言 HTTP 200。保存版本、两终端完整步骤、提交/回滚分支与实际输出。当前没有执行这些命令，未生成 MySQL 通过记录。
 
-依据：[InnoDB 死锁处理](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks-handling.html)、[InnoDB 错误与回滚范围](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html)。表、输入、交错与断言为原创教学设计。
+表、输入、交错与断言为原创教学设计。

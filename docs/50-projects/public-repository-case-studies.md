@@ -8,9 +8,9 @@
 
 ### A39 Openresearch 的状态持久化和执行租约解决什么？有什么边界？
 
-**优先级：P0** 
+**优先级：P0**
 
-**知识点详解** 
+**知识点详解**
 - 直接核对FilePlanStore可见临时文件Sync、Rename、目录Sync，注释明确面向单机部署。Scheduler确实递增ExecutionEpoch，但完成/失败路径的executionMatches检查任务状态、ExecutionID、LeaseOwner和AssignedTo，并未把epoch作为外部写入端的fencing协议。字段存在、执行身份匹配与分布式fencing保证应分别解释。
 - rename着重避免读到半份替换文件，fsync涉及落盘；二者不自动提供跨文件事务，也不自动解决多个执行者同时提交。平台与文件系统语义需要明确。
 - 该固定FilePlanStore先更新内存再调用persistLocked，持久化失败时没有回滚内存；目录Sync还可能在Rename完成后返回错误。因此失败响应不必然表示状态未改变。应分别在写入、文件Sync、Rename和目录Sync阶段注入错误，对比当前进程读取、磁盘快照和重启回读，再明确回滚、隔离故障状态或对账策略。这里是静态代码核对，未运行该项目故障注入。
@@ -30,15 +30,15 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：原子文件替换被说成分布式强一致；看到租约字段就宣称绝无双执行。
 
-**来源** ：[AG-P03](../../sources/catalog.md#ag-p03)、[AG-P04](../../sources/catalog.md#ag-p04)、[AG-T39](../../sources/catalog.md#ag-t39)。故障注入仍待执行。
+故障注入仍待执行。
 
 <a id="a40"></a>
 
 ### A40 Openresearch 的 DAG、Agent routing 与 Eino 各负责什么？
 
-**优先级：P0** 
+**优先级：P0**
 
-**知识点详解** 
+**知识点详解**
 - 当前项目使用 Go/Gin、Eino、React/TypeScript、Docker 和 SSE，并具有 DAG 与 typed agent routing。HTTP 接入、任务编排、模型/工具执行、容器执行和展示是不同层。
 - DAG 描述任务依赖，只有依赖满足的节点才能就绪；Agent routing 决定由哪类执行逻辑处理节点；Eino 提供模型、工具、编排等组件能力，业务正确性仍由应用负责。
 - 已核对 coder/general 共用 Coder，但不能推广成“所有分支都运行同一条 chain”。应按实际类型分支解释，而非用一个通用 Agent 词概括所有实现。
@@ -57,15 +57,15 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：把前端进度图当实际 DAG 调度；把 Eino 当成提供所有可靠性保证的黑盒。
 
-**来源** ：[AG-P05](../../sources/catalog.md#ag-p05)、[AG-P14](../../sources/catalog.md#ag-p14)、[AG-T40](../../sources/catalog.md#ag-t40)。图校验是应核对项目是否覆盖的追问。
+图校验是应核对项目是否覆盖的追问。
 
 <a id="a41"></a>
 
 ### A41 Openresearch 的预检、正式评测与修复如何配合？
 
-**优先级：P0** 
+**优先级：P0**
 
-**知识点详解** 
+**知识点详解**
 - 预检 preflight 最多8条样本，用于检查适配器；总尝试次数限制1–3，所以最多2次修复。正式 benchmark 独立配置：默认 min(数据行数,1000)，参数可至100000并受实际行数约束。不能把预检规模当整个评测规模。
 - Accuracy 是正确样本比例；F1 综合 precision 与 recall；MAE 平均绝对误差，MSE 平均平方误差且更惩罚大误差。分类和回归指标不能随意混用。
 - 代码包含 claimRubric 的规范化/哈希验证和按逐样本预测重算指标。它增强可审计性，但仍需独立标签、隔离测试集与真实运行记录；支持大样本运行不等于已经完成大样本验证。
@@ -78,21 +78,19 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 #### 参考答案
 
-参考标签、数据划分和判分规则应由独立可信评测侧冻结；待评模型可以生成候选代码，不能重定义标签或成功标准。多分类 F1 必须声明 micro、macro 或按真实样本数加权的 weighted，并说明无样本类、无正预测及解析失败的处理；不能只报一个“F1”。报告重复试验、失败样本和成本，8条预检不代表总体效果。[scikit-learn F1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html)、[Agent 评测方法](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+参考标签、数据划分和判分规则应由独立可信评测侧冻结；待评模型可以生成候选代码，不能重定义标签或成功标准。多分类 F1 必须声明 micro、macro 或按真实样本数加权的 weighted，并说明无样本类、无正预测及解析失败的处理；不能只报一个“F1”。报告重复试验、失败样本和成本，8条预检不代表总体效果。
 
 **验收点：** 同一多分类混淆矩阵分别算micro、macro和weighted F1，报告权重、缺类及无预测处理。
 
 **常见错误** ：把模型给出的分数直接当指标；不写样本数；把同组反复修复叫独立测试。
 
-**来源** ：[AG-P06](../../sources/catalog.md#ag-p06)、[AG-P07](../../sources/catalog.md#ag-p07)、[AG-T41](../../sources/catalog.md#ag-t41)；
-
 <a id="a42"></a>
 
 ### A42 Saber 怎样连接研究、文档生成与知识索引？
 
-**优先级：P0** 
+**优先级：P0**
 
-**知识点详解** 
+**知识点详解**
 - 当前实现包含 Go/chi、Vue、PostgreSQL、Milvus、Elasticsearch，Neo4j 为可选；研究、写作、审阅后形成文档，再保存和建立索引。
 - 讲架构要沿数据生命周期：请求怎样进入、任务如何组织、证据怎样检索、文档怎样生成、主数据和派生索引怎样维护。
 - PostgreSQL、向量库和全文索引解决的需求不同；分别说明各组件是否必需、故障时如何降级，以及维护代价。
@@ -111,15 +109,15 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：只背 PostgreSQL/Milvus/ES；把可选服务说成全部已在生产使用。
 
-**来源** ：[AG-P13](../../sources/catalog.md#ag-p13)（项目 README 自述）；具体入口与部署状态仍需你走读、实际运行确认。
+具体入口与部署状态仍需你走读、实际运行确认。
 
 <a id="a43"></a>
 
 ### A43 Saber 检索的并行边界和重排实现，最容易说错什么？
 
-**优先级：P0** 
+**优先级：P0**
 
-**知识点详解** 
+**知识点详解**
 - 代码核对：rewrite 后多 query 并行，每个 query 内顺序执行召回并做 RRF，跨 query 再融合与 LLM rerank；最终结果优先使用父块。父块内容在召回查 PG 时已读入，并非重排后才查库。
 - “多 query 并行”和“BM25/向量检索并行”是不同层级的结论；若没读启动 goroutine 的位置，不能把整个检索栈说成全面并行。
 - LLM rerank读取子块内容preview，不是Cross-Encoder。跨query融合实际以子块全文字符串作为map键，没有计算内容哈希；同一query的融合用PG ID。相同文本但来源或父块不同的候选可能合并，应保留这一身份与证据追溯边界。最终使用父块会增加token，应检查父块去重和上下文预算。
@@ -138,15 +136,15 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：把“混合”自动解释成“并行”；把 LLM 排序讲成自己训练过重排模型。
 
-**来源** ：[AG-P08](../../sources/catalog.md#ag-p08)、[AG-P09](../../sources/catalog.md#ag-p09)、[AG-P15](../../sources/catalog.md#ag-p15)；概念对照见 A13、A14。
+概念对照见 A13、A14。
 
 <a id="a44"></a>
 
 ### A44 Saber 长期记忆的 outbox、版本 hash 与 reconcile 为什么不是强一致？
 
-**优先级：P0** 
+**优先级：P0**
 
-**知识点详解** 
+**知识点详解**
 - 直接读取 memorytx 可见长期记忆变更与 memory_outbox 在同一 PG 事务提交，目标为 Milvus 向量与 Neo4j 图投影。不能据此宣称文档 RAG 的 ES 索引也走同一机制。
 - 投影更新仍有时间窗口，消息可能重复或乱序；Version/ContentHash 参与差异判断，reconcile 为缺失或陈旧状态入队修复，但不让各库瞬时同步，也需检查其扫描覆盖范围。
 - 面试应讲清用户可见语义：记忆已更正但向量投影未更新怎么办？什么时候重试、何时告警、删除如何传播，都需有明确策略；不要从长期记忆推断所有业务链路的保证。
@@ -165,13 +163,10 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 
 **常见错误** ：把 outbox 说成自动 exactly-once；把“定期对账”说成“任何时刻都没有不一致”。
 
-**来源** ：[AG-P10](../../sources/catalog.md#ag-p10)、[AG-P11](../../sources/catalog.md#ag-p11)、[AG-P12](../../sources/catalog.md#ag-p12)、[AG-T42](../../sources/catalog.md#ag-t42)。
-
-
 <a id="agentscope-pr-attribution"></a>
 
 ## 补充案例：AgentScope 的 Docker/E2B 与 Daytona 沙箱后端
 
-2026-10-10核对GitHub PR元信息：[PR1903](https://github.com/agentscope-ai/agentscope/pull/1903)为Docker/E2B工作区内置工具，作者DavdGao；[PR1943](https://github.com/agentscope-ai/agentscope/pull/1943)为Daytona工作区后端，作者BreezyB1n。
+Docker/E2B与Daytona是不同工作区后端，适配时应分别检查路径、权限和输出契约。
 
 对照这两个后端，练习的问题是：同一个Read/Bash工具能否在宿主机与沙箱保持接口一致，同时让路径、工作目录、权限和输出契约落在对应backend？调用工具时显式携带工作区身份，适配层把操作发给获准执行环境；不能只改prompt中的“你在沙箱里”，却仍用宿主机文件API。测试应覆盖工作区外路径、软链接、取消、输出超限和不支持功能，且不把mock通过当云沙箱端到端通过。Docker、E2B、Daytona 及这两个第三方 PR 的测试尚未运行。

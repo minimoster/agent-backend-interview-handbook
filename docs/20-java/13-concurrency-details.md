@@ -34,8 +34,6 @@ ThreadPoolExecutor 的核心线程默认按需创建，预启动有专门 API；
 
 **误区**：实现 Callable 就创建线程；把 maximumPoolSize 当所有池的有效扩展旋钮；核心线程一定启动就全部创建。
 
-**一手来源**：[FJ-S033 JUC](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/package-summary.html)、[FJ-S046 Executors](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/Executors.html)、[FJ-S047 ScheduledThreadPoolExecutor](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/ScheduledThreadPoolExecutor.html)、[FJ-S048 ThreadPoolExecutor](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)、[FJ-S138 Java 线程六态](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Thread.State.html)、[FJ-S128 Thread API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Thread.html)、[FJ-S052 JLS 等待与 sleep](https://docs.oracle.com/javase/specs/jls/se25/html/jls-17.html)。
-
 <a id="fj18"></a>
 ### FJ18 AQS 怎样实现可重入锁，公平锁为什么仍可能插队
 
@@ -57,8 +55,6 @@ synchronized 等待进入监视器本身不能通过 interrupt 取消；进入�
 
 **误区**：AQS 是一把纯 CAS 自旋锁；重入无需相同次数释放；中断一定让 synchronized 入锁等待抛异常。
 
-**一手来源**：[FJ-S049 AQS](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html)、[FJ-S050 ReentrantLock](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html)、[FJ-S051 JVM 同步指令](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-3.html#jvms-3.14)、[FJ-S052 JLS 等待/中断](https://docs.oracle.com/javase/specs/jls/se25/html/jls-17.html)、[FJ-S135 OpenJDK 25 AQS 队列实现](https://raw.githubusercontent.com/openjdk/jdk25u/master/src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedSynchronizer.java)。
-
 <a id="fj19"></a>
 ### FJ19 “偏向锁升级到重量锁”为什么不是现代 JDK 的通用答案
 
@@ -78,8 +74,6 @@ JDK 24 的 JEP 491 改善了虚拟线程在 synchronized 中阻塞时无法卸�
 
 **误区**：把旧对象头图当 JVM 规范；锁膨胀后进程生命周期内永不消胀；JDK 24+ 仍因旧 pinning 结论机械替换全部监视器。
 
-**一手来源**：[FJ-S053 JEP 374](https://openjdk.org/jeps/374)、[FJ-S054 移除偏向锁实现](https://bugs.openjdk.org/browse/JDK-8256425)、[FJ-S038 HotSpot 同步源码](https://github.com/openjdk/jdk25u/blob/master/src/hotspot/share/runtime/synchronizer.cpp)、[FJ-S055 JEP 491](https://openjdk.org/jeps/491)。
-
 <a id="fj20"></a>
 ### FJ20 CAS 与乐观、悲观并发控制怎样选择
 
@@ -96,8 +90,6 @@ ABA 是值从 A 变 B 又回 A，单纯比较值看不见历史；当历史影�
 **追问**：lock-free 等于每个线程都很快成功吗？不等于，个体仍可能长期重试。LongAdder 能原子抢最后一个名额吗？不适合用聚合快照做原子准入。
 
 **误区**：CAS 永远比锁快；“写少”自动证明方案正确；把随机标记与单调版本的语义混淆。
-
-**一手来源**：[FJ-S056 VarHandle](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/invoke/VarHandle.html)、[FJ-S057 AtomicStampedReference](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/atomic/AtomicStampedReference.html)、[FJ-S058 原子包说明](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/atomic/package-summary.html)。
 
 <a id="fj21"></a>
 ### FJ21 ThreadLocal 的弱键为什么仍会保留值，static 能解决吗
@@ -124,5 +116,3 @@ try {
 **追问**：set(null) 与 remove 相同吗？后者删除关联，并允许未来 get 重新初始化。所有局部上下文都适合 InheritableThreadLocal 吗？线程创建继承语义不等于线程池每次提交时传播。
 
 **误区**：键弱引用所以绝无泄漏；ThreadLocal 必须 static；一次线程切换就能自动读取正确用户身份。
-
-**一手来源**：[FJ-S059 ThreadLocal API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ThreadLocal.html)、[FJ-S060 OpenJDK ThreadLocalMap](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/lang/ThreadLocal.java)。

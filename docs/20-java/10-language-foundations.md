@@ -29,8 +29,6 @@
 
 **误区**：把“最新”当无条件推荐；把项目使用版本冒充新特性首发版本；说 JDK 17 已删除 Security Manager。
 
-**一手来源**：[FJ-S001 Java 语言变更](https://docs.oracle.com/en/java/javase/25/language/java-language-changes-summary.html)、[FJ-S002 Java 8 新特性](https://docs.oracle.com/javase/8/docs/technotes/guides/language/enhancements.html)、[FJ-S003 JEP 485](https://openjdk.org/jeps/485)、[FJ-S004 Security Manager 永久禁用](https://docs.oracle.com/en/java/javase/25/security/security-manager-is-permanently-disabled.html)、[FJ-S005 JEP 377](https://openjdk.org/jeps/377)、[FJ-S006 JEP 454](https://openjdk.org/jeps/454)、[FJ-S007 HTTP Client](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/package-summary.html)、[FJ-S129 Java8日期时间API](https://docs.oracle.com/javase/8/docs/technotes/guides/datetime/index.html)、[FJ-S130 Java17 SecurityManager API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/SecurityManager.html)、[FJ-S131 Java17迁移与强封装](https://docs.oracle.com/en/java/javase/17/migrate/migrating-jdk-8-later-jdk-releases.html)。
-
 <a id="fj02"></a>
 ### FJ02 JVM、JRE、JDK 是什么，为什么现代 JDK 没有传统 jre 目录
 
@@ -47,8 +45,6 @@ Java 9 的模块化运行时改变布局；Oracle JDK 11 不再单独提供旧�
 **追问**：有 JDK 为什么仍可能找不到 javac？检查 PATH 和实际启动路径，而非立即重装。JIT 与 javac 一样吗？javac 主要从源代码生成字节码，JIT 在运行时编译热点代码。
 
 **误区**：声称 JVM 只负责解释；把 Oracle 发行方式当成所有 JDK 厂商共同保证。
-
-**一手来源**：[FJ-S008 JDK 11 迁移指南](https://docs.oracle.com/en/java/javase/11/migrate/index.html)、[FJ-S009 JVM 结构规范](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-2.html)。
 
 <a id="fj03"></a>
 ### FJ03 基本类型、装箱和拆箱有哪些隐藏边界
@@ -75,8 +71,6 @@ int safe = quota == null ? 0 : quota;
 
 **误区**：boolean 永远占 1 字节；用包装类的 == 比业务数值；把 char 等同于任意完整文字字符。
 
-**一手来源**：[FJ-S010 JLS 类型和值](https://docs.oracle.com/javase/specs/jls/se25/html/jls-4.html)、[FJ-S011 JLS 装箱/拆箱](https://docs.oracle.com/javase/specs/jls/se25/html/jls-5.html)、[FJ-S009 JVM 结构规范](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-2.html)。
-
 <a id="fj04"></a>
 ### FJ04 String 不可变意味着什么，StringBuffer 就能保证整段业务安全吗
 
@@ -93,8 +87,6 @@ StringBuilder 是可变字符构建器，适合线程私有的多次追加；Str
 **追问**：`final StringBuilder b` 能禁止 append 吗？不能，final 限制变量重新赋值。String 的内部表示一直是 char[] 吗？不是，内部编码是版本实现细节。
 
 **误区**：String 每次方法调用必定 new；把 StringBuffer 当跨用户共享答案的合理方案。
-
-**一手来源**：[FJ-S012 String API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html)、[FJ-S013 StringBuffer API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/StringBuffer.html)、[FJ-S014 StringBuilder API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/StringBuilder.html)。
 
 <a id="fj05"></a>
 ### FJ05 封装、继承、多态、重载和重写怎样放进同一个例子
@@ -129,8 +121,6 @@ sender.send("hello"); // 选中接口的 send(String)，动态执行 MailSender 
 
 **误区**：把 Java 接口多实现说成类多继承；用返回类型区分重载；声称重写返回类型必须完全相同。
 
-**一手来源**：[FJ-S015 JLS 类与方法](https://docs.oracle.com/javase/specs/jls/se25/html/jls-8.html)、[FJ-S016 JLS 接口](https://docs.oracle.com/javase/specs/jls/se25/html/jls-9.html)、[FJ-S017 JLS 方法调用](https://docs.oracle.com/javase/specs/jls/se25/html/jls-15.html#jls-15.12)。
-
 <a id="fj06"></a>
 ### FJ06 身份相等、值相等、浅拷贝和深拷贝怎样区分
 
@@ -157,7 +147,7 @@ for (var s : a) deep.add(new StringBuilder(s.toString()));
 
 **误区**：以为 new ArrayList(old) 克隆了每个元素；只要实现 Cloneable 就自动获得完整深拷贝。
 
-**一手来源**：[FJ-S018 Object.clone/equals 契约](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html)、[FJ-S019 Cloneable](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Cloneable.html)、[FJ-S020 List.copyOf](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html#copyOf(java.util.Collection))。对象图处理为基于这些语义的原创设计。
+对象图处理为基于这些语义的原创设计。
 
 <a id="fj07"></a>
 ### FJ07 反射能做什么，为什么 setAccessible 不是万能钥匙
@@ -176,8 +166,6 @@ Java 9+ 模块边界区分 exports 和 opens；跨模块深反射通常需要目
 
 **误区**：声称“任何属性方法都能访问”；把反射当规避授权的工具。
 
-**一手来源**：[FJ-S021 AccessibleObject](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/AccessibleObject.html)、[FJ-S022 Method.invoke](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/Method.html)。
-
 <a id="fj08"></a>
 ### FJ08 受检异常、RuntimeException 和 Error 应该怎样处理
 
@@ -194,5 +182,3 @@ Java 9+ 模块边界区分 exports 和 opens；跨模块深反射通常需要目
 **追问**：声明 throws 是否处理了异常？没有，只把处理责任交给调用者。业务异常用 checked 还是 unchecked？要按 API 契约和团队错误处理方式设计，不能仅按严重程度机械决定。
 
 **误区**：Error 不能 catch；所有 Exception 都是受检；finally 必定运行于进程被强制终止之后。
-
-**一手来源**：[FJ-S023 JLS 异常](https://docs.oracle.com/javase/specs/jls/se25/html/jls-11.html)、[FJ-S024 try-with-resources](https://docs.oracle.com/javase/specs/jls/se25/html/jls-14.html#jls-14.20.3)。

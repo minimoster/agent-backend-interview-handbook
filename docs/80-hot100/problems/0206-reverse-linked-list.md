@@ -1,12 +1,12 @@
 # 206. 反转链表
 
-[官方题目](https://leetcode.cn/problems/reverse-linked-list/) · EASY · 官方分类：链表
+难度：EASY · 分类：链表
 
 ## 题意与接口
 
 把单链表的 next 方向全部反转，返回新头。接口：`reverseList(head)`；空链表返回 None，复用原节点。
 
-约束核对（2026-10-09）：长度 0..5000，允许空链；返回反转后的链头。 [官方来源](https://leetcode.com/problems/reverse-linked-list/)
+约束核对（2026-10-09）：长度 0..5000，允许空链；返回反转后的链头。
 
 ## 从朴素方法到优化
 
@@ -53,22 +53,12 @@ class Solution:
 
 复习：用一句话描述 prev 和 cur 的循环不变式。
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/reverse-linked-list/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0200-0299/0206.Reverse%20Linked%20List/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0206.reverse-linked-list.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0206.reverse-linked-list.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[206. 反转链表](https://www.bilibili.com/video/BV1nB4y1i7eL)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：画出 prev、current、next 三个引用，解释为什么必须先保存后继再反转当前边。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

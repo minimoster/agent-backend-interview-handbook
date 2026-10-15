@@ -1,6 +1,6 @@
 # SC-A04 没有线上用户也能做有意义的评测
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 项目只有演示版，如何证明修改分块和Prompt真的改善了质量？
 
@@ -26,11 +26,9 @@
 
 做12条原创评测样本，至少3条无答案、2条权限隔离、2条跨块。验收要求每条有可审查的期望结果；最终测试题不得参与Prompt调优。本轮提供设计方法，没有替用户跑模型评测。
 
-**主题来源：** P05、P06、P12、P17。**技术依据：** [LangSmith评测概念](https://docs.langchain.com/langsmith/evaluation)、[Anthropic构建Agent评测](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)。业务分层与样本数量是本补充示例，不是官方门槛。
+业务分层与样本数量是本补充示例，不是官方门槛。
 
 ## 阅读与复验入口
-
-公开主题线索：[P05](../../sources/public-interviews/README.md#report-p05)、[P06](../../sources/public-interviews/README.md#report-p06)、[P12](../../sources/public-interviews/README.md#report-p12)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
@@ -40,4 +38,4 @@
 
 - [evaluation_design_template.json](../../examples/public_interview_scenarios/evaluation_design_template.json)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

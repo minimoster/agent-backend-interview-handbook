@@ -1,12 +1,12 @@
 # 207. 课程表
 
-[官方题目](https://leetcode.cn/problems/course-schedule/) · MEDIUM · 官方分类：图论
+难度：MEDIUM · 分类：图论
 
 ## 题意与接口
 
 有 numCourses 门课；每对 `[a,b]` 表示学 a 前必须学 b。判断能否完成全部课程。接口：`canFinish(numCourses, prerequisites)`。
 
-约束核对（2026-10-09）：课程数 1..2000，先修对最多 5000 且不重复；[a,b] 表示 b 是 a 的先修。 [官方来源](https://leetcode.com/problems/course-schedule/)
+约束核对（2026-10-09）：课程数 1..2000，先修对最多 5000 且不重复；
 
 ## 从朴素方法到优化
 
@@ -66,23 +66,12 @@ class Solution:
 
 复习：为何删除零入度点不会制造新的环？如果要输出学习顺序，在哪一步记录？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/course-schedule/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0200-0299/0207.Course%20Schedule/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/other/0207-course-schedule.html)
-- 官方Python：本次读取的匹配题页未发现Python实现区；本页原有Python答案仍可独立使用。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
-- 匹配说明：官方补充页是简短的拓扑排序BFS说明，Python区和视频直链在本次读取中均未找到。
+## 复习与迁移
 
 自主复习提示：逐条解释先修关系的边方向、入度更新和出队计数，再用一个有环图检查判定条件。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

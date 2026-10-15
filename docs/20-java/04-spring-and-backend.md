@@ -18,8 +18,6 @@
 
 **误区** ：把 IoC 简化为“用了 @Autowired”；为了让容器启动而掩盖设计不合理的循环依赖。
 
-来源：[J-S36](../../sources/catalog.md#j-s36)、[J-S37](../../sources/catalog.md#j-s37)。
-
 <a id="j31"></a>
 
 ### J31 Bean 生命周期要掌握到什么程度
@@ -35,8 +33,6 @@
 **追问** ：prototype 的销毁完全由容器自动管理吗？不应这样假定，取出后的资源释放往往由使用方负责。
 
 **误区** ：只背很多接口名但无法解释何时关闭线程池；认为所有 new 出来的对象都享受 Spring 生命周期。
-
-来源：[J-S38](../../sources/catalog.md#j-s38)、[J-S39](../../sources/catalog.md#j-s39)。
 
 <a id="j32"></a>
 
@@ -54,8 +50,6 @@
 
 **误区** ：把“Spring 管理”当成“自动加锁”。
 
-来源：[J-S39](../../sources/catalog.md#j-s39)、[J-S10](../../sources/catalog.md#j-s10)。
-
 <a id="j33"></a>
 
 ### J33 Spring AOP 和两种代理如何工作
@@ -71,8 +65,6 @@
 **追问** ：AspectJ 字节码织入也有完全相同自调用边界吗？不一定，它与代理模式机制不同。
 
 **误区** ：看到 @Transactional、@Async、权限注解就认为任何路径都生效。
-
-来源：[J-S40](../../sources/catalog.md#j-s40)。
 
 <a id="j34"></a>
 
@@ -101,8 +93,6 @@ class TaskService {
 
 **误区** ：说“内部调用一定没有任何事务”；只改方法为 public 就认为修复完成。
 
-来源：[J-S41](../../sources/catalog.md#j-s41)、[J-S42](../../sources/catalog.md#j-s42)。
-
 <a id="j35"></a>
 
 ### J35 除了自调用 事务还会在哪些地方不符合预期
@@ -118,8 +108,6 @@ class TaskService {
 **追问** ：Spring 6+ 类代理能否支持 protected/package 可见事务方法？默认可以；接口代理的方法仍需 public 且在接口上。private 仍不能靠类代理重写。
 
 **误区** ：把数据库不支持事务、异常被捕获和代理绕过全叫同一种原因；期待数据库回滚同时撤销已发送邮件。
-
-来源：[J-S41](../../sources/catalog.md#j-s41)、[J-S43](../../sources/catalog.md#j-s43)、[J-S44](../../sources/catalog.md#j-s44)。
 
 <a id="j36"></a>
 
@@ -137,8 +125,6 @@ class TaskService {
 
 **误区** ：把 NESTED 当作 REQUIRES_NEW 的别名；大量嵌套独立事务却不算连接池容量。
 
-来源：[J-S45](../../sources/catalog.md#j-s45)。
-
 <a id="j37"></a>
 
 ### J37 一次 Spring MVC 请求怎么到 Controller
@@ -154,8 +140,6 @@ class TaskService {
 **追问** ：Filter 与 Interceptor 的主要边界？前者属于 Servlet 过滤链，后者围绕 Spring MVC 处理器执行；选择要看需要覆盖哪些请求阶段。
 
 **误区** ：认为 @ResponseBody 是手动调用 JSON.toString；认为所有错误都会进入自己方法里的 try/catch。
-
-来源：[J-S46](../../sources/catalog.md#j-s46)、[J-S47](../../sources/catalog.md#j-s47)。
 
 <a id="j38"></a>
 
@@ -173,8 +157,6 @@ class TaskService {
 
 **误区** ：以为前端验证足够；把模型生成的 JSON 当成已经可信的业务参数。
 
-来源：[J-S47](../../sources/catalog.md#j-s47)、[J-S48](../../sources/catalog.md#j-s48)。
-
 <a id="j39"></a>
 
 ### J39 Spring Boot 自动配置怎么排查
@@ -191,8 +173,6 @@ class TaskService {
 
 **误区** ：把引入 starter 等同于业务逻辑已经完成；为方便调试公开暴露所有管理端点。
 
-来源：[J-S49](../../sources/catalog.md#j-s49)、[J-S50](../../sources/catalog.md#j-s50)。
-
 <a id="j40"></a>
 
 ### J40 认证 授权 CSRF CORS 分别是什么
@@ -208,7 +188,5 @@ class TaskService {
 **追问** ：JWT 解码成功等于可信登录吗？还需验证签名、有效期及预期 issuer/audience 等规则。
 
 **误区** ：只隐藏前端按钮；只在 URL 层验证登录却不校验资源归属。
-
-来源：[J-S51](../../sources/catalog.md#j-s51)、[J-S52](../../sources/catalog.md#j-s52)、[J-S53](../../sources/catalog.md#j-s53)、[J-S69](../../sources/catalog.md#j-s69)。
 
 本节题号：J30、J31、J32、J33、J34、J35、J36、J37、J38、J39、J40。

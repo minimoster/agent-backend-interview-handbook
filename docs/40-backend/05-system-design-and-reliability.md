@@ -6,7 +6,7 @@
 
 ### B36 固定窗口、滑动窗口和令牌桶怎样选择
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 固定窗口按时间段计数，简单但边界附近可能突发；滑动窗口关注最近一段时间，精度与存储成本要权衡；令牌桶按速率补充令牌并允许有限突发。限流控制速率，限制同时执行的并发数是另一个维度。Go 的 x/time/rate 实现令牌桶；Redis 可用于协调跨实例的计数或状态。
 
@@ -18,13 +18,11 @@
 
 **常见误区**： 每台机器各限 100 就声称整个集群限 100；按 IP 限流却忽略共享出口。
 
-**来源**： [BS48 Go rate 包](https://pkg.go.dev/golang.org/x/time/rate)、[BS49 Redis INCR 限流模式](https://redis.io/docs/latest/commands/incr/)。
-
 <a id="b37"></a>
 
 ### B37 超时、deadline 和取消是什么关系
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 超时是允许等待的时长；deadline 是必须结束等待的时间点；取消是通知下游不再需要结果。上游只剩 200ms 时，下游不能重新获得完整 2 秒预算。Go context 传播 deadline 与取消信号，但不会强行杀死不检查信号的 goroutine；支持 context 的调用也需处理取消结果。
 
@@ -36,13 +34,13 @@
 
 **常见误区**： 每层独立设相同长超时；把 context 当成强制终止线程的工具；把所有超时都设得越短越好。
 
-**来源**： [BS50 gRPC Deadlines](https://grpc.io/docs/guides/deadlines/)、[BS51 Go context 文档](https://pkg.go.dev/context)。预算数字为原创示例。
+预算数字为原创示例。
 
 <a id="b38"></a>
 
 ### B38 重试为什么可能把故障放大，怎样设计退避
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 重试给暂时故障第二次机会，也增加负载。指数退避让等待间隔增长，jitter 加入随机性，减少客户端同时重试；还应限制最大次数、最大间隔和总时限。只有可重试故障且副作用可安全重复时才重试，不能对参数错误或未保护的写入盲目再发。
 
@@ -54,13 +52,13 @@
 
 **常见误区**： 把超时当成业务失败证明；在每层都打开默认重试但不计算放大倍数。
 
-**来源**： [BS52 AWS Timeouts Retries and Backoff with Jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。27 次与预算案例为原创推演。
+27 次与预算案例为原创推演。
 
 <a id="b39"></a>
 
 ### B39 限流、熔断和隔离分别防什么问题
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 限流控制进入系统的负载；熔断根据一段时间内的失败表现暂时停止向故障依赖发请求，再用有限探测判断恢复；隔离把不同业务或依赖的资源配额分开，避免一个慢服务耗尽全部线程、连接或并发槽。它们处理的是不同故障面。
 
@@ -72,13 +70,11 @@
 
 **常见误区**： 把熔断当限流的另一个名字；降级返回假成功；共用一个无限增长的任务队列。
 
-**来源**： [BS53 Microsoft Circuit Breaker](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker)、[BS54 Microsoft Bulkhead](https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead)。
-
 <a id="b40"></a>
 
 ### B40 日志、指标、链路追踪分别怎么看问题
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 日志记录具体事件；指标汇总数量、耗时和资源变化；trace 把一次请求跨多个服务的调用串联起来。常用观察维度包含延迟、流量、错误与饱和度。均值容易掩盖长尾，需观察分位数；trace_id 可帮助从指标异常跳到相关请求与日志。
 
@@ -90,13 +86,11 @@
 
 **常见误区**： 只记录“接口成功率”却忽略答案为空、取消和超时；把平均耗时当用户的普遍体验。
 
-**来源**： [BS55 OpenTelemetry Signals](https://opentelemetry.io/docs/concepts/signals/)、[BS56 Google SRE 监控分布式系统](https://sre.google/sre-book/monitoring-distributed-systems/)。
-
 <a id="b41"></a>
 
 ### B41 什么是背压，为什么不能给每个任务无限开协程
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 背压把下游处理不过来的信息传回上游，限制产生或接收更多工作。有界 worker pool、队列上限与取消机制可以明确资源边界。goroutine 比系统线程轻量，不代表任务、请求体、连接和结果缓冲没有成本。
 
@@ -107,7 +101,5 @@
 **追问**： 缓冲 channel 是否自动解决背压？它只推迟阻塞，容量耗尽后仍需明确策略。
 
 **常见误区**： 用大缓冲隐藏处理瓶颈；接收端提前退出后，生产者永久阻塞发送。
-
-**来源**： [BS57 Go Pipelines and Cancellation](https://go.dev/blog/pipelines)。
 
 本节题号：B36、B37、B38、B39、B40、B41。

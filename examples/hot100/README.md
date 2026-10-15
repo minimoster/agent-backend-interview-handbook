@@ -1,6 +1,6 @@
 # Hot100 Python：接口与运行
 
-[100题学习导航](../../docs/80-hot100/README.md) · [测试说明](../../docs/80-hot100/TESTING.md)
+[100题学习导航](../../docs/80-hot100/README.md)
 
 ## 环境
 

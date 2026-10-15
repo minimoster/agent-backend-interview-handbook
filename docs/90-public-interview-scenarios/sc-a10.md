@@ -1,6 +1,6 @@
 # SC-A10 人和多个Agent同时编辑同一份内容
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** Agent读取版本7的文档，人已经写出版本8，它拿旧快照整篇替换，如何避免覆盖？
 
@@ -26,11 +26,9 @@
 
 附带原创版本文档store练习模拟两位读者。验收第一个提交成功、旧版本提交冲突、冲突不改变内容；再基于新版本明确合并并成功提交。它是内存模型，不是分布式数据库验证。
 
-**主题来源：** P07、P08、P12、P13。**技术依据：** [RFC9110 If-Match](https://www.rfc-editor.org/rfc/rfc9110.html#name-if-match)、[Git合并冲突机制](https://git-scm.com/docs/git-merge)。练习将版本条件解释为并发合同，非所有服务都支持ETag。
+练习将版本条件解释为并发合同，非所有服务都支持ETag。
 
 ## 阅读与复验入口
-
-公开主题线索：[P07](../../sources/public-interviews/README.md#report-p07)、[P08](../../sources/public-interviews/README.md#report-p08)、[P12](../../sources/public-interviews/README.md#report-p12)、[P13](../../sources/public-interviews/README.md#report-p13)。
 
 先读基础：
 
@@ -40,4 +38,4 @@
 
 - [interview_lab.py#VersionedDocuments](../../examples/public_interview_scenarios/interview_lab.py#VersionedDocuments)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

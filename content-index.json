@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
   "updated_on": "2026-10-15",
-  "content_status": "partial_chapters_unpublished",
+  "content_status": "published_teaching_handbook",
   "path_base": "repository_root",
   "notes": [
-    "priority为学习优先级；difficulty沿用Hot100官方难度。",
+    "priority为学习优先级；difficulty记录算法题难度。",
     "relative_path/path/url均相对仓库根目录；anchor为空时打开整篇。",
-    "items收录361道讲义题与100道Hot100题；独立专题、场景与资源练习在documents登记。",
+    "items收录361道讲义题与100道Hot100题；独立专题、场景与补充练习在documents登记。",
     "SP-R1/SP-R2标识用于34项专项练习的检索。",
     "学习路线统一为docs/00-guide/expanded-map-and-study-plan.md；旧阅读地址在site/config.json登记别名。"
   ],
@@ -5446,7 +5446,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 1,
-      "official_url": "https://leetcode.cn/problems/two-sum/",
       "code_path": "examples/hot100/p0001_two_sum.py"
     },
     {
@@ -5464,7 +5463,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 49,
-      "official_url": "https://leetcode.cn/problems/group-anagrams/",
       "code_path": "examples/hot100/p0049_group_anagrams.py"
     },
     {
@@ -5482,7 +5480,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 128,
-      "official_url": "https://leetcode.cn/problems/longest-consecutive-sequence/",
       "code_path": "examples/hot100/p0128_longest_consecutive_sequence.py"
     },
     {
@@ -5500,7 +5497,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 283,
-      "official_url": "https://leetcode.cn/problems/move-zeroes/",
       "code_path": "examples/hot100/p0283_move_zeroes.py"
     },
     {
@@ -5518,7 +5514,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 11,
-      "official_url": "https://leetcode.cn/problems/container-with-most-water/",
       "code_path": "examples/hot100/p0011_container_with_most_water.py"
     },
     {
@@ -5536,7 +5531,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 15,
-      "official_url": "https://leetcode.cn/problems/3sum/",
       "code_path": "examples/hot100/p0015_3sum.py"
     },
     {
@@ -5554,7 +5548,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 42,
-      "official_url": "https://leetcode.cn/problems/trapping-rain-water/",
       "code_path": "examples/hot100/p0042_trapping_rain_water.py"
     },
     {
@@ -5572,7 +5565,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 3,
-      "official_url": "https://leetcode.cn/problems/longest-substring-without-repeating-characters/",
       "code_path": "examples/hot100/p0003_longest_substring_without_repeating_characters.py"
     },
     {
@@ -5590,7 +5582,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 438,
-      "official_url": "https://leetcode.cn/problems/find-all-anagrams-in-a-string/",
       "code_path": "examples/hot100/p0438_find_all_anagrams_in_a_string.py"
     },
     {
@@ -5608,7 +5599,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 560,
-      "official_url": "https://leetcode.cn/problems/subarray-sum-equals-k/",
       "code_path": "examples/hot100/p0560_subarray_sum_equals_k.py"
     },
     {
@@ -5626,7 +5616,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 239,
-      "official_url": "https://leetcode.cn/problems/sliding-window-maximum/",
       "code_path": "examples/hot100/p0239_sliding_window_maximum.py"
     },
     {
@@ -5644,7 +5633,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 76,
-      "official_url": "https://leetcode.cn/problems/minimum-window-substring/",
       "code_path": "examples/hot100/p0076_minimum_window_substring.py"
     },
     {
@@ -5662,7 +5650,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 53,
-      "official_url": "https://leetcode.cn/problems/maximum-subarray/",
       "code_path": "examples/hot100/p0053_maximum_subarray.py"
     },
     {
@@ -5680,7 +5667,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 56,
-      "official_url": "https://leetcode.cn/problems/merge-intervals/",
       "code_path": "examples/hot100/p0056_merge_intervals.py"
     },
     {
@@ -5698,7 +5684,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 189,
-      "official_url": "https://leetcode.cn/problems/rotate-array/",
       "code_path": "examples/hot100/p0189_rotate_array.py"
     },
     {
@@ -5716,7 +5701,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 238,
-      "official_url": "https://leetcode.cn/problems/product-of-array-except-self/",
       "code_path": "examples/hot100/p0238_product_of_array_except_self.py"
     },
     {
@@ -5734,7 +5718,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 41,
-      "official_url": "https://leetcode.cn/problems/first-missing-positive/",
       "code_path": "examples/hot100/p0041_first_missing_positive.py"
     },
     {
@@ -5752,7 +5735,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 73,
-      "official_url": "https://leetcode.cn/problems/set-matrix-zeroes/",
       "code_path": "examples/hot100/p0073_set_matrix_zeroes.py"
     },
     {
@@ -5770,7 +5752,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 54,
-      "official_url": "https://leetcode.cn/problems/spiral-matrix/",
       "code_path": "examples/hot100/p0054_spiral_matrix.py"
     },
     {
@@ -5788,7 +5769,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 48,
-      "official_url": "https://leetcode.cn/problems/rotate-image/",
       "code_path": "examples/hot100/p0048_rotate_image.py"
     },
     {
@@ -5806,7 +5786,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 240,
-      "official_url": "https://leetcode.cn/problems/search-a-2d-matrix-ii/",
       "code_path": "examples/hot100/p0240_search_a_2d_matrix_ii.py"
     },
     {
@@ -5824,7 +5803,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 160,
-      "official_url": "https://leetcode.cn/problems/intersection-of-two-linked-lists/",
       "code_path": "examples/hot100/p0160_intersection_of_two_linked_lists.py"
     },
     {
@@ -5842,7 +5820,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 206,
-      "official_url": "https://leetcode.cn/problems/reverse-linked-list/",
       "code_path": "examples/hot100/p0206_reverse_linked_list.py"
     },
     {
@@ -5860,7 +5837,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 234,
-      "official_url": "https://leetcode.cn/problems/palindrome-linked-list/",
       "code_path": "examples/hot100/p0234_palindrome_linked_list.py"
     },
     {
@@ -5878,7 +5854,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 141,
-      "official_url": "https://leetcode.cn/problems/linked-list-cycle/",
       "code_path": "examples/hot100/p0141_linked_list_cycle.py"
     },
     {
@@ -5896,7 +5871,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 142,
-      "official_url": "https://leetcode.cn/problems/linked-list-cycle-ii/",
       "code_path": "examples/hot100/p0142_linked_list_cycle_ii.py"
     },
     {
@@ -5914,7 +5888,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 21,
-      "official_url": "https://leetcode.cn/problems/merge-two-sorted-lists/",
       "code_path": "examples/hot100/p0021_merge_two_sorted_lists.py"
     },
     {
@@ -5932,7 +5905,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 2,
-      "official_url": "https://leetcode.cn/problems/add-two-numbers/",
       "code_path": "examples/hot100/p0002_add_two_numbers.py"
     },
     {
@@ -5950,7 +5922,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 19,
-      "official_url": "https://leetcode.cn/problems/remove-nth-node-from-end-of-list/",
       "code_path": "examples/hot100/p0019_remove_nth_node_from_end_of_list.py"
     },
     {
@@ -5968,7 +5939,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 24,
-      "official_url": "https://leetcode.cn/problems/swap-nodes-in-pairs/",
       "code_path": "examples/hot100/p0024_swap_nodes_in_pairs.py"
     },
     {
@@ -5986,7 +5956,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 25,
-      "official_url": "https://leetcode.cn/problems/reverse-nodes-in-k-group/",
       "code_path": "examples/hot100/p0025_reverse_nodes_in_k_group.py"
     },
     {
@@ -6004,7 +5973,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 138,
-      "official_url": "https://leetcode.cn/problems/copy-list-with-random-pointer/",
       "code_path": "examples/hot100/p0138_copy_list_with_random_pointer.py"
     },
     {
@@ -6022,7 +5990,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 148,
-      "official_url": "https://leetcode.cn/problems/sort-list/",
       "code_path": "examples/hot100/p0148_sort_list.py"
     },
     {
@@ -6040,7 +6007,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 23,
-      "official_url": "https://leetcode.cn/problems/merge-k-sorted-lists/",
       "code_path": "examples/hot100/p0023_merge_k_sorted_lists.py"
     },
     {
@@ -6058,7 +6024,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 146,
-      "official_url": "https://leetcode.cn/problems/lru-cache/",
       "code_path": "examples/hot100/p0146_lru_cache.py"
     },
     {
@@ -6076,7 +6041,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 94,
-      "official_url": "https://leetcode.cn/problems/binary-tree-inorder-traversal/",
       "code_path": "examples/hot100/p0094_binary_tree_inorder_traversal.py"
     },
     {
@@ -6094,7 +6058,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 104,
-      "official_url": "https://leetcode.cn/problems/maximum-depth-of-binary-tree/",
       "code_path": "examples/hot100/p0104_maximum_depth_of_binary_tree.py"
     },
     {
@@ -6112,7 +6075,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 226,
-      "official_url": "https://leetcode.cn/problems/invert-binary-tree/",
       "code_path": "examples/hot100/p0226_invert_binary_tree.py"
     },
     {
@@ -6130,7 +6092,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 101,
-      "official_url": "https://leetcode.cn/problems/symmetric-tree/",
       "code_path": "examples/hot100/p0101_symmetric_tree.py"
     },
     {
@@ -6148,7 +6109,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 543,
-      "official_url": "https://leetcode.cn/problems/diameter-of-binary-tree/",
       "code_path": "examples/hot100/p0543_diameter_of_binary_tree.py"
     },
     {
@@ -6166,7 +6126,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 102,
-      "official_url": "https://leetcode.cn/problems/binary-tree-level-order-traversal/",
       "code_path": "examples/hot100/p0102_binary_tree_level_order_traversal.py"
     },
     {
@@ -6184,7 +6143,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 108,
-      "official_url": "https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/",
       "code_path": "examples/hot100/p0108_convert_sorted_array_to_binary_search_tree.py"
     },
     {
@@ -6202,7 +6160,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 98,
-      "official_url": "https://leetcode.cn/problems/validate-binary-search-tree/",
       "code_path": "examples/hot100/p0098_validate_binary_search_tree.py"
     },
     {
@@ -6220,7 +6177,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 230,
-      "official_url": "https://leetcode.cn/problems/kth-smallest-element-in-a-bst/",
       "code_path": "examples/hot100/p0230_kth_smallest_element_in_a_bst.py"
     },
     {
@@ -6238,7 +6194,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 199,
-      "official_url": "https://leetcode.cn/problems/binary-tree-right-side-view/",
       "code_path": "examples/hot100/p0199_binary_tree_right_side_view.py"
     },
     {
@@ -6256,7 +6211,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 114,
-      "official_url": "https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/",
       "code_path": "examples/hot100/p0114_flatten_binary_tree_to_linked_list.py"
     },
     {
@@ -6274,7 +6228,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 105,
-      "official_url": "https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
       "code_path": "examples/hot100/p0105_construct_binary_tree_from_preorder_and_inorder_traversal.py"
     },
     {
@@ -6292,7 +6245,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 437,
-      "official_url": "https://leetcode.cn/problems/path-sum-iii/",
       "code_path": "examples/hot100/p0437_path_sum_iii.py"
     },
     {
@@ -6310,7 +6262,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 236,
-      "official_url": "https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/",
       "code_path": "examples/hot100/p0236_lowest_common_ancestor_of_a_binary_tree.py"
     },
     {
@@ -6328,7 +6279,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 124,
-      "official_url": "https://leetcode.cn/problems/binary-tree-maximum-path-sum/",
       "code_path": "examples/hot100/p0124_binary_tree_maximum_path_sum.py"
     },
     {
@@ -6346,7 +6296,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 200,
-      "official_url": "https://leetcode.cn/problems/number-of-islands/",
       "code_path": "examples/hot100/p0200_number_of_islands.py"
     },
     {
@@ -6364,7 +6313,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 994,
-      "official_url": "https://leetcode.cn/problems/rotting-oranges/",
       "code_path": "examples/hot100/p0994_rotting_oranges.py"
     },
     {
@@ -6382,7 +6330,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 207,
-      "official_url": "https://leetcode.cn/problems/course-schedule/",
       "code_path": "examples/hot100/p0207_course_schedule.py"
     },
     {
@@ -6400,7 +6347,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 208,
-      "official_url": "https://leetcode.cn/problems/implement-trie-prefix-tree/",
       "code_path": "examples/hot100/p0208_implement_trie_prefix_tree.py"
     },
     {
@@ -6418,7 +6364,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 46,
-      "official_url": "https://leetcode.cn/problems/permutations/",
       "code_path": "examples/hot100/p0046_permutations.py"
     },
     {
@@ -6436,7 +6381,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 78,
-      "official_url": "https://leetcode.cn/problems/subsets/",
       "code_path": "examples/hot100/p0078_subsets.py"
     },
     {
@@ -6454,7 +6398,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 17,
-      "official_url": "https://leetcode.cn/problems/letter-combinations-of-a-phone-number/",
       "code_path": "examples/hot100/p0017_letter_combinations_of_a_phone_number.py"
     },
     {
@@ -6472,7 +6415,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 39,
-      "official_url": "https://leetcode.cn/problems/combination-sum/",
       "code_path": "examples/hot100/p0039_combination_sum.py"
     },
     {
@@ -6490,7 +6432,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 22,
-      "official_url": "https://leetcode.cn/problems/generate-parentheses/",
       "code_path": "examples/hot100/p0022_generate_parentheses.py"
     },
     {
@@ -6508,7 +6449,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 79,
-      "official_url": "https://leetcode.cn/problems/word-search/",
       "code_path": "examples/hot100/p0079_word_search.py"
     },
     {
@@ -6526,7 +6466,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 131,
-      "official_url": "https://leetcode.cn/problems/palindrome-partitioning/",
       "code_path": "examples/hot100/p0131_palindrome_partitioning.py"
     },
     {
@@ -6544,7 +6483,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 51,
-      "official_url": "https://leetcode.cn/problems/n-queens/",
       "code_path": "examples/hot100/p0051_n_queens.py"
     },
     {
@@ -6562,7 +6500,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 35,
-      "official_url": "https://leetcode.cn/problems/search-insert-position/",
       "code_path": "examples/hot100/p0035_search_insert_position.py"
     },
     {
@@ -6580,7 +6517,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 74,
-      "official_url": "https://leetcode.cn/problems/search-a-2d-matrix/",
       "code_path": "examples/hot100/p0074_search_a_2d_matrix.py"
     },
     {
@@ -6598,7 +6534,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 34,
-      "official_url": "https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/",
       "code_path": "examples/hot100/p0034_find_first_and_last_position_of_element_in_sorted_array.py"
     },
     {
@@ -6616,7 +6551,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 33,
-      "official_url": "https://leetcode.cn/problems/search-in-rotated-sorted-array/",
       "code_path": "examples/hot100/p0033_search_in_rotated_sorted_array.py"
     },
     {
@@ -6634,7 +6568,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 153,
-      "official_url": "https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/",
       "code_path": "examples/hot100/p0153_find_minimum_in_rotated_sorted_array.py"
     },
     {
@@ -6652,7 +6585,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 4,
-      "official_url": "https://leetcode.cn/problems/median-of-two-sorted-arrays/",
       "code_path": "examples/hot100/p0004_median_of_two_sorted_arrays.py"
     },
     {
@@ -6670,7 +6602,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 20,
-      "official_url": "https://leetcode.cn/problems/valid-parentheses/",
       "code_path": "examples/hot100/p0020_valid_parentheses.py"
     },
     {
@@ -6688,7 +6619,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 155,
-      "official_url": "https://leetcode.cn/problems/min-stack/",
       "code_path": "examples/hot100/p0155_min_stack.py"
     },
     {
@@ -6706,7 +6636,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 394,
-      "official_url": "https://leetcode.cn/problems/decode-string/",
       "code_path": "examples/hot100/p0394_decode_string.py"
     },
     {
@@ -6724,7 +6653,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 739,
-      "official_url": "https://leetcode.cn/problems/daily-temperatures/",
       "code_path": "examples/hot100/p0739_daily_temperatures.py"
     },
     {
@@ -6742,7 +6670,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 84,
-      "official_url": "https://leetcode.cn/problems/largest-rectangle-in-histogram/",
       "code_path": "examples/hot100/p0084_largest_rectangle_in_histogram.py"
     },
     {
@@ -6760,7 +6687,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 215,
-      "official_url": "https://leetcode.cn/problems/kth-largest-element-in-an-array/",
       "code_path": "examples/hot100/p0215_kth_largest_element_in_an_array.py"
     },
     {
@@ -6778,7 +6704,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 347,
-      "official_url": "https://leetcode.cn/problems/top-k-frequent-elements/",
       "code_path": "examples/hot100/p0347_top_k_frequent_elements.py"
     },
     {
@@ -6796,7 +6721,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 295,
-      "official_url": "https://leetcode.cn/problems/find-median-from-data-stream/",
       "code_path": "examples/hot100/p0295_find_median_from_data_stream.py"
     },
     {
@@ -6814,7 +6738,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 121,
-      "official_url": "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/",
       "code_path": "examples/hot100/p0121_best_time_to_buy_and_sell_stock.py"
     },
     {
@@ -6832,7 +6755,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 55,
-      "official_url": "https://leetcode.cn/problems/jump-game/",
       "code_path": "examples/hot100/p0055_jump_game.py"
     },
     {
@@ -6850,7 +6772,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 45,
-      "official_url": "https://leetcode.cn/problems/jump-game-ii/",
       "code_path": "examples/hot100/p0045_jump_game_ii.py"
     },
     {
@@ -6868,7 +6789,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 763,
-      "official_url": "https://leetcode.cn/problems/partition-labels/",
       "code_path": "examples/hot100/p0763_partition_labels.py"
     },
     {
@@ -6886,7 +6806,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 70,
-      "official_url": "https://leetcode.cn/problems/climbing-stairs/",
       "code_path": "examples/hot100/p0070_climbing_stairs.py"
     },
     {
@@ -6904,7 +6823,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 118,
-      "official_url": "https://leetcode.cn/problems/pascals-triangle/",
       "code_path": "examples/hot100/p0118_pascals_triangle.py"
     },
     {
@@ -6922,7 +6840,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 198,
-      "official_url": "https://leetcode.cn/problems/house-robber/",
       "code_path": "examples/hot100/p0198_house_robber.py"
     },
     {
@@ -6940,7 +6857,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 279,
-      "official_url": "https://leetcode.cn/problems/perfect-squares/",
       "code_path": "examples/hot100/p0279_perfect_squares.py"
     },
     {
@@ -6958,7 +6874,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 322,
-      "official_url": "https://leetcode.cn/problems/coin-change/",
       "code_path": "examples/hot100/p0322_coin_change.py"
     },
     {
@@ -6976,7 +6891,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 139,
-      "official_url": "https://leetcode.cn/problems/word-break/",
       "code_path": "examples/hot100/p0139_word_break.py"
     },
     {
@@ -6994,7 +6908,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 300,
-      "official_url": "https://leetcode.cn/problems/longest-increasing-subsequence/",
       "code_path": "examples/hot100/p0300_longest_increasing_subsequence.py"
     },
     {
@@ -7012,7 +6925,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 152,
-      "official_url": "https://leetcode.cn/problems/maximum-product-subarray/",
       "code_path": "examples/hot100/p0152_maximum_product_subarray.py"
     },
     {
@@ -7030,7 +6942,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 416,
-      "official_url": "https://leetcode.cn/problems/partition-equal-subset-sum/",
       "code_path": "examples/hot100/p0416_partition_equal_subset_sum.py"
     },
     {
@@ -7048,7 +6959,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 32,
-      "official_url": "https://leetcode.cn/problems/longest-valid-parentheses/",
       "code_path": "examples/hot100/p0032_longest_valid_parentheses.py"
     },
     {
@@ -7066,7 +6976,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 62,
-      "official_url": "https://leetcode.cn/problems/unique-paths/",
       "code_path": "examples/hot100/p0062_unique_paths.py"
     },
     {
@@ -7084,7 +6993,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 64,
-      "official_url": "https://leetcode.cn/problems/minimum-path-sum/",
       "code_path": "examples/hot100/p0064_minimum_path_sum.py"
     },
     {
@@ -7102,7 +7010,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 5,
-      "official_url": "https://leetcode.cn/problems/longest-palindromic-substring/",
       "code_path": "examples/hot100/p0005_longest_palindromic_substring.py"
     },
     {
@@ -7120,7 +7027,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 1143,
-      "official_url": "https://leetcode.cn/problems/longest-common-subsequence/",
       "code_path": "examples/hot100/p1143_longest_common_subsequence.py"
     },
     {
@@ -7138,7 +7044,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 72,
-      "official_url": "https://leetcode.cn/problems/edit-distance/",
       "code_path": "examples/hot100/p0072_edit_distance.py"
     },
     {
@@ -7156,7 +7061,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 136,
-      "official_url": "https://leetcode.cn/problems/single-number/",
       "code_path": "examples/hot100/p0136_single_number.py"
     },
     {
@@ -7174,7 +7078,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 169,
-      "official_url": "https://leetcode.cn/problems/majority-element/",
       "code_path": "examples/hot100/p0169_majority_element.py"
     },
     {
@@ -7192,7 +7095,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 75,
-      "official_url": "https://leetcode.cn/problems/sort-colors/",
       "code_path": "examples/hot100/p0075_sort_colors.py"
     },
     {
@@ -7210,7 +7112,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 31,
-      "official_url": "https://leetcode.cn/problems/next-permutation/",
       "code_path": "examples/hot100/p0031_next_permutation.py"
     },
     {
@@ -7228,7 +7129,6 @@
       "language": "Python",
       "available": true,
       "official_problem_id": 287,
-      "official_url": "https://leetcode.cn/problems/find-the-duplicate-number/",
       "code_path": "examples/hot100/p0287_find_the_duplicate_number.py"
     }
   ],
@@ -7993,32 +7893,32 @@
       ]
     },
     {
-      "title": "Agent 公开面经样本",
-      "category": "公开面经",
+      "title": "Agent 综合训练",
+      "category": "综合训练",
       "relative_path": "docs/60-interviews/agent.md",
       "path": "docs/60-interviews/agent.md",
       "url": "docs/60-interviews/agent.md",
       "question_ids": []
     },
     {
-      "title": "后端公开面经样本",
-      "category": "公开面经",
+      "title": "后端综合训练",
+      "category": "综合训练",
       "relative_path": "docs/60-interviews/backend.md",
       "path": "docs/60-interviews/backend.md",
       "url": "docs/60-interviews/backend.md",
       "question_ids": []
     },
     {
-      "title": "Go 公开面经样本",
-      "category": "公开面经",
+      "title": "Go 综合训练",
+      "category": "综合训练",
       "relative_path": "docs/60-interviews/go.md",
       "path": "docs/60-interviews/go.md",
       "url": "docs/60-interviews/go.md",
       "question_ids": []
     },
     {
-      "title": "Java 公开面经样本",
-      "category": "公开面经",
+      "title": "Java 综合训练",
+      "category": "综合训练",
       "relative_path": "docs/60-interviews/java.md",
       "path": "docs/60-interviews/java.md",
       "url": "docs/60-interviews/java.md",
@@ -8057,7 +7957,7 @@
       "question_ids": []
     },
     {
-      "title": "面经算法补充：六个明确题设的Python解法",
+      "title": "算法变体补充：六个明确题设的Python解法",
       "category": "实践与推理",
       "relative_path": "docs/70-practice/interview-algorithm-supplements.md",
       "path": "docs/70-practice/interview-algorithm-supplements.md",
@@ -8261,7 +8161,7 @@
     },
     {
       "title": "A2A任务生命周期：身份、中断、终态与断线恢复",
-      "category": "原创面经追问与故障诊所",
+      "category": "追问与故障练习",
       "relative_path": "docs/10-agent/32-a2a-task-lifecycle-lab.md",
       "path": "docs/10-agent/32-a2a-task-lifecycle-lab.md",
       "url": "docs/10-agent/32-a2a-task-lifecycle-lab.md",
@@ -8269,7 +8169,7 @@
     },
     {
       "title": "工具调用流组装：从半段JSON到可验证执行意图",
-      "category": "原创面经追问与故障诊所",
+      "category": "追问与故障练习",
       "relative_path": "docs/10-agent/33-tool-stream-assembly-lab.md",
       "path": "docs/10-agent/33-tool-stream-assembly-lab.md",
       "url": "docs/10-agent/33-tool-stream-assembly-lab.md",
@@ -8277,7 +8177,7 @@
     },
     {
       "title": "Java 追问诊所：排队、超时、取消与线程上下文",
-      "category": "原创面经追问与故障诊所",
+      "category": "追问与故障练习",
       "relative_path": "docs/20-java/16-executor-failure-followups.md",
       "path": "docs/20-java/16-executor-failure-followups.md",
       "url": "docs/20-java/16-executor-failure-followups.md",
@@ -8285,7 +8185,7 @@
     },
     {
       "title": "Go 追问诊所：有界任务、取消竞争与资源收尾",
-      "category": "原创面经追问与故障诊所",
+      "category": "追问与故障练习",
       "relative_path": "docs/30-go/07-concurrency-failure-followups.md",
       "path": "docs/30-go/07-concurrency-failure-followups.md",
       "url": "docs/30-go/07-concurrency-failure-followups.md",
@@ -8293,7 +8193,7 @@
     },
     {
       "title": "存储追问诊所：未知提交、重放顺序与旧写保护",
-      "category": "原创面经追问与故障诊所",
+      "category": "追问与故障练习",
       "relative_path": "docs/40-backend/41-storage-recovery-followups.md",
       "path": "docs/40-backend/41-storage-recovery-followups.md",
       "url": "docs/40-backend/41-storage-recovery-followups.md",
@@ -8301,7 +8201,7 @@
     },
     {
       "title": "系统设计与排障诊所：从现象到可证伪假设",
-      "category": "原创面经追问与故障诊所",
+      "category": "追问与故障练习",
       "relative_path": "docs/40-backend/42-system-design-debugging-clinic.md",
       "path": "docs/40-backend/42-system-design-debugging-clinic.md",
       "url": "docs/40-backend/42-system-design-debugging-clinic.md",
@@ -8367,7 +8267,7 @@
       "question_ids": []
     },
     {
-      "title": "从两篇公开面经练习评测、长上下文与运行诊断",
+      "title": "Agent 综合训练：评测、长上下文与运行诊断",
       "category": "原创检索手算与模拟练习",
       "relative_path": "docs/60-interviews/agent-followups-20261015.md",
       "path": "docs/60-interviews/agent-followups-20261015.md",

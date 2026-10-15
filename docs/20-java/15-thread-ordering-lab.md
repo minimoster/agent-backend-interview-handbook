@@ -222,5 +222,3 @@ public final class OrderedPrinter {
 **追问**：为什么不用signal？一个共享Condition上可能叫醒不是下一角色的线程，没人继续推进；signalAll加条件检查更直接。是否能用三个Condition减少无效唤醒？可以，但取消/结束时仍需广播所有条件队列。公平锁是否必要？不必要，业务轮次条件负责顺序；仍假设线程最终能被调度。
 
 **误区**：sleep轮询能证明顺序；只处理正常路径而忽略某参与者消失；以daemon线程掩盖永久等待；捕获中断后继续无限循环。
-
-**一手来源**：[FJ-S127 Condition等待语义](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/Condition.html)、[FJ-S050 ReentrantLock](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html)、[FJ-S128 Thread启动与join](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Thread.html)。

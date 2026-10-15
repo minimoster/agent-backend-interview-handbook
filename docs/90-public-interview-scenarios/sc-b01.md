@@ -1,6 +1,6 @@
 # SC-B01 Go的nil与closed不能混成一种状态
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 为什么同样没初始化，map读起来没事，写入却崩；channel收发又一直不返回？
 
@@ -26,15 +26,13 @@ channel被关闭且已有值都消费完时退出；nil channel永远等。不�
 
 写出nil map读取/写入、nil channel select默认分支、closed channel缓冲排空四个小例子。每个先预测再运行，核对值、ok、是否panic。故意阻塞的例子应设置超时，避免测试挂住。
 
-**主题来源：** P01、P02、P03。**技术依据：** [Go语言规范](https://go.dev/ref/spec)。按实际Go版本记录结果；运行时map布局不能当成跨版本合同。
+按实际Go版本记录结果；运行时map布局不能当成跨版本合同。
 
 ## 阅读与复验入口
-
-公开主题线索：[P01](../../sources/public-interviews/README.md#report-p01)、[P02](../../sources/public-interviews/README.md#report-p02)、[P03](../../sources/public-interviews/README.md#report-p03)。
 
 先读基础：
 
 - [02-types-containers-and-errors](../../docs/30-go/02-types-containers-and-errors.md)
 - [01-concurrency](../../docs/30-go/01-concurrency.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

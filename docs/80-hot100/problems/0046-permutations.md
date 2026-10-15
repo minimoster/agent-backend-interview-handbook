@@ -1,12 +1,12 @@
 # 46. 全排列
 
-[官方题目](https://leetcode.cn/problems/permutations/) · MEDIUM · 官方分类：回溯
+难度：MEDIUM · 分类：回溯
 
 ## 题意与接口
 
 返回互不相同整数数组的全部排列。接口：`permute(nums)`；排列中的相对次序不同即不同答案。
 
-约束核对（2026-10-09）：长度 1..6，整数互异；返回所有排列，顺序不限。 [官方来源](https://leetcode.com/problems/permutations/)
+约束核对（2026-10-09）：长度 1..6，整数互异；返回所有排列，顺序不限。
 
 ## 从朴素方法到优化
 
@@ -65,22 +65,12 @@ append(path) 会保存可变对象引用，必须复制。输入互异是去重�
 
 复习：为什么撤销顺序必须对应本层所做选择？排列问题与组合问题的递归参数有何差别？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/permutations/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0046.Permutations/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0046.permutations.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0046.permutations.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[46. 全排列](https://www.bilibili.com/video/BV19v4y1S79W/)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：分别检查 used 状态和路径撤销；说明保存答案时为什么需要复制当前路径。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

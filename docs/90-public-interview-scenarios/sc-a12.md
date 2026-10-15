@@ -1,6 +1,6 @@
 # SC-A12 降低成本的改动怎样证明没损害效果
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 你把部分任务换小模型、加cache，费用降了，怎样保证系统仍然有用？
 
@@ -26,14 +26,12 @@
 
 用虚构数据计算每请求与每成功任务成本，加入失败重试和cache变化。验收同时报告分母、token量、成功条件和计费日期。实际模型价格与限额需使用时重新查官方页。
 
-**主题来源：** P07、P09。**技术依据：** [Anthropic Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)、[Go诊断与profiling](https://go.dev/doc/diagnostics)。缓存行为随provider/模型变化，本卡不固定当前价表。
+缓存行为随provider/模型变化，本卡不固定当前价表。
 
 ## 阅读与复验入口
-
-公开主题线索：[P07](../../sources/public-interviews/README.md#report-p07)、[P09](../../sources/public-interviews/README.md#report-p09)。
 
 先读基础：
 
 - [24-inference-and-serving-boundaries](../../docs/10-agent/24-inference-and-serving-boundaries.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

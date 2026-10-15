@@ -1,6 +1,6 @@
 # SC-A07 工具调用正确的判断不能停在JSON合法
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 模型输出了合法的“删除文件”参数，是否就该执行？
 
@@ -26,15 +26,13 @@
 
 为只读查询与写入更新设计两个schema，用非法字段、越界ID、无权限用户、旧版本和重复请求测试。预期无权限及旧版本都在业务层阻止，而不只检查JSON解析。本轮没有连接真实服务。
 
-**主题来源：** P05、P07、P08、P09、P11、P16、P17。**技术依据：** [MCP tools 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)、[MCP transports 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)。这是明确固定的协议快照，不声称是2026最新修订。
+这是明确固定的协议快照，不声称是2026最新修订。
 
 ## 阅读与复验入口
-
-公开主题线索：[P05](../../sources/public-interviews/README.md#report-p05)、[P07](../../sources/public-interviews/README.md#report-p07)、[P08](../../sources/public-interviews/README.md#report-p08)、[P09](../../sources/public-interviews/README.md#report-p09)、[P11](../../sources/public-interviews/README.md#report-p11)、[P16](../../sources/public-interviews/README.md#report-p16)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [15-mcp-versions-and-integration](../../docs/10-agent/15-mcp-versions-and-integration.md)
 - [16-skills-routing-and-governance](../../docs/10-agent/16-skills-routing-and-governance.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

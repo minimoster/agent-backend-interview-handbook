@@ -1,4 +1,4 @@
-# 面经算法补充验证
+# 算法变体补充验证
 
 完整题设与通俗说明见[六题讲义](../../docs/70-practice/interview-algorithm-supplements.md)。
 

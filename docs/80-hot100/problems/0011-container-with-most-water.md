@@ -1,6 +1,6 @@
 # 11. 盛最多水的容器
 
-[官方题目](https://leetcode.cn/problems/container-with-most-water/) · MEDIUM · 官方分类：双指针
+难度：MEDIUM · 分类：双指针
 
 ## 题意与接口
 
@@ -56,22 +56,12 @@ class Solution:
 
 复习：当两端同高时，为什么任选一端移动都不影响正确性？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/container-with-most-water/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0011.Container%20With%20Most%20Water/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0011.container-with-most-water.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0011.container-with-most-water.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：固定较短的一端后，另一端向内移动为什么不会得到更大的面积？用这个结论解释每次移动的方向。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

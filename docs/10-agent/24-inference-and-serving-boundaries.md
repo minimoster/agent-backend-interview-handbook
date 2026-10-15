@@ -2,7 +2,7 @@
 
 [返回Agent目录](README.md)
 
-本章讲解采样、KV 缓存与推理服务的机制，并给出验证方案。核查日期2026-10-10；GPU 服务与模型训练实验尚未执行。
+本章讲解采样、KV 缓存与推理服务的机制，并给出验证方案。GPU 服务与模型训练实验尚未执行。
 
 <a id="inference-sampling"></a>
 
@@ -14,27 +14,27 @@ Temperature在常见采样实现中缩放logits，较小的正数让分布更尖
 
 结构化任务先约定标签或JSON schema，再验证未知标签、缺字段、重复键、截断和拒绝；失败转为明确状态或有限修复，不在解析失败时猜一个成功标签。生成合法JSON不等于字段事实正确。低温不能替代schema、权限与业务不变量。
 
-[Transformers官方解码策略](https://huggingface.co/docs/transformers/main/en/generation_strategies)。供应商参数并非统一协议。
+Transformers官方解码策略。供应商参数并非统一协议。
 
 <a id="paged-kv-batching"></a>
 
 ## KV缓存、分页与Continuous Batching各解决什么
 
-自回归推理通常缓存已处理token的key/value，避免每次重算历史表示。缓存随请求长度增长，多个请求结束时间不同，若每条都预留巨大连续内存，就可能浪费容量。PagedAttention把逻辑缓存块映射到可非连续分配的物理块，减少碎片与重复；块表、尾块、元数据和实际调度仍有开销，不能把论文“近零浪费”改写成任何场景“完全零显存浪费”。
+自回归推理通常缓存已处理token的key/value，避免每次重算历史表示。缓存随请求长度增长，多个请求结束时间不同，若每条都预留巨大连续内存，就可能浪费容量。PagedAttention把逻辑缓存块映射到可非连续分配的物理块，减少碎片与重复；块表、尾块、元数据和实际调度仍有开销，不能把碎片减少改写成任何场景“完全零显存浪费”。
 
 Continuous Batching在迭代调度层考虑已结束请求和等待队列，允许新请求加入，减少等整个静态batch结束的闲置。它与缓存分页互补，分别偏向调度和内存布局；真实实现还需区分prefill与decode，并考虑长prompt、优先级、抢占和资源预算。请求越多不总越好，尾延迟与排队时间可能上涨。
 
-教学实验设计：固定模型、输入长度分布、输出上限与到达负载，分别开关分页、连续批处理、前缀缓存，测吞吐、TTFT、逐token延迟、P95/P99端到端、峰值显存与失败率。相同前缀缓存主要减少prefill工作，不能据此承诺decode每个token也同比加速。[vLLM缓存说明](https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/)明确区分收益边界。
+教学实验设计：固定模型、输入长度分布、输出上限与到达负载，分别开关分页、连续批处理、前缀缓存，测吞吐、TTFT、逐token延迟、P95/P99端到端、峰值显存与失败率。相同前缀缓存主要减少prefill工作，不能据此承诺decode每个token也同比加速。vLLM缓存说明明确区分收益边界。
 
-新增“八股（二）”把GPU利用率写为30%到80%+，没有随本次整合提供可复核的统一测量条件。本章不采用它作读者或系统的实验结果。[PagedAttention论文](https://arxiv.org/abs/2309.06180)中的结论亦限定在作者评测条件，不等于本仓库部署表现。
+本章未测得GPU利用率收益；性能结论必须限定在具体硬件、模型、负载与调度配置下，不把其他条件下的数字当作本仓库部署表现。
 
 <a id="kv-lifecycle"></a>
 
 ## 从一次请求看缓存的生命周期
 
-对常见因果自回归 Transformer，prefill 处理输入 token，并为各层建立历史 K/V。decode 处理新 token 时，仍要生成当前 token 的 Q、K、V，将新 K/V 加入缓存，再让当前 Q 关注允许访问的历史。复用历史 K/V 减少重复投影和历史计算；注意力仍需读取历史缓存，长上下文的每 token 工作量并未成为常数。缓存通常按层保存。[Transformers 4.57.1 缓存机制](https://huggingface.co/docs/transformers/v4.57.1/cache_explanation)
+对常见因果自回归 Transformer，prefill 处理输入 token，并为各层建立历史 K/V。decode 处理新 token 时，仍要生成当前 token 的 Q、K、V，将新 K/V 加入缓存，再让当前 Q 关注允许访问的历史。复用历史 K/V 减少重复投影和历史计算；注意力仍需读取历史缓存，长上下文的每 token 工作量并未成为常数。缓存通常按层保存。
 
-请求内 KV Cache 与跨请求 prefix caching 是两个层次。后者复用完全匹配前缀已完成的计算，主要缩短 prefill；它不自动缩短后续逐 token decode。再次提交完整对话不必然降低命中率，关键是服务是否启用前缀复用，以及模型、tokenizer、模板、前缀 token 与服务缓存规则是否兼容。将不断变化的时间戳放在公共前缀开头，可能使其后内容无法复用。[vLLM 0.10.2 自动前缀缓存](https://docs.vllm.ai/en/v0.10.2/features/automatic_prefix_caching.html)
+请求内 KV Cache 与跨请求 prefix caching 是两个层次。后者复用完全匹配前缀已完成的计算，主要缩短 prefill；它不自动缩短后续逐 token decode。再次提交完整对话不必然降低命中率，关键是服务是否启用前缀复用，以及模型、tokenizer、模板、前缀 token 与服务缓存规则是否兼容。将不断变化的时间戳放在公共前缀开头，可能使其后内容无法复用。
 
 <a id="kv-memory-budget"></a>
 
@@ -52,7 +52,7 @@ Continuous Batching在迭代调度层考虑已结束请求和等待队列，允�
 
 稳定的系统说明与工具定义可放在可复用前缀，最新检索结果和用户内容保持各自边界。缓存命中不是授权证明：共享缓存不能让不同租户读到彼此的内容或输出；隔离策略以部署服务的版本和实际配置为准。模型权重、适配器、tokenizer、位置编码或模板变化后，旧状态不应被盲目复用。
 
-容量不足时，缩短无关上下文、限制输出、排队或并发预算、缓存回收与 offload 都有取舍。prefix caching、分页缓存和 continuous batching 分别关注复用、内存布局与调度，不能只测吞吐。实验应固定版本、输入长度分布、输出上限与到达负载，比较 TTFT、每 token 延迟、P95/P99、峰值显存、失败率及缓存命中。本批没有执行该 GPU 实验。[Transformers 4.57.1 缓存策略](https://huggingface.co/docs/transformers/v4.57.1/kv_cache)
+容量不足时，缩短无关上下文、限制输出、排队或并发预算、缓存回收与 offload 都有取舍。prefix caching、分页缓存和 continuous batching 分别关注复用、内存布局与调度，不能只测吞吐。实验应固定版本、输入长度分布、输出上限与到达负载，比较 TTFT、每 token 延迟、P95/P99、峰值显存、失败率及缓存命中。本批没有执行该 GPU 实验。
 
 面试答题主线：prefill 建立历史 K/V；decode 追加新 token 的 K/V 并复用历史；收益是少做重复计算，代价是随保留 token 与并发增长的缓存容量。前缀复用主要影响 prefill，具体性能必须实测。
 

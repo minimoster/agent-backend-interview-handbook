@@ -1,6 +1,6 @@
 # SC-B05 线程池参数要回答排队与过载
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 核心线程10、最大100、无界队列，为什么最大100几乎不发挥作用？
 
@@ -26,14 +26,12 @@
 
 对固定小队列提交超过容量的慢任务，记录任务被执行/排队/拒绝的事件。验收说明每个任务的最终状态，关闭时无静默丢失。没有替用户跑线程池测试。
 
-**主题来源：** P16、P17。**技术依据：** [JDK21 ThreadPoolExecutor](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)、[AWS超时和退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。参数值为题设，不是推荐配置。
+参数值为题设，不是推荐配置。
 
 ## 阅读与复验入口
-
-公开主题线索：[P16](../../sources/public-interviews/README.md#report-p16)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [02-concurrency-and-thread-pools](../../docs/20-java/02-concurrency-and-thread-pools.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

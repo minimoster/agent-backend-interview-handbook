@@ -6,7 +6,7 @@
 
 ### G27 [P0] HTTP Client 为什么要复用？响应 Body 怎么处理？
 
-**知识点详解** 
+**知识点详解**
 
 HTTP 请求不只是发字符串，还涉及连接建立、TLS、连接复用、等待响应、读取响应体。Go 的 Client 与 Transport 可并发使用，通常应复用，避免每个请求重复建立连接和 TLS 握手。Transport 管理连接资源，也需要合理配置连接数和空闲连接参数。
 
@@ -20,13 +20,11 @@ HTTP 请求不只是发字符串，还涉及连接建立、TLS、连接复用、
 
 **误区** ：err 为 nil 就代表 HTTP 200；只 defer Close 就保证所有情况下连接可复用。
 
-**来源** ：[GO-S45 net/http](https://pkg.go.dev/net/http)；[GO-S46 Transport 源码说明](https://go.dev/src/net/http/transport.go)。
-
 <a id="g28"></a>
 
 ### G28 [P0] HTTP 服务端和客户端各有哪些超时？
 
-**知识点详解** 
+**知识点详解**
 
 客户端总超时与连接阶段、TLS 握手、响应头等待等超时解决不同问题。服务端则要考虑读请求头、读请求体、写响应及空闲 keep-alive。只给业务逻辑套一个 context，不一定覆盖慢速发送请求头的客户端；只设置网络写截止，也不等于业务计算及时停止。
 
@@ -40,19 +38,17 @@ HTTP 请求不只是发字符串，还涉及连接建立、TLS、连接复用、
 
 **误区** ：所有 timeout 都是同一计时器；一律把全部超时调大解决失败。
 
-**来源** ：[GO-S47 HTTP Server 源码与字段说明](https://go.dev/src/net/http/server.go)；[GO-S48 Client 实现](https://go.dev/src/net/http/client.go)。
-
 <a id="g29"></a>
 
 ### G29 [P0] SSE 为什么适合大模型输出？与 WebSocket 有何区别？
 
-**知识点详解** 
+**知识点详解**
 
 SSE 是服务器沿 HTTP 响应持续发送事件的文本协议，适合服务端单向推送。浏览器 EventSource 会按事件格式解析，并具备重连行为。事件以空行分隔，常见字段有 data、event、id；内容使用 UTF-8，响应类型是 text/event-stream。
 
 WebSocket 在连接升级后提供双向消息通道，更适合双方频繁低延迟交互。选择取决于方向、消息模式、鉴权、代理兼容与运维复杂度，而不是“WebSocket 一定更高级”。SSE 的底层是否 HTTP/1.1 或 HTTP/2 不改变事件格式的基本职责。
 
-**具体例子** 
+**具体例子**
 
 ```text
 event: token
@@ -69,13 +65,11 @@ data: {"text":"你好"}
 
 **误区** ：任意把 JSON 分段 Write 就符合 SSE；SSE 必须一个 token 对应一个网络包。
 
-**来源** ：[GO-S49 WHATWG SSE 标准](https://html.spec.whatwg.org/multipage/server-sent-events.html)。
-
 <a id="g30"></a>
 
 ### G30 [P0] Go 写 SSE 时，如何处理 Flush、慢客户端和用户断连？
 
-**知识点详解** 
+**知识点详解**
 
 Write 可能只写到用户态或中间缓冲区，需要合适的 Flush 让事件及时向下发送；但应用调用 Flush 不等于代理立刻转发，更不等于用户已经消费。中间件若包装 ResponseWriter，还要保留流式能力。
 
@@ -89,13 +83,11 @@ Write 可能只写到用户态或中间缓冲区，需要合适的 Flush 让事�
 
 **误区** ：Flush 成功代表用户已看到；只在正常结尾关闭模型流；广播时一个慢用户拖住全部用户。
 
-**来源** ：[GO-S50 ResponseController](https://go.dev/src/net/http/responsecontroller.go)；[GO-S49 SSE 标准](https://html.spec.whatwg.org/multipage/server-sent-events.html)。
-
 <a id="g31"></a>
 
 ### G31 [P1] gRPC 的价值、deadline 与流控是什么？
 
-**知识点详解** 
+**知识点详解**
 
 gRPC 用服务接口描述和生成代码组织远程调用，可支持一元请求、服务端流、客户端流和双向流。它适合内部服务的结构化通信，但不是用了它就自动解决超时、幂等或跨服务事务。
 
@@ -109,13 +101,11 @@ deadline 防止客户端无限等待，服务端工作也要响应取消。流�
 
 **误区** ：gRPC 自带合理默认 deadline；Send 返回就是对方业务确认；内部 RPC 不需要鉴权。
 
-**来源** ：[GO-S12 gRPC Deadlines](https://grpc.io/docs/guides/deadlines/)；[GO-S51 Flow Control](https://grpc.io/docs/guides/flow-control/)；[GO-S52 Core Concepts](https://grpc.io/docs/what-is-grpc/core-concepts/)。
-
 <a id="g32"></a>
 
 ### G32 [P0] 下游失败要不要重试？怎样避免重复执行和雪崩？
 
-**知识点详解** 
+**知识点详解**
 
 重试是在不确定结果下再次尝试，会增加下游压力。先区分可重试的瞬时失败、不可重试的参数或权限错误，以及“请求可能成功但响应丢失”。写操作要有幂等设计，例如调用方携带稳定操作 ID，服务端把去重状态和业务结果放在一致的提交边界中。
 
@@ -129,13 +119,11 @@ deadline 防止客户端无限等待，服务端工作也要响应取消。流�
 
 **误区** ：所有 5xx 都必然可以安全重放写操作；设置重试次数就算有容错。
 
-**来源** ：[GO-S53 gRPC Retry](https://grpc.io/docs/guides/retry/)；[GO-S54 gRPC Status Codes](https://grpc.io/docs/guides/status-codes/)。
-
 <a id="g33"></a>
 
 ### G33 [P0] 限流与并发限制的区别？令牌桶如何工作？
 
-**知识点详解** 
+**知识点详解**
 
 速率限制关注单位时间允许多少请求；并发限制关注此刻有多少在途请求。下游耗时上升时，即使 QPS 不变，在途量也会增加，所以二者常一起用。令牌桶按一定速度补令牌，每次请求消耗令牌，桶容量决定允许的短时突发量。
 
@@ -149,13 +137,11 @@ deadline 防止客户端无限等待，服务端工作也要响应取消。流�
 
 **误区** ：并发设为 10 就代表每秒 10 次；令牌桶能精确保证任何自然分钟窗口都不超限。
 
-**来源** ：[GO-S55 x/time/rate](https://pkg.go.dev/golang.org/x/time/rate)；[GO-S15 semaphore](https://pkg.go.dev/golang.org/x/sync/semaphore)。
-
 <a id="g34"></a>
 
 ### G34 [P0] Go HTTP 服务如何优雅退出？
 
-**知识点详解** 
+**知识点详解**
 
 优雅退出是有顺序且有截止时间的收尾：先让新流量停止进入，再等待在途工作，停止后台消费者，最后关闭依赖并退出。可用 signal.NotifyContext 等接收终止信号；HTTP Server.Shutdown 会停止接收新连接并等待符合其管理范围的活动请求完成。
 
@@ -169,13 +155,11 @@ Shutdown 不等于处理所有后台任务，也不会替你管理全部被 hija
 
 **误区** ：ListenAndServe 返回后 main 直接结束；只加一个 defer Close 就完成优雅退出。
 
-**来源** ：[GO-S56 os/signal](https://pkg.go.dev/os/signal)；[GO-S45 Server.Shutdown](https://pkg.go.dev/net/http#Server.Shutdown)。
-
 <a id="g35"></a>
 
 ### G35 [P1] Go HTTP 中间件怎样组织？Agent 接口额外防什么？
 
-**知识点详解** 
+**知识点详解**
 
 中间件是包装 handler 的函数，用于统一处理请求标识、日志、鉴权、限流和异常恢复。顺序很重要：要确定鉴权发生在昂贵业务前，错误响应能被观测，流式接口的包装器仍支持 Flush 等必要能力。
 
@@ -188,7 +172,5 @@ Shutdown 不等于处理所有后台任务，也不会替你管理全部被 hija
 **常见追问** ：panic 恢复后为什么可能改不了状态码？响应已经发送。为什么限流不能只靠前端？攻击者可绕过前端。
 
 **误区** ：有鉴权就没有 SSRF；HTTP 状态正常代表整段 SSE 一定成功。
-
-**来源** ：[GO-S57 MaxBytesReader](https://go.dev/src/net/http/request.go)；[GO-S58 OWASP SSRF 防护](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)；[GO-S50 流式控制](https://go.dev/src/net/http/responsecontroller.go)。
 
 本节题号：G27、G28、G29、G30、G31、G32、G33、G34、G35。

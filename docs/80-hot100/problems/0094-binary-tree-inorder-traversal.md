@@ -1,12 +1,12 @@
 # 94. 二叉树的中序遍历
 
-[官方题目](https://leetcode.cn/problems/binary-tree-inorder-traversal/) · EASY · 官方分类：二叉树
+难度：EASY · 分类：二叉树
 
 ## 题意与接口
 
 返回二叉树的中序遍历节点值：左子树、根、右子树。接口：`inorderTraversal(root) -> list[int]`。
 
-约束核对（2026-10-09）：节点数 0..100；返回中序值序列，进阶明确要求迭代写法。 [官方来源](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+约束核对（2026-10-09）：节点数 0..100；返回中序值序列，进阶明确要求迭代写法。
 
 ## 从朴素方法到优化
 
@@ -57,23 +57,12 @@ class Solution:
 
 复习：栈顶节点何时才能输出？把“输出”移动到压栈时会得到哪种遍历？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0094.Binary%20Tree%20Inorder%20Traversal/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0094.binary-tree-inorder-traversal.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0094.binary-tree-inorder-traversal.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[94. 二叉树的中序遍历](https://www.bilibili.com/video/BV1Zf4y1a77g)。上传者已核验为代码随想录（MID 525438321）。
-- 相关主题视频：[递归遍历专题（多种遍历的共用说明）](https://www.bilibili.com/video/BV1Wh411S7xt) · [非递归遍历专题（其他遍历方法）](https://www.bilibili.com/video/BV15f4y1W7i2)。仅用于方法迁移，不计为本题专属配套视频。
+## 复习与迁移
 
 自主复习提示：对同一棵树画出递归与显式栈访问顺序，确认输出发生在左子树处理之后。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

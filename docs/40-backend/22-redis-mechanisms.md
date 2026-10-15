@@ -21,8 +21,6 @@
 
 **误区**：Redis只有五种能力；所有小结构都永远ziplist；HLL可精确返回所有去重成员。
 
-**一手来源**：[FJ-S099 数据类型](https://redis.io/docs/latest/develop/data-types/)、[FJ-S105 OBJECT ENCODING](https://redis.io/docs/latest/commands/object-encoding/)、[FJ-S106 编码版本与内存优化](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/)、[FJ-S107 XADD 版本](https://redis.io/docs/latest/commands/xadd/)。
-
 <a id="fj38"></a>
 ### FJ38 Redis 为什么快，单线程与 I/O 多路复用怎样准确表述
 
@@ -42,8 +40,6 @@ Redis 6/7 常规命令执行主要在主线程串行处理，避免普通命令�
 
 **误区**：在内存所以所有命令O(1)；Redis整个进程永远单线程；开I/O线程就能并行执行任意Lua脚本。
 
-**一手来源**：[FJ-S108 Redis7.2官方配置I/O注释](https://github.com/redis/redis/blob/7.2/redis.conf)、[FJ-S109 延迟诊断](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/)、[FJ-S110 Redis7.2事件库源码](https://github.com/redis/redis/blob/7.2/src/ae.c)。
-
 <a id="fj39"></a>
 ### FJ39 RDB、AOF、复制与备份分别怎样帮助故障恢复
 
@@ -62,8 +58,6 @@ AOF 追加可重放的写操作，always/everysec/no 等刷盘选择在延迟与
 **追问**：同时配置RDB/AOF就没有文件管理风险吗？仍需看实际恢复优先规则和一致备份流程。fork后实际内存会翻倍吗？取决于写入与页面共享，不是固定值。
 
 **误区**：RDB是内存镜像直接拷回；AOF永远只有一个纯命令文本文件；复制可以找回任何误删。
-
-**一手来源**：[FJ-S100 Redis持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)、[FJ-S109 延迟与fork](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/)、[FJ-S111 Redis复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)。
 
 <a id="fj40"></a>
 ### FJ40 键到期一定马上释放内存吗，淘汰策略有哪些
@@ -87,8 +81,6 @@ LRU/LFU含采样与近似机制，不能当精确全局访问历史排序。vola
 
 **误区**：有TTL就不会OOM；volatile没有候选会自动变allkeys；无过期时间就是永不丢失。
 
-**一手来源**：[FJ-S112 EXPIRE机制](https://redis.io/docs/latest/commands/expire/)、[FJ-S113 淘汰策略](https://redis.io/docs/latest/develop/reference/eviction/)。
-
 <a id="fj41"></a>
 ### FJ41 看门狗续租能保证分布式锁永远安全吗
 
@@ -107,8 +99,6 @@ Redisson的watchdog会在适用获取方式下维持租约，默认超时可由l
 **追问**：资源不可改造时怎么办？重新评估该锁是否足以承担正确性，优先利用已有数据库事务/约束。异步主从故障切换会怎样？锁写可能未复制，见B30。
 
 **误区**：续期线程活着就一定续成功；SETNX单独构成可靠锁；随机UUID就是单调fencing token。
-
-**一手来源**：[FJ-S114 Redis分布式锁](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/)、[FJ-S115 Redisson锁与leaseTime](https://redisson.pro/docs/data-and-services/locks-and-synchronizers/)。
 
 <a id="fj42"></a>
 ### FJ42 两级缓存如何失效，删缓存失败和旧读回填为什么是两类问题
@@ -135,7 +125,7 @@ Redisson的watchdog会在适用获取方式下维持租约，默认超时可由l
 
 **误区**：Pub/Sub一定可靠送达；Kafka同消费组自动广播每实例；数据库提交后发送MQ就无原子性缺口；DEL返回成功证明没有旧值再出现。
 
-**一手来源**：[FJ-S116 Redis Pub/Sub](https://redis.io/docs/latest/develop/pubsub/)、[FJ-S117 客户端缓存失效](https://redis.io/docs/latest/develop/reference/client-side-caching/)、[FJ-S118 Kafka消费者模型](https://kafka.apache.org/41/getting-started/introduction/)、[FJ-S119 Debezium outbox](https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html)、[FJ-S120 Cache-Aside设计](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)。时序与组合方案为原创分析。
+时序与组合方案为原创分析。
 
 <a id="fj43"></a>
 ### FJ43 大键与热键怎样识别，为什么“超过10KB”不是统一标准
@@ -156,8 +146,6 @@ Redisson的watchdog会在适用获取方式下维持租约，默认超时可由l
 
 **误区**：10KB以上一律错误；Hash天然比String省；拆键不影响原子性；慢日志能完整解释网络和客户端等待。
 
-**一手来源**：[FJ-S121 MEMORY USAGE](https://redis.io/docs/latest/commands/memory-usage/)、[FJ-S122 UNLINK](https://redis.io/docs/latest/commands/unlink/)、[FJ-S123 SCAN](https://redis.io/docs/latest/commands/scan/)、[FJ-S109 延迟诊断](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/)。
-
 <a id="fj44"></a>
 ### FJ44 Redis 全量复制、部分重同步与复制积压缓冲怎样配合
 
@@ -176,8 +164,6 @@ Redisson的watchdog会在适用获取方式下维持租约，默认超时可由l
 **追问**：复制正常能代替备份吗？错误写会复制。无盘复制一定更快吗？取决于磁盘、网络、数据和副本数量。
 
 **误区**：副本每次重连必全量；只比较offset不比较历史ID；WAIT成功就保证任何故障不丢写。
-
-**一手来源**：[FJ-S111 Redis复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)、[FJ-S124 WAIT边界](https://redis.io/docs/latest/commands/wait/)。
 
 <a id="fj45"></a>
 ### FJ45 Sentinel、Cluster 和持久化如何组合，怎样说明高可用边界
@@ -199,5 +185,3 @@ Cluster的副本承担故障提升，但“每主一个副本”不是充分可�
 **追问**：hash tag越多越好？只用于确需同槽的键，过度使用会集中负载。切换后重试写操作安全吗？仍需业务幂等及未知结果处理。
 
 **误区**：quorum就等于选举多数；有一个副本就任何故障都可用；迁移只有MOVED；高可用绝不丢写。
-
-**一手来源**：[FJ-S125 Sentinel官方机制](https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/)、[FJ-S126 Cluster规范](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)、[FJ-S111 异步复制边界](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)。

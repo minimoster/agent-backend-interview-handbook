@@ -1,6 +1,6 @@
 # SC-B02 context取消不会替你强制杀死goroutine
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** HTTP请求已经超时，后台goroutine为什么还在增加？
 
@@ -26,15 +26,13 @@ G是goroutine，M是执行的系统线程，P承载运行Go代码所需的调度
 
 让消费者提前退出，比较无取消分支和有取消分支的生产者。等待工作者明确返回，检查重复执行后任务数不持续增长；同时运行race检测。这里只提供实验设计。
 
-**主题来源：** P02、P03、P17。**技术依据：** [context合同](https://pkg.go.dev/context)、[Go诊断工具](https://go.dev/doc/diagnostics)。不同Go版本的调度和诊断细节要另核对。
+不同Go版本的调度和诊断细节要另核对。
 
 ## 阅读与复验入口
-
-公开主题线索：[P02](../../sources/public-interviews/README.md#report-p02)、[P03](../../sources/public-interviews/README.md#report-p03)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [01-concurrency](../../docs/30-go/01-concurrency.md)
 - [05-testing-and-debugging](../../docs/30-go/05-testing-and-debugging.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

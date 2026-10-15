@@ -1,6 +1,6 @@
 # SC-A06 上下文压缩怎样保住任务约束
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 聊天太长，需要压缩。如何避免压掉“只能编辑这个目录”之类的重要约束？
 
@@ -26,14 +26,12 @@
 
 写8轮虚构任务历史，第一轮设目录限制，第六轮撤销一项动作。压缩后验收目标、限制和撤销均保留；引用可回到原记录。不是实际框架持久化测试。
 
-**主题来源：** P05、P07、P09、P11、P13。**技术依据：** [LangChain短期记忆](https://docs.langchain.com/oss/python/langchain/short-term-memory)、[LangChain长期记忆](https://docs.langchain.com/oss/python/langchain/long-term-memory)。具体状态结构与API按实际版本固定。
+具体状态结构与API按实际版本固定。
 
 ## 阅读与复验入口
-
-公开主题线索：[P05](../../sources/public-interviews/README.md#report-p05)、[P07](../../sources/public-interviews/README.md#report-p07)、[P09](../../sources/public-interviews/README.md#report-p09)、[P11](../../sources/public-interviews/README.md#report-p11)、[P13](../../sources/public-interviews/README.md#report-p13)。
 
 先读基础：
 
 - [03-memory-and-context](../../docs/10-agent/03-memory-and-context.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

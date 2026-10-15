@@ -58,4 +58,4 @@
 - 节点相交判断看身份，不能只比较值。
 - 单测最好用独立的朴素参考算法，别复制主解再对拍自己。
 
-例如，`counts = (1, 0, 2)`可作为字典键，`groups = {counts: ["acc"]}`合法；`hash(([],))`会抛出`TypeError`，把任意列表外层转成元组并不足够。LC49使用整数计数元组，满足元素条件。语义见[Python可哈希定义](https://docs.python.org/3.10/glossary.html#term-hashable)。
+例如，`counts = (1, 0, 2)`可作为字典键，`groups = {counts: ["acc"]}`合法；`hash(([],))`会抛出`TypeError`，把任意列表外层转成元组并不足够。LC49使用整数计数元组，满足元素条件。

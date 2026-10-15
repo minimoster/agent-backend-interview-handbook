@@ -1,6 +1,6 @@
 # SC-B11 @Transactional必须经过正确的调用边界
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 同一个service里A调用带@Transactional的B，为什么事务注解可能没生效？
 
@@ -26,15 +26,13 @@ singleton描述容器中实例作用域，不给可变业务字段自动加锁�
 
 测试正常外部代理调用、自调用、受检异常和RuntimeException四条路径，读取最终数据库值。记录Spring版本、代理模式与配置；本轮未运行Spring。
 
-**主题来源：** P15、P16。**技术依据：** [Spring事务注解与代理](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)、[Spring bean作用域](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html)。当前在线文档会更新，应按项目依赖版本核对。
+当前在线文档会更新，应按项目依赖版本核对。
 
 ## 阅读与复验入口
-
-公开主题线索：[P15](../../sources/public-interviews/README.md#report-p15)、[P16](../../sources/public-interviews/README.md#report-p16)。
 
 先读基础：
 
 - [04-spring-and-backend](../../docs/20-java/04-spring-and-backend.md)
 - [14-spring-mechanisms](../../docs/20-java/14-spring-mechanisms.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

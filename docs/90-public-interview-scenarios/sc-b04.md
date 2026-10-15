@@ -1,6 +1,6 @@
 # SC-B04 虚拟线程提升的通常是阻塞任务吞吐
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 换JDK21虚拟线程，CPU计算会变快吗？是否就不用连接池和限流？
 
@@ -26,14 +26,12 @@
 
 分开设计等待型和CPU型两组工作负载，固定输入及资源限制，报告吞吐和尾延迟。不要把Thread.sleep实验推广为数据库真实性能。本轮没有运行JDK基准。
 
-**主题来源：** P08、P16。**技术依据：** [Oracle JDK21虚拟线程](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)、[Oracle JDK24虚拟线程](https://docs.oracle.com/en/java/javase/24/core/virtual-threads.html)、[JDK24监视器pinning变化](https://docs.oracle.com/en/java/javase/24/migrate/significant-changes-jdk-24.html)。这是明确的21/24边界，不承诺所有JDK版本一致。
+这是明确的21/24边界，不承诺所有JDK版本一致。
 
 ## 阅读与复验入口
-
-公开主题线索：[P08](../../sources/public-interviews/README.md#report-p08)、[P16](../../sources/public-interviews/README.md#report-p16)。
 
 先读基础：
 
 - [02-concurrency-and-thread-pools](../../docs/20-java/02-concurrency-and-thread-pools.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

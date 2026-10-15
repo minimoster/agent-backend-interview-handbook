@@ -67,9 +67,9 @@
 
 - [Agent 自测](docs/70-practice/agent-labs.md)、[Go 小实验](docs/70-practice/go-labs.md)、[Java 小实验](docs/70-practice/java-labs.md)
 - [Hot100：按 17 类学习 100 道 Python 题](docs/80-hot100/README.md)、[解题方法对照](docs/80-hot100/PATTERNS.md)
-- [算法基础补充：15 道代码随想录资源题](docs/85-algorithm-supplement/README.md)
+- [算法基础补充：15 道题解](docs/85-algorithm-supplement/README.md)
 - [算法与 SQL 练习单](docs/70-practice/algorithm-and-sql-plan.md)、[SQL 九题](docs/70-practice/sql-nine-worked-problems.md)
-- [十二类推理题](docs/70-practice/reasoning-twelve-puzzles.md)、[六个面经算法解法](docs/70-practice/interview-algorithm-supplements.md)
+- [十二类推理题](docs/70-practice/reasoning-twelve-puzzles.md)、[六个算法变体解法](docs/70-practice/interview-algorithm-supplements.md)
 - [AI Coding 练习与参考内核](docs/70-practice/ai-coding-exercises.md)
 - [26 张场景卡](docs/90-public-interview-scenarios/README.md)：Agent 应用与后端可靠性
 
@@ -77,14 +77,14 @@
 
 - [公开仓库技术案例](docs/50-projects/public-repository-case-studies.md)、[数据工程 Agent 案例](docs/50-projects/data-engineering-agent-case.md)
 - [技术、HR 与负责人追问准备](docs/90-interview/01-evidence-based-interview-preparation.md)
-- 公开面经：[Agent](docs/60-interviews/agent.md) · [Java](docs/60-interviews/java.md) · [Go](docs/60-interviews/go.md) · [后端](docs/60-interviews/backend.md)
+- 综合训练：[Agent](docs/60-interviews/agent.md) · [Java](docs/60-interviews/java.md) · [Go](docs/60-interviews/go.md) · [后端](docs/60-interviews/backend.md)
 
-把面经中的问题带回知识章节，练习原理、实现与失败场景；用自己的代码和运行记录整理项目表达。
+把训练中的问题带回知识章节，练习原理、实现与失败场景；用自己的代码和运行记录整理项目表达。
 
-## 参考与维护
+## 版本与维护
 
-[技术来源与核查日期](sources/catalog.md) · [实验验证记录](coverage/VALIDATION.md) · [版本与纠错](errata/README.md) · [修订方式](CONTRIBUTING.md)
+[版本与纠错](errata/README.md) · [修订方式](CONTRIBUTING.md)
 
-具体版本、题设与实验状态在对应章节说明。第三方资源保留作者和原始链接，详细来源记录集中在 sources；构建与测试记录集中在 coverage。
+具体版本、题设与实验状态在对应章节说明，构建与测试结果另列；依法需要的版权与许可声明保持不变。
 
 最后整理日期：2026-10-13。

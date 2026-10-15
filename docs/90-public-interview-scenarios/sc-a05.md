@@ -1,6 +1,6 @@
 # SC-A05 找不到证据时为什么还会编出答案
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 已经加了RAG，为什么系统仍会回答知识库里不存在的制度？
 
@@ -26,15 +26,13 @@
 
 同一问题准备有证据、无证据、冲突证据、无权限四种上下文。验收断言不得泄露无权限片段；无证据不能编造具体数字；冲突应说明版本。本练习尚未执行模型调用。
 
-**主题来源：** P06、P08、P09。**技术依据：** [MCP工具安全要求](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)、[OWASP LLM Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)。本卡是应用安全设计，不构成某平台安全能力保证。
+本卡是应用安全设计，不构成某平台安全能力保证。
 
 ## 阅读与复验入口
-
-公开主题线索：[P06](../../sources/public-interviews/README.md#report-p06)、[P08](../../sources/public-interviews/README.md#report-p08)、[P09](../../sources/public-interviews/README.md#report-p09)。
 
 先读基础：
 
 - [17-rag-indexes-and-evidence](../../docs/10-agent/17-rag-indexes-and-evidence.md)
 - [07-security-and-problem-solving](../../docs/40-backend/07-security-and-problem-solving.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

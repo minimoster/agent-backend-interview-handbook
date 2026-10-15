@@ -1,6 +1,6 @@
 # LeetCode Hot100：Python原创学习模块
 
-按[力扣中国官方热题100](https://leetcode.cn/studyplan/top-100-liked/)的17类、100题学习（题单核对日期2026-10-09）。每题配合思路、手推例子、Python 实现与边界测试。
+按17类、100题学习。每题配合思路、手推例子、Python 实现与边界测试。
 
 ## 怎样使用
 
@@ -14,9 +14,9 @@ python -m unittest discover -s tests/hot100 -p "test_*.py" -v
 python examples/hot100/check_hot100.py
 ```
 
-入口：[接口与本地运行](../../examples/hot100/README.md) · [测试说明](TESTING.md) · [方法迁移与复习](PATTERNS.md) · [来源与权利边界](SOURCES.md) · [机器题单](manifest.json)
+入口：[接口与本地运行](../../examples/hot100/README.md) · [方法迁移与复习](PATTERNS.md) · [机器题单](manifest.json)
 
-本地测试范围见[测试说明](TESTING.md)；在线判题需自行提交。
+本地测试范围见[运行方式](../../examples/hot100/README.md)；在线判题需自行提交。
 
 ## 官方17分类与100题
 

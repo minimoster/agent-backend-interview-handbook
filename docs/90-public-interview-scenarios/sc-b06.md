@@ -1,6 +1,6 @@
 # SC-B06 ThreadLocal把变量绑定到线程，不是绑定到请求
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 为什么线程池第二个请求读到了上一个用户的上下文？
 
@@ -26,14 +26,12 @@
 
 单线程执行器依次处理两个不同用户任务，并让第一个任务抛异常。验收第二个任务不能读到第一个用户；使用finally后的正常与异常路径都通过。本轮未运行Java实验。
 
-**主题来源：** P09、P17。**技术依据：** [JDK21 ThreadLocal](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html)、[JDK21虚拟线程](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)。具体上下文框架的自动传播行为须单独核对。
+具体上下文框架的自动传播行为须单独核对。
 
 ## 阅读与复验入口
-
-公开主题线索：[P09](../../sources/public-interviews/README.md#report-p09)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [13-concurrency-details](../../docs/20-java/13-concurrency-details.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

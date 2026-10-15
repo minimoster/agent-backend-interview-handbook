@@ -1,12 +1,12 @@
 # 234. 回文链表
 
-[官方题目](https://leetcode.cn/problems/palindrome-linked-list/) · EASY · 官方分类：链表
+难度：EASY · 分类：链表
 
 ## 题意与接口
 
 判断链表节点值从前往后与从后往前是否相同。接口：`isPalindrome(head) -> bool`。本实现检查后恢复链表原结构。
 
-约束核对（2026-10-09）：长度 1..100000，节点值为 0..9；进阶要求线性时间、常数辅助空间。 [官方来源](https://leetcode.com/problems/palindrome-linked-list/)
+约束核对（2026-10-09）：长度 1..100000，节点值为 0..9；进阶要求线性时间、常数辅助空间。
 
 ## 从朴素方法到优化
 
@@ -69,22 +69,12 @@ class Solution:
 
 复习：为什么比较循环由 right 是否为空决定？不恢复链表会给调用方带来什么副作用？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/palindrome-linked-list/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0200-0299/0234.Palindrome%20Linked%20List/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/other/0234-palindrome-linked-list.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/algo/other/0234-palindrome-linked-list.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：检查奇数与偶数长度的中点位置；若承诺不改变输入，说明比较后如何恢复链表。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

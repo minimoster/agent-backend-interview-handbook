@@ -18,8 +18,6 @@
 
 **误区** ：hashCode 不是内存地址的语言保证；不能认为两个对象哈希相同就可以互换。
 
-来源：[J-S01](../../sources/catalog.md#j-s01)、[J-S02](../../sources/catalog.md#j-s02)、[J-S66](../../sources/catalog.md#j-s66)。
-
 <a id="j02"></a>
 
 ### J02 ArrayList 和 LinkedList 怎么选
@@ -35,8 +33,6 @@
 **追问** ：ArrayList 扩容为什么不是每次加一个？预留空间可摊薄复制成本；具体增长倍率属于实现细节。
 
 **误区** ：不能脱离“查找位置”的成本说链表任意删除都是 O(1)。
-
-来源：[J-S03](../../sources/catalog.md#j-s03)、[J-S04](../../sources/catalog.md#j-s04)、[J-S67](../../sources/catalog.md#j-s67)。
 
 <a id="j03"></a>
 
@@ -54,8 +50,6 @@
 
 **误区** ：平均 O(1) 不等于任何输入、任何阶段都严格 O(1)。
 
-来源：[J-S02](../../sources/catalog.md#j-s02)、[J-S05](../../sources/catalog.md#j-s05)。
-
 <a id="j04"></a>
 
 ### J04 HashMap 扩容和树化阈值怎么正确回答
@@ -71,8 +65,6 @@
 **追问** ：负载因子更小有什么代价？冲突可能少一些，但占更多空间。为什么容量取 2 的幂？配合位运算及翻倍分桶。
 
 **误区** ：把链表长度“等于 8”机械理解为所有插入 API 都已经转换成树；把扩容说成所有键都必须重新调用 hashCode。
-
-来源：[J-S05](../../sources/catalog.md#j-s05)。
 
 <a id="j05"></a>
 
@@ -90,8 +82,6 @@
 
 **误区** ：认为换一个 Map 类型就消除了所有并发错误。
 
-来源：[J-S06](../../sources/catalog.md#j-s06)。
-
 <a id="j06"></a>
 
 ### J06 fail fast 是什么 能拿它保证线程安全吗
@@ -107,8 +97,6 @@
 **追问** ：未抛异常是否证明没竞态？不能。弱一致迭代是否等于创建时完整快照？也不能。
 
 **误区** ：说“ConcurrentModificationException 只会在多线程产生”。
-
-来源：[J-S03](../../sources/catalog.md#j-s03)、[J-S07](../../sources/catalog.md#j-s07)。
 
 <a id="j07"></a>
 
@@ -126,8 +114,6 @@
 
 **误区** ：以为每个 T 都生成一份专门机器代码；以为泛型能彻底阻止反射或 raw type 带来的类型问题。
 
-来源：[J-S08](../../sources/catalog.md#j-s08)。
-
 <a id="j08"></a>
 
 ### J08 extends 和 super 通配符怎么理解
@@ -143,7 +129,5 @@
 **追问** ：extends 集合完全不能改变吗？能做某些不依赖具体类型的操作，如 clear，故“只读”只是简化说法。
 
 **误区** ：把通配符当成运行时权限控制或真正的不可变性。
-
-来源：[J-S09](../../sources/catalog.md#j-s09)。
 
 本节题号：J01、J02、J03、J04、J05、J06、J07、J08。

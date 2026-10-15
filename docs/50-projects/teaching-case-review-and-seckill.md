@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
+示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 以用户、商户、优惠券和订单为背景，练习缓存、库存与客服系统设计。“黑马点评”课程的具体版本源码尚未核验；下列架构、字段、规模与失败场景为教学设定。
 
@@ -43,8 +43,6 @@
 
 **常见误区**：布隆提供精确存在性；删除时清几个位；只要用了布隆系统就绝无假阴性；拿空值缓存作永久删除证明。
 
-**来源**：[FB-S034 Redis Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)。
-
 <a id="fb34"></a>
 
 ### FB34 请求上下文怎样避免 ThreadLocal 泄漏和串用户
@@ -61,8 +59,6 @@
 
 **常见误区**：GC 永远无法回收 value；所有异步框架会自动传播并清理身份；remove 只放在正常返回分支。
 
-**来源**：[FB-S063 ThreadLocal Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html)、[FB-S013 JLS 21 happens-before](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html#jls-17.4.5)。
-
 <a id="fb35"></a>
 
 ### FB35 怎样用设计、规模与验证记录讲清项目难点
@@ -77,9 +73,7 @@
 
 **追问**：没有线上数据还能讲项目吗？可以讲功能验收、边界测试、故障注入和有限规模压测，准确标注环境即可。
 
-**常见误区**：照读原作者经历；给所有项目套“百万 QPS”；为了显得复杂加入无法解释的数据流。
-
-**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)。
+**常见误区**：照读他人经历；给所有项目套“百万 QPS”；为了显得复杂加入无法解释的数据流。
 
 <a id="fb36"></a>
 
@@ -97,8 +91,6 @@
 
 **常见误区**：GEOSEARCH 自动包含全部业务筛选；GEORADIUS 是任何版本首选；距离排序等于评分排序。
 
-**来源**：[FB-S035 Redis GEOSEARCH](https://redis.io/docs/latest/commands/geosearch/)。
-
 <a id="fb37"></a>
 
 ### FB37 突发流量如何变成容量模型和分层保护
@@ -114,8 +106,6 @@
 **追问**：按钮置灰有什么作用？改善用户体验和减少误点，但可绕过，服务端仍需限制与幂等。
 
 **常见误区**：百万用户等于百万 QPS；一扩应用节点数据库也自动扩容；Redis 故障时所有请求直接回库。
-
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)。
 
 <a id="fb38"></a>
 
@@ -158,8 +148,6 @@ return {1, ARGV[2]}
 ```
 预先校验常见错误不等于所有后续命令都绝不失败；测试需覆盖错类型、缺库存、重复用户、跨槽、崩溃及结果丢失。库存键在活动期间不依赖普通缓存淘汰语义，最终订单正确性仍需后续数据库约束。
 
-**来源**：[FB-S036 Redis Lua 脚本执行](https://redis.io/docs/latest/develop/programmability/eval-intro/)、[FB-S062 Redis Cluster 规范](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)。
-
 <a id="fb39"></a>
 
 ### FB39 两级缓存失效失败、乱序与旧值回填如何恢复
@@ -175,8 +163,6 @@ return {1, ARGV[2]}
 **追问**：本地删除失败怎么办？记录节点健康与失效水位；断连节点退出读服务或清空本地缓存，恢复后重新同步，不无限相信本地旧值。
 
 **常见误区**：一致性哈希能保持数据一致；广播给所有节点即已全部执行；重试永远不需要容量保护。
-
-**来源**：[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。
 
 <a id="fb40"></a>
 
@@ -194,8 +180,6 @@ return {1, ARGV[2]}
 
 **常见误区**：本地缓存库存也能决定是否成交；登录元数据 Hash 就是一份完整对话历史。
 
-**来源**：[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S063 ThreadLocal Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html)。
-
 <a id="fb41"></a>
 
 ### FB41 秒杀防刷怎样分层并控制误伤
@@ -211,8 +195,6 @@ return {1, ARGV[2]}
 **追问**：限流 Redis 故障时怎么办？登录/支付等高风险路径可能 fail-closed，普通展示可降级本地限额；每条策略要明确。
 
 **常见误区**：按钮禁用等于安全控制；前端签名保证真人；一个阈值适用于所有用户和时间段。
-
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
 
 <a id="fb42"></a>
 
@@ -230,8 +212,6 @@ return {1, ARGV[2]}
 
 **常见误区**：只有随机 TTL 就不会雪崩；TTL 覆盖活动时间等于已经预热；逻辑过期替代库存正确性。
 
-**来源**：[FB-S034 Redis Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)、[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)。
-
 <a id="fb43"></a>
 
 ### FB43 Sentinel 的故障判定、授权与选副本为何是三件事
@@ -247,8 +227,6 @@ return {1, ARGV[2]}
 **追问**：候选副本偏移最大就一定优先吗？还要看资格与 priority；不能脱离排序规则只挑一个数字。
 
 **常见误区**：优先级数字越大越优先；quorum=2 就只需两票完成任意切换；哨兵提供主库强一致复制。
-
-**来源**：[FB-S037 Redis Sentinel](https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/)、[FB-S040 Redis 复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)。
 
 <a id="fb44"></a>
 
@@ -266,8 +244,6 @@ return {1, ARGV[2]}
 
 **常见误区**：有看门狗就永不过期；锁续期修复 Redis 异步复制；Cluster 加 AOF 自动消除丢写。
 
-**来源**：[FB-S038 Redisson 锁与看门狗](https://redisson.pro/docs/data-and-services/locks-and-synchronizers/)、[FB-S040 Redis 复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)、[FB-S041 Redis 分布式锁与 Redlock](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/)。
-
 <a id="fb45"></a>
 
 ### FB45 关键依赖故障如何降级而不把故障扩大
@@ -283,8 +259,6 @@ return {1, ARGV[2]}
 **追问**：DNS 切到异地是不是多活？还需要数据复制、写冲突、防双主、连接迁移与恢复流程，名称解析只是其中一步。
 
 **常见误区**：缓存故障全量打数据库；备用模型必定同样安全；未核版本就把维护状态旧组件当默认选型。
-
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)、[FB-S053 CompletableFuture Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)。
 
 <a id="fb46"></a>
 
@@ -304,8 +278,6 @@ return {1, ARGV[2]}
 
 **执行边界**：SQL 为事务设计草图，尚未在 MySQL 运行。实际表结构、隔离级别、索引、错误码处理、死锁重试及消息确认 API 必须在目标产品环境联调，再接入完整的订单状态与消息恢复流程。
 
-**来源**：[FB-S036 Redis Lua 脚本执行](https://redis.io/docs/latest/develop/programmability/eval-intro/)、[FB-S042 Redis 事务的错误处理与无回滚](https://redis.io/docs/latest/develop/using-commands/transactions/)、[FB-S061 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fb47"></a>
 
 ### FB47 Caffeine 如何用准入和淘汰抵抗一次性扫描
@@ -321,8 +293,6 @@ return {1, ARGV[2]}
 **追问**：最大 10 万条能推导固定内存大小吗？对象图、字符串、框架元数据与 JVM 布局不同，需要测量或用权重近似。
 
 **常见误区**：所有访问次数精确永久保存；用了缓存库不必设上限；淘汰等于数据库删除。
-
-**来源**：[FB-S039 Caffeine 维护者设计说明](https://github.com/ben-manes/caffeine/wiki/Design)。
 
 <a id="fb48"></a>
 
@@ -340,8 +310,6 @@ return {1, ARGV[2]}
 
 **常见误区**：分表立刻解决热点用户；简单改取模不丢路由；读从库能保证刚写就看到。
 
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fb49"></a>
 
 ### FB49 JWT 刷新、注销和共享会话如何设计
@@ -357,8 +325,6 @@ return {1, ARGV[2]}
 **追问**：刷新接口遭并发重试怎么办？要定义一次性凭据的竞态和短暂重复处理策略，防止正常重试被当作攻击，也不能无限重用。
 
 **常见误区**：JWT 自动无状态又立即撤销；黑名单必须存完整令牌；把敏感信息放 JWT 就等于已加密。
-
-**来源**：[FB-S054 RFC 9700 OAuth 2.0 安全实践](https://www.rfc-editor.org/rfc/rfc9700)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)。
 
 <a id="fb50"></a>
 
@@ -376,8 +342,6 @@ return {1, ARGV[2]}
 
 **常见误区**：轮询三次没结果就释放库存；WebSocket 发出就证明用户看见；查询接口允许任意用户枚举他人订单。
 
-**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S058 RFC 9110 HTTP 语义](https://datatracker.ietf.org/doc/html/rfc9110)。
-
 <a id="fb51"></a>
 
 ### FB51 防超卖为什么应优先证明数据库不变量
@@ -394,8 +358,6 @@ return {1, ARGV[2]}
 
 **常见误区**：有锁就无需唯一约束；读到库存大于零等于取得库存；Redis 速度快就能忽略故障恢复。
 
-**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S042 Redis 事务的错误处理与无回滚](https://redis.io/docs/latest/develop/using-commands/transactions/)。
-
 <a id="fb52"></a>
 
 ### FB52 客服工具与会话存储怎样明确权限、顺序和副作用
@@ -411,9 +373,6 @@ return {1, ARGV[2]}
 **追问**：多个请求同时写同一会话怎么办？用原子序列分配、条件版本或单会话串行化，不能只依赖墙上时间排序。
 
 **常见误区**：一个 user_id+token 的 Hash 就是完整聊天历史；模型的成功文字即支付事实；所有工具都共享管理员身份。
-
-**来源**：[FB-S063 ThreadLocal Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 
 <a id="crash-replay-fixture"></a>
 
@@ -582,4 +541,4 @@ GET 应为 0，同时 SQL 账本仍符合四项不变量。只在这个静态实
 
 每个阶段保存命令、退出码、错误码、订单/库存与 pending 的前后快照。若升级为应用自动化，分别在 INSERT 后、库存 UPDATE 后、COMMIT 后和 ACK 前设置可控 failpoint，断言每次重放只产生一笔业务效果；SQL 和消息间仍无共享事务。任何阶段尚未跑过就保留待验证标记。
 
-机制依据：[Redis XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/)、[XCLAIM](https://redis.io/docs/latest/commands/xclaim/)、[XACK](https://redis.io/docs/latest/commands/xack/)、[XPENDING](https://redis.io/docs/latest/commands/xpending/)、[InnoDB 错误处理](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html)。
+机制依据：Redis XREADGROUP、XCLAIM、XACK、XPENDING、InnoDB 错误处理。

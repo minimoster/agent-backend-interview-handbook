@@ -4,7 +4,7 @@
 
 本章通过一个自然语言驱动的批处理任务，学习计划、提交、执行尝试、状态对账、取消和长任务交互。
 
-技术参照为 Apache Spark 4.0.1，核查日2026-10-10。任务、ID、状态协议、schema 与测试场景为教学设计；Spark 集群实验尚未执行。
+技术参照为 Apache Spark 4.0.1，任务、ID、状态协议、schema 与测试场景为教学设计；Spark 集群实验尚未执行。
 
 - [案例范围与请求收敛](#data-agent-scope)
 - [业务任务与执行尝试](#job-lifecycle)
@@ -42,7 +42,7 @@ Catalog 负责提供真实表字段、可用版本和权限相关信息。模型
 | Spark job/stage/task | action 触发的内部计算 | 具体调度与执行指标 |
 | UI | 事件、文字和用户操作 | 展示与发送控制请求，不能凭本地标志改变后端事实 |
 
-Spark application 与内部 job 的含义见 [官方术语](https://spark.apache.org/docs/4.0.1/cluster-overview.html#glossary)。一次业务 Job 可以对应多个 action，也可能在重试时关联新的 application；共享 application 的服务则可能用 job group 关联多个内部 job，不能要求所有 ID 一一对应。
+Spark application是应用运行实例，内部job由action触发，两者不是同一层级。一次业务 Job 可以对应多个 action，也可能在重试时关联新的 application；共享 application 的服务则可能用 job group 关联多个内部 job，不能要求所有 ID 一一对应。
 
 <a id="job-lifecycle"></a>
 
@@ -60,8 +60,7 @@ Spark application 与内部 job 的含义见 [官方术语](https://spark.apache
 | `submission_key` | 该 attempt 的外部提交身份 | 网络重发沿用，不为超时重新生成 |
 | `external_ref` | 后端、application ID 及可用的外部 attempt ID | 用于查询、取消与日志关联 |
 
-另设幂等记录归并客户端对同一业务请求的重复投递。建议以`(tenant_id, operation, caller_idempotency_key)`作为数据库唯一身份，另存首次请求的规范化`fingerprint`，其中包含目标、输入版本及影响结果的业务参数。相同身份且fingerprint一致时返回同一业务Job或明确的进行中结果；fingerprint不同时拒绝并报告冲突。网络重发沿用客户端键，显式新业务运行使用新键。若选择按内容寻址，应说明不同内容会产生新身份，不同时承诺检测同一客户端键的参数误用。业务attempt、YARN application attempt、Spark stage attempt和task attempt是不同重试层，不能混算。[AWS幂等API设计](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[Stripe同键参数校验](https://docs.stripe.com/api/idempotent_requests)
-
+另设幂等记录归并客户端对同一业务请求的重复投递。建议以`(tenant_id, operation, caller_idempotency_key)`作为数据库唯一身份，另存首次请求的规范化`fingerprint`，其中包含目标、输入版本及影响结果的业务参数。相同身份且fingerprint一致时返回同一业务Job或明确的进行中结果；fingerprint不同时拒绝并报告冲突。网络重发沿用客户端键，显式新业务运行使用新键。若选择按内容寻址，应说明不同内容会产生新身份，不同时承诺检测同一客户端键的参数误用。业务attempt、YARN application attempt、Spark stage attempt和task attempt是不同重试层，不能混算。
 
 ### 把意图与事实分开存
 
@@ -97,9 +96,9 @@ SUBMITTING/SUBMITTED/RUNNING -> RECONCILING  （外部结果不确定）
 
 取消流程是 UI 发请求、服务核对归属与版本、持久化意图、停止未启动步骤，再调用对应后端的取消能力并确认结果。关闭聊天窗口或停止 token 流，不会自动停止 Spark。
 
-共享 SparkContext 场景可在提交 action 的线程为该 attempt 设置 job group，再对该 group 取消；注意线程相关属性和 PySpark 线程传播限制。取消当前 active jobs 不保证阻止稍后新提交的 action，因此编排器还必须检查持久取消意图。`interruptOnCancel` 有具体线程中断行为和存储兼容注意事项，不能把它当作无条件开启的“立即停止”按钮。[SparkContext job group 与取消 API](https://spark.apache.org/docs/4.0.1/api/scala/org/apache/spark/SparkContext.html)、[PySpark 并发 job 注意事项](https://spark.apache.org/docs/4.0.1/job-scheduling.html#concurrent-jobs-in-pyspark)
+共享 SparkContext 场景可在提交 action 的线程为该 attempt 设置 job group，再对该 group 取消；注意线程相关属性和 PySpark 线程传播限制。取消当前 active jobs 不保证阻止稍后新提交的 action，因此编排器还必须检查持久取消意图。`interruptOnCancel` 有具体线程中断行为和存储兼容注意事项，不能把它当作无条件开启的“立即停止”按钮。
 
-若是独立提交的 application，取消目标应交给所选集群后端的适配器；杀掉本地 `spark-submit` 进程并不能通用地证明集群 application 已终止。Client 与 cluster deploy mode 中 driver 所在位置不同，提交端退出语义也不能一概而论。[官方提交模式](https://spark.apache.org/docs/4.0.1/submitting-applications.html)
+若是独立提交的 application，取消目标应交给所选集群后端的适配器；杀掉本地 `spark-submit` 进程并不能通用地证明集群 application 已终止。Client 与 cluster deploy mode 中 driver 所在位置不同，提交端退出语义也不能一概而论。
 
 取消与成功竞态应在设计前明确：本篇采用“已完成且已提交发布事务的成功不会被迟到取消覆盖”。取消请求被接受后尚未发布的结果先禁止发布，由对账确认计算状态并收敛；后端不可达时保持“取消待确认”，不能向用户承诺已停止或偷偷重跑。确认取消终态时，还要确保没有后继步骤、重试和可见的半成品。
 
@@ -130,7 +129,7 @@ Outbox 使“需要提交”不会随进程内存丢失，通常仍是至少一�
 4. 发现外部成功后进入校验与发布；失败则分类；仍运行则继续观察；取消意图始终参与决策，禁止新增后继和自动重试。
 5. 外部查不到并不总是失败，可能是历史保留期、索引延迟或查询范围错误。保存“未知”及原因，按后端契约选择继续检查或人工处理，不伪造终态。
 
-Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把“History Server 暂时没有记录”当成集群作业不存在，也不能把缺结束事件当成仍然运行。[官方监控与历史记录说明](https://spark.apache.org/docs/4.0.1/monitoring.html)
+Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把“History Server 暂时没有记录”当成集群作业不存在，也不能把缺结束事件当成仍然运行。
 
 ### 结果发布是单独的提交边界
 
@@ -147,7 +146,6 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 ## 长任务 UI 与流式事件
 
 ### 流式文本和运行进度分别建模
-
 
 本篇建议 UI 消费有类型的事件，而不从自然语言中解析“成功”：
 
@@ -182,7 +180,6 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 ## 可组合 Skill 与有界计划
 
 ### 描述层不授予执行能力
-
 
 本篇建议四道边界：描述说明输入输出，注册表记录已审核能力，planner 生成候选步骤，执行器校验能力、参数、授权与预算。Skill 文件、Catalog 文本、日志和数据行都是可能含恶意指令的输入，不能让它们动态导入代码、扩大工具集或改写用户授权。
 
@@ -239,6 +236,5 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 | 优化后更快但行数错误 | 质量失败，禁止发布，保存诊断与比较证据 |
 
 选一条失败轨迹实现最小原型，再用[Spark 诊断补充](../40-backend/37-spark-execution-and-diagnostics.md#spark-diagnostics)定义观察证据。部署、取消恢复与性能改进仍待验证。
-
 
 可先运行[幂等身份内存反例](../../examples/agent_contracts/README.md)核对同键异参数契约。该实验没有连接Spark或数据库，不替代上表的集成验收。

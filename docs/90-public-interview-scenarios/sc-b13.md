@@ -1,6 +1,6 @@
 # SC-B13 TCP read边界不是消息边界
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 我一次write发送JSON，对方为什么可能需要多次read，也可能一次读到两条？
 
@@ -26,11 +26,9 @@
 
 附带Python长度前缀解码器测试半个header、半个payload、多帧、UTF-8拆分、超长声明和EOF截断。它只测试应用解析，不模拟真实网络拥塞或TCP重传。
 
-**主题来源：** P04、P17。**技术依据：** [RFC9293 TCP字节流合同](https://www.rfc-editor.org/rfc/rfc9293.html)。read/EOF按目标语言API核对；随包实现使用Python bytes。
+read/EOF按目标语言API核对；随包实现使用Python bytes。
 
 ## 阅读与复验入口
-
-公开主题线索：[P04](../../sources/public-interviews/README.md#report-p04)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
@@ -40,4 +38,4 @@
 
 - [interview_lab.py#FrameDecoder](../../examples/public_interview_scenarios/interview_lab.py#FrameDecoder)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

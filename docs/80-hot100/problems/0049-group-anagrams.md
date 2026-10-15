@@ -1,6 +1,6 @@
 # 49. 字母异位词分组
 
-[官方题目](https://leetcode.cn/problems/group-anagrams/) · MEDIUM · 官方分类：哈希
+难度：MEDIUM · 分类：哈希
 
 ## 题意与接口
 
@@ -57,22 +57,12 @@ class Solution:
 
 复习：排序键与计数键何时各自更合适？如何测试输出顺序不固定的题？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/group-anagrams/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0049.Group%20Anagrams/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0049.group-anagrams.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0049.group-anagrams.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：说明分组键怎样表达字符的多重集合；若字符范围扩大，计数元组和排序字符串各有什么代价？
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

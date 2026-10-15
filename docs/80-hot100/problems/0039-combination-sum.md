@@ -1,12 +1,12 @@
 # 39. 组合总和
 
-[官方题目](https://leetcode.cn/problems/combination-sum/) · MEDIUM · 官方分类：回溯
+难度：MEDIUM · 分类：回溯
 
 ## 题意与接口
 
-从互不相同的正整数 candidates 中选若干数，使和为 target，每种数可重复使用；返回不重复组合。接口：`combinationSum(candidates, target)`。官方页已核实候选为 2..40、target 为 1..40。
+从互不相同的正整数 candidates 中选若干数，使和为 target，每种数可重复使用；返回不重复组合。接口：`combinationSum(candidates, target)`。本题约定候选为 2..40、target 为 1..40。
 
-约束核对（2026-10-09）：候选数 1..30，值互异且为 2..40；target 为 1..40，每个候选可重用。 [官方来源](https://leetcode.com/problems/combination-sum/)
+约束核对（2026-10-09）：候选数 1..30，值互异且为 2..40；target 为 1..40，每个候选可重用。
 
 ## 从朴素方法到优化
 
@@ -64,22 +64,12 @@ class Solution:
 
 复习：排序在这里分别帮助了哪两个目的？若允许负数，为何不能照搬 remain 剪枝？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/combination-sum/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0039.Combination%20Sum/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0039.combination-sum.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0039.combination-sum.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[39. 组合总和](https://www.bilibili.com/video/BV1KT4y1M7HJ)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：说明允许重复选取为何递归仍传当前起点；检查排序剪枝与去重策略的适用条件。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

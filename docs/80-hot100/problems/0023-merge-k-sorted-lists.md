@@ -1,12 +1,12 @@
 # 23. 合并 K 个升序链表
 
-[官方题目](https://leetcode.cn/problems/merge-k-sorted-lists/) · HARD · 官方分类：链表
+难度：HARD · 分类：链表
 
 ## 题意与接口
 
 合并 k 条已非递减排序的链表。接口：`mergeKLists(lists)`，可有空链。输出重用原节点。
 
-约束核对（2026-10-09）：链数 0..10000，每链长度 0..500，总节点数不超过 10000；各链有序。 [官方来源](https://leetcode.com/problems/merge-k-sorted-lists/)
+约束核对（2026-10-09）：链数 0..10000，每链长度 0..500，总节点数不超过 10000；各链有序。
 
 ## 从朴素方法到优化
 
@@ -63,22 +63,12 @@ N 为总节点数，k 为输入链数量。时间 O(k+N log(k+1))，辅助空间
 
 复习：同一个链编号在堆中为何不会同时出现两次？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/merge-k-sorted-lists/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0023.Merge%20k%20Sorted%20Lists/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
-- 官方Python：本次核验未找到本题精确匹配的官方实现区。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：比较逐条合并、分治和堆；说明堆项的平局处理为什么不能直接比较节点对象。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

@@ -1,12 +1,12 @@
 # 416. 分割等和子集
 
-[官方题目](https://leetcode.cn/problems/partition-equal-subset-sum/) · MEDIUM · 官方分类：动态规划
+难度：MEDIUM · 分类：动态规划
 
 ## 题意与接口
 
 接口：`Solution.canPartition(nums: list[int]) -> bool`。将所有正整数分成两个和相等的子集，每个元素恰好归属一边，判断是否可行。官方长度 1 至 200，元素 1 至 100。
 
-约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/partition-equal-subset-sum/)核对；以下为原创概述，并非完整题面转载。
+约束与规则于 2026-10-09 查阅官方英文题面核对；以下为原创概述，并非完整题面转载。
 
 ## 从朴素方法到优化
 
@@ -69,22 +69,12 @@ class Solution:
 
 复习：为什么发现目标可达后可以立即返回？若允许负数，固定 0..target 的数组会漏掉什么？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/partition-equal-subset-sum/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0400-0499/0416.Partition%20Equal%20Subset%20Sum/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/dynamic-programming/0416-partition-equal-subset-sum.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/algo/dynamic-programming/0416-partition-equal-subset-sum.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[416. 分割等和子集](https://www.bilibili.com/video/BV1rt4y1N7jE/)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：总和奇数时先排除；用一个数检查容量倒序更新为何防止同一个数被重复使用。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

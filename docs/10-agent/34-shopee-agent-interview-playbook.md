@@ -1,7 +1,6 @@
 # 虾皮 Agent 一二面：34题学习与追问
 
-[返回Agent目录](README.md) · [题目索引](../../QUESTION_INDEX.md) · [练习安排与技术参考](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
-
+[返回Agent目录](README.md) · [题目索引](../../QUESTION_INDEX.md)
 本章按一面17题、二面17题组织34项练习，串联检索、评测、记忆、工具与多Agent设计。
 
 题目使用 SP-R1/SP-R2 编号。基础机制链接原章，本章重点练习口述、实现契约、指标与失败处理；示例指标为教学设定。
@@ -79,8 +78,8 @@
 **追问与误区**
 问“是否永远先走向量”：查唯一ID通常没必要。问“降低阈值能否解决”：可能增噪，须验证证据召回和误答率。函数调用的strict约束参数形状，不保证路由决策正确。
 
-**延伸阅读**
-[已有RAG流程](02-rag-retrieval-and-reranking.md#a09) · [诊断顺序](02-rag-retrieval-and-reranking.md#a16)。官方核验：[OpenAI Retrieval的过滤与排序](https://developers.openai.com/api/docs/guides/retrieval)、[Function calling的strict边界](https://developers.openai.com/api/docs/guides/function-calling)。
+**相关练习**
+[已有RAG流程](02-rag-retrieval-and-reranking.md#a09) · [诊断顺序](02-rag-retrieval-and-reranking.md#a16)
 
 <a id="sp-r1-02"></a>
 ### SP-R1-02 一面2：知识库怎样增量更新与处理局部修改？
@@ -100,8 +99,8 @@
 **追问与误区**
 问“只改一句能否只更新一块”：取决于解析、overlap和边界变化，不能保证。问“直接覆盖同ID”：可能留下已被移除的旧块，必须比较新旧块清单。
 
-**延伸阅读**
-[增量与新鲜度实验](30-rag-data-and-chunking-lab.md#freshness-update-contract) · [索引与证据](17-rag-indexes-and-evidence.md)。官方核验：[Pinecone更新与最终一致性](https://docs.pinecone.io/guides/manage-data/update-data)、[Elastic搜索可见性](https://www.elastic.co/docs/manage-data/data-store/near-real-time-search)。
+**相关练习**
+[增量与新鲜度实验](30-rag-data-and-chunking-lab.md#freshness-update-contract) · [索引与证据](17-rag-indexes-and-evidence.md)
 
 <a id="sp-r1-03"></a>
 ### SP-R1-03 一面3：RAG幻觉怎样处理？
@@ -121,8 +120,8 @@ RAG把外部证据交给模型，仍会出现“材料没找对、材料本身�
 **追问与误区**
 问“strict JSON能消除幻觉吗”：只能保障符合schema，错误事实也能装进合法JSON。问“来源冲突怎么办”：按有效时间、权威性和适用范围处理，无法裁定时显式说明冲突。
 
-**延伸阅读**
-[答案层与坏例定位](30-rag-data-and-chunking-lab.md#answer-layer-and-debug) · [已有RAG排查](02-rag-retrieval-and-reranking.md#a16)。官方核验：[Anthropic幻觉缓解与引用核查](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations)、[OpenAI Function calling](https://developers.openai.com/api/docs/guides/function-calling)。
+**相关练习**
+[答案层与坏例定位](30-rag-data-and-chunking-lab.md#answer-layer-and-debug) · [已有RAG排查](02-rag-retrieval-and-reranking.md#a16)
 
 <a id="sp-r1-04"></a>
 ### SP-R1-04 一面4：长工具结果怎样压缩并保留后续信息？
@@ -142,8 +141,8 @@ RAG把外部证据交给模型，仍会出现“材料没找对、材料本身�
 **追问与误区**
 问“保留头尾够不够”：关键例外可能在中部，须按结构和任务选择。问“摘要越短越好”：用压缩前后的事实问答与多轮续办对照，短但丢约束就是失败。
 
-**延伸阅读**
-[上下文压缩](03-memory-and-context.md#a20) · [上下文消融实验](25-agent-evaluation-and-routing.md#context-ablation)。官方核验：[Anthropic上下文工程中的压缩与外部记录](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)、[OpenAI工具调用流程](https://developers.openai.com/api/docs/guides/function-calling)。
+**相关练习**
+[上下文压缩](03-memory-and-context.md#a20) · [上下文消融实验](25-agent-evaluation-and-routing.md#context-ablation)
 
 <a id="sp-r1-05"></a>
 ### SP-R1-05 一面5：模型网关有什么作用？
@@ -163,8 +162,8 @@ RAG把外部证据交给模型，仍会出现“材料没找对、材料本身�
 **追问与误区**
 问“和负载均衡器有什么差别”：网关还理解模型能力、token预算、租户及用量。问“换低价模型一定省钱吗”：失败和重试可能使每个成功任务更贵。
 
-**延伸阅读**
-[模型路由设计](25-agent-evaluation-and-routing.md#model-routing) · [推理与服务边界](24-inference-and-serving-boundaries.md)。官方核验：[LiteLLM网关与统一接口](https://docs.litellm.ai/docs/)、[路由与负载均衡](https://docs.litellm.ai/docs/routing)。
+**相关练习**
+[模型路由设计](25-agent-evaluation-and-routing.md#model-routing) · [推理与服务边界](24-inference-and-serving-boundaries.md)
 
 <a id="sp-r1-06"></a>
 ### SP-R1-06 一面6：怎样用Trace定位bad case并回归？
@@ -184,8 +183,8 @@ Trace表示一项请求的执行路径，span表示其中一次操作。它能�
 **追问与误区**
 问“耗时最长的span就是根因吗”：慢是性能线索，错误可能更早发生。问“Trace完整就够吗”：仍需预期结果、有效版本及环境终态，模型自称完成不能作验收。
 
-**延伸阅读**
-[首错误闭环](25-agent-evaluation-and-routing.md#first-error) · [Harness与Trace](18-harness-runtime-and-observability.md#fa41)。官方核验：[OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[敏感观测数据处理](https://opentelemetry.io/docs/security/handling-sensitive-data/)。
+**相关练习**
+[首错误闭环](25-agent-evaluation-and-routing.md#first-error) · [Harness与Trace](18-harness-runtime-and-observability.md#fa41)
 
 <a id="sp-r1-07"></a>
 ### SP-R1-07 一面7：怎样构建评测集、计算成本和验证缓存？
@@ -205,8 +204,8 @@ Trace表示一项请求的执行路径，span表示其中一次操作。它能�
 **追问与误区**
 问“缩短Prompt一定更省吗”：还受缓存读写与复用次数影响。问“命中就输出相同吗”：仍重新生成。缓存规则随模型/API变化，不能背一个阈值套所有模型。
 
-**延伸阅读**
-[评测指标口径](25-agent-evaluation-and-routing.md#metrics)。官方核验：[OpenAI评测实践](https://developers.openai.com/api/docs/guides/evaluation-best-practices)、[Prompt Caching及usage](https://developers.openai.com/api/docs/guides/prompt-caching)、[Chat Completions流式usage](https://developers.openai.com/api/reference/resources/chat/subresources/completions/streaming-events)。
+**相关练习**
+[评测指标口径](25-agent-evaluation-and-routing.md#metrics)
 
 <a id="sp-r1-08"></a>
 ### SP-R1-08 一面8：RRF全称、作用与Rerank区别是什么？
@@ -226,8 +225,8 @@ RRF全称Reciprocal Rank Fusion，常译为倒数排名融合。它把多个候�
 **追问与误区**
 问“RRF是不是Rerank”：广义上它也改变排序，面试应明确比较的是排名融合与语义模型重排。问“有RRF就不用重排吗”：取决于质量预算，不能凭组件名称判断。
 
-**延伸阅读**
-[RRF计算](02-rag-retrieval-and-reranking.md#a13) · [Rerank机制](02-rag-retrieval-and-reranking.md#a14)。官方核验：[Elastic RRF公式与窗口](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)、[语义重排与长度边界](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/retrievers/text-similarity-reranker-retriever)。
+**相关练习**
+[RRF计算](02-rag-retrieval-and-reranking.md#a13) · [Rerank机制](02-rag-retrieval-and-reranking.md#a14)
 
 <a id="sp-r1-09"></a>
 ### SP-R1-09 一面9：Skill与Working Memory有什么差别？
@@ -247,8 +246,8 @@ Skill保存 `name / description / version / instructions / resources`，先展�
 **追问与误区**
 问“Skill就是Tool吗”：此语境中Skill指导组合动作，Tool提供可调用能力；其他框架可能另有用法。问“把进度写进Skill好吗”：易污染共享流程，应区分通用指导与任务实例。
 
-**延伸阅读**
-[技能路由与治理](16-skills-routing-and-governance.md) · [Tool与Skill合同](31-tool-mcp-and-skill-contracts.md) · [Memory基础](03-memory-and-context.md)。官方核验：[OpenAI技能包及按需加载](https://learn.chatgpt.com/docs/build-skills)、[LangGraph线程状态与checkpointer](https://docs.langchain.com/oss/python/langgraph/add-memory)。
+**相关练习**
+[技能路由与治理](16-skills-routing-and-governance.md) · [Tool与Skill合同](31-tool-mcp-and-skill-contracts.md) · [Memory基础](03-memory-and-context.md)
 
 ## 一面：长期记忆与代码定位（8题）
 
@@ -275,9 +274,9 @@ Skill保存 `name / description / version / instructions / resources`，先展�
 
 为什么不全量注入？比较漏召回风险与噪声、费用。直接注入和检索可以组合，层数不是统一标准。
 
-**延伸阅读**
+**相关练习**
 
-[记忆与上下文](03-memory-and-context.md#a19)；[LangChain记忆概览](https://docs.langchain.com/oss/python/concepts/memory)。
+[记忆与上下文](03-memory-and-context.md#a19)；
 
 <a id="sp-r1-11"></a>
 ### SP-R1-11 一面11：什么值得记住，规则与Prompt各管什么
@@ -302,9 +301,9 @@ Skill保存 `name / description / version / instructions / resources`，先展�
 
 重要规则会漏召回怎么办？由受控配置确定性加载并在执行入口校验，不能只依赖Prompt提醒。
 
-**延伸阅读**
+**相关练习**
 
-[记忆生命周期](03-memory-and-context.md#a22)；[LangGraph记忆读写指南](https://docs.langchain.com/oss/python/langgraph/add-memory)。
+[记忆生命周期](03-memory-and-context.md#a22)；
 
 <a id="sp-r1-12"></a>
 ### SP-R1-12 一面12：关系库、向量库和原始对话各有什么作用
@@ -329,9 +328,7 @@ Skill保存 `name / description / version / instructions / resources`，先展�
 
 是否只存摘要？关键语境不能丢且需溯源；是否一直留全文？按授权、用途及保留策略决定。
 
-**延伸阅读**
-
-[PostgreSQL约束](https://www.postgresql.org/docs/current/ddl-constraints.html)；[pgvector过滤与索引](https://github.com/pgvector/pgvector#filtering)。
+**相关练习**
 
 <a id="sp-r1-13"></a>
 ### SP-R1-13 一面13：偏好变化怎样更新并保留历史
@@ -356,9 +353,9 @@ Skill保存 `name / description / version / instructions / resources`，先展�
 
 新值一定覆盖旧值吗？先比较作用域和生效时间；模型推断不能轻易覆盖明确陈述。
 
-**延伸阅读**
+**相关练习**
 
-[旧值失效与删除验收](03-memory-and-context.md#a22)；[双时态概念](https://mariadb.com/docs/server/reference/sql-structure/temporal-tables/bitemporal-tables)；[LangGraph Store读写接口](https://reference.langchain.com/python/langgraph.store/base/BaseStore)。
+[旧值失效与删除验收](03-memory-and-context.md#a22)；
 
 <a id="sp-r1-14"></a>
 ### SP-R1-14 一面14：怎样评测记忆抽取与召回
@@ -383,9 +380,9 @@ Skill保存 `name / description / version / instructions / resources`，先展�
 
 合成数据可信吗？它适合补边界，不能独自证明线上分布表现；LLM评审需人审校准。
 
-**延伸阅读**
+**相关练习**
 
-[评测合同](25-agent-evaluation-and-routing.md#eval-contract)；[LangSmith评测概念](https://docs.langchain.com/langsmith/evaluation-concepts)。
+[评测合同](25-agent-evaluation-and-routing.md#eval-contract)；
 
 <a id="sp-r1-15"></a>
 ### SP-R1-15 一面15：Coding Agent怎样定位代码
@@ -410,9 +407,9 @@ grep/rg按字面或正则找文本，向量检索按语义找候选；符号索�
 
 向量能替代grep吗？标识符、字面常量与精确报错通常更适合文本搜索；修改前必须重新核对源码。
 
-**延伸阅读**
+**相关练习**
 
-[AI Coding练习](../70-practice/ai-coding-exercises.md)；[ripgrep官方说明](https://github.com/BurntSushi/ripgrep)。
+[AI Coding练习](../70-practice/ai-coding-exercises.md)；
 
 <a id="sp-r1-16"></a>
 ### SP-R1-16 一面16：跨语言解析与Go符号导出有什么难点
@@ -437,9 +434,7 @@ grep/rg按字面或正则找文本，向量检索按语义找候选；符号索�
 
 所有同名package都合并吗？包名不足以唯一定位，须核对包路径和构建身份；大写也不是完整导出条件。
 
-**延伸阅读**
-
-[Go导出规则](https://go.dev/ref/spec#Exported_identifiers)；[go/packages](https://pkg.go.dev/golang.org/x/tools/go/packages)；[Tree-sitter](https://tree-sitter.github.io/tree-sitter/)。
+**相关练习**
 
 <a id="sp-r1-17"></a>
 ### SP-R1-17 一面17：工具发现怎样评测准确性与Token收益
@@ -464,13 +459,13 @@ grep/rg按字面或正则找文本，向量检索按语义找候选；符号索�
 
 Recall@k怎样算？按任务的相关集合定义并报告分母；等价替代工具可另测“至少一个可用工具命中”，别混用口径。
 
-**延伸阅读**
+**相关练习**
 
-[Schema发现与预算](31-tool-mcp-and-skill-contracts.md#schema-discovery-budget)；[Anthropic工具按需发现](https://www.anthropic.com/engineering/advanced-tool-use)。
+[Schema发现与预算](31-tool-mcp-and-skill-contracts.md#schema-discovery-budget)；
 
 ## 二面：需求到交付与Agent工程设计
 
-下面练习从需求到交付。口述示例可结合自己的实现展开；PRD、TD 和 Skill 的格式需按团队与运行平台调整。官方延伸资料核查于2026-10-13。
+下面练习从需求到交付。口述示例可结合自己的实现展开；PRD、TD 和 Skill 的格式需按团队与运行平台调整。
 
 <a id="sp-r2-01"></a>
 ### SP-R2-01 二面1：从需求到编码测试的完整流程
@@ -485,7 +480,7 @@ Recall@k怎样算？按任务的相关集合定义并报告分母；等价替代
 
 **追问与误区**：为何不直接编码？小改动可压缩文档，但仍要明确验收。检查点只恢复执行状态，不能自动撤回已发生的外部动作。
 
-**延伸阅读**：[模块与通信合同](26-agent-production-design-lab.md#module-contracts)；[GitHub Spec Kit流程示例](https://github.com/github/spec-kit)；[LangGraph恢复与幂等](https://docs.langchain.com/oss/python/langgraph/functional-api)。
+**相关练习**：[模块与通信合同](26-agent-production-design-lab.md#module-contracts)；
 
 <a id="sp-r2-02"></a>
 ### SP-R2-02 二面2：需求不清时怎样澄清
@@ -500,7 +495,7 @@ Recall@k怎样算？按任务的相关集合定义并报告分母；等价替代
 
 **追问与误区**：怎样确保百分之百完整？无法保证，应通过场景清单、评审和变更机制降低遗漏。不要把模型生成的用户画像、预算或性能目标当成用户已提出的要求。
 
-**延伸阅读**：[需求到实现练习](../70-practice/ai-coding-exercises.md)；[Spec Kit的规格驱动示例](https://github.com/github/spec-kit)；[任务专用评测](https://developers.openai.com/api/docs/guides/evaluation-best-practices)。
+**相关练习**：[需求到实现练习](../70-practice/ai-coding-exercises.md)；
 
 <a id="sp-r2-03"></a>
 ### SP-R2-03 二面3：Spec、技术设计与任务拆解有何区别
@@ -515,7 +510,7 @@ Recall@k怎样算？按任务的相关集合定义并报告分母；等价替代
 
 **追问与误区**：能否边做边设计？可以迭代，但关键决策与风险不能省略。拆得越细不一定越好，过细会增加协调开销，应按可交付、可验证和依赖关系划分。
 
-**延伸阅读**：[规划策略与依赖](26-agent-production-design-lab.md#planning-strategies)；[Spec Kit的specification、plan、tasks示例](https://github.com/github/spec-kit)；[微软ADR建议](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record)。
+**相关练习**：[规划策略与依赖](26-agent-production-design-lab.md#planning-strategies)；
 
 <a id="sp-r2-04"></a>
 ### SP-R2-04 二面4：技术设计Agent的输入、工具与输出
@@ -530,7 +525,7 @@ Recall@k怎样算？按任务的相关集合定义并报告分母；等价替代
 
 **追问与误区**：工具越多越好吗？应围绕真实设计缺口选择，重叠能力会增加误用。TD不是代码生成前的漂亮架构图，必须能解释组件职责、交互和失败路径。
 
-**延伸阅读**：[工具与失败合同](26-agent-production-design-lab.md#tool-contracts)；[Anthropic工具设计](https://www.anthropic.com/engineering/writing-tools-for-agents)；[微软架构决策记录](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record)。
+**相关练习**：[工具与失败合同](26-agent-production-design-lab.md#tool-contracts)；
 
 <a id="sp-r2-05"></a>
 ### SP-R2-05 二面5：新系统、改造、重构与数据迁移怎样分模板
@@ -545,7 +540,7 @@ Recall@k怎样算？按任务的相关集合定义并报告分母；等价替代
 
 **追问与误区**：双写一定安全吗？还要处理部分成功、顺序、去重和一致性。不能把破坏性迁移的“有备份”直接当成可快速回退的证明。
 
-**延伸阅读**：[生产系统合同](26-agent-production-design-lab.md#module-contracts)；[代码实践与验收](../70-practice/ai-coding-exercises.md)；[微软ADR的方案及后果记录](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record)。
+**相关练习**：[生产系统合同](26-agent-production-design-lab.md#module-contracts)；[代码实践与验收](../70-practice/ai-coding-exercises.md)；
 
 <a id="sp-r2-06"></a>
 ### SP-R2-06 二面6：PRD与TD Agent的System Prompt怎样写
@@ -566,7 +561,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：提示是否越长越好？先明确合同，再按失败案例补例子；把仓库全文塞进去会稀释重点。
 
-**延伸阅读**：[System Prompt与有界循环](27-practical-agent-scenarios.md#system-prompt)；[OpenAI提示工程](https://developers.openai.com/api/docs/guides/prompt-engineering)；[Structured Outputs边界](https://developers.openai.com/api/docs/guides/structured-outputs)。
+**相关练习**：[System Prompt与有界循环](27-practical-agent-scenarios.md#system-prompt)；
 
 <a id="sp-r2-07"></a>
 ### SP-R2-07 二面7：用户不同意方案时怎样修改
@@ -581,7 +576,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：用户只说“不行”怎么办？问最小的定位问题，必要时给成本、功能和风险选项。Agent能建议取舍，但不能替用户虚构业务优先级。
 
-**延伸阅读**：[任务冲突与约束](27-practical-agent-scenarios.md#goal-conflict)；[微软ADR的Accepted与Superseded记录](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record)。
+**相关练习**：[任务冲突与约束](27-practical-agent-scenarios.md#goal-conflict)；
 
 <a id="sp-r2-08"></a>
 ### SP-R2-08 二面8：不看下游代码，怎样比较PRD与TD质量
@@ -596,7 +591,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：模型评委是否客观？会有顺序、冗长和同源偏差，需人工抽检及位置对换。用户“看起来专业”也是反馈，不能代替事实核对。
 
-**延伸阅读**：[评测合同与判分](25-agent-evaluation-and-routing.md#grader-choice)；[OpenAI评测实践](https://developers.openai.com/api/docs/guides/evaluation-best-practices)。
+**相关练习**：[评测合同与判分](25-agent-evaluation-and-routing.md#grader-choice)；
 
 <a id="sp-r2-09"></a>
 ### SP-R2-09 二面9：Coding Agent幻觉怎样影响交付
@@ -611,7 +606,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：降低temperature是否足够？不能替代证据和验证。RAG、更多Agent或严格JSON也不能自动证明代码正确，权限控制必须落在执行入口。
 
-**延伸阅读**：[工具、幻觉与验证](26-agent-production-design-lab.md#tool-contracts)；[代码实践](../70-practice/ai-coding-exercises.md)；[Structured Outputs仍可能出错](https://developers.openai.com/api/docs/guides/structured-outputs)。
+**相关练习**：[工具、幻觉与验证](26-agent-production-design-lab.md#tool-contracts)；[代码实践](../70-practice/ai-coding-exercises.md)；
 
 <a id="sp-r2-10"></a>
 ### SP-R2-10 二面10：知识库入库前怎样解析、标准化与切分
@@ -626,7 +621,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：重叠越大越好吗？会增加重复召回与费用。语义切分也可能拆坏条件，不能仅靠片段“读起来通顺”验收。
 
-**延伸阅读**：[分块与稳定证据实验](30-rag-data-and-chunking-lab.md#document-chunk-policy)；[微软结构感知切分](https://learn.microsoft.com/en-us/azure/search/search-how-to-semantic-chunking)；[OpenAI检索与索引](https://developers.openai.com/api/docs/guides/retrieval)。
+**相关练习**：[分块与稳定证据实验](30-rag-data-and-chunking-lab.md#document-chunk-policy)；
 
 <a id="sp-r2-11"></a>
 ### SP-R2-11 二面11：检索结果何时达标，何时继续或停止
@@ -641,7 +636,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：查到很多篇是否足够？同源转载可能只是一条证据。冲突不能靠“多数文档赞同”解决，应核对有效版本、原始来源和适用条件。
 
-**延伸阅读**：[上下文覆盖与多样性](30-rag-data-and-chunking-lab.md#context-diversity)；[答案层验证](30-rag-data-and-chunking-lab.md#answer-layer-and-debug)；[OpenAI检索排序选项](https://developers.openai.com/api/docs/guides/retrieval)。
+**相关练习**：[上下文覆盖与多样性](30-rag-data-and-chunking-lab.md#context-diversity)；[答案层验证](30-rag-data-and-chunking-lab.md#answer-layer-and-debug)；
 
 <a id="sp-r2-12"></a>
 ### SP-R2-12 二面12：检索有哪些策略，工具与策略有何区别
@@ -656,7 +651,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：一个工具内部已有混合检索，还需要Agent规划吗？仍需决定查询目标与缺口，但不必在外部重复实现内部策略。策略应依据工具实际能力，不能假定所有搜索API都支持过滤与重排。
 
-**延伸阅读**：[按故障选择检索优化](30-rag-data-and-chunking-lab.md#retrieval-recipe-matrix)；[微软混合检索说明](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview)；[OpenAI检索合同](https://developers.openai.com/api/docs/guides/retrieval)。
+**相关练习**：[按故障选择检索优化](30-rag-data-and-chunking-lab.md#retrieval-recipe-matrix)；
 
 <a id="sp-r2-13"></a>
 ### SP-R2-13 二面13：上线后怎样衡量质量与真实反馈
@@ -671,7 +666,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：没有反馈怎么办？抽检代表性样本并用可验证事件交叉核对。业务增长受价格、渠道等因素影响，不能把上线前后变化直接归因于Agent升级。
 
-**延伸阅读**：[线上抽检与漂移](25-agent-evaluation-and-routing.md#online-audit)；[Trace与时延](27-practical-agent-scenarios.md#trace-latency)；[OpenAI持续评测实践](https://developers.openai.com/api/docs/guides/evaluation-best-practices)。
+**相关练习**：[线上抽检与漂移](25-agent-evaluation-and-routing.md#online-audit)；[Trace与时延](27-practical-agent-scenarios.md#trace-latency)；
 
 <a id="sp-r2-14"></a>
 ### SP-R2-14 二面14：无限检索或重复调用怎样处理
@@ -686,7 +681,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：最多循环三次可以吗？可作为明确的任务预算，但不通用；应结合缺口、风险及异步过程定义。Prompt提醒“别循环”只能辅助，程序仍需强制预算与状态检查。
 
-**延伸阅读**：[有界Agent循环](01-agent-loop-tools-and-state.md#a06)；[合理轮询与结束条件](31-tool-mcp-and-skill-contracts.md#termination-and-polling)；[LangGraph checkpoint与幂等](https://docs.langchain.com/oss/python/langgraph/functional-api)。
+**相关练习**：[有界Agent循环](01-agent-loop-tools-and-state.md#a06)；[合理轮询与结束条件](31-tool-mcp-and-skill-contracts.md#termination-and-polling)；
 
 <a id="sp-r2-15"></a>
 ### SP-R2-15 二面15：Function Calling原理与职责边界
@@ -701,7 +696,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：普通JSON输出是否等于Function Calling？它可描述动作，但运行器合同及执行链不同。服务端内置工具可能由平台执行，不能由此推断自定义函数也会自动运行。
 
-**延伸阅读**：[基础Function Calling](01-agent-loop-tools-and-state.md#a03)；[工具回合身份合同](31-tool-mcp-and-skill-contracts.md#tool-result-contract)；[OpenAI官方调用流程](https://developers.openai.com/api/docs/guides/function-calling)。
+**相关练习**：[基础Function Calling](01-agent-loop-tools-and-state.md#a03)；[工具回合身份合同](31-tool-mcp-and-skill-contracts.md#tool-result-contract)；
 
 <a id="sp-r2-16"></a>
 ### SP-R2-16 二面16：多轮对话超出上下文怎样处理
@@ -716,7 +711,7 @@ TD系统提示：你负责技术设计，不自动修改或发布。读取确认
 
 **追问与误区**：每隔固定十轮摘要是否合理？应结合token预算与阶段边界校准，不同轮工具量差别很大。向量检索可能漏掉稀有但关键限制，所以权威任务状态不能只靠相似度召回。
 
-**延伸阅读**：[压缩与保真验证](03-memory-and-context.md#a20)；[上下文对照实验](25-agent-evaluation-and-routing.md#context-ablation)；[OpenAI Compaction合同](https://developers.openai.com/api/docs/guides/compaction)。
+**相关练习**：[压缩与保真验证](03-memory-and-context.md#a20)；[上下文对照实验](25-agent-evaluation-and-routing.md#context-ablation)；
 
 <a id="sp-r2-17"></a>
 ### SP-R2-17 二面17：现场设计会议转写总结Skill
@@ -747,6 +742,6 @@ actions[{task,owner|null,due|null,evidence_ids}]；open_questions；warnings。
 
 **指标与失败边界**：标注集测转写CER/WER、说话人分离错误、决定及行动准确率、证据覆盖和隐私违规；语音API未提供的置信度不得编造。
 
-**追问与误区**：术语提示与说话人参考是否随便混用？应核对所选模型支持。官方分离接口可提供speaker/start/end，不保证实名归属；模糊口语不能由总结模型自行补全。
+**追问与误区**：术语提示与说话人参考是否随便混用？应核对所选模型支持。支持说话人分离的接口可能提供speaker/start/end，不保证实名归属；模糊口语不能由总结模型自行补全。
 
-**延伸阅读**：[Skill包与评测](31-tool-mcp-and-skill-contracts.md#skill-package-contract)；[Agent Skills公开格式](https://agentskills.io/specification)；[OpenAI转写与说话人分离](https://developers.openai.com/api/docs/guides/speech-to-text)；[转写API参数合同](https://developers.openai.com/api/reference/resources/audio/subresources/transcriptions/methods/create)。
+**相关练习**：[Skill包与评测](31-tool-mcp-and-skill-contracts.md#skill-package-contract)；

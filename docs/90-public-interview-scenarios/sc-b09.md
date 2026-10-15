@@ -1,6 +1,6 @@
 # SC-B09 更新数据库再删缓存只是起点
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 数据库更新成功，删缓存失败怎么办？删成功后为什么也可能读到旧值？
 
@@ -26,15 +26,13 @@
 
 画出读旧库值、写新库值、删缓存、旧值回填的四步交错，再设计版本策略。验收包括进程在提交后崩溃、缓存不可用和重复失效，不能只测试正常路径。
 
-**主题来源：** P02、P04、P17。**技术依据：** [Redis锁模式与故障边界](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/)、[AWS安全重试](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。当前Redis文档含8.4专有命令，不能原样套入旧版本。
+当前Redis文档含8.4专有命令，不能原样套入旧版本。
 
 ## 阅读与复验入口
-
-公开主题线索：[P02](../../sources/public-interviews/README.md#report-p02)、[P04](../../sources/public-interviews/README.md#report-p04)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [03-redis-and-caching](../../docs/40-backend/03-redis-and-caching.md)
 - [05-system-design-and-reliability](../../docs/40-backend/05-system-design-and-reliability.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

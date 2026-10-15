@@ -13,4 +13,4 @@ North fixture has booked order-item value 1500 cents at 2026-02-28; that include
 
 Fixed queries use bound values and LIMIT. A read-only connection and authorizer deny writes and ATTACH. Those are teaching controls, not a complete security proof. Arbitrary SQL cannot enter this route. Explain query plans rather than assuming CTEs always improve performance; tiny fixture plans do not establish production latency.
 
-Sources: [Python sqlite3](https://docs.python.org/3.12/library/sqlite3.html), [SQLite window functions](https://www.sqlite.org/windowfunctions.html), [SQLite query planning](https://www.sqlite.org/queryplanner.html). The actual recorded runtime versions are in the experiment README.
+Sources: Python sqlite3, SQLite window functions, SQLite query planning. The actual recorded runtime versions are in the experiment README.

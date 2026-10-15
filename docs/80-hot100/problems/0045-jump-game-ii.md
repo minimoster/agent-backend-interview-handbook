@@ -1,12 +1,12 @@
 # 45. 跳跃游戏 II
 
-[官方题目](https://leetcode.cn/problems/jump-game-ii/) · MEDIUM · 官方分类：贪心算法
+难度：MEDIUM · 分类：贪心算法
 
 ## 题意与接口
 
 接口：`Solution.jump(nums: list[int]) -> int`。跳跃规则同第 55 题，求到达末尾的最少跳跃次数。官方保证终点可达；长度 1 至 10⁴，最大步长非负。
 
-约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/jump-game-ii/)核对；以下为原创概述，并非完整题面转载。
+约束与规则于 2026-10-09 查阅官方英文题面核对；以下为原创概述，并非完整题面转载。
 
 ## 从朴素方法到优化
 
@@ -69,22 +69,12 @@ class Solution:
 
 到终点后无需再从它出发。若只把当前循环改成扫描全部下标，`[0]`也会误加一跳，正确值为0。若连到达后的break也删掉，`[1,1,0]`的边界依次0→1→2，扫描终点2时又加一次，得到3而非2。当前的终点排除与提前break共同防止到达后多计数。[可执行核对](../../../examples/hot100/test_followup_algorithms.py)保留了第二个失败轨迹。
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/jump-game-ii/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0045.Jump%20Game%20II/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/greedy/0045-jump-game-ii.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/algo/greedy/0045-jump-game-ii.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[45. 跳跃游戏 II](https://www.bilibili.com/video/BV1Y24y1r7XZ)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：把当前可达范围看作一层，解释何时步数增加，以及到达最后下标后为何不再加一步。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

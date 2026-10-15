@@ -1,12 +1,11 @@
 # 题目索引
 
-[返回总目录](README.md) · [完整学习路线](docs/00-guide/expanded-map-and-study-plan.md) · [覆盖状态](coverage/README.md)
-
+[返回总目录](README.md) · [完整学习路线](docs/00-guide/expanded-map-and-study-plan.md)
 按题号、主题与优先级查找：A/G/J/B 为基础题，FA/FJ/FB 为扩展题，S 为 SQL，R 为推理。
 
-收录361道讲义题和100道 Hot100 题。[验证记录](coverage/VALIDATION.md)提供测试方法与执行结果。
+收录361道讲义题和100道 Hot100 题。
 
-另有[15道算法基础资源题](docs/85-algorithm-supplement/README.md)，按题号、分类和难度检索。[代码随想录资源目录](sources/carl-hot100-resources.md)。
+另有[15道算法基础补充题](docs/85-algorithm-supplement/README.md)，按题号、分类和难度检索。。
 
 ## Agent基线 · 36题
 
@@ -390,7 +389,7 @@
 - [R11 五人顺序取100颗豆，最多和最少者淘汰，谁最安全？](docs/70-practice/reasoning-twelve-puzzles.md#r11) · P2
 - [R12 20元汽水、2空瓶换1瓶，到底39还是40瓶？](docs/70-practice/reasoning-twelve-puzzles.md#r12) · P2
 
-## 面经算法补充 · 6题
+## 算法变体补充 · 6题
 
 - [X01 原地反转句中单词，Python字符串可以直接改吗？](docs/70-practice/interview-algorithm-supplements.md#x01) · P1
 - [X02 奇数位递增、偶数位递减的链表，如何线性排序？](docs/70-practice/interview-algorithm-supplements.md#x02) · P1
@@ -554,26 +553,25 @@
 - [LC31 下一个排列](docs/80-hot100/problems/0031-next-permutation.md) · 中等
 - [LC287 寻找重复数](docs/80-hot100/problems/0287-find-the-duplicate-number.md) · 中等
 
+## 算法基础补充 · 15道算法基础补充题（不计入Hot100）
 
-## 算法基础补充 · 15道外部资源题（不计入Hot100）
+15道独立补充练习，按题意、原理、答案与Python示例复习；不计入Hot100。
 
-来自代码随想录（程序员Carl）的官方讲解、Python区和本题/相关视频外链；只有资源与自主复习提示，没有新增原创实现或AC记录。
-
-- [77. 组合](docs/85-algorithm-supplement/README.md#problem-77) · 回溯 · 中等 · 外部资源
-- [704. 二分查找](docs/85-algorithm-supplement/README.md#problem-704) · 二分查找 · 简单 · 外部资源
-- [27. 移除元素](docs/85-algorithm-supplement/README.md#problem-27) · 双指针 · 简单 · 外部资源
-- [977. 有序数组的平方](docs/85-algorithm-supplement/README.md#problem-977) · 双指针 · 简单 · 外部资源
-- [209. 长度最小的子数组](docs/85-algorithm-supplement/README.md#problem-209) · 滑动窗口 · 中等 · 外部资源
-- [59. 螺旋矩阵II](docs/85-algorithm-supplement/README.md#problem-59) · 矩阵 · 中等 · 外部资源
-- [203. 移除链表元素](docs/85-algorithm-supplement/README.md#problem-203) · 链表 · 简单 · 外部资源
-- [707. 设计链表](docs/85-algorithm-supplement/README.md#problem-707) · 链表 · 中等 · 外部资源
-- [242. 有效的字母异位词](docs/85-algorithm-supplement/README.md#problem-242) · 哈希 · 简单 · 外部资源
-- [349. 两个数组的交集](docs/85-algorithm-supplement/README.md#problem-349) · 哈希 · 简单 · 外部资源
-- [202. 快乐数](docs/85-algorithm-supplement/README.md#problem-202) · 哈希 · 简单 · 外部资源
-- [344. 反转字符串](docs/85-algorithm-supplement/README.md#problem-344) · 字符串 · 简单 · 外部资源
-- [151. 翻转字符串里的单词](docs/85-algorithm-supplement/README.md#problem-151) · 字符串 · 中等 · 外部资源
-- [232. 用栈实现队列](docs/85-algorithm-supplement/README.md#problem-232) · 栈与队列 · 简单 · 外部资源
-- [225. 用队列实现栈](docs/85-algorithm-supplement/README.md#problem-225) · 栈与队列 · 简单 · 外部资源
+- [77. 组合](docs/85-algorithm-supplement/README.md#problem-77) · 回溯 · 中等
+- [704. 二分查找](docs/85-algorithm-supplement/README.md#problem-704) · 二分查找 · 简单
+- [27. 移除元素](docs/85-algorithm-supplement/README.md#problem-27) · 双指针 · 简单
+- [977. 有序数组的平方](docs/85-algorithm-supplement/README.md#problem-977) · 双指针 · 简单
+- [209. 长度最小的子数组](docs/85-algorithm-supplement/README.md#problem-209) · 滑动窗口 · 中等
+- [59. 螺旋矩阵II](docs/85-algorithm-supplement/README.md#problem-59) · 矩阵 · 中等
+- [203. 移除链表元素](docs/85-algorithm-supplement/README.md#problem-203) · 链表 · 简单
+- [707. 设计链表](docs/85-algorithm-supplement/README.md#problem-707) · 链表 · 中等
+- [242. 有效的字母异位词](docs/85-algorithm-supplement/README.md#problem-242) · 哈希 · 简单
+- [349. 两个数组的交集](docs/85-algorithm-supplement/README.md#problem-349) · 哈希 · 简单
+- [202. 快乐数](docs/85-algorithm-supplement/README.md#problem-202) · 哈希 · 简单
+- [344. 反转字符串](docs/85-algorithm-supplement/README.md#problem-344) · 字符串 · 简单
+- [151. 翻转字符串里的单词](docs/85-algorithm-supplement/README.md#problem-151) · 字符串 · 中等
+- [232. 用栈实现队列](docs/85-algorithm-supplement/README.md#problem-232) · 栈与队列 · 简单
+- [225. 用队列实现栈](docs/85-algorithm-supplement/README.md#problem-225) · 栈与队列 · 简单
 
 ## 原创Agent专题与工程附录（不新增编号题）
 
@@ -589,11 +587,11 @@
 - [技术、HR与负责人追问准备](docs/90-interview/01-evidence-based-interview-preparation.md)
 - [KV生命周期与容量算例](docs/10-agent/24-inference-and-serving-boundaries.md#kv-lifecycle)
 
-沿用现有题号，361道讲义详解、100道Hot100、15道外部资源题与26张场景卡分别计数。
+沿用现有题号，361道讲义详解、100道Hot100、15道算法基础补充题与26张场景卡分别计数。
 
 ## 虾皮Agent一二面：独立34题专项补充
 
-一面17题、二面17题；与原361道讲义题、Hot100及SC场景卡分开计数。基础主题已有答案时链接原章，SP编号用于本材料的复习与核对。[来源及验证边界](sources/shopee-agent-interview-supplement.md)。
+一面17题、二面17题；与原361道讲义题、Hot100及SC场景卡分开计数。基础主题已有答案时链接原章，SP编号用于本材料的复习与核对。。
 
 - [SP-R1-01 怎样选择检索方式，向量没结果怎么办？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-01)
 - [SP-R1-02 知识库怎样增量更新与处理局部修改？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-02)

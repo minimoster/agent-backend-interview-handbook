@@ -6,7 +6,7 @@
 
 ### G14 [P0] map 使用有哪些必知边界？sync.Map 适合所有场景吗？
 
-**知识点详解** 
+**知识点详解**
 
 map 是 key 到 value 的映射。nil map 可读取、len 为零，但写入会 panic；读取不存在的 key 得到 value 零值，需用 `v, ok := m[k]` 区分“无此项”与“值就是零”。遍历顺序没有保证，输出要稳定时应取 key 排序。
 
@@ -20,13 +20,11 @@ map 是 key 到 value 的映射。nil map 可读取、len 为零，但写入会 
 
 **误区** ：map 扩容时才不安全；sync.Map 让整个业务事务自动原子。
 
-**来源** ：[GO-S21 Go maps in action](https://go.dev/blog/maps)；[GO-S13 sync.Map](https://pkg.go.dev/sync#Map)。
-
 <a id="g15"></a>
 
 ### G15 [P1] Go map 底层还是“8 个桶元素＋溢出桶”吗？
 
-**知识点详解** 
+**知识点详解**
 
 先问 Go 版本。Go 1.24 内置 map 换为基于 Swiss Table 的实现，旧教程中的 hmap、溢出桶和旧扩容细节不能当成所有版本答案。哈希表的核心仍是：对 key 求 hash，快速缩小候选位置，再做 key 相等比较。
 
@@ -40,19 +38,17 @@ Swiss Table 将槽位按组组织，用控制信息记录槽位状态和部分�
 
 **误区** ：把 Swiss Table 说成 Go map 新增并发安全；死背每个常数却不能说明为何筛选候选能更快。
 
-**来源** ：[GO-S22 Go 1.24](https://go.dev/doc/go1.24)；[GO-S23 Faster Go maps with Swiss Tables](https://go.dev/blog/swisstable)。
-
 <a id="g16"></a>
 
 ### G16 [P0] slice 的 len、cap、append、共享底层数组怎么理解？
 
-**知识点详解** 
+**知识点详解**
 
 数组长度是类型的一部分；slice 是对一段底层数组的描述，通常用数据指针、长度、容量理解。len 是当前能按索引访问的元素数，cap 是从切片起点到可延展边界的容量。slice 作为参数会复制描述信息，但可能继续共享同一底层数组。
 
 append 返回新的 slice 描述，必须接住。容量够时可复用原数组；不够则分配新数组并复制已有元素。旧 slice 是否还能看到新增后的修改，要看是否共享，不能一律说“append 深拷贝”。扩容倍数受版本、元素大小、分配器取整影响，不写死口诀。
 
-**具体例子** 
+**具体例子**
 
 ```go
 a := make([]int, 1, 3)
@@ -68,13 +64,11 @@ b[0] = 7
 
 **误区** ：cap 范围里的元素都能直接用索引访问；给函数传 slice 等于完整复制数据。
 
-**来源** ：[GO-S24 Slices: usage and internals](https://go.dev/blog/slices-intro)；[GO-S25 runtime slice](https://go.dev/src/runtime/slice.go)。
-
 <a id="g17"></a>
 
 ### G17 [P1] 只保留一个小切片，为何可能占用很多内存？
 
-**知识点详解** 
+**知识点详解**
 
 GC 关注可达的底层对象，不按 slice 的 len 判断应该保留多少字节。一个小切片指向大数组的一部分，可能让整个大数组都无法回收。另一个问题是删除 slice 中元素时，只缩短 len 但未清理尾部指针，底层数组仍可能保留对对象的引用。
 
@@ -88,13 +82,11 @@ GC 关注可达的底层对象，不按 slice 的 len 判断应该保留多少�
 
 **误区** ：len 变小内存就按比例归还 OS；GC 能识别“我以后不会用了”。
 
-**来源** ：[GO-S26 Go slices: avoiding memory leaks](https://go.dev/blog/generic-slice-functions)；[GO-S27 slices 包](https://pkg.go.dev/slices)。
-
 <a id="g18"></a>
 
 ### G18 [P0] make、new、零值有什么区别？
 
-**知识点详解** 
+**知识点详解**
 
 Go 重视可用零值：例如 Mutex 无需额外初始化即可使用，而 nil map 的写入不行。常见形式 `new(T)` 得到指向 T 零值的指针；`make` 用于 slice、map、channel，建立这些类型可用的内部结构，返回该类型本身，不是统一返回指针。
 
@@ -108,19 +100,17 @@ Go 重视可用零值：例如 Mutex 无需额外初始化即可使用，而 nil
 
 **误区** ：make 一定堆分配；所有类型零值都能直接执行任何操作。
 
-**来源** ：[GO-S28 Effective Go：Allocation](https://go.dev/doc/effective_go#allocation_new)；[GO-S29 Go 1.26](https://go.dev/doc/go1.26)。
-
 <a id="g19"></a>
 
 ### G19 [P0] 为什么 interface 里放了 nil，比较却不等于 nil？
 
-**知识点详解** 
+**知识点详解**
 
 可把接口值理解为“动态类型＋动态值”。接口本身为 nil，需要两者都没有。把一个 `*MyError` 类型的 nil 指针赋给 error，动态类型仍为 `*MyError`，因此接口不为 nil。这是语义理解模型，不要求把所有接口内部表示背成固定 ABI。
 
 接口通过方法集合实现，`T` 与 `*T` 的方法集合有区别：指针接收者的方法不会因此让所有 T 值都满足相同接口。调用普通方法时编译器可在允许的场景自动取地址，不代表接口赋值规则也自动放宽。
 
-**具体例子** 
+**具体例子**
 
 ```go
 var p *MyError = nil // 假设 *MyError 实现了 error
@@ -136,13 +126,11 @@ fmt.Println(err == nil) // false
 
 **误区** ：interface 是“任何东西都同一个类型”；`err != nil` 总表示内部指针非 nil。
 
-**来源** ：[GO-S30 FAQ：nil error](https://go.dev/doc/faq#nil_error)；[GO-S31 Method sets](https://go.dev/wiki/MethodSets)。
-
 <a id="g20"></a>
 
 ### G20 [P0] errors.Is、errors.As、%w 如何配合？
 
-**知识点详解** 
+**知识点详解**
 
 error 是接口，业务应既保留排错上下文，也让调用者能识别错误类别。`fmt.Errorf("读取任务: %w", err)` 保留被包装的错误链。Is 用来判断是否匹配目标错误；As 用来沿链找到符合目标类型的错误信息。直接比较 `err.Error()` 的字符串很脆弱，文案改动、翻译或包装都会改变文本。
 
@@ -156,19 +144,17 @@ error 是接口，业务应既保留排错上下文，也让调用者能识别�
 
 **误区** ：把错误忽略后只返回零值；为了避免 error 到处 panic。
 
-**来源** ：[GO-S32 Working with Errors](https://go.dev/blog/go1.13-errors)；[GO-S33 errors 包](https://pkg.go.dev/errors)。
-
 <a id="g21"></a>
 
 ### G21 [P0] defer、panic、recover 的执行顺序是什么？
 
-**知识点详解** 
+**知识点详解**
 
 defer 注册延后执行的调用，参数通常在注册时求值，调用在函数返回阶段执行；多个 defer 后注册的先执行。命名返回值先接收 return 表达式的结果，再执行 defer，因此 defer 能修改命名返回值，但这种写法要慎用，避免阅读困难。
 
 panic 会沿当前 G 的调用栈展开并执行 defer。recover 必须在该 G 的合适 deferred 函数里直接调用才能截获正在发生的 panic；父 G 无法靠自己的 recover 捕获子 G 的 panic。recover 应放在服务边界记录异常，不要把正常业务错误都转成 panic。
 
-**具体例子** 
+**具体例子**
 
 ```go
 func f() (n int) {
@@ -185,13 +171,11 @@ func f() (n int) {
 
 **误区** ：defer 中看到的变量总是注册那一刻的值；忽略“参数值”与“闭包读取变量”的区别。
 
-**来源** ：[GO-S34 Defer, Panic, and Recover](https://go.dev/blog/defer-panic-and-recover)；[GO-S35 os.Exit](https://pkg.go.dev/os#Exit)。
-
 <a id="g22"></a>
 
 ### G22 [P1] for 循环启动 goroutine 时，变量捕获还有坑吗？
 
-**知识点详解** 
+**知识点详解**
 
 闭包会引用它使用的外部变量。旧 Go 语义中，循环变量在各次迭代复用，异步任务可能读到后来迭代的值。Go 1.22 对循环中声明的变量引入每次迭代独立变量的新语义；是否适用还要看模块声明和相关构建条件，不能只看机器安装了哪个工具链。
 
@@ -204,7 +188,5 @@ func f() (n int) {
 **常见追问** ：`for _, p := range ptrs` 每轮 p 独立，对象也独立吗？不是。如果数组中本来重复保存同一个指针，仍指向同一对象。
 
 **误区** ：Go 1.22 解决所有闭包并发问题；用一段输出偶然正确证明没有 race。
-
-**来源** ：[GO-S36 Go 1.22](https://go.dev/doc/go1.22)；[GO-S37 Fixing For Loops](https://go.dev/blog/loopvar-preview)。
 
 本节题号：G14、G15、G16、G17、G18、G19、G20、G21、G22。

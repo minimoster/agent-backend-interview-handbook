@@ -6,7 +6,7 @@
 
 ### B09 索引为什么加速查询，B 树结构适合什么查询
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 索引是另一份按规则组织的数据，帮助数据库减少候选行。InnoDB 的常规索引采用 B-tree 结构；教学里常强调其 B+ 树特征：分层定位，叶节点保存索引记录。一个“页”是存储与读取的基本单位之一，多路分支有助于控制树高；排序结构还能支持范围扫描。哈希索引更适合等值匹配，不能简单替代范围排序用途。
 
@@ -18,13 +18,11 @@
 
 **常见误区**： 声称 B+ 树查询永远是固定三次磁盘 I/O，忽略树高、缓存和数据规模。
 
-**来源**： [BS10 InnoDB 索引物理结构](https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html)、[BS11 MySQL B-tree 与哈希索引比较](https://dev.mysql.com/doc/refman/8.4/en/index-btree-hash.html)。
-
 <a id="b10"></a>
 
 ### B10 聚簇索引、二级索引、回表和覆盖索引是什么
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 在 InnoDB 中，聚簇索引包含整行数据，通常由主键决定；二级索引记录包含相应索引列以及主键。若二级索引不含查询需要的列，就可能再按主键查聚簇索引，这通常称为回表。“覆盖”描述某次查询所需列被索引覆盖，不是一种独立索引类型。
 
@@ -36,13 +34,11 @@
 
 **常见误区**： 把 InnoDB 的物理组织直接套到 PostgreSQL；认为覆盖索引在任何 MVCC 条件下都保证绝不访问其他页。
 
-**来源**： [BS12 InnoDB 聚簇与二级索引](https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html)。
-
 <a id="b11"></a>
 
 ### B11 联合索引的最左前缀应该怎样理解
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 索引 (user_id, status, created_at) 可以想成先按用户排，再在同一用户内按状态排，最后按时间排。“最左”描述索引列顺序，不是 SQL 条件写在 WHERE 中的文字顺序。前导等值条件与后续范围条件决定可以缩小多少扫描范围；范围之后的列仍可能参与过滤或覆盖，不能简单说全部失效。
 
@@ -54,13 +50,11 @@
 
 **常见误区**： 把 SQL 书写顺序当成匹配顺序；把“索引可被使用”等同于“索引使用高效”。
 
-**来源**： [BS13 MySQL 联合索引](https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html)、[BS14 PostgreSQL 18 多列索引](https://www.postgresql.org/docs/18/indexes-multicolumn.html)。
-
 <a id="b12"></a>
 
 ### B12 慢 SQL 怎样用 EXPLAIN 排查
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 执行计划描述扫描、连接、过滤和排序等操作。估算行数是优化器预测，实际行数来自真实执行；差距大时应检查统计信息和条件分布。EXPLAIN ANALYZE 会执行查询，因此对写语句不能把它当作纯只读观察。
 
@@ -72,13 +66,11 @@
 
 **常见误区**： 看到 Seq Scan 就断定错误，或把成本数字直接当成毫秒。
 
-**来源**： [BS15 PostgreSQL 使用 EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html)。
-
 <a id="b13"></a>
 
 ### B13 ACID 是什么，为什么开了事务仍会写错业务
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 原子性使事务内操作整体提交或回滚；一致性要求数据满足约束与业务不变量；隔离性控制并发事务之间的可见性；持久性使已提交结果按系统保证保存。数据库并不知道所有业务规则，应用必须正确建约束、写 SQL 和选择隔离级别。数据库事务也不会自动覆盖外部 HTTP 调用。
 
@@ -90,13 +82,11 @@
 
 **常见误区**： 把 ACID 的一致性理解为分布式多副本强一致，或认为 BEGIN 后所有并发错误都会消失。
 
-**来源**： [BS16 MySQL InnoDB 与 ACID](https://dev.mysql.com/doc/refman/8.4/en/mysql-acid.html)、[BS17 PostgreSQL 事务入门](https://www.postgresql.org/docs/18/tutorial-transactions.html)。
-
 <a id="b14"></a>
 
 ### B14 四个隔离级别怎样区分，MySQL 与 PostgreSQL 哪里不同
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 脏读是看见未提交数据；不可重复读是重复读取某行时值变化；幻读是条件查询的结果集合变化。SQL 标准规定各级别至少应排除哪些异常，具体实现可以更强。MySQL InnoDB 默认 RR；PostgreSQL 默认 RC，且其 RU 按 RC 处理，RR 不出现幻读，但仍可能有序列化异常。
 
@@ -108,13 +98,11 @@
 
 **常见误区**： 脱离数据库直接说“RR 一定有幻读”或“RR 等于串行化”。
 
-**来源**： [BS18 MySQL 8.4 隔离级别](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)、[BS19 PostgreSQL 18 隔离级别](https://www.postgresql.org/docs/18/transaction-iso.html)。
-
 <a id="b15"></a>
 
 ### B15 MVCC 怎样让读写并行，快照是什么
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： MVCC 是多版本并发控制。更新一行时，系统保留足够信息，让不同事务按可见性规则读取适合自己的版本。InnoDB 用 undo 信息构造旧版本；“快照”是可见性视图，不是给每个事务复制一整份数据库。普通一致性读通常不需要对读取行加锁，但写操作和锁定读仍需并发控制。
 
@@ -126,13 +114,11 @@
 
 **常见误区**： 说 MVCC 完全不加锁；把 undo 当成只用于手动回滚；把 MySQL 的 Read View 细节直接套到其他数据库。
 
-**来源**： [BS20 InnoDB 多版本机制](https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html)、[BS21 InnoDB 一致性非锁定读](https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html)。
-
 <a id="b16"></a>
 
 ### B16 快照读、锁定读、记录锁和间隙锁有什么关系
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 普通一致性 SELECT 按快照读取；SELECT … FOR UPDATE 会锁定相应记录以协调后续修改。InnoDB 的记录锁作用在索引记录上；间隙锁关注记录之间的空隙，主要用于限制插入；next-key 锁可理解为记录及其前方间隙的组合。是否使用这些锁取决于隔离级别、索引和查询条件。
 
@@ -144,13 +130,11 @@
 
 **常见误区**： 说“行锁只锁 WHERE 返回的那一行”，忽略扫描到的索引范围与隔离级别。
 
-**来源**： [BS22 InnoDB 锁](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html)、[BS23 InnoDB 锁定读](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html)。
-
 <a id="b17"></a>
 
 ### B17 死锁为什么发生，应用应该怎么处理
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 死锁是事务相互等待对方持有的资源，形成等待环。数据库可以检测并回滚某个事务以打破环；这并不代表数据库坏了。统一访问顺序、缩短事务、减少锁范围可降低概率，但应用仍须处理可重试错误。
 
@@ -162,13 +146,11 @@
 
 **常见误区**： 把等待超时都叫死锁；把无限重试当成可靠性；在持锁事务里等待外部慢接口。
 
-**来源**： [BS24 MySQL 减少与处理死锁](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks-handling.html)。
-
 <a id="b18"></a>
 
 ### B18 两个请求同时抢最后一件商品，怎样避免超卖
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： “先查库存&gt;0，再减库存”是两个步骤，多个请求可能同时通过检查。将条件和修改放进同一条 UPDATE，让数据库协调并发，再检查受影响行数。订单创建与库存变更还需放入同一数据库事务；重复请求用唯一业务键约束。
 
@@ -180,13 +162,13 @@
 
 **常见误区**： 只在单机内存上锁；认为用了 Redis 锁就无需数据库约束。
 
-**来源**： [BS25 MySQL UPDATE](https://dev.mysql.com/doc/refman/8.4/en/update.html)、[BS26 PostgreSQL 约束](https://www.postgresql.org/docs/18/ddl-constraints.html)。SQL 与业务流程为原创练习。
+SQL 与业务流程为原创练习。
 
 <a id="b19"></a>
 
 ### B19 深分页为什么慢，游标分页怎样设计
 
-**优先级：P1** 
+**优先级：P1**
 
 **知识点详解**： OFFSET 跳过的行仍需由查询处理，偏移很大时可能昂贵。游标分页将上一页最后一行的排序键作为下一页条件，使数据库有机会从索引相应位置继续。必须使用确定的排序，通常加唯一键解决时间相同的情况。
 
@@ -198,13 +180,13 @@
 
 **常见误区**： 没有 ORDER BY 就分页；只用不唯一的时间戳导致漏行或重复。
 
-**来源**： [BS27 PostgreSQL LIMIT 与 OFFSET](https://www.postgresql.org/docs/18/queries-limit.html)。游标方案为基于排序语义的原创示例。
+游标方案为基于排序语义的原创示例。
 
 <a id="b20"></a>
 
 ### B20 LEFT JOIN 为什么有时写着写着变成了 INNER JOIN
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： LEFT JOIN 会保留左表未匹配行，并把右表列补为 NULL。ON 决定是否匹配；WHERE 在连接后过滤结果。若 WHERE 要求右表某列等于特定值，补 NULL 的行就通常被排除。NULL 要用 IS NULL 判断，不能靠 = NULL。
 
@@ -216,13 +198,11 @@
 
 **常见误区**： 只用都有订单的样本测试；忽略一对多连接会扩增行数，随后把重复数据错误求和。
 
-**来源**： [BS28 PostgreSQL 表表达式与连接](https://www.postgresql.org/docs/18/queries-table-expressions.html)、[BS74 PostgreSQL 聚合函数](https://www.postgresql.org/docs/18/functions-aggregate.html)。
-
 <a id="b21"></a>
 
 ### B21 每个用户取最近三条订单，窗口函数怎么用
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 窗口函数在保留明细行的同时计算组内结果；GROUP BY 通常将多行汇总为组。ROW_NUMBER 为每行分配序号，RANK 与 DENSE_RANK 对并列值的处理不同。先明确“恰好三行”还是“前三个名次包含并列”。
 
@@ -233,7 +213,5 @@
 **追问**： 为什么要用子查询？窗口结果与 WHERE 的逻辑执行阶段不同，不能在同层 WHERE 直接筛选新窗口别名。
 
 **常见误区**： 遗漏并列规则；以为窗口函数天然减少输出行数。
-
-**来源**： [BS29 PostgreSQL 窗口函数教程](https://www.postgresql.org/docs/18/tutorial-window.html)。
 
 本节题号：B09、B10、B11、B12、B13、B14、B15、B16、B17、B18、B19、B20、B21。

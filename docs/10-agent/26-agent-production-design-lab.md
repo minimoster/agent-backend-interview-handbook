@@ -1,8 +1,7 @@
 # Agent生产设计：从模块图到可验证契约
 
-[返回Agent目录](README.md) · [验证范围](../../coverage/AGENT_LABS_VALIDATION.md)
-
-先修[A01–A08](01-agent-loop-tools-and-state.md)、[A19–A23](03-memory-and-context.md)、[A24–A30](04-streaming-and-reliable-execution.md)。本章练习模块划分、通信、规划与信息治理，把结构图转化为可验证的设计契约。核查日期2026-10-10；方案尚未实现或上线。
+[返回Agent目录](README.md)
+先修[A01–A08](01-agent-loop-tools-and-state.md)、[A19–A23](03-memory-and-context.md)、[A24–A30](04-streaming-and-reliable-execution.md)。本章练习模块划分、通信、规划与信息治理，把结构图转化为可验证的设计契约。方案尚未实现或上线。
 
 <a id="module-contracts"></a>
 ## 1. 一个完整系统有哪些职责，模块间如何通信？
@@ -27,7 +26,7 @@
 |反思重试|由失败证据形成候选经验，改善下一次|模型解释可能错，经验可能过拟合或污染记忆|
 |高层控制器|根据状态动态路由、调用子任务并合并|控制器瓶颈、调度错误与协调开销|
 
-这是一组比较维度，不是唯一分类或可靠性排名。[Tree of Thoughts](https://arxiv.org/abs/2305.10601)研究分支搜索，[ReWOO](https://arxiv.org/abs/2305.18323)研究规划与工具观察解耦，[Reflexion](https://arxiv.org/abs/2303.11366)研究反馈和语言记忆。保留方法差别，不照搬论文最佳结果到项目。
+这是一组比较维度，不是唯一分类或可靠性排名。Tree of Thoughts研究分支搜索，ReWOO研究规划与工具观察解耦，Reflexion研究反馈和语言记忆。保留方法差别，不照搬论文最佳结果到项目。
 
 依赖明确的阶段计划可要求DAG并做拓扑检查；Agent控制循环可以有环，但环必须有停止/取消/预算。两者并不矛盾。设计中还可以使用路由Skills、子任务监督、任务交接、生成后评审和有界搜索。按任务不确定性、反馈速度和验证能力选最简单可用结构，而非按Agent数量选架构。
 
@@ -49,7 +48,7 @@
 
 例如员工档案、财务报表和公共技术文档可有不同可见范围，但角色名称与等值判断只是示例，不能直接作为通用ACL。策略应默认拒绝，处理资源所有者、属性、当前角色与撤权；已排队调用在真正执行时再次检查。高影响动作还需绑定具体参数及版本的批准。
 
-注入可能来自用户输入、检索文档、网页、工具返回、图片文本和日志。把外来指令标成数据、限制工具与网络能力、隔离执行环境并检查产物；“不要理会恶意指令”只是辅助。防护测试应验证运行时没有越权动作，而不是只看模型说了拒绝。[OWASP提示注入](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)、[授权检查](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)。
+注入可能来自用户输入、检索文档、网页、工具返回、图片文本和日志。把外来指令标成数据、限制工具与网络能力、隔离执行环境并检查产物；“不要理会恶意指令”只是辅助。防护测试应验证运行时没有越权动作，而不是只看模型说了拒绝。
 
 <a id="tool-contracts"></a>
 ## 5. 工具说明、失败和幻觉怎样分层控制？

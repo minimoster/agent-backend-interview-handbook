@@ -18,8 +18,6 @@
 
 **误区** ：把 SSE 当成 WebSocket；收到第一个 token 就当任务成功。
 
-来源：[J-S54](../../sources/catalog.md#j-s54)、[J-S55](../../sources/catalog.md#j-s55)。
-
 <a id="j42"></a>
 
 ### J42 HTTP 客户端为什么不能只设一个超时
@@ -35,8 +33,6 @@
 **追问** ：三次重试每次超时 30 秒是否仍满足 30 秒接口 SLA？显然不满足。取消后的连接是否归还？需实际测试客户端行为。
 
 **误区** ：只设置 connectTimeout；对任何失败都重试；认为 Future 超时等于 TCP/远端任务取消。
-
-来源：[J-S56](../../sources/catalog.md#j-s56)、[J-S57](../../sources/catalog.md#j-s57)、[J-S19](../../sources/catalog.md#j-s19)。
 
 <a id="j43"></a>
 
@@ -54,7 +50,7 @@
 
 **误区** ：只在 prompt 写“不要越权”；认为框架能自动防住全部提示注入。
 
-来源：[J-S58](../../sources/catalog.md#j-s58)、[J-S53](../../sources/catalog.md#j-s53)。工具治理方案为基于这些能力的工程设计。
+工具治理方案为基于这些能力的工程设计。
 
 <a id="j44"></a>
 
@@ -72,7 +68,7 @@
 
 **误区** ：给顶层方法加 @Transactional 就以为所有步骤具备跨系统原子性。
 
-来源：[J-S42](../../sources/catalog.md#j-s42)、[J-S44](../../sources/catalog.md#j-s44)、[J-S45](../../sources/catalog.md#j-s45)。状态机示例为原创设计，不声称 Spring 自动提供这些语义。
+状态机示例为原创设计，不声称 Spring 自动提供这些语义。
 
 <a id="j45"></a>
 
@@ -90,8 +86,6 @@
 
 **误区** ：只测一条正常输入；用“HTTP 200”代替业务任务成功；把未测量的提升数字写进简历。
 
-来源：[J-S59](../../sources/catalog.md#j-s59)、[J-S60](../../sources/catalog.md#j-s60)、[J-S61](../../sources/catalog.md#j-s61)。
-
 <a id="j46"></a>
 
 ### J46 AI Agent 和 Java javaagent 有什么区别
@@ -107,7 +101,5 @@
 **追问** ：探针能否随意改变任何类的一切结构？受 JVM API 和重转换/重定义限制，必须看具体能力与版本。
 
 **误区** ：把安装 Java 探针包装成自己实现了 LLM Agent；不了解安全和开销就给生产 JVM 加探针。
-
-来源：[J-S62](../../sources/catalog.md#j-s62)、[J-S58](../../sources/catalog.md#j-s58)。
 
 本节题号：J41、J42、J43、J44、J45、J46。

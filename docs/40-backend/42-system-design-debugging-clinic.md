@@ -9,24 +9,24 @@
 
 **先澄清：** 哪个接口、哪个租户/实例、哪个时间窗？P99来自客户端还是网关？失败请求是否计入？最近是否发布、变更连接池或扩大返回体？把一张全局图拆成这些维度，可能就发现只是一条热点路由。
 
-**证据分层：** 接入等待→应用排队→借连接→SQL/缓存→外部调用→序列化→写出。每段看请求数、等待时长、在途数与错误。trace定位个别慢请求的依赖，指标判断总体变化；采样trace没抓到，不等于没有慢请求。[OpenTelemetry traces](https://opentelemetry.io/docs/concepts/signals/traces/)
+**证据分层：** 接入等待→应用排队→借连接→SQL/缓存→外部调用→序列化→写出。每段看请求数、等待时长、在途数与错误。trace定位个别慢请求的依赖，指标判断总体变化；采样trace没抓到，不等于没有慢请求。
 
 **原创反例：** CPU不高，DB连接全占满，线程大多在借连接。先扩大线程池只会增加等待者；数据库如果已经到容量边界，扩大连接池可能让锁竞争更糟。先问连接何时获取、是否在事务中等远端、是否及时归还，结合[Java诊所](../20-java/16-executor-failure-followups.md#java-queue-admission)。
 
 **容量直觉：** 对满足相应稳定观察条件的平均量，可用L≈λW理解在途量；λ是相同边界的吞吐率，W是平均逗留时间。它不是“QPS乘P99就得到线程池最优数”的公式。并发、吞吐与延迟不能脱离分母和边界比较。尾部恶化时更要分成功/失败和排队/执行。
 
-**继续追问：各实例P99平均可以当整体P99吗？** 不可以直接这样聚合。采用可聚合的原始分布或合适直方图桶，再计算整体分位值；直方图自身有桶误差。[Prometheus直方图与summary](https://prometheus.io/docs/practices/histograms/)
+**继续追问：各实例P99平均可以当整体P99吗？** 不可以直接这样聚合。采用可聚合的原始分布或合适直方图桶，再计算整体分位值；直方图自身有桶误差。
 
-**收束方案：** 先保护已有请求和稀缺资源，限制接纳与排队，按错误语义降级；建立小范围对照验证并保留回滚。不能因一次重启后恢复就认定根因是GC。[Google SRE过载](https://sre.google/sre-book/handling-overload/)
+**收束方案：** 先保护已有请求和稀缺资源，限制接纳与排队，按错误语义降级；建立小范围对照验证并保留回滚。不能因一次重启后恢复就认定根因是GC。
 
 <a id="design-sql-evidence"></a>
 ## 2. 索引没失效，SQL为什么还慢
 
 **起手问：** EXPLAIN显示用到了索引，但查询仍要几秒，怎么办？
 
-用索引只是执行路径的一部分。核查实际扫描/返回数量、数据分布、回表、排序和临时结果、锁等待、磁盘/缓存以及参数。返回百万行且网络慢，换一个索引不能使响应体凭空消失。对深分页，稳定排序和keyset可减少跳过成本，但API语义随之改变；要给排序键附唯一tie-breaker，不能只按时间戳分页。[MySQL8.4 EXPLAIN](https://dev.mysql.com/doc/refman/8.4/en/using-explain.html)
+用索引只是执行路径的一部分。核查实际扫描/返回数量、数据分布、回表、排序和临时结果、锁等待、磁盘/缓存以及参数。返回百万行且网络慢，换一个索引不能使响应体凭空消失。对深分页，稳定排序和keyset可减少跳过成本，但API语义随之改变；要给排序键附唯一tie-breaker，不能只按时间戳分页。
 
-**追问：读少但慢，是不是锁？** 看等待事务和阻塞事务，找它们实际SQL、持锁时间和业务路径；不要把所有WAITING都当死锁。MySQL8.4的`performance_schema.data_lock_waits`用于关联请求/阻塞锁，权限与采样视角要核对。真正死锁、普通锁等待、连接获取等待应分别处理。[data_lock_waits](https://dev.mysql.com/doc/refman/8.4/en/performance-schema-data-lock-waits-table.html)
+**追问：读少但慢，是不是锁？** 看等待事务和阻塞事务，找它们实际SQL、持锁时间和业务路径；不要把所有WAITING都当死锁。MySQL8.4的`performance_schema.data_lock_waits`用于关联请求/阻塞锁，权限与采样视角要核对。真正死锁、普通锁等待、连接获取等待应分别处理。
 
 **教学只读查询，未执行：**
 
@@ -59,7 +59,7 @@ FROM performance_schema.data_lock_waits;
 
 这些是设计问题，不能当成已完成生产迁移的步骤保证。删除、schema变更、重复事件、日志保留不足、snapshot中断、切换期间旧请求迟到都应分别演练。
 
-**继续追问：主从延迟越来越大怎么办？** 区分接收日志与应用日志的进度，按worker看错误、长事务与处理瓶颈，结合业务读陈旧影响；Seconds_Behind_Source之类单值不代表每个关键实体的最新程度。[MySQL8.4 replication applier worker状态](https://dev.mysql.com/doc/refman/8.4/en/performance-schema-replication-applier-status-by-worker-table.html)
+**继续追问：主从延迟越来越大怎么办？** 区分接收日志与应用日志的进度，按worker看错误、长事务与处理瓶颈，结合业务读陈旧影响；Seconds_Behind_Source之类单值不代表每个关键实体的最新程度。
 
 **回答边界：** 双写不能自动原子化；全量+CDC不能自动解决版本覆盖；“回滚应用代码”不能自动把新schema/新数据恢复为旧状态。[本地提交与重放](41-storage-recovery-followups.md)
 
@@ -101,4 +101,4 @@ FROM performance_schema.data_lock_waits;
 
 把以上五个场景分别画成“现象→证据→假设→复验→缓解→恢复”六格。每次补一个反例：迟到回复、旧worker、已过期队列项、位点跳号或切换后的旧写。用[Java19场景](../../examples/interview_followups/ExecutorFailureLab.java)和[SQLite29测试](../../examples/interview_followups/test_storage_lab.py)先复验小范围合同，再列目标组件仍需运行的实验。
 
-面经线索：[本轮Java公开自述](../../sources/interview-followups/README.md#java-reports)。本章的步骤、反例与答法均为原创推导，不复制原帖答案，不声称覆盖全部可能的系统设计题。
+本章的步骤、反例与答法均为教学推导，不声称覆盖全部可能的系统设计题。

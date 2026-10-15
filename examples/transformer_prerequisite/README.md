@@ -1,6 +1,6 @@
 # Transformer前向算术小实验
 
-[讲义](../../docs/10-agent/05-transformer-prerequisite.md) · [验证范围](../../coverage/TRANSFORMER_PREREQUISITE_VALIDATION.md)
+[讲义](../../docs/10-agent/05-transformer-prerequisite.md) · [配套实验与运行方式](README.md)
 
 使用Python标准库，面向第一次手算注意力的读者。所有输入和权重均为原创、手设小矩阵，不下载模型或数据，不安装第三方包，不调用外部API，不训练模型，不使用GPU。
 

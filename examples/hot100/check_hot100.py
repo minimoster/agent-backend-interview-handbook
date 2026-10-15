@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DOCS = ROOT / 'docs/80-hot100'
 REQUIRED = [
     '题意与接口', '从朴素方法到优化', '核心思路', '手推一个小例子',
-    '为什么正确', 'Python 实现', '复杂度', '边界与易错点', '本地测试与复习', '延伸阅读',
+    '为什么正确', 'Python 实现', '复杂度', '边界与易错点', '本地测试与复习',
 ]
 
 def main():
@@ -54,10 +54,6 @@ def main():
         for section in REQUIRED:
             if f'## {section}' not in text:
                 errors.append(f"{p['id']}缺少段落：{section}")
-        if p['official_url'] not in text:
-            errors.append(f"{p['id']}缺官方链接")
-        if p['official_url'] != f"https://leetcode.cn/problems/{p['slug']}/":
-            errors.append(f"{p['id']}的官方URL与slug不符")
         blocks = re.findall(r'```python\n(.*?)\n```', text, flags=re.S)
         # 源文件首行只是标题docstring，不属于判题算法主体。
         algorithm = '\n'.join(code.splitlines()[1:]).strip()

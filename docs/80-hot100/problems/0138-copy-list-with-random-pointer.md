@@ -1,12 +1,12 @@
 # 138. 随机链表的复制
 
-[官方题目](https://leetcode.cn/problems/copy-list-with-random-pointer/) · MEDIUM · 官方分类：链表
+难度：MEDIUM · 分类：链表
 
 ## 题意与接口
 
 复制含 next 和 random 的链表；random 可指向任意原节点或 None。返回完全独立的新链表。接口：`copyRandomList(head)`。
 
-约束核对（2026-10-09）：长度 0..1000；random 只指向原链节点或 None；副本不能引用任何原节点。 [官方来源](https://leetcode.com/problems/copy-list-with-random-pointer/)
+约束核对（2026-10-09）：长度 0..1000；random 只指向原链节点或 None；副本不能引用任何原节点。
 
 ## 从朴素方法到优化
 
@@ -61,22 +61,12 @@ class Solution:
 
 复习：为什么先创建所有节点，再填边，就不怕 random 指向还没遍历到的节点？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/copy-list-with-random-pointer/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0138.Copy%20List%20with%20Random%20Pointer/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
-- 官方Python：本次核验未找到本题精确匹配的官方实现区。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：验证新节点与旧节点没有身份重合；检查 random 指向自身、前方、后方和空的情况。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

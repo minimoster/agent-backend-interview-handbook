@@ -4,7 +4,7 @@
     "anchor": "fj01",
     "question_id": "FJ01",
     "title": "JDK 8 到 25 的特性怎样回答才不会把预览当正式",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -12,7 +12,7 @@
     "anchor": "fj02",
     "question_id": "FJ02",
     "title": "JVM、JRE、JDK 是什么，为什么现代 JDK 没有传统 jre 目录",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -20,7 +20,7 @@
     "anchor": "fj03",
     "question_id": "FJ03",
     "title": "基本类型、装箱和拆箱有哪些隐藏边界",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -28,7 +28,7 @@
     "anchor": "fj04",
     "question_id": "FJ04",
     "title": "String 不可变意味着什么，StringBuffer 就能保证整段业务安全吗",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -36,7 +36,7 @@
     "anchor": "fj05",
     "question_id": "FJ05",
     "title": "封装、继承、多态、重载和重写怎样放进同一个例子",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -44,7 +44,7 @@
     "anchor": "fj06",
     "question_id": "FJ06",
     "title": "身份相等、值相等、浅拷贝和深拷贝怎样区分",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -52,7 +52,7 @@
     "anchor": "fj07",
     "question_id": "FJ07",
     "title": "反射能做什么，为什么 setAccessible 不是万能钥匙",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -60,7 +60,7 @@
     "anchor": "fj08",
     "question_id": "FJ08",
     "title": "受检异常、RuntimeException 和 Error 应该怎样处理",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -68,7 +68,7 @@
     "anchor": "fj09",
     "question_id": "FJ09",
     "title": "Collection 与 Map 如何选，ArrayList 究竟怎样增长",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -76,7 +76,7 @@
     "anchor": "fj10",
     "question_id": "FJ10",
     "title": "HashMap 与 ConcurrentHashMap 的树化、扩容、同步到底哪些能背",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -84,7 +84,7 @@
     "anchor": "fj11",
     "question_id": "FJ11",
     "title": "BIO、NIO、AIO 是三个互斥包名吗",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -92,7 +92,7 @@
     "anchor": "fj12",
     "question_id": "FJ12",
     "title": "并发容器怎样选，弱一致遍历与快照迭代有何不同",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -100,7 +100,7 @@
     "anchor": "fj13",
     "question_id": "FJ13",
     "title": "一个对象从创建到回收会经历什么，GC Roots 为什么不能死背",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -108,7 +108,7 @@
     "anchor": "fj14",
     "question_id": "FJ14",
     "title": "分代、CMS、G1 与 Full GC 的名词怎样连起来",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -116,7 +116,7 @@
     "anchor": "fj15",
     "question_id": "FJ15",
     "title": "频繁 Full GC、OOM、栈溢出该按什么顺序查",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -124,7 +124,7 @@
     "anchor": "fj16",
     "question_id": "FJ16",
     "title": "自定义类加载器为什么不能只写一段“先自己加载”",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -132,7 +132,7 @@
     "anchor": "fj17",
     "question_id": "FJ17",
     "title": "创建任务、创建线程和选择线程池为什么是三件事",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -140,7 +140,7 @@
     "anchor": "fj18",
     "question_id": "FJ18",
     "title": "AQS 怎样实现可重入锁，公平锁为什么仍可能插队",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -148,7 +148,7 @@
     "anchor": "fj19",
     "question_id": "FJ19",
     "title": "“偏向锁升级到重量锁”为什么不是现代 JDK 的通用答案",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -156,7 +156,7 @@
     "anchor": "fj20",
     "question_id": "FJ20",
     "title": "CAS 与乐观、悲观并发控制怎样选择",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -164,7 +164,7 @@
     "anchor": "fj21",
     "question_id": "FJ21",
     "title": "ThreadLocal 的弱键为什么仍会保留值，static 能解决吗",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -172,7 +172,7 @@
     "anchor": "fj22",
     "question_id": "FJ22",
     "title": "Bean 作用域和生命周期怎样一起决定状态与资源归属",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -180,7 +180,7 @@
     "anchor": "fj23",
     "question_id": "FJ23",
     "title": "Autowired、Resource 和循环依赖的“三级缓存”各解决什么",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -188,7 +188,7 @@
     "anchor": "fj24",
     "question_id": "FJ24",
     "title": "Starter、自动配置与 Boot 启动怎样串起来，Cloud 又负责什么",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -196,7 +196,7 @@
     "anchor": "fj25",
     "question_id": "FJ25",
     "title": "Spring 的 isolation 设置什么时候生效，怎样区分“没事务”和“没回滚”",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -204,7 +204,7 @@
     "anchor": "fj26",
     "question_id": "FJ26",
     "title": "MySQL 慢 SQL 怎样定位，EXPLAIN 应看哪些字段",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -212,7 +212,7 @@
     "anchor": "fj27",
     "question_id": "FJ27",
     "title": "索引有哪些分类，“索引失效”为什么常常说得太粗",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -220,7 +220,7 @@
     "anchor": "fj28",
     "question_id": "FJ28",
     "title": "B+ 树、聚簇索引与覆盖查询怎样影响真正的页访问",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -228,7 +228,7 @@
     "anchor": "fj29",
     "question_id": "FJ29",
     "title": "索引 (A,B,C) 跳过 B、出现多个范围时，到底用了哪些列",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -236,7 +236,7 @@
     "anchor": "fj30",
     "question_id": "FJ30",
     "title": "隔离级别如何影响读异常，InnoDB RR 到底怎么处理幻读",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -244,7 +244,7 @@
     "anchor": "fj31",
     "question_id": "FJ31",
     "title": "undo、redo、binlog 与 Read View 怎样共同支撑事务",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -252,7 +252,7 @@
     "anchor": "fj32",
     "question_id": "FJ32",
     "title": "什么时候分库分表，单表“最大多少行”怎样回答",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -260,7 +260,7 @@
     "anchor": "fj33",
     "question_id": "FJ33",
     "title": "MySQL 复制如何工作，读写分离为什么会读不到刚写的数据",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -268,7 +268,7 @@
     "anchor": "fj34",
     "question_id": "FJ34",
     "title": "MySQL 与 Redis 应怎样分工，为什么不能只比较“毫秒与微秒”",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -276,7 +276,7 @@
     "anchor": "fj35",
     "question_id": "FJ35",
     "title": "UNION 与 UNION ALL 去重什么，结果有默认顺序吗",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -284,7 +284,7 @@
     "anchor": "fj36",
     "question_id": "FJ36",
     "title": "Mapper、XML、注解与参数绑定是什么关系，如何防止 SQL 注入",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -292,7 +292,7 @@
     "anchor": "fj37",
     "question_id": "FJ37",
     "title": "Redis 逻辑类型与内部编码有什么区别，如何映射业务",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -300,7 +300,7 @@
     "anchor": "fj38",
     "question_id": "FJ38",
     "title": "Redis 为什么快，单线程与 I/O 多路复用怎样准确表述",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -308,7 +308,7 @@
     "anchor": "fj39",
     "question_id": "FJ39",
     "title": "RDB、AOF、复制与备份分别怎样帮助故障恢复",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -316,7 +316,7 @@
     "anchor": "fj40",
     "question_id": "FJ40",
     "title": "键到期一定马上释放内存吗，淘汰策略有哪些",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -324,7 +324,7 @@
     "anchor": "fj41",
     "question_id": "FJ41",
     "title": "看门狗续租能保证分布式锁永远安全吗",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -332,7 +332,7 @@
     "anchor": "fj42",
     "question_id": "FJ42",
     "title": "两级缓存如何失效，删缓存失败和旧读回填为什么是两类问题",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -340,7 +340,7 @@
     "anchor": "fj43",
     "question_id": "FJ43",
     "title": "大键与热键怎样识别，为什么“超过10KB”不是统一标准",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -348,7 +348,7 @@
     "anchor": "fj44",
     "question_id": "FJ44",
     "title": "Redis 全量复制、部分重同步与复制积压缓冲怎样配合",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -356,7 +356,7 @@
     "anchor": "fj45",
     "question_id": "FJ45",
     "title": "Sentinel、Cluster 和持久化如何组合，怎样说明高可用边界",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "未运行教学示例"
   },
   {
@@ -364,7 +364,7 @@
     "anchor": "fj46",
     "question_id": "FJ46",
     "title": "三个线程如何按 ABC 顺序循环输出，并在中断时全部退出",
-    "status": "written_and_source_checked",
+    "status": "published_teaching_answer",
     "example_validation": "OpenJDK 21.0.12.1 已运行正常、中断和失败分支；有限测试不是所有调度证明。"
   }
 ]

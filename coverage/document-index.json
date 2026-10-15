@@ -1,22 +1,12 @@
 [
   {
-    "path": "docs/00-guide/backend-six-week-plan.md",
-    "title": "六周复习路线",
-    "question_ids": []
-  },
-  {
     "path": "docs/00-guide/expanded-map-and-study-plan.md",
-    "title": "全主题怎么学：先建立主线，再按追问补深度",
-    "question_ids": []
-  },
-  {
-    "path": "docs/00-guide/study-method-and-six-week-plan.md",
-    "title": "阅读指南与六周路线",
+    "title": "学习路线：用一个项目串起 Agent 与后端",
     "question_ids": []
   },
   {
     "path": "docs/10-agent/00-reading-guide.md",
-    "title": "怎样使用这份资料",
+    "title": "Agent 先修与学习方法",
     "question_ids": []
   },
   {
@@ -559,7 +549,7 @@
   },
   {
     "path": "docs/40-backend/36-interview-followup-topics.md",
-    "title": "面经技术追问：补齐工程边界",
+    "title": "工程技术追问：补齐工程边界",
     "question_ids": [
       "FB79",
       "FB80",
@@ -580,7 +570,7 @@
   },
   {
     "path": "docs/50-projects/public-repository-case-studies.md",
-    "title": "两个公开仓库的技术案例与贡献边界",
+    "title": "两个公开仓库的机制走读",
     "question_ids": [
       "A39",
       "A40",
@@ -618,22 +608,22 @@
   },
   {
     "path": "docs/60-interviews/agent.md",
-    "title": "公开面经：6 篇完整正文与 2 篇补充",
+    "title": "Agent 综合训练",
     "question_ids": []
   },
   {
     "path": "docs/60-interviews/backend.md",
-    "title": "真实公开面经样本",
+    "title": "后端综合训练",
     "question_ids": []
   },
   {
     "path": "docs/60-interviews/go.md",
-    "title": "真实公开面经摘要（与上面的教学问答分开）",
+    "title": "Go 综合训练",
     "question_ids": []
   },
   {
     "path": "docs/60-interviews/java.md",
-    "title": "公开真实面经样本与使用边界",
+    "title": "Java 综合训练",
     "question_ids": []
   },
   {
@@ -643,7 +633,7 @@
   },
   {
     "path": "docs/70-practice/algorithm-and-sql-plan.md",
-    "title": "算法与 SQL 的具体练习路线",
+    "title": "算法与 SQL 练习单",
     "question_ids": []
   },
   {
@@ -658,7 +648,7 @@
   },
   {
     "path": "docs/70-practice/interview-algorithm-supplements.md",
-    "title": "面经算法补充：六个明确题设的Python解法",
+    "title": "算法变体补充：六个明确题设的Python解法",
     "question_ids": [
       "X01",
       "X02",

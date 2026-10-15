@@ -6,7 +6,7 @@
 
 ### B22 Redis 常见数据结构怎样对应业务需求
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： String 适合简单值、序列化结果与计数；Hash 表达字段集合；Set 表达去重集合；Sorted Set 为唯一成员附加分数并维护顺序；List 适合按顺序插入的列表；Stream 是可追加的事件日志结构。先看访问模式，再选数据结构，而不是所有需求都存一个巨大 JSON。
 
@@ -18,13 +18,11 @@
 
 **常见误区**： 把所有操作都说成 O(1)；忽略某些较新类型或命令对版本的要求。
 
-**来源**： [BS30 Redis 数据类型](https://redis.io/docs/latest/develop/data-types/)。
-
 <a id="b23"></a>
 
 ### B23 Redis 为什么仍可能很慢，KEYS 与 SCAN 怎么选
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 内存访问快不意味着任意命令快。大键、昂贵命令、网络、持久化和系统调度都可能影响延迟。不能把 Redis 整个进程概括成“永远只有一个线程”；具体 I/O、后台任务与执行路径要看版本。SCAN 通过游标分批迭代，但可能返回重复元素，COUNT 也不是严格返回条数。
 
@@ -36,13 +34,11 @@
 
 **常见误区**： “Redis 在内存所以不会卡”；把 SCAN 的一次返回为空当成迭代结束，正确结束标志是游标回到 0。
 
-**来源**： [BS31 Redis 延迟诊断](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/)、[BS32 Redis SCAN](https://redis.io/docs/latest/commands/scan/)。
-
 <a id="b24"></a>
 
 ### B24 RDB 和 AOF 怎样选择，持久化是否等于绝不丢数据
 
-**优先级：P1** 
+**优先级：P1**
 
 **知识点详解**： RDB 保存某个时刻的数据快照；AOF 记录写操作并用于恢复。AOF 的刷盘策略影响性能与故障时的数据丢失窗口。两者可结合，但备份、复制和持久化是不同问题；误删除可能被复制到副本，持久化文件也不自动提供历史恢复点。
 
@@ -54,13 +50,11 @@
 
 **常见误区**： 把 everysec 当成任何故障下严格最多丢一秒的绝对承诺；只配备份不验证能否恢复。
 
-**来源**： [BS33 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)。
-
 <a id="b25"></a>
 
 ### B25 TTL 过期与内存淘汰有什么区别
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： TTL 是键的有效时间；内存淘汰是在达到 maxmemory 等条件时按策略回收键。LRU 侧重近期使用情况，LFU 侧重使用频率，Redis 的相关实现含近似机制。noeviction 不会替你自动扩大内存，可能导致需要更多内存的写操作失败。
 
@@ -72,13 +66,11 @@
 
 **常见误区**： 认为设了 TTL 就不会内存不足；把过期和淘汰当成同一个机制。
 
-**来源**： [BS34 Redis 内存淘汰](https://redis.io/docs/latest/develop/reference/eviction/)。
-
 <a id="b26"></a>
 
 ### B26 先更新数据库再删除缓存，为什么仍不是强一致
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： Cache-aside，即旁路缓存：读时先查缓存，未命中再查数据库并回填；写时先改数据库再失效缓存。数据库和 Redis 是两个独立系统，两步操作通常不在同一原子事务里。“最终一致”表示在更新传播成功等假设下最终收敛，不能省略失败补偿机制。
 
@@ -90,13 +82,13 @@
 
 **常见误区**： 说“加一个分布式锁就永远一致”；认为缓存失效成功后所有并发旧读都已结束。
 
-**来源**： [BS35 Redis cache-aside](https://redis.io/docs/latest/develop/use-cases/cache-aside/)、[BS36 Microsoft Cache-Aside pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)。竞态时序与取舍为原创分析。
+竞态时序与取舍为原创分析。
 
 <a id="b27"></a>
 
 ### B27 缓存击穿与雪崩怎样区分，如何保护数据库
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 中文面试中，“击穿”通常指单个热点键失效时大量请求同时回源；“雪崩”通常指大批键同时失效或缓存服务不可用，导致大面积回源。这是便于讨论的工程术语，不是严格统一的协议定义。核心是控制回源并发，而不只是让缓存恢复。
 
@@ -108,13 +100,13 @@
 
 **常见误区**： 给 TTL 加随机值就声称解决所有雪崩；缓存宕机时无限制转发数据库。
 
-**来源**： [BS35 Redis cache-aside](https://redis.io/docs/latest/develop/use-cases/cache-aside/)、[BS36 Microsoft Cache-Aside pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)。分类及防护组合为原创教学总结。
+分类及防护组合为原创教学总结。
 
 <a id="b28"></a>
 
 ### B28 缓存穿透与布隆过滤器是怎么回事
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 穿透通常指不断查询不存在的数据，缓存未命中后仍反复访问数据库。可做输入校验、短 TTL 的空结果缓存、限流；当数据规模合适时，用布隆过滤器快速判断“肯定不在集合”或“可能在集合”。经典布隆过滤器有假阳性，但对已正确插入、未被破坏的集合没有假阴性。
 
@@ -126,13 +118,11 @@
 
 **常见误区**： 把“可能存在”当成存在证明；忽略构建、更新和重建的生命周期。
 
-**来源**： [BS37 Redis Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)。
-
 <a id="b29"></a>
 
 ### B29 Redis 分布式锁的最小正确实现需要什么
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 在单实例假设下，用一条 SET 同时设置 NX 与过期时间，避免先加锁后设 TTL 的崩溃窗口。锁值使用唯一所有者标记；释放时原子地检查标记再删除，防止误删别人后来获得的锁。租约到期不代表原持有者已经停止执行。
 
@@ -144,13 +134,11 @@
 
 **常见误区**： SETNX 后另发 EXPIRE；先 GET 再 DEL；把 Redlock 当成无需讨论一致性假设的万能锁。
 
-**来源**： [BS38 Redis 分布式锁官方说明](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/)、[BS76 Redis SET](https://redis.io/docs/latest/commands/set/)。
-
 <a id="b30"></a>
 
 ### B30 有 Redis 主从复制，为什么故障切换后仍可能丢写入
 
-**优先级：P1** 
+**优先级：P1**
 
 **知识点详解**： Redis 复制通常是异步的：主节点接受写入后，副本可能尚未收到。若这时主节点失效，提升的副本可能没有最近写入。WAIT 可以等待一定复制确认，但不能把整套系统直接变成强一致系统，也不等于所有故障下都持久化成功。
 
@@ -161,7 +149,5 @@
 **追问**： 读副本有什么取舍？降低主节点读负载，但要接受并处理复制延迟带来的陈旧读。
 
 **常见误区**： 把“写成功收到回复”解释成所有副本与磁盘均已完成；不看配置就给出零丢失承诺。
-
-**来源**： [BS39 Redis 复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)。
 
 本节题号：B22、B23、B24、B25、B26、B27、B28、B29、B30。

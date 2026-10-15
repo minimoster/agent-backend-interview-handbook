@@ -18,8 +18,6 @@
 
 **误区** ：回答 JMM 时只背堆、栈、元空间。
 
-来源：[J-S10](../../sources/catalog.md#j-s10)、[J-S11](../../sources/catalog.md#j-s11)。
-
 <a id="j10"></a>
 
 ### J10 happens before 和 volatile 如何保证可见性
@@ -48,8 +46,6 @@ if (ready) {
 
 **误区** ：把“禁止重排序”说成所有指令都完全不能重排；把 volatile 当轻量版万能锁。
 
-来源：[J-S10](../../sources/catalog.md#j-s10)、[J-S07](../../sources/catalog.md#j-s07)、[J-S12](../../sources/catalog.md#j-s12)、[J-S71](../../sources/catalog.md#j-s71)。
-
 <a id="j11"></a>
 
 ### J11 synchronized 锁住了什么
@@ -65,8 +61,6 @@ if (ready) {
 **追问** ：为何不把外部可访问的字符串常量当锁？可能与别处意外共享，扩大竞争或产生死锁。
 
 **误区** ：把“偏向锁→轻量锁→重量锁”背成所有现代 JDK 的固定路径；具体优化要按版本确认。
-
-来源：[J-S10](../../sources/catalog.md#j-s10)、[J-S13](../../sources/catalog.md#j-s13)、[J-S70](../../sources/catalog.md#j-s70)。
 
 <a id="j12"></a>
 
@@ -84,8 +78,6 @@ if (ready) {
 
 **误区** ：拿到锁后在异常分支漏掉 unlock；把公平锁说成消除所有饥饿问题的万能方案。
 
-来源：[J-S13](../../sources/catalog.md#j-s13)。
-
 <a id="j13"></a>
 
 ### J13 CAS 是什么 为什么还有 ABA 问题
@@ -101,8 +93,6 @@ if (ready) {
 **追问** ：LongAdder 适合精确抢占最后一个名额吗？其分散计数适合统计吞吐，求和不是这种配额决策的原子检查更新。
 
 **误区** ：认为 CAS 永不阻塞就意味着无等待、一定比锁快。
-
-来源：[J-S12](../../sources/catalog.md#j-s12)、[J-S14](../../sources/catalog.md#j-s14)、[J-S65](../../sources/catalog.md#j-s65)。
 
 <a id="j14"></a>
 
@@ -120,8 +110,6 @@ if (ready) {
 
 **误区** ：把 AQS 叫作“CAS 自旋锁”，忽略它的排队和阻塞能力。
 
-来源：[J-S15](../../sources/catalog.md#j-s15)、[J-S64](../../sources/catalog.md#j-s64)。
-
 <a id="j15"></a>
 
 ### J15 线程池七个参数和任务提交顺序是什么
@@ -137,8 +125,6 @@ if (ready) {
 **追问** ：无界队列下最大线程数为何常常不起作用？正常入队一直成功，就走不到因队满而扩线程的分支。
 
 **误区** ：误答为先扩到 maximumPoolSize，再入队；把配置数直接等同于启动时实际创建的线程数。
-
-来源：[J-S16](../../sources/catalog.md#j-s16)、[J-S17](../../sources/catalog.md#j-s17)。
 
 <a id="j16"></a>
 
@@ -156,7 +142,7 @@ if (ready) {
 
 **误区** ：把 CPU 核数乘固定倍数当所有 IO 业务的正确答案；认为大队列只会增加吞吐。
 
-来源：[J-S16](../../sources/catalog.md#j-s16)、[J-S18](../../sources/catalog.md#j-s18)。并发估算和参数选择为工程示例。
+并发估算和参数选择为工程示例。
 
 <a id="j17"></a>
 
@@ -174,8 +160,6 @@ if (ready) {
 
 **误区** ：认为加了 Async 就自动获得无限并发；认为 orTimeout 会立即终止外部模型生成。
 
-来源：[J-S19](../../sources/catalog.md#j-s19)。
-
 <a id="j18"></a>
 
 ### J18 ThreadLocal 为什么会泄漏和串用户
@@ -191,8 +175,6 @@ if (ready) {
 **追问** ：set(null) 和 remove 一样吗？语义不同，remove 删除当前线程的值并使后续 get 可重新初始化。
 
 **误区** ：因为 key 是弱引用就认为不可能泄漏；把 ThreadLocal 当跨线程数据共享工具。
-
-来源：[J-S20](../../sources/catalog.md#j-s20)、[J-S21](../../sources/catalog.md#j-s21)。
 
 <a id="j19"></a>
 
@@ -210,8 +192,6 @@ if (ready) {
 
 **误区** ：用 if 包住 wait；在持锁状态下 sleep 轮询，导致真正能改变条件的线程进不来。
 
-来源：[J-S01](../../sources/catalog.md#j-s01)、[J-S22](../../sources/catalog.md#j-s22)。
-
 <a id="j20"></a>
 
 ### J20 CountDownLatch Semaphore 和队列如何分工
@@ -228,8 +208,6 @@ if (ready) {
 
 **误区** ：把无界队列看成免费缓冲；只有生产速度长期不超过消费速度，积压才不会无界增长。
 
-来源：[J-S07](../../sources/catalog.md#j-s07)、[J-S17](../../sources/catalog.md#j-s17)、[J-S23](../../sources/catalog.md#j-s23)、[J-S63](../../sources/catalog.md#j-s63)。
-
 <a id="j21"></a>
 
 ### J21 虚拟线程适合 AI 后端吗
@@ -238,15 +216,13 @@ if (ready) {
 
 **知识点详解** ：虚拟线程在 Java 21 正式交付，由运行时调度到载体线程。大量请求等待网络 IO 时，它能减少“一请求占一个平台线程”的资源压力，但不会让 CPU 运算或模型本身变快，也不会增加数据库连接数和模型配额。通常按任务创建虚拟线程，而不是建立固定大小的虚拟线程池复用它们；控制下游资源用信号量等手段。
 
-**具体例子** ：同时等待许多模型/检索请求时可以评估虚拟线程。Java 21 中在 synchronized 内阻塞存在 pinning 风险；JDK 24 的改进移除了这种监视器相关限制，Java 25 官方文档仍提醒 native/foreign 调用的 pinning。不能把旧结论直接贴到新版本。
+**具体例子** ：同时等待许多模型/检索请求时可以评估虚拟线程。Java 21 中在 synchronized 内阻塞存在 pinning 风险；JDK 24 的改进移除了这种监视器相关限制，Java 25中 native/foreign 调用仍存在 pinning 风险。不能把旧结论直接贴到新版本。
 
 **30 秒面试答法** ：虚拟线程主要扩展 IO 等待型并发，不提升单任务计算速度。我会明确 JDK 版本、限制下游并发，观察 JFR 和尾延迟后决定是否采用。
 
 **追问** ：百万虚拟线程能同时查询数据库吗？还受到连接池、内存和数据库容量限制。
 
 **误区** ：认为虚拟线程天然没有竞态；在 Java 24+ 仍机械要求所有 synchronized 改为 ReentrantLock。
-
-来源：[J-S24](../../sources/catalog.md#j-s24)、[J-S25](../../sources/catalog.md#j-s25)、[J-S26](../../sources/catalog.md#j-s26)、[J-S18](../../sources/catalog.md#j-s18)、[J-S68](../../sources/catalog.md#j-s68)。
 
 <a id="j22"></a>
 
@@ -263,7 +239,5 @@ if (ready) {
 **追问** ：为什么不用 Thread.stop？它可能在破坏不变量的时刻结束执行，安全清理无法保证。
 
 **误区** ：catch InterruptedException 后只打印日志；把取消 Future 当成远程调用一定未执行。
-
-来源：[J-S22](../../sources/catalog.md#j-s22)、[J-S19](../../sources/catalog.md#j-s19)。
 
 本节题号：J09、J10、J11、J12、J13、J14、J15、J16、J17、J18、J19、J20、J21、J22。

@@ -1,6 +1,6 @@
 # SC-B08 隔离级别不能替代业务不变量
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 两个请求同时读取库存1，各自减1，怎样保证不超卖？
 
@@ -26,14 +26,12 @@
 
 两个会话并发争抢库存1，比较读后写与带条件更新。验收最终库存不负、成功订单数不超过库存、失败路径不留下半个订单。本轮未执行数据库会话。
 
-**主题来源：** P16、P17。**技术依据：** [MySQL8.4 InnoDB语句加锁](https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html)、[MySQL8.4事务隔离](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)。锁行为限定InnoDB和明确配置。
+锁行为限定InnoDB和明确配置。
 
 ## 阅读与复验入口
-
-公开主题线索：[P16](../../sources/public-interviews/README.md#report-p16)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
 - [20-mysql-mechanisms](../../docs/40-backend/20-mysql-mechanisms.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

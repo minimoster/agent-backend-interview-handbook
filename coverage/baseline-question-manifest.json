@@ -4,9 +4,6 @@
     "title": "B01 HTTP 的安全性、幂等性与状态码分别解决什么问题",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS01"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b01"
   },
@@ -15,9 +12,6 @@
     "title": "B02 HTTP 缓存里的 no-cache、no-store 和协商缓存有什么区别",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS02"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b02"
   },
@@ -26,10 +20,6 @@
     "title": "B03 TCP 为什么可靠，又为什么会出现所谓粘包",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS03",
-      "BS04"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b03"
   },
@@ -38,10 +28,6 @@
     "title": "B04 三次握手、连接关闭与 TIME_WAIT 如何联系起来",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS03",
-      "BS04"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b04"
   },
@@ -50,10 +36,6 @@
     "title": "B05 HTTP 1.1、2、3 的主要差别是什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS05",
-      "BS06"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b05"
   },
@@ -62,9 +44,6 @@
     "title": "B06 HTTPS 中 TLS 到底保护了什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS07"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b06"
   },
@@ -73,9 +52,6 @@
     "title": "B07 AI 输出流为什么常用 SSE，断线如何恢复",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS08"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b07"
   },
@@ -84,9 +60,6 @@
     "title": "B08 WebSocket 与 SSE 怎么选择",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS09"
-    ],
     "path": "docs/40-backend/01-network-and-streaming.md",
     "anchor": "b08"
   },
@@ -95,10 +68,6 @@
     "title": "B09 索引为什么加速查询，B 树结构适合什么查询",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS10",
-      "BS11"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b09"
   },
@@ -107,9 +76,6 @@
     "title": "B10 聚簇索引、二级索引、回表和覆盖索引是什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS12"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b10"
   },
@@ -118,10 +84,6 @@
     "title": "B11 联合索引的最左前缀应该怎样理解",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS13",
-      "BS14"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b11"
   },
@@ -130,9 +92,6 @@
     "title": "B12 慢 SQL 怎样用 EXPLAIN 排查",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS15"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b12"
   },
@@ -141,10 +100,6 @@
     "title": "B13 ACID 是什么，为什么开了事务仍会写错业务",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS16",
-      "BS17"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b13"
   },
@@ -153,10 +108,6 @@
     "title": "B14 四个隔离级别怎样区分，MySQL 与 PostgreSQL 哪里不同",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS18",
-      "BS19"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b14"
   },
@@ -165,10 +116,6 @@
     "title": "B15 MVCC 怎样让读写并行，快照是什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS20",
-      "BS21"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b15"
   },
@@ -177,10 +124,6 @@
     "title": "B16 快照读、锁定读、记录锁和间隙锁有什么关系",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS22",
-      "BS23"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b16"
   },
@@ -189,9 +132,6 @@
     "title": "B17 死锁为什么发生，应用应该怎么处理",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS24"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b17"
   },
@@ -200,10 +140,6 @@
     "title": "B18 两个请求同时抢最后一件商品，怎样避免超卖",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS25",
-      "BS26"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b18"
   },
@@ -212,9 +148,6 @@
     "title": "B19 深分页为什么慢，游标分页怎样设计",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS27"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b19"
   },
@@ -223,10 +156,6 @@
     "title": "B20 LEFT JOIN 为什么有时写着写着变成了 INNER JOIN",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS28",
-      "BS74"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b20"
   },
@@ -235,9 +164,6 @@
     "title": "B21 每个用户取最近三条订单，窗口函数怎么用",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS29"
-    ],
     "path": "docs/40-backend/02-databases-and-sql.md",
     "anchor": "b21"
   },
@@ -246,9 +172,6 @@
     "title": "B22 Redis 常见数据结构怎样对应业务需求",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS30"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b22"
   },
@@ -257,10 +180,6 @@
     "title": "B23 Redis 为什么仍可能很慢，KEYS 与 SCAN 怎么选",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS31",
-      "BS32"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b23"
   },
@@ -269,9 +188,6 @@
     "title": "B24 RDB 和 AOF 怎样选择，持久化是否等于绝不丢数据",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS33"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b24"
   },
@@ -280,9 +196,6 @@
     "title": "B25 TTL 过期与内存淘汰有什么区别",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS34"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b25"
   },
@@ -291,10 +204,6 @@
     "title": "B26 先更新数据库再删除缓存，为什么仍不是强一致",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS35",
-      "BS36"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b26"
   },
@@ -303,10 +212,6 @@
     "title": "B27 缓存击穿与雪崩怎样区分，如何保护数据库",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS35",
-      "BS36"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b27"
   },
@@ -315,9 +220,6 @@
     "title": "B28 缓存穿透与布隆过滤器是怎么回事",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS37"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b28"
   },
@@ -326,10 +228,6 @@
     "title": "B29 Redis 分布式锁的最小正确实现需要什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS38",
-      "BS76"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b29"
   },
@@ -338,9 +236,6 @@
     "title": "B30 有 Redis 主从复制，为什么故障切换后仍可能丢写入",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS39"
-    ],
     "path": "docs/40-backend/03-redis-and-caching.md",
     "anchor": "b30"
   },
@@ -349,9 +244,6 @@
     "title": "B31 为什么引入消息队列，Kafka 怎样保证顺序",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS40"
-    ],
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b31"
   },
@@ -360,10 +252,6 @@
     "title": "B32 消息为什么重复，消费端如何真正幂等",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS26",
-      "BS41"
-    ],
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b32"
   },
@@ -372,10 +260,6 @@
     "title": "B33 Kafka 的 exactly-once 保证到哪里为止",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS42",
-      "BS43"
-    ],
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b33"
   },
@@ -384,10 +268,6 @@
     "title": "B34 数据库写成功但消息发送失败，outbox 怎样解决",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS44",
-      "BS45"
-    ],
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b34"
   },
@@ -396,10 +276,6 @@
     "title": "B35 坏消息一直失败怎么办，什么时候提交位点",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS46",
-      "BS47"
-    ],
     "path": "docs/40-backend/04-messaging-and-idempotency.md",
     "anchor": "b35"
   },
@@ -408,10 +284,6 @@
     "title": "B36 固定窗口、滑动窗口和令牌桶怎样选择",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS48",
-      "BS49"
-    ],
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b36"
   },
@@ -420,10 +292,6 @@
     "title": "B37 超时、deadline 和取消是什么关系",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS50",
-      "BS51"
-    ],
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b37"
   },
@@ -432,9 +300,6 @@
     "title": "B38 重试为什么可能把故障放大，怎样设计退避",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS52"
-    ],
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b38"
   },
@@ -443,10 +308,6 @@
     "title": "B39 限流、熔断和隔离分别防什么问题",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS53",
-      "BS54"
-    ],
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b39"
   },
@@ -455,10 +316,6 @@
     "title": "B40 日志、指标、链路追踪分别怎么看问题",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS55",
-      "BS56"
-    ],
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b40"
   },
@@ -467,9 +324,6 @@
     "title": "B41 什么是背压，为什么不能给每个任务无限开协程",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS57"
-    ],
     "path": "docs/40-backend/05-system-design-and-reliability.md",
     "anchor": "b41"
   },
@@ -478,10 +332,6 @@
     "title": "B42 进程、线程与协程有什么区别",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS58",
-      "BS75"
-    ],
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b42"
   },
@@ -490,9 +340,6 @@
     "title": "B43 epoll 的 I/O 多路复用为什么有用",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS59"
-    ],
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b43"
   },
@@ -501,11 +348,6 @@
     "title": "B44 容器与虚拟机怎么区分，namespace 和 cgroup 分别做什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS60",
-      "BS61",
-      "BS62"
-    ],
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b44"
   },
@@ -514,10 +356,6 @@
     "title": "B45 镜像构建和健康检查，实习生要懂到什么程度",
     "chapter": "backend",
     "priority": "P1",
-    "source_ids": [
-      "BS63",
-      "BS64"
-    ],
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b45"
   },
@@ -526,10 +364,6 @@
     "title": "B46 优雅退出怎样避免发布时丢请求",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS65",
-      "BS66"
-    ],
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b46"
   },
@@ -538,10 +372,6 @@
     "title": "B47 服务突然变慢，如何从 Linux 走到应用定位",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS67",
-      "BS68"
-    ],
     "path": "docs/40-backend/06-linux-and-containers.md",
     "anchor": "b47"
   },
@@ -550,10 +380,6 @@
     "title": "B48 SQL 注入为什么发生，参数化查询解决了什么",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS69",
-      "BS70"
-    ],
     "path": "docs/40-backend/07-security-and-problem-solving.md",
     "anchor": "b48"
   },
@@ -562,10 +388,6 @@
     "title": "B49 算法题怎样从会背答案变成能现场写",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS71",
-      "BS73"
-    ],
     "path": "docs/40-backend/07-security-and-problem-solving.md",
     "anchor": "b49"
   },
@@ -574,10 +396,6 @@
     "title": "B50 SQL 手写应该练哪些能力，如何自测正确性",
     "chapter": "backend",
     "priority": "P0",
-    "source_ids": [
-      "BS28",
-      "BS72"
-    ],
     "path": "docs/40-backend/07-security-and-problem-solving.md",
     "anchor": "b50"
   },
@@ -586,10 +404,6 @@
     "title": "G01  什么是 GMP？为什么 goroutine 比线程轻量？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S01",
-      "GO-S02"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g01"
   },
@@ -598,10 +412,6 @@
     "title": "G02  网络 I/O、系统调用、CPU 密集任务如何影响调度？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S02",
-      "GO-S03"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g02"
   },
@@ -610,10 +420,6 @@
     "title": "G03  什么是 goroutine 泄漏？如何保证每个任务退出？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S04",
-      "GO-S05"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g03"
   },
@@ -622,10 +428,6 @@
     "title": "G04  无缓冲与有缓冲 channel 有什么区别？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S06",
-      "GO-S07"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g04"
   },
@@ -634,9 +436,6 @@
     "title": "G05  nil、关闭、空的 channel 分别会怎样？谁负责 close？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S08"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g05"
   },
@@ -645,10 +444,6 @@
     "title": "G06  select 如何工作？为什么 default 可能把 CPU 跑满？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S08",
-      "GO-S09"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g06"
   },
@@ -657,10 +452,6 @@
     "title": "G07  context 到底传递什么？cancel 会杀掉 goroutine 吗？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S10",
-      "GO-S11"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g07"
   },
@@ -669,10 +460,6 @@
     "title": "G08  一个请求要调用多个下游，超时预算怎样分配？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S11",
-      "GO-S12"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g08"
   },
@@ -681,10 +468,6 @@
     "title": "G09  WaitGroup 与 errgroup 如何选择？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S13",
-      "GO-S14"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g09"
   },
@@ -693,10 +476,6 @@
     "title": "G10  如何设计一个有界 worker pool？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S04",
-      "GO-S15"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g10"
   },
@@ -705,10 +484,6 @@
     "title": "G11  什么是 data race？加 sleep 为什么不能同步？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S07",
-      "GO-S16"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g11"
   },
@@ -717,10 +492,6 @@
     "title": "G12  Mutex、RWMutex 如何选择？锁住什么才正确？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S17",
-      "GO-S18"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g12"
   },
@@ -729,10 +500,6 @@
     "title": "G13  atomic、Once 能替代锁吗？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S19",
-      "GO-S20"
-    ],
     "path": "docs/30-go/01-concurrency.md",
     "anchor": "g13"
   },
@@ -741,10 +508,6 @@
     "title": "G14  map 使用有哪些必知边界？sync.Map 适合所有场景吗？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S13",
-      "GO-S21"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g14"
   },
@@ -753,10 +516,6 @@
     "title": "G15  Go map 底层还是“8 个桶元素＋溢出桶”吗？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S22",
-      "GO-S23"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g15"
   },
@@ -765,10 +524,6 @@
     "title": "G16  slice 的 len、cap、append、共享底层数组怎么理解？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S24",
-      "GO-S25"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g16"
   },
@@ -777,10 +532,6 @@
     "title": "G17  只保留一个小切片，为何可能占用很多内存？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S26",
-      "GO-S27"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g17"
   },
@@ -789,10 +540,6 @@
     "title": "G18  make、new、零值有什么区别？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S28",
-      "GO-S29"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g18"
   },
@@ -801,10 +548,6 @@
     "title": "G19  为什么 interface 里放了 nil，比较却不等于 nil？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S30",
-      "GO-S31"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g19"
   },
@@ -813,10 +556,6 @@
     "title": "G20  errors.Is、errors.As、%w 如何配合？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S32",
-      "GO-S33"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g20"
   },
@@ -825,10 +564,6 @@
     "title": "G21  defer、panic、recover 的执行顺序是什么？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S34",
-      "GO-S35"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g21"
   },
@@ -837,10 +572,6 @@
     "title": "G22  for 循环启动 goroutine 时，变量捕获还有坑吗？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S36",
-      "GO-S37"
-    ],
     "path": "docs/30-go/02-types-containers-and-errors.md",
     "anchor": "g22"
   },
@@ -849,10 +580,6 @@
     "title": "G23  什么是逃逸分析？返回局部变量指针安全吗？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S38",
-      "GO-S39"
-    ],
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g23"
   },
@@ -861,11 +588,6 @@
     "title": "G24  Go GC 如何判断垃圾？三色、写屏障、STW 分别解决什么？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S29",
-      "GO-S40",
-      "GO-S41"
-    ],
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g24"
   },
@@ -874,10 +596,6 @@
     "title": "G25  GOGC、GOMEMLIMIT 怎样影响延迟和内存？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S42",
-      "GO-S43"
-    ],
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g25"
   },
@@ -886,9 +604,6 @@
     "title": "G26  sync.Pool 适合缓存数据库连接或任务结果吗？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S44"
-    ],
     "path": "docs/30-go/03-memory-gc-and-performance.md",
     "anchor": "g26"
   },
@@ -897,10 +612,6 @@
     "title": "G27  HTTP Client 为什么要复用？响应 Body 怎么处理？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S45",
-      "GO-S46"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g27"
   },
@@ -909,10 +620,6 @@
     "title": "G28  HTTP 服务端和客户端各有哪些超时？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S47",
-      "GO-S48"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g28"
   },
@@ -921,9 +628,6 @@
     "title": "G29  SSE 为什么适合大模型输出？与 WebSocket 有何区别？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S49"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g29"
   },
@@ -932,10 +636,6 @@
     "title": "G30  Go 写 SSE 时，如何处理 Flush、慢客户端和用户断连？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S49",
-      "GO-S50"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g30"
   },
@@ -944,11 +644,6 @@
     "title": "G31  gRPC 的价值、deadline 与流控是什么？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S12",
-      "GO-S51",
-      "GO-S52"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g31"
   },
@@ -957,10 +652,6 @@
     "title": "G32  下游失败要不要重试？怎样避免重复执行和雪崩？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S53",
-      "GO-S54"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g32"
   },
@@ -969,10 +660,6 @@
     "title": "G33  限流与并发限制的区别？令牌桶如何工作？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S15",
-      "GO-S55"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g33"
   },
@@ -981,10 +668,6 @@
     "title": "G34  Go HTTP 服务如何优雅退出？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S45",
-      "GO-S56"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g34"
   },
@@ -993,11 +676,6 @@
     "title": "G35  Go HTTP 中间件怎样组织？Agent 接口额外防什么？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S50",
-      "GO-S57",
-      "GO-S58"
-    ],
     "path": "docs/30-go/04-http-sse-grpc.md",
     "anchor": "g35"
   },
@@ -1006,10 +684,6 @@
     "title": "G36  Go 后端怎样写有价值的测试？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S59",
-      "GO-S60"
-    ],
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g36"
   },
@@ -1018,10 +692,6 @@
     "title": "G37  race 检测、fuzz、普通测试分别能发现什么？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S16",
-      "GO-S61"
-    ],
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g37"
   },
@@ -1030,10 +700,6 @@
     "title": "G38  Benchmark 怎么写才不自欺欺人？",
     "chapter": "go",
     "priority": "P1",
-    "source_ids": [
-      "GO-S22",
-      "GO-S60"
-    ],
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g38"
   },
@@ -1042,10 +708,6 @@
     "title": "G39  线上 CPU 突然变高，怎样用 pprof 排查？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S62",
-      "GO-S63"
-    ],
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g39"
   },
@@ -1054,11 +716,6 @@
     "title": "G40  内存、goroutine、延迟问题分别怎么看？",
     "chapter": "go",
     "priority": "P0",
-    "source_ids": [
-      "GO-S05",
-      "GO-S64",
-      "GO-S65"
-    ],
     "path": "docs/30-go/05-testing-and-debugging.md",
     "anchor": "g40"
   },
@@ -1067,11 +724,6 @@
     "title": "J01 为什么重写 equals 时通常也必须重写 hashCode",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S01",
-      "J-S02",
-      "J-S66"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j01"
   },
@@ -1080,11 +732,6 @@
     "title": "J02 ArrayList 和 LinkedList 怎么选",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S03",
-      "J-S04",
-      "J-S67"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j02"
   },
@@ -1093,10 +740,6 @@
     "title": "J03 HashMap 的 put 和 get 到底做了什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S02",
-      "J-S05"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j03"
   },
@@ -1105,9 +748,6 @@
     "title": "J04 HashMap 扩容和树化阈值怎么正确回答",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S05"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j04"
   },
@@ -1116,9 +756,6 @@
     "title": "J05 ConcurrentHashMap 安全意味着什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S06"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j05"
   },
@@ -1127,10 +764,6 @@
     "title": "J06 fail fast 是什么 能拿它保证线程安全吗",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S03",
-      "J-S07"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j06"
   },
@@ -1139,9 +772,6 @@
     "title": "J07 Java 泛型的类型擦除是什么意思",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S08"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j07"
   },
@@ -1150,9 +780,6 @@
     "title": "J08 extends 和 super 通配符怎么理解",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S09"
-    ],
     "path": "docs/20-java/01-language-and-collections.md",
     "anchor": "j08"
   },
@@ -1161,10 +788,6 @@
     "title": "J09 JMM 和 JVM 内存区域是一回事吗",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S10",
-      "J-S11"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j09"
   },
@@ -1173,12 +796,6 @@
     "title": "J10 happens before 和 volatile 如何保证可见性",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S07",
-      "J-S10",
-      "J-S12",
-      "J-S71"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j10"
   },
@@ -1187,11 +804,6 @@
     "title": "J11 synchronized 锁住了什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S10",
-      "J-S13",
-      "J-S70"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j11"
   },
@@ -1200,9 +812,6 @@
     "title": "J12 synchronized 和 ReentrantLock 如何选择",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S13"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j12"
   },
@@ -1211,11 +820,6 @@
     "title": "J13 CAS 是什么 为什么还有 ABA 问题",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S12",
-      "J-S14",
-      "J-S65"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j13"
   },
@@ -1224,10 +828,6 @@
     "title": "J14 AQS 是一把锁吗",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S15",
-      "J-S64"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j14"
   },
@@ -1236,10 +836,6 @@
     "title": "J15 线程池七个参数和任务提交顺序是什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S16",
-      "J-S17"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j15"
   },
@@ -1248,10 +844,6 @@
     "title": "J16 怎么给 LLM 调用配置线程池和拒绝策略",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S16",
-      "J-S18"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j16"
   },
@@ -1260,9 +852,6 @@
     "title": "J17 CompletableFuture 能解决什么 不能解决什么",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S19"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j17"
   },
@@ -1271,10 +860,6 @@
     "title": "J18 ThreadLocal 为什么会泄漏和串用户",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S20",
-      "J-S21"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j18"
   },
@@ -1283,10 +868,6 @@
     "title": "J19 wait 和 sleep 有何区别 怎么防死锁",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S01",
-      "J-S22"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j19"
   },
@@ -1295,12 +876,6 @@
     "title": "J20 CountDownLatch Semaphore 和队列如何分工",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S07",
-      "J-S17",
-      "J-S23",
-      "J-S63"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j20"
   },
@@ -1309,13 +884,6 @@
     "title": "J21 虚拟线程适合 AI 后端吗",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S18",
-      "J-S24",
-      "J-S25",
-      "J-S26",
-      "J-S68"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j21"
   },
@@ -1324,10 +892,6 @@
     "title": "J22 中断和取消应该如何处理",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S19",
-      "J-S22"
-    ],
     "path": "docs/20-java/02-concurrency-and-thread-pools.md",
     "anchor": "j22"
   },
@@ -1336,10 +900,6 @@
     "title": "J23 JVM 运行时内存区域怎么讲",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S11",
-      "J-S27"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j23"
   },
@@ -1348,10 +908,6 @@
     "title": "J24 GC 如何判断对象可以回收",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S28",
-      "J-S29"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j24"
   },
@@ -1360,10 +916,6 @@
     "title": "J25 标记清除 复制 标记整理有什么取舍",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S29",
-      "J-S30"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j25"
   },
@@ -1372,11 +924,6 @@
     "title": "J26 G1 和 ZGC 怎么选",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S30",
-      "J-S31",
-      "J-S32"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j26"
   },
@@ -1385,9 +932,6 @@
     "title": "J27 内存泄漏和 OOM 是一回事吗 怎么排查",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S27"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j27"
   },
@@ -1396,10 +940,6 @@
     "title": "J28 类加载的加载 连接 初始化分别做什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S33",
-      "J-S34"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j28"
   },
@@ -1408,10 +948,6 @@
     "title": "J29 双亲委派是什么 现代类加载器如何回答",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S33",
-      "J-S35"
-    ],
     "path": "docs/20-java/03-jvm-and-classloading.md",
     "anchor": "j29"
   },
@@ -1420,10 +956,6 @@
     "title": "J30 IoC 和依赖注入为什么有用",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S36",
-      "J-S37"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j30"
   },
@@ -1432,10 +964,6 @@
     "title": "J31 Bean 生命周期要掌握到什么程度",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S38",
-      "J-S39"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j31"
   },
@@ -1444,10 +972,6 @@
     "title": "J32 Spring 单例 Bean 线程安全吗",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S10",
-      "J-S39"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j32"
   },
@@ -1456,9 +980,6 @@
     "title": "J33 Spring AOP 和两种代理如何工作",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S40"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j33"
   },
@@ -1467,10 +988,6 @@
     "title": "J34 为什么同类调用会让事务失效",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S41",
-      "J-S42"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j34"
   },
@@ -1479,11 +996,6 @@
     "title": "J35 除了自调用 事务还会在哪些地方不符合预期",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S41",
-      "J-S43",
-      "J-S44"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j35"
   },
@@ -1492,9 +1004,6 @@
     "title": "J36 REQUIRED REQUIRES_NEW NESTED 怎么区别",
     "chapter": "java",
     "priority": "P1",
-    "source_ids": [
-      "J-S45"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j36"
   },
@@ -1503,10 +1012,6 @@
     "title": "J37 一次 Spring MVC 请求怎么到 Controller",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S46",
-      "J-S47"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j37"
   },
@@ -1515,10 +1020,6 @@
     "title": "J38 参数校验和统一异常处理为什么都需要",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S47",
-      "J-S48"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j38"
   },
@@ -1527,10 +1028,6 @@
     "title": "J39 Spring Boot 自动配置怎么排查",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S49",
-      "J-S50"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j39"
   },
@@ -1539,12 +1036,6 @@
     "title": "J40 认证 授权 CSRF CORS 分别是什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S51",
-      "J-S52",
-      "J-S53",
-      "J-S69"
-    ],
     "path": "docs/20-java/04-spring-and-backend.md",
     "anchor": "j40"
   },
@@ -1553,10 +1044,6 @@
     "title": "J41 为什么流式回答常用 SSE 后端要处理什么",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S54",
-      "J-S55"
-    ],
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j41"
   },
@@ -1565,11 +1052,6 @@
     "title": "J42 HTTP 客户端为什么不能只设一个超时",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S19",
-      "J-S56",
-      "J-S57"
-    ],
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j42"
   },
@@ -1578,10 +1060,6 @@
     "title": "J43 怎么让模型安全调用 Java 工具",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S53",
-      "J-S58"
-    ],
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j43"
   },
@@ -1590,11 +1068,6 @@
     "title": "J44 为什么不要用一个数据库事务包住整段 Agent 运行",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S42",
-      "J-S44",
-      "J-S45"
-    ],
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j44"
   },
@@ -1603,11 +1076,6 @@
     "title": "J45 Agent 后端要怎么测试和监控",
     "chapter": "java",
     "priority": "P0",
-    "source_ids": [
-      "J-S59",
-      "J-S60",
-      "J-S61"
-    ],
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j45"
   },
@@ -1616,10 +1084,6 @@
     "title": "J46 AI Agent 和 Java javaagent 有什么区别",
     "chapter": "java",
     "priority": "P2",
-    "source_ids": [
-      "J-S58",
-      "J-S62"
-    ],
     "path": "docs/20-java/05-agent-integration.md",
     "anchor": "j46"
   },
@@ -1628,9 +1092,6 @@
     "title": "A01 什么是 Agent？与聊天机器人、Workflow 有什么区别？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T01"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a01"
   },
@@ -1639,9 +1100,6 @@
     "title": "A02 ReAct 如何工作？为什么不能只让模型一直“想”？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T02"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a02"
   },
@@ -1650,10 +1108,6 @@
     "title": "A03 一次 Function Calling 到底是谁执行函数？如何设计工具？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T03",
-      "AG-T44"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a03"
   },
@@ -1662,9 +1116,6 @@
     "title": "A04 JSON Schema 能解决什么？为什么解析成功还不安全？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T04"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a04"
   },
@@ -1673,9 +1124,6 @@
     "title": "A05 Agent 的 state 应保存什么？为什么不能只存聊天记录？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T05"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a05"
   },
@@ -1684,9 +1132,6 @@
     "title": "A06 ReAct 与 Plan–Execute 如何取舍？怎么防止无限循环？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T06"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a06"
   },
@@ -1695,9 +1140,6 @@
     "title": "A07 多 Agent 真比单 Agent 好吗？怎么协作？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T07"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a07"
   },
@@ -1706,9 +1148,6 @@
     "title": "A08 MCP、Function Calling、Tool 和 Skill 是一回事吗？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T08"
-    ],
     "path": "docs/10-agent/01-agent-loop-tools-and-state.md",
     "anchor": "a08"
   },
@@ -1717,9 +1156,6 @@
     "title": "A09 RAG 从文档到答案的完整流程是什么？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T09"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a09"
   },
@@ -1728,10 +1164,6 @@
     "title": "A10 chunk 大小、overlap、父子块怎么选？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T10",
-      "AG-T48"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a10"
   },
@@ -1740,9 +1172,6 @@
     "title": "A11 Embedding 是什么？余弦、点积、欧氏距离有什么区别？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T11"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a11"
   },
@@ -1751,9 +1180,6 @@
     "title": "A12 BM25 和向量检索为什么要混合？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T12"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a12"
   },
@@ -1762,9 +1188,6 @@
     "title": "A13 RRF 怎么算？为什么不直接加 BM25 和向量分数？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T13"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a13"
   },
@@ -1773,11 +1196,6 @@
     "title": "A14 Rerank 做什么？Cross-Encoder 与 LLM rerank 有何不同？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P02",
-      "AG-T14",
-      "AG-T47"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a14"
   },
@@ -1786,9 +1204,6 @@
     "title": "A15 Query rewrite、多 query、HyDE 为什么可能有用，也可能有害？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T15"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a15"
   },
@@ -1797,10 +1212,6 @@
     "title": "A16 RAG 答错了，按什么顺序排查？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T16",
-      "AG-T46"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a16"
   },
@@ -1809,9 +1220,6 @@
     "title": "A17 Recall@k、MRR、NDCG 分别衡量什么？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T17"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a17"
   },
@@ -1820,10 +1228,6 @@
     "title": "A18 RAG、微调、LoRA 应怎么选？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T09",
-      "AG-T18"
-    ],
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a18"
   },
@@ -1832,9 +1236,6 @@
     "title": "A19 短期记忆、长期记忆、RAG 的关系是什么？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T19"
-    ],
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a19"
   },
@@ -1843,9 +1244,6 @@
     "title": "A20 上下文太长怎么压缩？怎样验证没压坏？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T20"
-    ],
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a20"
   },
@@ -1854,9 +1252,6 @@
     "title": "A21 “三层记忆”应该怎样解释，才能不是背架构词？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T21"
-    ],
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a21"
   },
@@ -1865,10 +1260,6 @@
     "title": "A22 长期记忆不断增长、相互矛盾或过期怎么办？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T22",
-      "AG-T35"
-    ],
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a22"
   },
@@ -1877,9 +1268,6 @@
     "title": "A23 模型支持长上下文，还需要检索和压缩吗？",
     "chapter": "agent",
     "priority": "P1",
-    "source_ids": [
-      "AG-T23"
-    ],
     "path": "docs/10-agent/03-memory-and-context.md",
     "anchor": "a23"
   },
@@ -1888,9 +1276,6 @@
     "title": "A24 SSE 与普通 HTTP、WebSocket 的区别是什么？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T24"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a24"
   },
@@ -1899,9 +1284,6 @@
     "title": "A25 SSE 断线重连，如何避免漏事件或重复展示？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T25"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a25"
   },
@@ -1910,9 +1292,6 @@
     "title": "A26 后端在逐条写 SSE，为什么前端还是最后一起显示？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T26"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a26"
   },
@@ -1921,9 +1300,6 @@
     "title": "A27 长任务为什么要和 HTTP 连接解耦？恢复时从哪里继续？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T27"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a27"
   },
@@ -1932,10 +1308,6 @@
     "title": "A28 Go 中如何取消 Agent、限制并发和避免 goroutine 泄漏？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T28",
-      "AG-T45"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a28"
   },
@@ -1944,9 +1316,6 @@
     "title": "A29 模型或工具超时，怎么重试才不会越重试越糟？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T29"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a29"
   },
@@ -1955,9 +1324,6 @@
     "title": "A30 Agent 工具副作用如何做到幂等？Exactly-once 能随口承诺吗？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-T30"
-    ],
     "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
     "anchor": "a30"
   },
@@ -1966,11 +1332,6 @@
     "title": "A39 Openresearch 的状态持久化和执行租约解决什么？有什么边界？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P03",
-      "AG-P04",
-      "AG-T39"
-    ],
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a39"
   },
@@ -1979,11 +1340,6 @@
     "title": "A40 Openresearch 的 DAG、Agent routing 与 Eino 各负责什么？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P05",
-      "AG-P14",
-      "AG-T40"
-    ],
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a40"
   },
@@ -1992,11 +1348,6 @@
     "title": "A41 Openresearch 有评测和修复循环，为什么还不能说“效果已被充分证明”？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P06",
-      "AG-P07",
-      "AG-T41"
-    ],
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a41"
   },
@@ -2005,9 +1356,6 @@
     "title": "A42 Saber 到底解决什么问题？如何讲清完整架构而不是报组件名单？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P13"
-    ],
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a42"
   },
@@ -2016,11 +1364,6 @@
     "title": "A43 Saber 检索的并行边界和重排实现，最容易说错什么？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P08",
-      "AG-P09",
-      "AG-P15"
-    ],
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a43"
   },
@@ -2029,12 +1372,6 @@
     "title": "A44 Saber 长期记忆的 outbox、版本 hash 与 reconcile 为什么不是强一致？",
     "chapter": "agent",
     "priority": "P0",
-    "source_ids": [
-      "AG-P10",
-      "AG-P11",
-      "AG-P12",
-      "AG-T42"
-    ],
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a44"
   }

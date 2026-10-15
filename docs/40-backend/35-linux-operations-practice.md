@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
+示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB64 常用文件命令怎样操作才不把排障变成事故](#fb64)
 - [FB65 怎样定位进程并优雅终止，何时才用 KILL](#fb65)
@@ -24,8 +24,6 @@
 
 **常见误区**：rm 默认都问确认；touch 和重定向等价；chmod 777 是权限问题通用修复。
 
-**来源**：[FB-S047 GNU Coreutils rm 命令手册](https://www.gnu.org/s/coreutils/manual/html_node/rm-invocation.html)、[FB-S103 GNU Coreutils touch 命令手册](https://www.gnu.org/software/coreutils/manual/coreutils.html#touch-invocation)、[FB-S104 GNU Coreutils chmod 命令手册](https://github.com/coreutils/coreutils/blob/master/man/chmod.x)、[FB-S105 Vim 官方帮助 Quick Reference](https://vimhelp.org/quickref.txt.html)。
-
 <a id="fb65"></a>
 
 ### FB65 怎样定位进程并优雅终止，何时才用 KILL
@@ -42,8 +40,6 @@
 
 **常见误区**：kill 等于 SIGKILL；KILL 允许 finally 清理；发送成功等于目标立即消失。
 
-**来源**：[FB-S048 Linux signal(7)](https://man7.org/linux/man-pages/man7/signal.7.html)、[FB-S056 Linux proc_pid_stat(5)](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)。
-
 <a id="fb66"></a>
 
 ### FB66 top、free、vmstat、df、du 各能证明什么
@@ -59,5 +55,3 @@
 **追问**：load average 高就是 CPU 满吗？还可能有不可中断等待，需结合任务状态、CPU 利用率与 I/O 指标。
 
 **常见误区**：free 的 free 数值低就是泄漏；du 与 df 不同必是工具坏；一次截图足够解释间歇故障。
-
-**来源**：[procps-ng top(1)](https://man7.org/linux/man-pages/man1/top.1.html)、[procps-ng free(1)](https://man7.org/linux/man-pages/man1/free.1.html)、[procps-ng vmstat(8)](https://man7.org/linux/man-pages/man8/vmstat.8.html)、[GNU Coreutils df](https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html)、[GNU Coreutils du](https://www.gnu.org/software/coreutils/manual/html_node/du-invocation.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)。

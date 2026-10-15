@@ -6,7 +6,7 @@
 
 ### G23 [P0] 什么是逃逸分析？返回局部变量指针安全吗？
 
-**知识点详解** 
+**知识点详解**
 
 逃逸分析是编译器对对象生命周期和引用关系的判断：对象能否安全放在当前栈帧等短生命周期空间，还是要放到更长生命周期的存储中。返回局部变量地址在 Go 中是安全的，编译器会保证它在仍被使用时有效，不会像错误 C 代码那样留下悬空栈指针。
 
@@ -20,13 +20,11 @@
 
 **误区** ：new 必上堆；能返回地址说明变量原来不在局部；逃逸越少整体程序一定越快。
 
-**来源** ：[GO-S38 Allocating on the Stack](https://go.dev/blog/allocation-optimizations)；[GO-S39 compile 诊断](https://pkg.go.dev/cmd/compile)。
-
 <a id="g24"></a>
 
 ### G24 [P0] Go GC 如何判断垃圾？三色、写屏障、STW 分别解决什么？
 
-**知识点详解** 
+**知识点详解**
 
 垃圾不是“值为 nil”或“创建很久”，而是从根无法再到达的对象。根可以理解为全局变量、G 栈等入口；沿引用找出仍活着的对象，未标记部分才有机会回收。主线是 tracing/mark-sweep：追踪引用、标记存活、清扫可回收空间。
 
@@ -40,13 +38,11 @@
 
 **误区** ：Go 使用引用计数；GC 没有任何暂停；GC 能回收还被缓存持有的对象。
 
-**来源** ：[GO-S40 runtime GC](https://go.dev/src/runtime/mgc.go)；[GO-S41 Green Tea 设计](https://go.dev/blog/greenteagc)；[GO-S29 Go 1.26](https://go.dev/doc/go1.26)。
-
 <a id="g25"></a>
 
 ### G25 [P1] GOGC、GOMEMLIMIT 怎样影响延迟和内存？
 
-**知识点详解** 
+**知识点详解**
 
 GC 在 CPU 时间与内存空间间取舍。GOGC 影响下一次 GC 的堆增长目标：通常允许增长越多，GC 次数可能越少，但占用更多内存；调低则更频繁回收，消耗更多 CPU。现实目标还涉及根集合，不宜只背一个忽略栈与全局根的简化公式。
 
@@ -60,13 +56,11 @@ GOMEMLIMIT 是 Go 运行时的软内存限制，并非操作系统硬上限，�
 
 **误区** ：把 RSS 与 heap 完全等同；宣称调某个数即可根治 OOM。
 
-**来源** ：[GO-S42 GC Guide](https://go.dev/doc/gc-guide)；[GO-S43 runtime/debug 内存限制](https://pkg.go.dev/runtime/debug#SetMemoryLimit)。
-
 <a id="g26"></a>
 
 ### G26 [P1] sync.Pool 适合缓存数据库连接或任务结果吗？
 
-**知识点详解** 
+**知识点详解**
 
 sync.Pool 是可丢弃临时对象的复用池，用于减少重复分配。池中对象可能被运行时移除，Get 不保证拿到之前 Put 的对象，因此它不是可靠缓存、持久存储或有上限且可管理生命周期的连接池。
 
@@ -79,7 +73,5 @@ Put 后就应视为交出所有权，不能继续在原 G 使用。取出可复�
 **常见追问** ：Pool 能保证最多 N 个对象吗？不能。为什么复制 Pool 不合适？使用后复制会破坏同步对象的使用约定。
 
 **误区** ：Pool 可以当 map 缓存；Get 出来的对象天然是干净的；越多对象放进池越省内存。
-
-**来源** ：[GO-S44 sync.Pool 实现与契约](https://go.dev/src/sync/pool.go)。
 
 本节题号：G23、G24、G25、G26。

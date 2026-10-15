@@ -28,4 +28,4 @@ public interface UserMapper {
 
 **误区**：Mapper 与注解是二选一；MyBatis 自动消灭全部 SQL 注入；参数化会自动验证访问权限。
 
-**一手来源**：[FJ-S103 MyBatis XML 与字符串替换](https://mybatis.org/mybatis-3/sqlmap-xml.html)、[FJ-S104 MyBatis Java API/Mapper](https://mybatis.org/mybatis-3/java-api.html)。以上代码未编译、未连接数据库。
+以上代码未编译、未连接数据库。

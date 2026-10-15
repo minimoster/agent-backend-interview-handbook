@@ -7,7 +7,7 @@
     "status": "confirmed_in_official_document",
     "sources": ["https://dev.mysql.com/doc/refman/8.0/en/window-function-restrictions.html"],
     "target": "docs/70-practice/sql-nine-worked-problems.md#s02",
-    "verification": "官方限制核对；SQLite等价查询和独立Python参考通过；未运行MySQL"
+    "verification": "SQLite等价查询和独立Python参考通过；未运行MySQL"
   },
   {
     "id": "SQL-E02",
@@ -37,7 +37,7 @@
     "status": "official_behavior_checked_experiment_not_run",
     "sources": ["https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks-handling.html", "https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html"],
     "target": "docs/70-practice/sql-nine-worked-problems.md#s06",
-    "verification": "官方行为与两连接操作顺序静态核对；InnoDB并发实验未运行"
+    "verification": "两连接操作顺序静态核对；InnoDB并发实验未运行"
   },
   {
     "id": "SQL-E05",
@@ -57,6 +57,6 @@
     "status": "confirmed_in_official_document",
     "sources": ["https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html"],
     "target": "docs/70-practice/sql-nine-worked-problems.md#s09",
-    "verification": "官方存储结构核对；具体EXPLAIN和性能实验未运行"
+    "verification": "具体EXPLAIN和性能实验未运行"
   }
 ]

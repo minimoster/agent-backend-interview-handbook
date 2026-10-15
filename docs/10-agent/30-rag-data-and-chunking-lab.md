@@ -1,9 +1,7 @@
 # RAG数据工程与分块验证实验
 
-[返回Agent目录](README.md) · [验证范围](../../coverage/AGENT_LABS_VALIDATION.md)
-
-
-基础定义、Embedding几何、BM25/RRF、重排和查询改写沿用[A09–A18](02-rag-retrieval-and-reranking.md)。ANN、证据、多模态和结构分块沿用[FA35–FA38与FA43](17-rag-indexes-and-evidence.md)。本章把数据摄取、版本、块的可比较评测和上下文构造做成具体契约；本地测试使用合成数据；真实检索模型、在线 RAG 和生产吞吐仍待验证。核查日期：2026-10-10。
+[返回Agent目录](README.md)
+基础定义、Embedding几何、BM25/RRF、重排和查询改写沿用[A09–A18](02-rag-retrieval-and-reranking.md)。ANN、证据、多模态和结构分块沿用[FA35–FA38与FA43](17-rag-indexes-and-evidence.md)。本章把数据摄取、版本、块的可比较评测和上下文构造做成具体契约；本地测试使用合成数据；真实检索模型、在线 RAG 和生产吞吐仍待验证。
 
 <a id="data-source-contract"></a>
 ## 1 数据源不同 摄取契约就不同
@@ -65,7 +63,7 @@ golden set覆盖精确ID、语义改写、否定、跨段例外、多证据、�
 
 [A17](02-rag-retrieval-and-reranking.md#a17)已有概念。本章实验固定前K去重身份，短列表的Precision@K仍以K作分母，即空位计非相关；另报实际返回数。Recall@K的分母是全部已知相关身份。Hit@K只问有没有至少一个；MRR是每个query首个相关项倒数的均值。无答案query不进入有答案Recall/MRR平均，另评估拒答与错误回答。
 
-nDCG@K在本实验采用gain=2^grade−1、位置折扣log2(rank+1)，用相同gold等级理想排序的DCG归一化。没有正等级时返回未定义值而非伪造完美排序；重复身份输入会被拒绝，防止重复证据抬分。[Stanford信息检索教材](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)讨论集合、排名与分级相关性。
+nDCG@K在本实验采用gain=2^grade−1、位置折扣log2(rank+1)，用相同gold等级理想排序的DCG归一化。没有正等级时返回未定义值而非伪造完美排序；重复身份输入会被拒绝，防止重复证据抬分。集合命中、排序位置与分级相关性是不同评测对象。
 
 **手算校验：** gold={A,B,C}，排名=[X,A,Y,B]，K=4，则Recall=2/3、Precision=2/4、Hit=1、RR=1/2；这条query的RR不是把A、B倒数平均。三条query的RR为1、1/2、0时，MRR=1/2。若两份文档各有多个块，文档Recall、块Recall和必要证据覆盖必须分别命名。
 
@@ -74,7 +72,7 @@ nDCG@K在本实验采用gain=2^grade−1、位置折扣log2(rank+1)，用相同g
 <a id="context-diversity"></a>
 ## 6 相关候选怎样变成覆盖完整的上下文
 
-按身份/版本去重后，可以使用MMR、聚类代表或证据增益选取减少重复。经典MMR逐次平衡query相关性与和已选项的最大相似性，lambda越大越偏重相关性；两个相似度量应先声明和校准。[MMR原论文](https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf)提供这种相关性与新颖度取舍。它不保证事实正确或必要证据完备。
+按身份/版本去重后，可以使用MMR、聚类代表或证据增益选取减少重复。经典MMR逐次平衡query相关性与和已选项的最大相似性，lambda越大越偏重相关性；两个相似度量应先声明和校准。这种选择是在相关性与新颖度之间取舍。它不保证事实正确或必要证据完备。
 
 语义相似不等于事实冗余：旧版与新版退款条件相似，却可能互相冲突；一般规则与例外也可能共享词项。聚类代表选择不能删掉关键限制，摘要融合须保留证据身份和可回查位置。先按权限、时间、来源及任务条件筛选，再控制重复与token，最后核对每个必要主张的支持。
 
@@ -131,12 +129,12 @@ Embedding比较语言、领域、任务、输入长度、查询/文档前缀、�
 
 |产品入口|优先验证的系统问题|
 |---|---|
-|[Chroma](https://docs.trychroma.com/reference/python/client)|客户端/服务端存放位置、跨进程恢复、Embedding配置、并发和访问边界；基础已在[FA63](22-chroma-persistence-and-embedding.md#fa63)。|
-|[pgvector](https://github.com/pgvector/pgvector)|与Postgres事务/过滤/更新的集成，精确与近似索引、实际query plan和运维。|
-|[Elasticsearch](https://www.elastic.co/docs/solutions/search/vector/knn)|词法/向量与过滤在采用版本怎样组合，映射、索引和搜索预算。|
-|[Milvus](https://milvus.io/docs/filtered-search.md)|过滤/向量执行路线、容量、部署和增量更新在真实负载是否合适。|
+|Chroma|客户端/服务端存放位置、跨进程恢复、Embedding配置、并发和访问边界；基础已在[FA63](22-chroma-persistence-and-embedding.md#fa63)。|
+|pgvector|与Postgres事务/过滤/更新的集成，精确与近似索引、实际query plan和运维。|
+|Elasticsearch|词法/向量与过滤在采用版本怎样组合，映射、索引和搜索预算。|
+|Milvus|过滤/向量执行路线、容量、部署和增量更新在真实负载是否合适。|
 
-四个官方入口在读取日核查；本章没有固定或运行其SDK，所以不列可复制的数据库API或产品版本性能排名。已有数据库不等于零运维成本，百万条也不是通用分界，不能把某一个产品说成唯一选择。用实际维度、数据量、过滤选择性、更新删除频率、查询分布、备份恢复和预算做同等条件对照。
+本章没有固定或运行这些数据库的SDK，所以不列可复制的数据库API或产品版本性能排名。已有数据库不等于零运维成本，百万条也不是通用分界，不能把某一个产品说成唯一选择。用实际维度、数据量、过滤选择性、更新删除频率、查询分布、备份恢复和预算做同等条件对照。
 
 <a id="answer-layer-and-debug"></a>
 ## 11 第三层 验证答案 并用对照定位坏例
@@ -159,7 +157,7 @@ Embedding比较语言、领域、任务、输入长度、查询/文档前缀、�
 |追溯|能回到实际证据，但引用可能误用|权重本身不提供逐条事实引用|
 |典型目的|动态知识、精确来源和访问范围|稳定任务行为、领域表达或格式等能力|
 
-LoRA低秩更新、prefix/prompt tuning和adapter tuning是不同PEFT路线；PEFT不是模型压缩的同义词。相关原理见[LoRA原论文](https://arxiv.org/abs/2106.09685)、[Prefix-Tuning](https://arxiv.org/abs/2101.00190)、[Prompt Tuning](https://arxiv.org/abs/2104.08691)、[Adapters](https://arxiv.org/abs/1902.00751)。本章未训练这些方法。
+LoRA低秩更新、prefix/prompt tuning和adapter tuning是不同PEFT路线；PEFT不是模型压缩的同义词。LoRA更新低秩权重增量，prefix/prompt tuning优化输入侧连续提示，adapter tuning插入可训练模块。本章未训练这些方法。
 
 格式不稳先试模板、Schema与校验，术语难先检查上下文和检索；有足够独立样本再比较微调。动态规则问答可检索供证，稳定的处理行为可在获准数据上训练，两者组合仍做同任务消融。知识规模、少样本、时效、部署和延迟都是约束，不能从其中一项直接推出通用胜者。客服演示应区分“有来源解释规则”和“真实处理工单终态”，不把训练设想写成已落地。
 

@@ -4,7 +4,7 @@
 
 本章将工具、状态、安全与验证放回完整执行系统中。先复习[A01–A08的工具与状态](01-agent-loop-tools-and-state.md)、[A16–A17的诊断与指标](02-rag-retrieval-and-reranking.md#a16)、[A24–A30的异步可靠性](04-streaming-and-reliable-execution.md)，再完成[先修阅读与验收清单](14-controlled-improvement.md#prerequisite-reading-checklist)。这里补充边界、跨上下文恢复与工具生命周期。
 
-技术资料核查于2026-10-09。设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
+设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
 
 <a id="fa39"></a>
 
@@ -32,8 +32,6 @@ Harness通常指围绕模型的执行支撑系统，具体边界不是唯一标�
 
 追问：最小可交付Harness要做哪些故障测试？验证：至少覆盖非法工具参数、超时、取消、无进展循环和结果未完成，按业务风险再增加持久恢复与并发。
 
-**来源**：[FA-S001](https://docs.langchain.com/oss/python/langchain/overview)、[FA-S011](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)。
-
 <a id="fa40"></a>
 
 ### FA40 长任务的状态重置 持久恢复和控制流怎样一起设计？
@@ -60,8 +58,6 @@ Harness通常指围绕模型的执行支撑系统，具体边界不是唯一标�
 
 追问：取消和完成同时发生怎么办？验证：定义可接受的状态转换和最终结果；在每个外部动作前后注入故障，检查重复操作、遗失结果及“假完成”。
 
-**来源**：[FA-S003](https://docs.langchain.com/oss/python/langgraph/checkpointers)、[FA-S011](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)、[FA-S023](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fa41"></a>
 
 ### FA41 Harness怎样治理工具生命周期 并把Trace变成可用评测？
@@ -87,5 +83,3 @@ Harness通常指围绕模型的执行支撑系统，具体边界不是唯一标�
 **追问与验证**
 
 追问：脱敏后如何复现？验证：用合成数据重现结构问题，需要真实样本时走受控访问；检查旧schema、超时和权限撤销的契约测试，并核实日志没有明文秘密。
-
-**来源**：[FA-S038](https://opentelemetry.io/docs/concepts/signals/traces/)、[FA-S012](https://opentelemetry.io/docs/security/handling-sensitive-data/)、[FA-S010](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)。

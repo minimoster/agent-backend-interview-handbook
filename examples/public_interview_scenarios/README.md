@@ -33,4 +33,4 @@ python -m unittest discover -s . -v
 
 `evaluation_design_template.json`是12条原创合成评测的设计材料，尚未运行模型。它明确区分事实正确、无答案、权限、旧版本、跨段证据和工具执行；不能拿它填充虚构项目成绩。
 
-[场景卡目录](../../docs/90-public-interview-scenarios/README.md) · [本模块验证范围](../../docs/90-public-interview-scenarios/VALIDATION.md) · [源码](interview_lab.py) · [测试](test_interview_lab.py) · [合成评测设计](evaluation_design_template.json)
+[场景卡目录](../../docs/90-public-interview-scenarios/README.md) · 本模块验证范围 · [源码](interview_lab.py) · [测试](test_interview_lab.py) · [合成评测设计](evaluation_design_template.json)

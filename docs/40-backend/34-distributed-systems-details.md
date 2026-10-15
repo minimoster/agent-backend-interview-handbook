@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
+示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB53 CAP 的 C 和 A 应怎样按故障模型理解](#fb53)
 - [FB54 分布式锁怎样实现所有权、重入和过期写保护](#fb54)
@@ -32,8 +32,6 @@
 
 **常见误区**：C 是所有副本瞬时完全一致；A 是 99.99%；一次系统只能为所有数据选择一种一致性。
 
-**来源**：[FB-S069 Gilbert 与 Lynch：CAP 证明论文](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf)。
-
 <a id="fb54"></a>
 
 ### FB54 分布式锁怎样实现所有权、重入和过期写保护
@@ -49,8 +47,6 @@
 **追问**：业务已提交但 unlock 超时是否订单失败？业务成功事实不随清理失败改变；记录告警并按安全身份重试释放，不能触发无条件业务回滚。
 
 **常见误区**：SETNX 再 EXPIRE 没有风险；GET 后 DEL 两步是原子；有锁就不需要幂等；锁越粗吞吐越好。
-
-**来源**：[FB-S041 Redis 分布式锁与 Redlock](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/)、[FB-S045 ZooKeeper 官方协调模式](https://zookeeper.apache.org/doc/current/recipes.html)、[FB-S038 Redisson 锁与看门狗](https://redisson.pro/docs/data-and-services/locks-and-synchronizers/)。
 
 <a id="fb55"></a>
 
@@ -68,8 +64,6 @@
 
 **常见误区**：拿到任意三把锁就永久安全；Redlock 修复 Redis 主从丢库存；没有 fencing 也可绝对阻止旧客户端。
 
-**来源**：[FB-S041 Redis 分布式锁与 Redlock](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/)。
-
 <a id="fb56"></a>
 
 ### FB56 2PC、TCC、Saga、Outbox 怎样围绕不变量选择
@@ -85,8 +79,6 @@
 **追问**：为什么不能在一个长数据库事务里调用所有远端？远端故障使锁长期占用，本地 rollback 也撤销不了已完成外部副作用。
 
 **常见误区**：Saga 自动强一致；Outbox 从不重复；TCC 三个接口无需持久状态。
-
-**来源**：[FB-S075 AWS Saga Orchestration](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/saga-orchestration.html)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S007 RocketMQ 5.x 事务消息](https://rocketmq.apache.org/docs/featureBehavior/04transactionmessage/)。
 
 <a id="fb57"></a>
 
@@ -104,8 +96,6 @@
 
 **常见误区**：全局唯一等于全局连续；Snowflake 固定位宽适用于全部实现；趋势递增等于严格真实时间全序。
 
-**来源**：[FB-S043 RFC 9562 UUID](https://www.rfc-editor.org/rfc/rfc9562)、[FB-S070 Twitter 归档 Snowflake 项目](https://github.com/twitter-archive/snowflake)、[FB-S040 Redis 复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)。
-
 <a id="fb58"></a>
 
 ### FB58 RPC 和 HTTP 为什么不是同一层次的替代品
@@ -121,8 +111,6 @@
 **追问**：RPC 减少延迟主要看什么？连接复用、序列化、批量、服务端处理、跨区 RTT 与排队常比框架名字重要。
 
 **常见误区**：RPC 一定不用 HTTP；接口生成能解决所有版本兼容；超时可无限重试。
-
-**来源**：[FB-S071 gRPC Core Concepts](https://grpc.io/docs/what-is-grpc/core-concepts/)、[FB-S058 RFC 9110 HTTP 语义](https://datatracker.ietf.org/doc/html/rfc9110)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。
 
 <a id="fb59"></a>
 
@@ -140,8 +128,6 @@
 
 **常见误区**：每个调用必须经注册中心代理；注册中心挂了所有存量调用必立刻失败。
 
-**来源**：[FB-S044 Dubbo 服务发现](https://dubbo.apache.org/en/overview/what/core-features/service-discovery/)、[FB-S071 gRPC Core Concepts](https://grpc.io/docs/what-is-grpc/core-concepts/)。
-
 <a id="fb60"></a>
 
 ### FB60 消息积压怎样扩容才会真正追上
@@ -157,8 +143,6 @@
 **追问**：何时放弃顺序？只有业务明确允许交换或按版本处理，不能为追赶默认改变一致性契约。
 
 **常见误区**：加消费者必然加速；积压条数下降就表示用户全部处理成功；重试吞吐算成功吞吐。
-
-**来源**：[FB-S001 Kafka 4.0 设计与交付语义](https://kafka.apache.org/40/design/design/)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
 
 <a id="fb61"></a>
 
@@ -176,8 +160,6 @@
 
 **常见误区**：一致性哈希保证副本一致；虚拟节点解决任何热点；加节点完全没有缓存穿透成本。
 
-**来源**：[FB-S074 Apache Cassandra Dynamo 架构与虚拟节点](https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)。
-
 <a id="fb62"></a>
 
 ### FB62 复制、Sentinel、Cluster 的职责怎样区别
@@ -194,8 +176,6 @@
 
 **常见误区**：Cluster 不使用主从复制；Sentinel 自动扩展存储容量；WAIT 等价跨所有故障的强一致提交。
 
-**来源**：[FB-S040 Redis 复制](https://redis.io/docs/latest/operate/oss_and_stack/management/replication/)、[FB-S037 Redis Sentinel](https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/)、[FB-S062 Redis Cluster 规范](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)。
-
 <a id="fb63"></a>
 
 ### FB63 Quartz、XXL-JOB、ElasticJob 如何按任务语义选择
@@ -211,5 +191,3 @@
 **追问**：长任务错过下次触发怎么办？明确允许重叠、跳过、排队还是合并，不能由线程池拥塞偶然决定。
 
 **常见误区**：调度器保证所有副作用恰好一次；框架自带重试就无需状态表；直接用 popularity 当选型证据。
-
-**来源**：[FB-S046 Quartz JDBC JobStore 集群](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/configuration/ConfigJDBCJobStoreClustering.html)、[FB-S072 Apache ElasticJob 概览](https://shardingsphere.apache.org/elasticjob/current/en/overview/)、[FB-S073 XXL-JOB 官方文档](https://www.xuxueli.com/xxl-job/)。

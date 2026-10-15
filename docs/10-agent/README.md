@@ -32,7 +32,6 @@
 
 另见[Python/FastAPI附录](../40-backend/40-python-fastapi-lab.md)、[AI Coding练习](../70-practice/ai-coding-exercises.md)与[面试证据准备](../90-interview/01-evidence-based-interview-preparation.md)。
 
-[实验复现与验证范围](../../coverage/AGENT_LABS_VALIDATION.md)。
 
 ## 协议交付与工具流追问
 
@@ -44,10 +43,10 @@
 ## 虾皮 Agent 一二面专项学习
 
 - [34题学习与追问](34-shopee-agent-interview-playbook.md)：独立SP-R1/SP-R2编号，每轮17题；基础答案与新追问交叉阅读
-- [练习安排与技术参考](../../sources/shopee-agent-interview-supplement.md) · [验证范围](../../coverage/SHOPEE_AGENT_VALIDATION.md)
+验证范围
 
 ## 检索手算与算法练习
 
 - [同例手算检索指标、分母与配对回归](35-retrieval-evaluation-worked-example.md)
 - [稳定 Top-K、堆与 RRF](../70-practice/retrieval-ranking-algorithms.md)
-- [两篇公开自述逐项答案、项目对应与四道深入练习](../60-interviews/agent-followups-20261015.md)
+- [Agent逐项题解、项目对应与四道深入练习](../60-interviews/agent-followups-20261015.md)

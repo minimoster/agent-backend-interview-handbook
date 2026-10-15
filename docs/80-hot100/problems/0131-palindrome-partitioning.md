@@ -1,12 +1,12 @@
 # 131. 分割回文串
 
-[官方题目](https://leetcode.cn/problems/palindrome-partitioning/) · MEDIUM · 官方分类：回溯
+难度：MEDIUM · 分类：回溯
 
 ## 题意与接口
 
 把字符串切成若干非空片段，使每片都是回文，返回所有切法。接口：`partition(s)`。
 
-约束核对（2026-10-09）：字符串长度 1..16，只含小写英文字母；每个片段必须非空且回文。 [官方来源](https://leetcode.com/problems/palindrome-partitioning/)
+约束核对（2026-10-09）：字符串长度 1..16，只含小写英文字母；每个片段必须非空且回文。
 
 ## 从朴素方法到优化
 
@@ -66,22 +66,12 @@ class Solution:
 
 复习：全由同一字符组成的长度 n 字符串有多少种切法？为何最多 2^(n-1)？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/palindrome-partitioning/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0131.Palindrome%20Partitioning/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/backtracking/0131-palindrome-partitioning.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/algo/backtracking/0131-palindrome-partitioning.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[131. 分割回文串](https://www.bilibili.com/video/BV1c54y1e7k6)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：区分子串回文判定与枚举切分，检查单字符、整串回文和多个相邻切分的情况。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

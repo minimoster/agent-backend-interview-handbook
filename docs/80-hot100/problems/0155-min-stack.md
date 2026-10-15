@@ -1,10 +1,10 @@
 # 155. 最小栈
 
-[官方题目](https://leetcode.cn/problems/min-stack/) · MEDIUM · 官方分类：栈
+难度：MEDIUM · 分类：栈
 
 ## 题意与接口
 
-设计栈，支持push、pop、top、getMin，官方要求各操作为O(1)。类名`MinStack`；pop不返回元素；题设保证读取和弹出时栈非空。下面用Python动态数组实现，push和pop的具体容器成本按均摊口径说明。
+设计栈，支持push、pop、top、getMin，题设要求各操作为O(1)。类名`MinStack`；pop不返回元素；题设保证读取和弹出时栈非空。下面用Python动态数组实现，push和pop的具体容器成本按均摊口径说明。
 
 ## 从朴素方法到优化
 
@@ -48,7 +48,7 @@ class MinStack:
 
 ## 复杂度
 
-按CPython常见动态数组模型，push与尾部pop均摊O(1)，top/getMin为O(1)；存n个元素需O(n)空间。单次扩容或缩容可能搬移O(n)项，不保证每次调用严格常数时间。官方数据结构目标与具体语言容器的均摊实现口径要区分，也不能从Big-O推出实时延迟保证。依据是[CPython 3.12列表实现中的list_resize与尾部pop](https://github.com/python/cpython/blob/3.12/Objects/listobject.c)。
+按CPython常见动态数组模型，push与尾部pop均摊O(1)，top/getMin为O(1)；存n个元素需O(n)空间。单次扩容或缩容可能搬移O(n)项，不保证每次调用严格常数时间。题设的数据结构目标与具体语言容器的均摊实现口径要区分，也不能从Big-O推出实时延迟保证。在CPython 3.12中，list_resize调整列表存储，尾部pop也可能触发缩容。
 
 ## 边界与易错点
 
@@ -64,22 +64,12 @@ class MinStack:
 
 答案核对：辅助最小栈应在`val <= 当前最小值`时也压入重复值，并在弹出值等于其栈顶时弹出一次；或者逐层保存前缀最小值。只在严格更小时压入会让两个相等最小值中的一个弹出后，另一个仍在主栈却失去记录。
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/min-stack/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0155.Min%20Stack/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0155.min-stack.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0155.min-stack.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：用连续多个相等最小值检查最小值栈，确认弹出一个最小值后另一个仍可正确返回。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

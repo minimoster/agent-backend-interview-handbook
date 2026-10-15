@@ -4,7 +4,7 @@
 
 本章覆盖批处理 Spark 的执行模型、Shuffle、Join 和诊断证据，适合已经理解 SQL、进程和网络的读者。先解释一条查询如何执行，再讨论参数调优。
 
-技术语义核查基于 Apache Spark 4.0.1 官方资料，核查日为2026-10-10。示例尚未在 Spark 运行，性能仍待实测。
+技术语义限定Apache Spark 4.0.1，示例尚未在 Spark 运行，性能仍待实测。
 
 - [执行模型与基础概念](#spark-basics)
 - [Shuffle 与 Join 的成本](#spark-shuffle)
@@ -17,7 +17,7 @@
 
 ### 先分清进程 数据和调度单位
 
-一个 Spark application 包含 driver 和它的 executors。Driver 执行应用入口、维护计算计划并调度 task；executor 是该 application 的执行进程，运行 task 并保存缓存或中间数据。集群管理器分配资源，worker node 是能够承载执行进程的机器。机器、进程、task 是三个不同层次，不能把“十台机器”直接换算成“十个分区”。[官方集群概览](https://spark.apache.org/docs/4.0.1/cluster-overview.html#glossary)
+一个 Spark application 包含 driver 和它的 executors。Driver 执行应用入口、维护计算计划并调度 task；executor 是该 application 的执行进程，运行 task 并保存缓存或中间数据。集群管理器分配资源，worker node 是能够承载执行进程的机器。机器、进程、task 是三个不同层次，不能把“十台机器”直接换算成“十个分区”。
 
 | 名称 | 教学理解 | 常见误解 |
 | --- | --- | --- |
@@ -27,19 +27,19 @@
 | Stage | 可按依赖组织执行的一组 task | 一行 PySpark 代码必对应一个 stage |
 | Spark job | action 触发的内部计算调度单位 | 等同平台上的一个业务任务 |
 
-例如教学设定有 80 个分区、16 个可用 task slot。通常需要分批调度这些分区，不会因为分区数多于 CPU 就报错；其中一个分区特别大时，它可能成为最后完成的 task。Task 失败后还可能有新的 task attempt，不能把所有 attempt 数当唯一分区数。输入分区与扫描文件、切片设置及数据源有关，后续 `repartition` 或 Shuffle 又会改变分布。[RDD 分区与操作说明](https://spark.apache.org/docs/4.0.1/rdd-programming-guide.html#parallelized-collections)、[DataFrame repartition](https://spark.apache.org/docs/4.0.1/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.repartition.html)
+例如教学设定有 80 个分区、16 个可用 task slot。通常需要分批调度这些分区，不会因为分区数多于 CPU 就报错；其中一个分区特别大时，它可能成为最后完成的 task。Task 失败后还可能有新的 task attempt，不能把所有 attempt 数当唯一分区数。输入分区与扫描文件、切片设置及数据源有关，后续 `repartition` 或 Shuffle 又会改变分布。
 
 ### 惰性计算不意味着代码没有任何开销
 
-`select`、`filter`、`join` 和聚合描述计算，通常先构建计划；`count`、`collect`、`show` 或写出结果等 action 才要求求值。逻辑计划描述“要什么”，优化计划重排可等价的操作，物理计划决定执行算子，调度器再组织 job、stage 和 task。计划构建、元数据查询、schema 推断仍可能发生工作；不能把惰性计算解释为所有 API 调用都零 I/O。[RDD transformations 与 actions](https://spark.apache.org/docs/4.0.1/rdd-programming-guide.html#rdd-operations)
+`select`、`filter`、`join` 和聚合描述计算，通常先构建计划；`count`、`collect`、`show` 或写出结果等 action 才要求求值。逻辑计划描述“要什么”，优化计划重排可等价的操作，物理计划决定执行算子，调度器再组织 job、stage 和 task。计划构建、元数据查询、schema 推断仍可能发生工作；不能把惰性计算解释为所有 API 调用都零 I/O。
 
-也不要记“一次 action 必定只显示一个 job”或“每次 join 固定增加两个 stage”。实际 SQL 执行可能有多个 job，广播、子查询、复用与 AQE 都会改变图。`explain("formatted")` 展示物理计划轮廓与节点细节，`explain("cost")` 展示计划和可用统计；运行之后还应核对 SQL UI 中的实际计划。[官方 explain API](https://spark.apache.org/docs/4.0.1/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.explain.html)
+也不要记“一次 action 必定只显示一个 job”或“每次 join 固定增加两个 stage”。实际 SQL 执行可能有多个 job，广播、子查询、复用与 AQE 都会改变图。`explain("formatted")` 展示物理计划轮廓与节点细节，`explain("cost")` 展示计划和可用统计；运行之后还应核对 SQL UI 中的实际计划。
 
 ### 一个有明确口径的 PySpark 例子
 
 目标是统计截至 2026-10-10 00:00 UTC 的过去七天点击次数，并保留所有用户。窗口为 `[2026-10-03 00:00, 2026-10-10 00:00)`，无点击记零，空用户 ID 丢弃。这里是固定截止点的报表，不能直接把这张表用于发生在更早时间的训练样本。
 
-以下是经典 PySpark 本地模式的示意脚本，不是 Spark Connect 示例。输入均为合成数据，只有四行结果，因此最后可以 `collect`；生产中应按输出规模写到受控存储，不能无界拉回 driver。[collect 的内存限制](https://spark.apache.org/docs/4.0.1/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.collect.html)
+以下是经典 PySpark 本地模式的示意脚本，不是 Spark Connect 示例。输入均为合成数据，只有四行结果，因此最后可以 `collect`；生产中应按输出规模写到受控存储，不能无界拉回 driver。
 
 ```python
 from datetime import datetime, timezone
@@ -105,7 +105,7 @@ finally:
     spark.stop()
 ```
 
-断言给出可复核的预期，不表示本仓库已跑通该脚本。样例假定 `users.user_id` 唯一且每行日志就是一个应计数事件；真实输入还要定义重复事件、迟到事件与用户维表版本。输出顺序只在显式排序后用于断言，DataFrame 默认没有全局行序保证。Join 的业务正确性可独立核对：右表聚合后每个用户至多一行，left join 才不会因右表重复键把左表行数放大。[join API](https://spark.apache.org/docs/4.0.1/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.join.html)
+断言给出可复核的预期，不表示本仓库已跑通该脚本。样例假定 `users.user_id` 唯一且每行日志就是一个应计数事件；真实输入还要定义重复事件、迟到事件与用户维表版本。输出顺序只在显式排序后用于断言，DataFrame 默认没有全局行序保证。Join 的业务正确性可独立核对：右表聚合后每个用户至多一行，left join 才不会因右表重复键把左表行数放大。
 
 <a id="spark-shuffle"></a>
 
@@ -115,7 +115,7 @@ finally:
 
 用教学数据说明：分区甲有用户 1 的一次点击和用户 2 的一次点击，分区乙又有用户 1 的一次点击。各分区的局部计数不足以产生最终用户计数，必须把同一 key 的贡献汇到对应目标分区。可结合的聚合通常能先局部合并，例如把大量相同用户事件变成局部计数后再交换；不能估算为永远搬运全部原始日志。
 
-Shuffle 涉及分区、序列化、中间数据写入和读取，跨 executor 拉取时还用网络。在调度层，Shuffle 依赖通常形成 stage 边界；同一 stage 内可串接的 narrow 操作不要求这种重分区，但仍可能读取远程文件，不能说“filter 所在 stage 完全没有网络”。同一用户落到一个目标分区，也不等于永远固定在同一机器。[官方 Shuffle 说明](https://spark.apache.org/docs/4.0.1/rdd-programming-guide.html#shuffle-operations)
+Shuffle 涉及分区、序列化、中间数据写入和读取，跨 executor 拉取时还用网络。在调度层，Shuffle 依赖通常形成 stage 边界；同一 stage 内可串接的 narrow 操作不要求这种重分区，但仍可能读取远程文件，不能说“filter 所在 stage 完全没有网络”。同一用户落到一个目标分区，也不等于永远固定在同一机器。
 
 ### 三种需要识别的物理计划线索
 
@@ -125,9 +125,9 @@ Shuffle 涉及分区、序列化、中间数据写入和读取，跨 executor �
 | `SortMergeJoin` | 两侧分布是否满足要求，是否需要排序 | 看 Exchange、Sort、输出基数和热点 key |
 | `BroadcastHashJoin` | 构建侧能否广播并容纳在相关进程内存中 | 看广播大小、构建侧统计和实际计划 |
 
-Join 策略取决于连接类型、键、统计、已有分布和配置，不是所有 join 都双边 Shuffle，也不能保证永远用 sort-merge join。广播可以减少大表重分布，却仍有传输和内存成本；“压缩文件只有几 GB”不能证明广播安全。`F.broadcast(df)` 标记广播候选，hint 是否采用仍受策略适用性约束。[广播 API](https://spark.apache.org/docs/4.0.1/api/python/reference/pyspark.sql/api/pyspark.sql.functions.broadcast.html)、[官方 SQL 性能与 Join hint](https://spark.apache.org/docs/4.0.1/sql-performance-tuning.html#join-strategy-hints)
+Join 策略取决于连接类型、键、统计、已有分布和配置，不是所有 join 都双边 Shuffle，也不能保证永远用 sort-merge join。广播可以减少大表重分布，却仍有传输和内存成本；“压缩文件只有几 GB”不能证明广播安全。`F.broadcast(df)` 标记广播候选，hint 是否采用仍受策略适用性约束。
 
-AQE 利用运行时统计调整部分物理计划，例如合并小 Shuffle 分区、改变适用的 Join 策略或处理部分倾斜；它不是业务语义校验器，也不能保证任意热点查询都快。比较计划时保存初始与最终计划，并记录 `spark.sql.adaptive.enabled` 等关键配置。[官方 AQE 说明](https://spark.apache.org/docs/4.0.1/sql-performance-tuning.html#adaptive-query-execution)
+AQE 利用运行时统计调整部分物理计划，例如合并小 Shuffle 分区、改变适用的 Join 策略或处理部分倾斜；它不是业务语义校验器，也不能保证任意热点查询都快。比较计划时保存初始与最终计划，并记录 `spark.sql.adaptive.enabled` 等关键配置。
 
 ### 热点和 Join 膨胀要分别处理
 
@@ -144,7 +144,6 @@ Salting 是给热点 key 加额外分桶信息的设计方法。计数可先按 
 ## 从日志到可解释诊断
 
 ### 保留观察粒度和指标口径
-
 
 | 粒度 | 至少保留 | 原因 |
 | --- | --- | --- |
@@ -172,13 +171,13 @@ Salting 是给热点 key 加额外分桶信息的设计方法。计数可先按 
 }
 ```
 
-Shuffle read 应分清 local 与 remote；只取 remote 不能叫总读取量。Memory spill 表示被溢写数据的反序列化大小，disk spill 表示落盘序列化大小，两者不能相加声称写盘字节。Stage 墙钟时长与所有 task 耗时之和不同，因为 task 会并行。Input records、SQL 算子输出行数与全链路唯一业务行数也不是同一指标。[Spark UI 指标定义](https://spark.apache.org/docs/4.0.1/web-ui.html#stage-detail)
+Shuffle read 应分清 local 与 remote；只取 remote 不能叫总读取量。Memory spill 表示被溢写数据的反序列化大小，disk spill 表示落盘序列化大小，两者不能相加声称写盘字节。Stage 墙钟时长与所有 task 耗时之和不同，因为 task 会并行。Input records、SQL 算子输出行数与全链路唯一业务行数也不是同一指标。
 
 如果目标是业务处理量，用成功完成的相关 task attempt 避免重试重复计数；如果目标是资源成本，应另保留失败和投机执行带来的开销。分位数必须附样本数和计算方法；中位数为零时，最大值/中位数比不可用。缺 completion time 应记未知或未完成，而不是构造一个“耗时为零”的完成 stage。
 
 ### 运行中与运行后的观察路径
 
-运行中的 driver UI 可观察 job、stage 与 SQL 执行；应用结束后的观察通常依赖 event log 和 History Server。应在应用启动前启用 `spark.eventLog.enabled` 并配置可写日志目录，History Server 也要能读取对应存储。监控 REST API 的 `/api/v1` 可返回结构化信息。滚动日志和压缩需要版本适配；History Server 的日志压缩整理可能丢弃部分事件，应记录证据完整度。[官方监控与事件日志](https://spark.apache.org/docs/4.0.1/monitoring.html)
+运行中的 driver UI 可观察 job、stage 与 SQL 执行；应用结束后的观察通常依赖 event log 和 History Server。应在应用启动前启用 `spark.eventLog.enabled` 并配置可写日志目录，History Server 也要能读取对应存储。监控 REST API 的 `/api/v1` 可返回结构化信息。滚动日志和压缩需要版本适配；History Server 的日志压缩整理可能丢弃部分事件，应记录证据完整度。
 
 采集器只读观察，不从日志中的字符串获取执行权限。模型接收经过脱敏的统计与代表性错误即可，不必整份日志都放进 prompt；但诊断应能回到 application、stage 和时间窗定位原始证据。
 

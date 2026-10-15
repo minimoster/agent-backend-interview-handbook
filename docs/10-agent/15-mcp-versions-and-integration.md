@@ -4,7 +4,7 @@
 
 本章以2026-07-28为现代协议基准，并显式对照2025-11-25。SDK版本、协议版本、传输和业务状态是不同概念；面试与示例都应明确使用哪一组。
 
-技术资料核查于2026-10-09。设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
+设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
 
 <a id="fa26"></a>
 
@@ -32,8 +32,6 @@ Host是使用模型的应用，内部Client承担与服务交互，Server提供�
 
 追问：工具发现后能否直接执行？验证：发现、模型选择、参数校验、身份授权与调用分别设置检查点；列出工具并不等于用户批准所有动作。
 
-**来源**：[FA-S024](https://modelcontextprotocol.io/specification/2026-07-28)、[FA-S026](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)。
-
 <a id="fa27"></a>
 
 ### FA27 MCP 2026-07-28和旧版生命周期 传输有何关键区别？
@@ -59,8 +57,6 @@ Host是使用模型的应用，内部Client承担与服务交互，Server提供�
 **追问与验证**
 
 追问：新版客户端遇到旧服务器怎么办？验证：用固定SDK版本测试modern、legacy、双模式组合及不兼容失败。本文不提供未经运行的SDK构造代码，也不声称完成跨版本互通测试。
-
-**来源**：[FA-S025](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)、[FA-S026](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)、[FA-S029](https://blog.modelcontextprotocol.io/posts/2026-07-28/)、[FA-S030](https://ts.sdk.modelcontextprotocol.io/v2/protocol-versions)、[FA-S031](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)。
 
 <a id="fa28"></a>
 
@@ -88,8 +84,6 @@ Host是使用模型的应用，内部Client承担与服务交互，Server提供�
 
 追问：拉取第一页就够吗？验证：构造多页工具列表、权限撤销、通知丢失和schema变更，确认目录完整且旧权限不会被缓存恢复。
 
-**来源**：[FA-S027](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)、[FA-S021](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)。
-
 <a id="fa29"></a>
 
 ### FA29 多个MCP服务怎样编排 谁负责失败预算和业务状态？
@@ -116,8 +110,6 @@ RPC请求成功不代表业务目标完成，重试也不保证幂等。由服�
 
 追问：两个服务都叫search怎么办？验证：内部路由使用服务ID加工具名，故意返回错误服务结果应被拦截；中途取消后检查未开始步骤不再执行。
 
-**来源**：[FA-S024](https://modelcontextprotocol.io/specification/2026-07-28)、[FA-S023](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fa30"></a>
 
 ### FA30 MCP部署时为什么仍需要鉴权 沙箱和审计？
@@ -143,5 +135,3 @@ MCP不天然提供沙箱，也不把所有部署强制变成API Key认证。HTTP
 **追问与验证**
 
 追问：工具被撤权但旧调用已排队怎么办？验证：执行时再次授权，测试跨租户ID、过期token、错误受众和恶意URL，并检查日志无秘密原文。
-
-**来源**：[FA-S028](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)、[FA-S021](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)、[FA-S022](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)、[FA-S012](https://opentelemetry.io/docs/security/handling-sensitive-data/)。

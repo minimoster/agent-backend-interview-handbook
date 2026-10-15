@@ -1,12 +1,12 @@
 # 17. 电话号码的字母组合
 
-[官方题目](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/) · MEDIUM · 官方分类：回溯
+难度：MEDIUM · 分类：回溯
 
 ## 题意与接口
 
-给定只含 2 到 9 的数字字符串，输出电话按键字母映射的所有组合。接口：`letterCombinations(digits)`。当前官方长度范围为 1..4；本实现额外兼容空串并返回空列表。
+给定只含 2 到 9 的数字字符串，输出电话按键字母映射的所有组合。接口：`letterCombinations(digits)`。本题长度范围为 1..4；本实现额外兼容空串并返回空列表。
 
-约束核对（2026-10-09）：当前中英官方均为长度 1..4、数字 2..9；空串是本实现的额外兼容输入。 [官方来源](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)；[中国站同样核实](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)。
+本题输入域：长度 1..4、数字 2..9；空串是本实现的额外兼容输入。
 
 ## 从朴素方法到优化
 
@@ -55,7 +55,7 @@ n 为数字长度，P 为各按键字母数的乘积。时间 O(nP)，辅助空�
 
 ## 边界与易错点
 
-7 和 9 对应四个字母，不能统一按三个处理。空输入返回 [] 是本地兼容扩展；2026-10-09 核实的中英官方当前都要求非空输入。0、1 不在输入域。
+7 和 9 对应四个字母，不能统一按三个处理。空输入返回 [] 是本地兼容扩展；本题输入域要求非空字符串。0、1 不在输入域。
 
 ## 本地测试与复习
 
@@ -63,22 +63,12 @@ n 为数字长度，P 为各按键字母数的乘积。时间 O(nP)，辅助空�
 
 复习：为什么输出复杂度必须包含字符串长度 n？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0017.Letter%20Combinations%20of%20a%20Phone%20Number/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/backtracking/0017-letter-combinations-of-a-phone-number.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/algo/backtracking/0017-letter-combinations-of-a-phone-number.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[17. 电话号码的字母组合](https://www.bilibili.com/video/BV1yV4y1V7Ug)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：用一位与多位数字画搜索树，解释每层选择集为何由该位置的数字决定。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

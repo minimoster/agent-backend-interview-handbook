@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0",
+  "supplementaryProblems": [
+    {
+      "id": 77,
+      "title_zh": "组合",
+      "topic": "回溯",
+      "difficulty": "MEDIUM",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-77",
+      "supplementary_order": 1,
+      "original_review_prompt": "先画出起始下标限制，再根据还缺多少个数推导剪枝上界。对比“组合”与“全排列”为什么状态不同。"
+    },
+    {
+      "id": 704,
+      "title_zh": "二分查找",
+      "topic": "二分查找",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-704",
+      "supplementary_order": 2,
+      "original_review_prompt": "分别采用闭区间与半开区间手推目标位于两端、缺失和单元素输入，保持更新规则与区间定义一致。"
+    },
+    {
+      "id": 27,
+      "title_zh": "移除元素",
+      "topic": "双指针",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-27",
+      "supplementary_order": 3,
+      "original_review_prompt": "让写指针表示已经保留的前缀长度，检查连续待删值与所有元素都被删的情况。迁移到移动零时再考虑稳定顺序。"
+    },
+    {
+      "id": 977,
+      "title_zh": "有序数组的平方",
+      "topic": "双指针",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-977",
+      "supplementary_order": 4,
+      "original_review_prompt": "平方后的最大值来自原数组两端。先确定输出从哪一端填，再检查全负数与正负混合输入。"
+    },
+    {
+      "id": 209,
+      "title_zh": "长度最小的子数组",
+      "topic": "滑动窗口",
+      "difficulty": "MEDIUM",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-209",
+      "supplementary_order": 5,
+      "original_review_prompt": "利用原题正数条件解释窗口收缩为何安全；加入负数后先重新检查这个依据，而不是直接沿用模板。"
+    },
+    {
+      "id": 59,
+      "title_zh": "螺旋矩阵II",
+      "topic": "矩阵",
+      "difficulty": "MEDIUM",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-59",
+      "supplementary_order": 6,
+      "original_review_prompt": "为每圈规定一致的边界归属，检查 n 为奇数时中心元素只填一次。和读取螺旋矩阵比较输出动作。"
+    },
+    {
+      "id": 203,
+      "title_zh": "移除链表元素",
+      "topic": "链表",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-203",
+      "supplementary_order": 7,
+      "original_review_prompt": "画出 dummy 与当前前驱的引用，检查删除头部、连续删除和删除尾部时前驱何时前进。"
+    },
+    {
+      "id": 707,
+      "title_zh": "设计链表",
+      "topic": "链表",
+      "difficulty": "MEDIUM",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-707",
+      "supplementary_order": 8,
+      "original_review_prompt": "给每个操作写出合法下标边界，再连续执行头插、尾插、删除和查询，检查长度与链接同时维护。"
+    },
+    {
+      "id": 242,
+      "title_zh": "有效的字母异位词",
+      "topic": "哈希",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-242",
+      "supplementary_order": 9,
+      "original_review_prompt": "先说明字符范围决定数组计数还是字典计数，检查长度相等但频次不同的输入。"
+    },
+    {
+      "id": 349,
+      "title_zh": "两个数组的交集",
+      "topic": "哈希",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-349",
+      "supplementary_order": 10,
+      "original_review_prompt": "区分集合交集与多重集合交集，检查重复值不应在结果中重复出现。"
+    },
+    {
+      "id": 202,
+      "title_zh": "快乐数",
+      "topic": "哈希",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-202",
+      "supplementary_order": 11,
+      "original_review_prompt": "把数字变换看作有限状态上的迭代，解释重复状态为何意味着无法到达 1；对比集合检测与快慢指针。"
+    },
+    {
+      "id": 344,
+      "title_zh": "反转字符串",
+      "topic": "字符串",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-344",
+      "supplementary_order": 12,
+      "original_review_prompt": "检查交换的停止条件与原地接口，说明切片写法是否额外创建线性大小的副本。"
+    },
+    {
+      "id": 151,
+      "title_zh": "翻转字符串里的单词",
+      "topic": "字符串",
+      "difficulty": "MEDIUM",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-151",
+      "supplementary_order": 13,
+      "original_review_prompt": "先明确多余空格如何规范化，再比较按词分割与逐字符压缩的空间代价。"
+    },
+    {
+      "id": 232,
+      "title_zh": "用栈实现队列",
+      "topic": "栈与队列",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-232",
+      "supplementary_order": 14,
+      "original_review_prompt": "只有输出栈为空时才搬移输入栈；用一串 push、pop 和 peek 解释摊还复杂度。"
+    },
+    {
+      "id": 225,
+      "title_zh": "用队列实现栈",
+      "topic": "栈与队列",
+      "difficulty": "EASY",
+      "doc_path": "docs/85-algorithm-supplement/README.md",
+      "article_anchor": "problem-225",
+      "supplementary_order": 15,
+      "original_review_prompt": "每次入队后把新元素旋到队首，检查空结构边界与连续 push/pop 的顺序。"
+    }
+  ],
+  "scenarios": [
+    {
+      "card_id": "SC-A01",
+      "file": "docs/90-public-interview-scenarios/sc-a01.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A02",
+      "file": "docs/90-public-interview-scenarios/sc-a02.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A03",
+      "file": "docs/90-public-interview-scenarios/sc-a03.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A04",
+      "file": "docs/90-public-interview-scenarios/sc-a04.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A05",
+      "file": "docs/90-public-interview-scenarios/sc-a05.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A06",
+      "file": "docs/90-public-interview-scenarios/sc-a06.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A07",
+      "file": "docs/90-public-interview-scenarios/sc-a07.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A08",
+      "file": "docs/90-public-interview-scenarios/sc-a08.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A09",
+      "file": "docs/90-public-interview-scenarios/sc-a09.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A10",
+      "file": "docs/90-public-interview-scenarios/sc-a10.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A11",
+      "file": "docs/90-public-interview-scenarios/sc-a11.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-A12",
+      "file": "docs/90-public-interview-scenarios/sc-a12.md",
+      "category": "Agent应用"
+    },
+    {
+      "card_id": "SC-B01",
+      "file": "docs/90-public-interview-scenarios/sc-b01.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B02",
+      "file": "docs/90-public-interview-scenarios/sc-b02.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B03",
+      "file": "docs/90-public-interview-scenarios/sc-b03.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B04",
+      "file": "docs/90-public-interview-scenarios/sc-b04.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B05",
+      "file": "docs/90-public-interview-scenarios/sc-b05.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B06",
+      "file": "docs/90-public-interview-scenarios/sc-b06.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B07",
+      "file": "docs/90-public-interview-scenarios/sc-b07.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B08",
+      "file": "docs/90-public-interview-scenarios/sc-b08.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B09",
+      "file": "docs/90-public-interview-scenarios/sc-b09.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B10",
+      "file": "docs/90-public-interview-scenarios/sc-b10.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B11",
+      "file": "docs/90-public-interview-scenarios/sc-b11.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B12",
+      "file": "docs/90-public-interview-scenarios/sc-b12.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B13",
+      "file": "docs/90-public-interview-scenarios/sc-b13.md",
+      "category": "后端可靠性"
+    },
+    {
+      "card_id": "SC-B14",
+      "file": "docs/90-public-interview-scenarios/sc-b14.md",
+      "category": "后端可靠性"
+    }
+  ]
+}

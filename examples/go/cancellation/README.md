@@ -36,4 +36,4 @@ go test -race -v -count=10 -timeout=60s ./...
 
 本例负责设置并在成功 flush 后清除响应写 deadline，避免等待下一段时旧 deadline 到期；不要与其他层并发改同一 deadline。本例失败时直接结束流，不约定业务级 error/done 事件、重连、Last-Event-ID 或消息持久化。没有吞吐或性能基准。
 
-来源：[Go 官方流水线与取消](https://go.dev/blog/pipelines)、[ResponseController](https://pkg.go.dev/net/http#ResponseController)、[testing](https://pkg.go.dev/testing)、[Go race detector](https://go.dev/doc/articles/race_detector)。实现与测试组织为原创。
+实现与测试组织为原创。

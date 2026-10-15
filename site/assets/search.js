@@ -10,8 +10,8 @@
       const results=[];
       for(const item of indexed){
         const d=item.doc;
-        if(d.kind==='external-resource'&&view)continue; // saved/read state is chapter-level
-        if(d.kind==='resource-bank'&&module==='supplement'&&!terms.length&&!view)continue;
+        if(d.kind==='exercise'&&view)continue; // saved/read state is chapter-level
+        if(d.kind==='exercise-bank'&&module==='supplement'&&!terms.length&&!view)continue;
         if(module&&d.module!==module||topic&&d.category!==topic||difficulty&&d.difficulty!==difficulty||priority&&!d.priorities.includes(priority))continue;
         if(view==='saved'&&!state.saved.includes(d.path)||view==='done'&&!state.done.includes(d.path))continue;
         if(!terms.every(t=>item.all.includes(t)))continue;
@@ -20,7 +20,7 @@
           score=terms.reduce((sum,t)=>sum+(item.title.includes(t)?100:0),0);
           if(terms.some(t=>d.questionIds.some(id=>normalize(id)===t)))score+=200;
           const id=d.problemId||d.resourceProblemId;
-          if(id&&terms.some(t=>t===String(id)||t==='lc'+id||t==='carl'+id))score+=200;
+          if(id&&terms.some(t=>t===String(id)||t==='lc'+id))score+=200;
           let bestScore=-1;
           for(const s of item.sections){
             const titleNorm=normalize(s.heading);

@@ -1,6 +1,6 @@
 # SC-A09 保存checkpoint为什么还可能重复调用工具
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** Agent保存了每一步状态，进程重启后是否就能完全从断点继续而不重复任何操作？
 
@@ -26,11 +26,9 @@
 
 在“查文档→生成草案→保存草案”中标出4个崩溃位置。验收写出每处重启如何确认是否保存成功，重复恢复不得新增第二份同执行ID草案。LangGraph 故障注入实验尚未执行。
 
-**主题来源：** P07、P10、P11、P13。**技术依据：** [LangGraph持久化](https://docs.langchain.com/oss/python/langgraph/persistence)、[LangGraph durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution)。执行语义须按实际版本测试；当前公开URL可能重定向。
+执行语义须按实际版本测试；当前公开URL可能重定向。
 
 ## 阅读与复验入口
-
-公开主题线索：[P07](../../sources/public-interviews/README.md#report-p07)、[P10](../../sources/public-interviews/README.md#report-p10)、[P11](../../sources/public-interviews/README.md#report-p11)、[P13](../../sources/public-interviews/README.md#report-p13)。
 
 先读基础：
 
@@ -40,4 +38,4 @@
 
 - [interview_lab.py#IdempotentInventory](../../examples/public_interview_scenarios/interview_lab.py#IdempotentInventory)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

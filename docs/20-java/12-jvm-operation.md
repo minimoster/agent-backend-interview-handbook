@@ -23,8 +23,6 @@
 
 **误区**：每个 new 都一定物理堆分配；对象头必有已计算 hash；所有静态内容都在元空间且永不回收。
 
-**一手来源**：[FJ-S009 JVM 数据区](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-2.html)、[FJ-S036 JLS 实例创建与类卸载](https://docs.oracle.com/javase/specs/jls/se25/html/jls-12.html)、[FJ-S037 引用处理](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ref/package-summary.html)、[FJ-S038 HotSpot 同步与身份哈希源码](https://github.com/openjdk/jdk25u/blob/master/src/hotspot/share/runtime/synchronizer.cpp)、[FJ-S039 java 命令与逃逸分析选项](https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html)、[FJ-S132 HotSpot 字符串表弱句柄](https://raw.githubusercontent.com/openjdk/jdk25u/master/src/hotspot/share/classfile/stringTable.cpp)、[FJ-S134 CPython 循环收集器](https://docs.python.org/3/library/gc.html)。
-
 <a id="fj14"></a>
 ### FJ14 分代、CMS、G1 与 Full GC 的名词怎样连起来
 
@@ -45,8 +43,6 @@ ZGC 和 Shenandoah 代表把更多移动/整理相关工作并发化的低停顿
 **追问**：并发 GC 等于没有 STW 吗？不等于。调大堆能自动消除泄漏吗？只可能推迟耗尽。
 
 **误区**：老年代一定用标记清除；所有 GC 都有同一 Full/Major 定义；G1 保证每次暂停不超过目标毫秒数。
-
-**一手来源**：[FJ-S040 G1 指南](https://docs.oracle.com/en/java/javase/25/gctuning/garbage-first-g1-garbage-collector1.html)、[FJ-S041 JDK 14 迁移指南](https://docs.oracle.com/en/java/javase/14/migrate/index.html)、[FJ-S042 Java 25 GC 指南](https://docs.oracle.com/en/java/javase/25/gctuning/hotspot-virtual-machine-garbage-collection-tuning-guide.pdf)、[FJ-S043 JEP 379 Shenandoah](https://openjdk.org/jeps/379)、[FJ-S133 Java 8 历史 CMS 流程](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html)。
 
 <a id="fj15"></a>
 ### FJ15 频繁 Full GC、OOM、栈溢出该按什么顺序查
@@ -71,8 +67,6 @@ ZGC 和 Shenandoah 代表把更多移动/整理相关工作并发化的低停顿
 
 **误区**：StackOverflowError 就是堆 OOM；元空间设大就不会泄漏；Xmx 等于进程总内存。
 
-**一手来源**：[FJ-S044 Oracle 内存问题诊断](https://docs.oracle.com/en/java/javase/25/troubleshoot/troubleshooting-memory-leaks.html)、[FJ-S039 java 参数](https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html)、[FJ-S009 JVM 错误条件](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-2.html)。
-
 <a id="fj16"></a>
 ### FJ16 自定义类加载器为什么不能只写一段“先自己加载”
 
@@ -89,5 +83,3 @@ ZGC 和 Shenandoah 代表把更多移动/整理相关工作并发化的低停顿
 **追问**：加载即初始化吗？不必，见 [J28](03-jvm-and-classloading.md#j28)。线程上下文加载器有什么作用？让框架按调用环境查找服务实现，不能简单说它总是推翻所有父委派。
 
 **误区**：覆盖 loadClass 后不调用 findLoadedClass；子优先能随意伪造 java.lang.String；只有清空一个引用就一定立刻卸载。
-
-**一手来源**：[FJ-S045 ClassLoader](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ClassLoader.html)、[FJ-S036 JLS 执行与类卸载](https://docs.oracle.com/javase/specs/jls/se25/html/jls-12.html)。

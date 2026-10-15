@@ -6,7 +6,7 @@
 
 ### G36 [P0] Go 后端怎样写有价值的测试？
 
-**知识点详解** 
+**知识点详解**
 
 单元测试验证小范围规则，集成测试验证真实组件协作，端到端测试验证用户路径。表驱动测试把输入、预期结果和场景名列出来，减少重复样板，但不能为了形式把完全不同逻辑塞进一个巨大表。
 
@@ -20,19 +20,17 @@ HTTP handler 可用 httptest 的 Request/Recorder 验证状态、头、响应体
 
 **误区** ：200 状态测试通过就算接口正确；行覆盖率 100% 代表所有边界都覆盖。
 
-**来源** ：[GO-S59 httptest](https://pkg.go.dev/net/http/httptest)；[GO-S60 testing](https://pkg.go.dev/testing)。
-
 <a id="g37"></a>
 
 ### G37 [P1] race 检测、fuzz、普通测试分别能发现什么？
 
-**知识点详解** 
+**知识点详解**
 
 普通测试针对写好的输入断言结果；race 检测在实际运行路径记录并分析并发访问，帮助发现缺少同步；fuzz 从种子样例出发变异输入，尝试触发崩溃或违反性质。三者互补，均不是自动正确性证明。
 
 fuzz 适合解析器、编码器、工具参数校验等输入空间很大的逻辑。先写清性质，例如“合法编码再解码结果一致”“任意输入不会 panic”“失败时不返回部分可信业务对象”。发现的输入应保存为回归用例。
 
-**具体例子** 
+**具体例子**
 
 ```bash
 go test ./...
@@ -48,13 +46,11 @@ go test -fuzz=FuzzParseEvent -fuzztime=30s ./stream
 
 **误区** ：fuzz 随机请求线上接口即可；race 一次没报错便证明不存在竞争。
 
-**来源** ：[GO-S16 Race Detector](https://go.dev/doc/articles/race_detector)；[GO-S61 Go Fuzzing 教程](https://go.dev/doc/tutorial/fuzz)。
-
 <a id="g38"></a>
 
 ### G38 [P1] Benchmark 怎么写才不自欺欺人？
 
-**知识点详解** 
+**知识点详解**
 
 基准测试测量一个明确操作的开销，要区分初始化与待测工作，防止编译器把无用结果优化掉。关注 ns/op、B/op、allocs/op 等，不只看“跑了多久”。Go 1.24 引入 `B.Loop` 简化循环与计时；旧项目可能仍用 `b.N`，按工具链选择。
 
@@ -68,13 +64,11 @@ go test -fuzz=FuzzParseEvent -fuzztime=30s ./stream
 
 **误区** ：拿 `-race` 结果比较正常生产性能；复制一次运行数字作为确定提升。
 
-**来源** ：[GO-S60 testing Benchmark](https://pkg.go.dev/testing#hdr-Benchmarks)；[GO-S22 Go 1.24 B.Loop](https://go.dev/doc/go1.24)。
-
 <a id="g39"></a>
 
 ### G39 [P0] 线上 CPU 突然变高，怎样用 pprof 排查？
 
-**知识点详解** 
+**知识点详解**
 
 先确认范围：机器还是进程，整体还是某副本，用户流量、成功率和延迟是否同时变化，最近是否发布或配置变更。随后在能代表问题的时间窗口采集 CPU profile，查看热点调用栈，区分业务计算、编码、GC、锁自旋等。CPU profile 是采样视角，不能单独解释所有等待型延迟。
 
@@ -88,13 +82,11 @@ go test -fuzz=FuzzParseEvent -fuzztime=30s ./stream
 
 **误区** ：看一次火焰图就宣布根因；火焰图横轴代表真实时间推进。
 
-**来源** ：[GO-S62 Profiling Go Programs](https://go.dev/blog/pprof)；[GO-S63 Diagnostics](https://go.dev/doc/diagnostics)。
-
 <a id="g40"></a>
 
 ### G40 [P0] 内存、goroutine、延迟问题分别怎么看？
 
-**知识点详解** 
+**知识点详解**
 
 heap profile 用于看存活堆对象，allocs 视角看累计分配；“一直分配但很快回收”与“活对象持续增长”是不同问题。goroutine profile 显示 G 卡在哪些调用栈，按相似栈聚合有助于识别大量 channel 等待、连接读取或锁等待。trace 展示调度、阻塞、GC 等事件的时间关系。
 
@@ -107,7 +99,5 @@ heap profile 用于看存活堆对象，allocs 视角看累计分配；“一直
 **常见追问** ：G 数不为零是否异常？运行时和服务本来就有常驻 G。heap 下降 RSS 没降说明泄漏吗？不能直接判断，归还 OS 的时机与分配器行为不同。
 
 **误区** ：所有内存高都是 GC 问题；profile 中采样字节数是无误差的逐对象全量统计。
-
-**来源** ：[GO-S64 runtime/pprof](https://pkg.go.dev/runtime/pprof)；[GO-S65 runtime/trace](https://pkg.go.dev/runtime/trace)；[GO-S05 Go 1.27](https://go.dev/doc/go1.27)。
 
 本节题号：G36、G37、G38、G39、G40。

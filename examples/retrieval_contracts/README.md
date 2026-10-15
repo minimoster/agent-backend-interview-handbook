@@ -23,12 +23,7 @@ The minimal FastMCP instance did not implement logging/setLevel in the first pro
 Not tested: model routing, real token counts, embedding/ANN retrieval, generation, semantic quality, HTTP, OAuth, modern MCP, cancellation, persistent recovery, concurrency, graph extraction, GPU serving, load tests, real database authorization, cross-product Skill support, or production business outcomes. The SQLite authorizer and fixture scope are teaching controls, not a security proof. The fixed ranking numbers are not model retrieval measurements.
 
 Primary sources:
-- [CPython v3.12.14 sqlite3 source](https://github.com/python/cpython/tree/v3.12.14/Lib/sqlite3)
-- [SQLite window functions](https://www.sqlite.org/windowfunctions.html)
-- [MCP SDK v1.29.0 FastMCP source](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.0/src/mcp/server/fastmcp/server.py)
-- [MCP SDK v1.29.0 protocol versions](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.0/src/mcp/shared/version.py)
-- [Pydantic v2.13.4 source](https://github.com/pydantic/pydantic/tree/v2.13.4)
-- [AnyIO 4.14.2 source](https://github.com/agronholm/anyio/tree/4.14.2)
-- [Agent Skills format](https://agentskills.io/specification), checked 2026-10-10
+
+- Agent Skills format, checked 2026-10-10
 
 The skill package is original instructional material. It was not derived from an external review ZIP and is not evidence of a user's prior project experience.

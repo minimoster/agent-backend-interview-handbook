@@ -1,6 +1,6 @@
 # SC-B12 CPU高与内存高先留下可解释证据
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 服务CPU100%，你登录服务器后第一步做什么？
 
@@ -26,11 +26,9 @@
 
 在隔离测试服务制造忙循环和未释放对象两种故障，分别选择诊断方法。验收能指出证据、定位路径、修复后的同条件对比及采集开销。本轮没有访问生产机器。
 
-**主题来源：** P02、P03、P17。**技术依据：** [Go诊断](https://go.dev/doc/diagnostics)、[Oracle JDK21诊断工具](https://docs.oracle.com/en/java/javase/21/troubleshoot/diagnostic-tools.html)。诊断命令与权限依据实际环境，不提供生产默认执行脚本。
+诊断命令与权限依据实际环境，不提供生产默认执行脚本。
 
 ## 阅读与复验入口
-
-公开主题线索：[P02](../../sources/public-interviews/README.md#report-p02)、[P03](../../sources/public-interviews/README.md#report-p03)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
@@ -38,4 +36,4 @@
 - [05-testing-and-debugging](../../docs/30-go/05-testing-and-debugging.md)
 - [12-jvm-operation](../../docs/20-java/12-jvm-operation.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

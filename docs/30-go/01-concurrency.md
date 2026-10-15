@@ -6,7 +6,7 @@
 
 ### G01 [P0] 什么是 GMP？为什么 goroutine 比线程轻量？
 
-**知识点详解** 
+**知识点详解**
 
 goroutine 是 Go 运行时管理的执行任务。G 记录任务的栈、执行位置等；M 是操作系统线程，真正被 CPU 调度；P 保存执行 Go 代码需要的调度和分配资源。M 通常必须持有 P 才能执行用户 Go 代码。多个 G 可轮流复用较少的 M，因此创建一个 G 不等于创建一个系统线程。
 
@@ -20,13 +20,11 @@ goroutine 是 Go 运行时管理的执行任务。G 记录任务的栈、执行�
 
 **误区** ：把 goroutine 说成完全不需要 OS 调度；把 GOMAXPROCS 说成最大 G 数或最大 M 数。
 
-**来源** ：[GO-S01 运行时 HACKING](https://go.dev/src/runtime/HACKING)；[GO-S02 容器感知 GOMAXPROCS](https://go.dev/blog/container-aware-gomaxprocs)。
-
 <a id="g02"></a>
 
 ### G02 [P1] 网络 I/O、系统调用、CPU 密集任务如何影响调度？
 
-**知识点详解** 
+**知识点详解**
 
 “阻塞”要说明阻塞了谁。受运行时管理的网络 I/O 可以让 G 等待，由网络轮询机制在连接就绪时唤醒；等待期间其他 G 仍可运行。阻塞系统调用可能占住 M，运行时可把 P 交给其他 M。纯计算任务则持续占用执行资源，增加 G 数不能凭空增加 CPU。
 
@@ -40,19 +38,17 @@ GOMAXPROCS 限制同时执行用户 Go 代码的并行程度。Go 1.25 引入容
 
 **误区** ：认为所有 I/O 都绝不阻塞线程；把 worker 数机械设置为 CPU 数。
 
-**来源** ：[GO-S02](https://go.dev/blog/container-aware-gomaxprocs)；[GO-S03 runtime 文档](https://pkg.go.dev/runtime#GOMAXPROCS)。
-
 <a id="g03"></a>
 
 ### G03 [P0] 什么是 goroutine 泄漏？如何保证每个任务退出？
 
-**知识点详解** 
+**知识点详解**
 
 泄漏常指业务已不需要任务，但 G 仍永久或长期等待。典型原因是向没人接收的 channel 发送、等待永不关闭的 channel、下游没有超时、锁无法获得。GC 能回收不可达对象，却不会替业务随意终止仍存在的 G；其栈持有的对象也可能一直活着。
 
 创建 G 前问四件事：谁拥有它？正常何时结束？失败或取消如何结束？谁等待它结束？所有可能长时间阻塞的位置都要有退出路径，而不是只在函数开头检查一次取消。
 
-**具体例子** 
+**具体例子**
 
 ```go
 select {
@@ -71,13 +67,11 @@ case <-ctx.Done():
 
 **误区** ：把 G 数暂时变多当成泄漏；认为 main 返回会优雅等待所有 G。
 
-**来源** ：[GO-S04 Go 流水线与取消](https://go.dev/blog/pipelines)；[GO-S05 Go 1.27 发布说明](https://go.dev/doc/go1.27)。
-
 <a id="g04"></a>
 
 ### G04 [P0] 无缓冲与有缓冲 channel 有什么区别？
 
-**知识点详解** 
+**知识点详解**
 
 channel 是传递值并建立同步关系的工具。无缓冲 channel 的发送要等接收方就绪，可看作交接；有缓冲 channel 允许先存放有限数量的元素，缓冲满后发送仍会等待。它适合表达任务流、结果流、所有权移交，不能把共享对象的所有后续访问都自动变安全。
 
@@ -91,19 +85,17 @@ channel 是传递值并建立同步关系的工具。无缓冲 channel 的发送
 
 **误区** ：channel 内部并发安全，所以里面的 map 也并发安全。
 
-**来源** ：[GO-S06 channel 运行时实现](https://go.dev/src/runtime/chan.go)；[GO-S07 Go 内存模型](https://go.dev/ref/mem)。
-
 <a id="g05"></a>
 
 ### G05 [P0] nil、关闭、空的 channel 分别会怎样？谁负责 close？
 
-**知识点详解** 
+**知识点详解**
 
 nil channel 的收发会一直等待。非 nil、尚未关闭且为空的 channel，接收要等值。关闭后先读尽缓冲，再接收会立即得到元素零值和 `ok=false`。向已关闭 channel 发送、重复关闭、关闭 nil channel 都会 panic。
 
 close 表达“以后不会再发送”，不是销毁内存，也不是必需的资源释放动作。通常由能确定所有发送结束的一方关闭：单生产者自己关闭；多生产者由协调者等待它们全部结束后关闭。接收者贸然关闭有并发发送风险。
 
-**具体例子** 
+**具体例子**
 
 ```go
 v, ok := <-ch
@@ -118,19 +110,17 @@ if !ok { /* 流结束，不能把 v 当作业务结果 */ }
 
 **误区** ：所有 channel 用完都必须 close；把 close 当成取消所有生产者的强制中断。
 
-**来源** ：[GO-S08 Go 语言规范：channel、发送与 close](https://go.dev/ref/spec#Channel_types)。
-
 <a id="g06"></a>
 
 ### G06 [P0] select 如何工作？为什么 default 可能把 CPU 跑满？
 
-**知识点详解** 
+**知识点详解**
 
 select 在多个 channel 操作中选择一个可执行分支；多个同时可执行时不能假定按源码顺序选。没有分支就绪且没有 default 时等待；存在 default 则立即执行。把带 default 的 select 放进无休止循环，可能形成不断检查但不等待的忙循环。
 
 nil channel 对应分支不可执行，可用于动态禁用分支。已关闭 channel 的接收一直就绪：合并多个流时，一个流结束后可以把相应变量设为 nil，防止反复收到零值。
 
-**具体例子** 
+**具体例子**
 
 ```go
 select {
@@ -150,13 +140,11 @@ case job, ok := <-jobs:
 
 **误区** ：写在第一行的 `ctx.Done()` 永远优先。
 
-**来源** ：[GO-S09 select 运行时实现](https://go.dev/src/runtime/select.go)；[GO-S08 规范](https://go.dev/ref/spec#Select_statements)。
-
 <a id="g07"></a>
 
 ### G07 [P0] context 到底传递什么？cancel 会杀掉 goroutine 吗？
 
-**知识点详解** 
+**知识点详解**
 
 context 是跨函数传播请求生命周期的约定，包含截止时间、取消信号、少量请求级值。它不是线程，不负责强杀 G。取消时 `Done()` 对应信号关闭，业务函数、HTTP/数据库客户端等观察信号后自行退出。
 
@@ -170,13 +158,11 @@ context 是跨函数传播请求生命周期的约定，包含截止时间、取
 
 **误区** ：cancel 等于任务已经退出；不检查取消的 CPU 循环会自动停止。
 
-**来源** ：[GO-S10 context 包](https://pkg.go.dev/context)；[GO-S11 官方 Context 模式](https://go.dev/blog/context)。
-
 <a id="g08"></a>
 
 ### G08 [P0] 一个请求要调用多个下游，超时预算怎样分配？
 
-**知识点详解** 
+**知识点详解**
 
 deadline 是“必须在某时刻结束”，timeout 是“从现在起最多等多久”。整个请求的剩余预算应传给下游，子任务不能通过重新创建 Background 获得更长生命。串行调用的耗时相加；并行调用常受最慢分支、排队和汇总耗时影响。
 
@@ -190,13 +176,11 @@ deadline 是“必须在某时刻结束”，timeout 是“从现在起最多等
 
 **误区** ：每一层独立设置相同 timeout 就有全链路总上限；超时后无条件重试。
 
-**来源** ：[GO-S11](https://go.dev/blog/context)；[GO-S12 gRPC Deadlines](https://grpc.io/docs/guides/deadlines/)。
-
 <a id="g09"></a>
 
 ### G09 [P0] WaitGroup 与 errgroup 如何选择？
 
-**知识点详解** 
+**知识点详解**
 
 WaitGroup 解决“等待一组工作完成”，不直接收集错误，也不自动取消其他任务。经典写法先 Add 再启动 G，每个 G `defer Done()`，最后 Wait。计数归零让 Wait 返回；Add 放在新 G 内可能让 Wait 提前观察到零。Go 1.25 增加了 `WaitGroup.Go(f)`，可启动并登记任务，但合同要求 f 不得 panic。组为空时，Go 调用必须发生在 Wait 之前；组非空时可继续登记任务，包括由已有任务调用 Go。复用组启动下一批独立任务前，应等待上一批所有 Wait 返回。它仍不提供错误收集、自动取消或并发上限，老版本仍要掌握 Add/Done；WaitGroup 使用后也不能复制。
 
@@ -210,13 +194,11 @@ errgroup 在等待基础上增加错误传播，并能通过 `WithContext` 让�
 
 **误区** ：WaitGroup 是锁；errgroup 会返回所有错误；Done 漏调没有后果。
 
-**来源** ：[GO-S13 sync.WaitGroup 与 Go 合同](https://pkg.go.dev/sync#WaitGroup.Go)；[GO-S14 errgroup](https://pkg.go.dev/golang.org/x/sync/errgroup)。
-
 <a id="g10"></a>
 
 ### G10 [P0] 如何设计一个有界 worker pool？
 
-**知识点详解** 
+**知识点详解**
 
 有界意味着同时工作的任务数和待处理任务数都有明确上限。固定 worker 从 jobs 取任务，结果写入 results；调度者负责停止投递，所有 worker 结束后再关闭结果流。取消时，投递与回传也必须能退出，否则只给处理函数传 context 仍可能卡在队列上。
 
@@ -230,13 +212,11 @@ errgroup 在等待基础上增加错误传播，并能通过 `WithContext` 让�
 
 **误区** ：只限制执行量就等于系统所有资源有界；worker 越多吞吐一定越高。
 
-**来源** ：[GO-S15 semaphore](https://pkg.go.dev/golang.org/x/sync/semaphore)；[GO-S04 流水线](https://go.dev/blog/pipelines)。
-
 <a id="g11"></a>
 
 ### G11 [P0] 什么是 data race？加 sleep 为什么不能同步？
 
-**知识点详解** 
+**知识点详解**
 
 不同 G 对同一内存位置访问，至少一次写，且没有正确同步关系，就可能发生 data race。重点不是“有没有在同一纳秒执行”，而是读写间有没有可证明的 happens-before 顺序。这个术语可理解为：前面的操作，其效果保证对后面的操作可见。
 
@@ -250,13 +230,11 @@ errgroup 在等待基础上增加错误传播，并能通过 `WithContext` 让�
 
 **误区** ：单核就不会 race；普通 int 读写看起来原子，所以 `++` 安全。
 
-**来源** ：[GO-S07 内存模型](https://go.dev/ref/mem)；[GO-S16 Race Detector](https://go.dev/doc/articles/race_detector)。
-
 <a id="g12"></a>
 
 ### G12 [P0] Mutex、RWMutex 如何选择？锁住什么才正确？
 
-**知识点详解** 
+**知识点详解**
 
 Mutex 提供互斥：同一时刻一个持有者访问临界区。RWMutex 允许多个读者或一个写者，但“读操作”必须真的不修改共享状态。选锁的关键是保护业务不变量，例如 map 和计数一致，而不是随手包住一行代码。
 
@@ -270,13 +248,11 @@ Mutex 提供互斥：同一时刻一个持有者访问临界区。RWMutex 允许
 
 **误区** ：读多就必然该用 RWMutex；把锁当成绑定某个变量的魔法。
 
-**来源** ：[GO-S17 Mutex 源码说明](https://go.dev/src/sync/mutex.go)；[GO-S18 RWMutex 源码说明](https://go.dev/src/sync/rwmutex.go)。
-
 <a id="g13"></a>
 
 ### G13 [P1] atomic、Once 能替代锁吗？
 
-**知识点详解** 
+**知识点详解**
 
 atomic 适合单个计数、状态或指针的原子发布。CAS 的意思是“值仍等于旧值才替换”，能避免简单的检查与修改之间被插入操作；复杂状态需要重试与更严谨的设计，不能因为每个字段都原子就认为整体一致。
 
@@ -289,7 +265,5 @@ Once 用于一次性初始化，其他调用者会等初始化函数完成，而
 **常见追问** ：atomic.Value 发布对象后能修改内部 map 吗？仍需同步，常用做法是发布不可变快照。
 
 **误区** ：原子操作一定更快；CAS 成功说明整个业务已经一致。
-
-**来源** ：[GO-S19 sync/atomic](https://pkg.go.dev/sync/atomic)；[GO-S20 sync.Once](https://go.dev/src/sync/once.go)。
 
 本节题号：G01、G02、G03、G04、G05、G06、G07、G08、G09、G10、G11、G12、G13。

@@ -1,8 +1,7 @@
-# 面经追问实验：资源、提交与协议边界
+# 工程追问实验：资源、提交与协议边界
 
-[本轮路线](../../docs/00-guide/expanded-map-and-study-plan.md#topic-map) · [验证范围](../../coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md)
-
-全部为原创教学代码，不是面经文章或第三方SDK的复制。没有凭这些模型宣称真实服务、供应商互通或性能成绩。
+[本轮路线](../../docs/00-guide/expanded-map-and-study-plan.md#topic-map)
+全部为原创教学代码，不复制第三方SDK。没有凭这些模型宣称真实服务、供应商互通或性能成绩。
 
 ## Java21：19个合同场景
 

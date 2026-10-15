@@ -1,6 +1,6 @@
 # SC-A01 为什么这个任务需要Agent
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 一个企业问答系统现在能检索文档并回答。你准备加Agent循环，具体要解决什么新问题？
 
@@ -26,14 +26,12 @@ ReAct常在观察结果后逐步选择动作；显式计划把目标拆成可检
 
 给“查报销规则”和“比较三条采购方案”各画一条状态流。要求每个动作说明输入、输出、失败出口；找出至少一个无需模型决策的固定步骤。
 
-**主题来源：** P06、P11、P13、P14。**技术依据：** [Anthropic模式定义](https://www.anthropic.com/engineering/building-effective-agents)、[LangGraph工作流与Agent](https://docs.langchain.com/oss/python/langgraph/workflows-agents)。仅讨论设计模式，不保证特定框架版本的API。
+仅讨论设计模式，不保证特定框架版本的API。
 
 ## 阅读与复验入口
-
-公开主题线索：[P06](../../sources/public-interviews/README.md#report-p06)、[P11](../../sources/public-interviews/README.md#report-p11)、[P13](../../sources/public-interviews/README.md#report-p13)、[P14](../../sources/public-interviews/README.md#report-p14)。
 
 先读基础：
 
 - [01-agent-loop-tools-and-state](../../docs/10-agent/01-agent-loop-tools-and-state.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

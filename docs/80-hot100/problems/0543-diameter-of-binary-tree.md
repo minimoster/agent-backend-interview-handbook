@@ -1,12 +1,12 @@
 # 543. 二叉树的直径
 
-[官方题目](https://leetcode.cn/problems/diameter-of-binary-tree/) · EASY · 官方分类：二叉树
+难度：EASY · 分类：二叉树
 
 ## 题意与接口
 
 求树中任意两节点间最长简单路径的边数，路径不必经过根。接口：`diameterOfBinaryTree(root) -> int`。
 
-约束核对（2026-10-09）：节点数 1..10000；直径按边数计，可不经过根。 [官方来源](https://leetcode.com/problems/diameter-of-binary-tree/)
+约束核对（2026-10-09）：节点数 1..10000；直径按边数计，可不经过根。
 
 ## 从朴素方法到优化
 
@@ -67,22 +67,12 @@ class Solution:
 
 复习：为什么返回给父节点的高度只能选一边，而更新全局直径可以同时用两边？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/diameter-of-binary-tree/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0500-0599/0543.Diameter%20of%20Binary%20Tree/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0543.diameter-of-binary-tree.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0543.diameter-of-binary-tree.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：分别定义向上返回的高度和更新全局答案的路径长度；说明边数与节点数的换算。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

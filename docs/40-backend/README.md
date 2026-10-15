@@ -18,7 +18,7 @@
 - [操作系统：资源、内存与调度](33-operating-system-details.md) · 8题
 - [分布式：租约、事务、标识与调度](34-distributed-systems-details.md) · 11题
 - [Linux：安全操作与证据采集](35-linux-operations-practice.md) · 3题
-- [面经技术追问：补齐工程边界](36-interview-followup-topics.md) · 15题
+- [工程技术追问：补齐工程边界](36-interview-followup-topics.md) · 15题
 
 ### 数据工程与跨栈专题
 
@@ -34,7 +34,7 @@
 
 另见[AI Coding练习](../70-practice/ai-coding-exercises.md)。
 
-## 面经追问与恢复实验
+## 工程追问与恢复实验
 
 - [未知提交、重放顺序与旧写保护](41-storage-recovery-followups.md)
 - [系统设计与排障诊所](42-system-design-debugging-clinic.md)

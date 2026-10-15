@@ -1,0 +1,607 @@
+{
+  "schema_version": 1,
+  "canonical_manifest_path": "docs/80-hot100/manifest.json",
+  "canonical_manifest_sha256": "8ca46abd326a2a4f7beded0f00192cecfd559e24b1165cce55e0a463b137af2f",
+  "algorithms": [
+    {
+      "id": 1,
+      "python_path": "examples/hot100/p0001_two_sum.py",
+      "doc_path": "docs/80-hot100/problems/0001-two-sum.md",
+      "source_sha256": "019a1b1e439aa485e9bc286e8a56be23f9f6dd7d11b3c5d19c19369e988a1bd6"
+    },
+    {
+      "id": 49,
+      "python_path": "examples/hot100/p0049_group_anagrams.py",
+      "doc_path": "docs/80-hot100/problems/0049-group-anagrams.md",
+      "source_sha256": "ffc72c5d4a84ac1d4ff7d0e8d703260ee2aa20879cb4e7d886c606f735cd44c3"
+    },
+    {
+      "id": 128,
+      "python_path": "examples/hot100/p0128_longest_consecutive_sequence.py",
+      "doc_path": "docs/80-hot100/problems/0128-longest-consecutive-sequence.md",
+      "source_sha256": "86005ca3731ae0875449a26b51859610f40ea3bdf50af4369f294c7c4a32acad"
+    },
+    {
+      "id": 283,
+      "python_path": "examples/hot100/p0283_move_zeroes.py",
+      "doc_path": "docs/80-hot100/problems/0283-move-zeroes.md",
+      "source_sha256": "7deca2d15ab61808d18ab478b1365ba0d7541507550b43b27129cc73399530c3"
+    },
+    {
+      "id": 11,
+      "python_path": "examples/hot100/p0011_container_with_most_water.py",
+      "doc_path": "docs/80-hot100/problems/0011-container-with-most-water.md",
+      "source_sha256": "8f6b11873e6640dbf324d8cbaa40a13dac8f2ef42ed2228a4651882db2aa2595"
+    },
+    {
+      "id": 15,
+      "python_path": "examples/hot100/p0015_3sum.py",
+      "doc_path": "docs/80-hot100/problems/0015-3sum.md",
+      "source_sha256": "702c06402bd93260b4c5222af4cfbbc6d13228f75afd7e8273cb40ad35e7ea23"
+    },
+    {
+      "id": 42,
+      "python_path": "examples/hot100/p0042_trapping_rain_water.py",
+      "doc_path": "docs/80-hot100/problems/0042-trapping-rain-water.md",
+      "source_sha256": "464a186eee30dbb96805d3f2f333f61558198eeacb36762bd6e1580afd6014b7"
+    },
+    {
+      "id": 3,
+      "python_path": "examples/hot100/p0003_longest_substring_without_repeating_characters.py",
+      "doc_path": "docs/80-hot100/problems/0003-longest-substring-without-repeating-characters.md",
+      "source_sha256": "24fae3ec79c6c3c9816ebd40c5e7646972eb426356ca8716d6cb9ffdd0e85ca4"
+    },
+    {
+      "id": 438,
+      "python_path": "examples/hot100/p0438_find_all_anagrams_in_a_string.py",
+      "doc_path": "docs/80-hot100/problems/0438-find-all-anagrams-in-a-string.md",
+      "source_sha256": "a59746b3b47215a9f323fb5a25e630fb1abd40be12e92ca428b68ce98fa494a7"
+    },
+    {
+      "id": 560,
+      "python_path": "examples/hot100/p0560_subarray_sum_equals_k.py",
+      "doc_path": "docs/80-hot100/problems/0560-subarray-sum-equals-k.md",
+      "source_sha256": "3a4bbd43940a27e8ba5d8b18c7adca58d3fac716bd76479152e175fb12db5981"
+    },
+    {
+      "id": 239,
+      "python_path": "examples/hot100/p0239_sliding_window_maximum.py",
+      "doc_path": "docs/80-hot100/problems/0239-sliding-window-maximum.md",
+      "source_sha256": "9515476b55f0286b8e139d334609a537b52594966fdb9c549321060b65eb8894"
+    },
+    {
+      "id": 76,
+      "python_path": "examples/hot100/p0076_minimum_window_substring.py",
+      "doc_path": "docs/80-hot100/problems/0076-minimum-window-substring.md",
+      "source_sha256": "85b8baefebb6cb70dbd6795fef9f7c84c10212cf7471d2e81a8cdaa7b4b778ac"
+    },
+    {
+      "id": 53,
+      "python_path": "examples/hot100/p0053_maximum_subarray.py",
+      "doc_path": "docs/80-hot100/problems/0053-maximum-subarray.md",
+      "source_sha256": "dd7edb203a28eb46858f331680ed5f4e8f73686fe89812b79d20a34a9747ee80"
+    },
+    {
+      "id": 56,
+      "python_path": "examples/hot100/p0056_merge_intervals.py",
+      "doc_path": "docs/80-hot100/problems/0056-merge-intervals.md",
+      "source_sha256": "0a5174e6aa3d637793fbcca0ea7a93070fe8f526e57da540fee63ca30b410f61"
+    },
+    {
+      "id": 189,
+      "python_path": "examples/hot100/p0189_rotate_array.py",
+      "doc_path": "docs/80-hot100/problems/0189-rotate-array.md",
+      "source_sha256": "a40c96f735c3a0d061729adc80e23507c8f330ab6421da3e08ec51ce4c88703c"
+    },
+    {
+      "id": 238,
+      "python_path": "examples/hot100/p0238_product_of_array_except_self.py",
+      "doc_path": "docs/80-hot100/problems/0238-product-of-array-except-self.md",
+      "source_sha256": "82928c7e89ee0513543d72568b578c48f2f67aaf3520d9f1a037e4d9b76d2c74"
+    },
+    {
+      "id": 41,
+      "python_path": "examples/hot100/p0041_first_missing_positive.py",
+      "doc_path": "docs/80-hot100/problems/0041-first-missing-positive.md",
+      "source_sha256": "c9ebe8dbc63ac6fd42692898c7ddf570dc00f4e184debc206d3111e6ed972b59"
+    },
+    {
+      "id": 73,
+      "python_path": "examples/hot100/p0073_set_matrix_zeroes.py",
+      "doc_path": "docs/80-hot100/problems/0073-set-matrix-zeroes.md",
+      "source_sha256": "eeb679a05b3b525113b645e4f76d908eb73ff7496b472b2a73845d5a02b2bb94"
+    },
+    {
+      "id": 54,
+      "python_path": "examples/hot100/p0054_spiral_matrix.py",
+      "doc_path": "docs/80-hot100/problems/0054-spiral-matrix.md",
+      "source_sha256": "8af2cb5d73c041bda2b5e442d8402c107365ded61f6f079a8e757cdb222eb9c4"
+    },
+    {
+      "id": 48,
+      "python_path": "examples/hot100/p0048_rotate_image.py",
+      "doc_path": "docs/80-hot100/problems/0048-rotate-image.md",
+      "source_sha256": "9dd412be5b2258dde851238bd6d60bdaac5630baabb124d044cc790cc6f375c7"
+    },
+    {
+      "id": 240,
+      "python_path": "examples/hot100/p0240_search_a_2d_matrix_ii.py",
+      "doc_path": "docs/80-hot100/problems/0240-search-a-2d-matrix-ii.md",
+      "source_sha256": "594d7cfa3b4474e41421e45f5cb86c12f70e1947a8caf0e460984a26fdbe6ce7"
+    },
+    {
+      "id": 160,
+      "python_path": "examples/hot100/p0160_intersection_of_two_linked_lists.py",
+      "doc_path": "docs/80-hot100/problems/0160-intersection-of-two-linked-lists.md",
+      "source_sha256": "37209bc012724bcb89d5118af6dae59e9537011cc0033064ef7a2803c850f852"
+    },
+    {
+      "id": 206,
+      "python_path": "examples/hot100/p0206_reverse_linked_list.py",
+      "doc_path": "docs/80-hot100/problems/0206-reverse-linked-list.md",
+      "source_sha256": "3c4c937dd0cd59e5d96c04006bdbace2d7ea5e8af93965a64a5512079b8945c5"
+    },
+    {
+      "id": 234,
+      "python_path": "examples/hot100/p0234_palindrome_linked_list.py",
+      "doc_path": "docs/80-hot100/problems/0234-palindrome-linked-list.md",
+      "source_sha256": "8f3487f78d9781e807a57d1d1d45fed063c637adf2e022f3227e377aed04eab9"
+    },
+    {
+      "id": 141,
+      "python_path": "examples/hot100/p0141_linked_list_cycle.py",
+      "doc_path": "docs/80-hot100/problems/0141-linked-list-cycle.md",
+      "source_sha256": "00040ee0ed0ad24540a5adac0195fb7256a36baacce72ddbb0dc32d354b94f72"
+    },
+    {
+      "id": 142,
+      "python_path": "examples/hot100/p0142_linked_list_cycle_ii.py",
+      "doc_path": "docs/80-hot100/problems/0142-linked-list-cycle-ii.md",
+      "source_sha256": "fbfa28a6887236f427b6bdab9aba6c5f90f0a6dba6f0522d1eeb6dd32572524a"
+    },
+    {
+      "id": 21,
+      "python_path": "examples/hot100/p0021_merge_two_sorted_lists.py",
+      "doc_path": "docs/80-hot100/problems/0021-merge-two-sorted-lists.md",
+      "source_sha256": "8efa7a02201383f529cd31371b655e7dab1bfc42dd109da078efbca8b020a929"
+    },
+    {
+      "id": 2,
+      "python_path": "examples/hot100/p0002_add_two_numbers.py",
+      "doc_path": "docs/80-hot100/problems/0002-add-two-numbers.md",
+      "source_sha256": "4c523447cc9417ec1738d1419c7612e6a0f4ff1a57d86efbd060185318345ceb"
+    },
+    {
+      "id": 19,
+      "python_path": "examples/hot100/p0019_remove_nth_node_from_end_of_list.py",
+      "doc_path": "docs/80-hot100/problems/0019-remove-nth-node-from-end-of-list.md",
+      "source_sha256": "10abb8edaa07c5c746d75a4a83eb8d7dcadcc3a891e2a1532de6694f33e6ae09"
+    },
+    {
+      "id": 24,
+      "python_path": "examples/hot100/p0024_swap_nodes_in_pairs.py",
+      "doc_path": "docs/80-hot100/problems/0024-swap-nodes-in-pairs.md",
+      "source_sha256": "9ae78341b512175457d8491b69e9a46441b307f8d8f866a3e47d9c52d1f69588"
+    },
+    {
+      "id": 25,
+      "python_path": "examples/hot100/p0025_reverse_nodes_in_k_group.py",
+      "doc_path": "docs/80-hot100/problems/0025-reverse-nodes-in-k-group.md",
+      "source_sha256": "ff5e3ec9d887c91d42a699731c5ef751fe600e3863270d7730cb0ec6a0ed8c53"
+    },
+    {
+      "id": 138,
+      "python_path": "examples/hot100/p0138_copy_list_with_random_pointer.py",
+      "doc_path": "docs/80-hot100/problems/0138-copy-list-with-random-pointer.md",
+      "source_sha256": "5247e5013db87cc7d0a6d4d70ae77aad5c5aba327a8eec3d8e82a6fd26fedfaa"
+    },
+    {
+      "id": 148,
+      "python_path": "examples/hot100/p0148_sort_list.py",
+      "doc_path": "docs/80-hot100/problems/0148-sort-list.md",
+      "source_sha256": "17e6683a983f05aadf9e50bb6066a227acd1e9ec3aade82b2f8013fc77d3aeca"
+    },
+    {
+      "id": 23,
+      "python_path": "examples/hot100/p0023_merge_k_sorted_lists.py",
+      "doc_path": "docs/80-hot100/problems/0023-merge-k-sorted-lists.md",
+      "source_sha256": "eeb7ec16ace583cbf07f10ce39f35e6cbb85bf205a632df1c3ec6c76663c1a8b"
+    },
+    {
+      "id": 146,
+      "python_path": "examples/hot100/p0146_lru_cache.py",
+      "doc_path": "docs/80-hot100/problems/0146-lru-cache.md",
+      "source_sha256": "8009519ee26a5627dbfd01a6bba01caf53606dddfecb69cf080c585a02341423"
+    },
+    {
+      "id": 94,
+      "python_path": "examples/hot100/p0094_binary_tree_inorder_traversal.py",
+      "doc_path": "docs/80-hot100/problems/0094-binary-tree-inorder-traversal.md",
+      "source_sha256": "b212b4a70d965003adb4a2db5aeb1da9caad58737429fe6f8cfdc55e70042687"
+    },
+    {
+      "id": 104,
+      "python_path": "examples/hot100/p0104_maximum_depth_of_binary_tree.py",
+      "doc_path": "docs/80-hot100/problems/0104-maximum-depth-of-binary-tree.md",
+      "source_sha256": "bc2b397d99bf7bce095f3b1b16504e9bf342e7e323d623365d9969ec8f515471"
+    },
+    {
+      "id": 226,
+      "python_path": "examples/hot100/p0226_invert_binary_tree.py",
+      "doc_path": "docs/80-hot100/problems/0226-invert-binary-tree.md",
+      "source_sha256": "6005dc622426cc80d756b722e84d51602681e8fb11fd194d194cb12d16f6fcca"
+    },
+    {
+      "id": 101,
+      "python_path": "examples/hot100/p0101_symmetric_tree.py",
+      "doc_path": "docs/80-hot100/problems/0101-symmetric-tree.md",
+      "source_sha256": "654c00c090c1ade5380baefdff167cfc4e64cece38541d6038efcfc646f6ce70"
+    },
+    {
+      "id": 543,
+      "python_path": "examples/hot100/p0543_diameter_of_binary_tree.py",
+      "doc_path": "docs/80-hot100/problems/0543-diameter-of-binary-tree.md",
+      "source_sha256": "4dd1f6d88c5cb19a756523f23c5a5f7b941de47022aaf1056ce3e716f8af0b46"
+    },
+    {
+      "id": 102,
+      "python_path": "examples/hot100/p0102_binary_tree_level_order_traversal.py",
+      "doc_path": "docs/80-hot100/problems/0102-binary-tree-level-order-traversal.md",
+      "source_sha256": "c96bba7e00b2dacc7ab662e54fd2abf9c4c85af8ff8676ce3c34ba46e35d959e"
+    },
+    {
+      "id": 108,
+      "python_path": "examples/hot100/p0108_convert_sorted_array_to_binary_search_tree.py",
+      "doc_path": "docs/80-hot100/problems/0108-convert-sorted-array-to-binary-search-tree.md",
+      "source_sha256": "f881a352c60f41061a1784fcbd3a2f0cb346484d4e903ae1b0669c96e73fd4a8"
+    },
+    {
+      "id": 98,
+      "python_path": "examples/hot100/p0098_validate_binary_search_tree.py",
+      "doc_path": "docs/80-hot100/problems/0098-validate-binary-search-tree.md",
+      "source_sha256": "0248791b5658e8ba30575c7f0d4c7c02937d020a169a2779df12734e9777219b"
+    },
+    {
+      "id": 230,
+      "python_path": "examples/hot100/p0230_kth_smallest_element_in_a_bst.py",
+      "doc_path": "docs/80-hot100/problems/0230-kth-smallest-element-in-a-bst.md",
+      "source_sha256": "1fd94aeb1456546d46649de44e9841eaff7ce1626e8a3275427be91eb26618ce"
+    },
+    {
+      "id": 199,
+      "python_path": "examples/hot100/p0199_binary_tree_right_side_view.py",
+      "doc_path": "docs/80-hot100/problems/0199-binary-tree-right-side-view.md",
+      "source_sha256": "bb13da2aa4c238c03a2096a5c00ee71d3c93c7ed971520fbb93feaadb1be86b3"
+    },
+    {
+      "id": 114,
+      "python_path": "examples/hot100/p0114_flatten_binary_tree_to_linked_list.py",
+      "doc_path": "docs/80-hot100/problems/0114-flatten-binary-tree-to-linked-list.md",
+      "source_sha256": "5a037ad7c515a938aeffd5922f5ad98a57a7396769ea2a8e36b78c61c9402f20"
+    },
+    {
+      "id": 105,
+      "python_path": "examples/hot100/p0105_construct_binary_tree_from_preorder_and_inorder_traversal.py",
+      "doc_path": "docs/80-hot100/problems/0105-construct-binary-tree-from-preorder-and-inorder-traversal.md",
+      "source_sha256": "0795ca0b900ed2eff6926ea69ba8426df38b40d4803812d50740a966b282b0af"
+    },
+    {
+      "id": 437,
+      "python_path": "examples/hot100/p0437_path_sum_iii.py",
+      "doc_path": "docs/80-hot100/problems/0437-path-sum-iii.md",
+      "source_sha256": "14d7e1421a90a5a919c0069d86e8c34659655a48bf546e4a86610f73f942a8e6"
+    },
+    {
+      "id": 236,
+      "python_path": "examples/hot100/p0236_lowest_common_ancestor_of_a_binary_tree.py",
+      "doc_path": "docs/80-hot100/problems/0236-lowest-common-ancestor-of-a-binary-tree.md",
+      "source_sha256": "6175e9d477b2dbc9476dd97520389dec2dea20d7ec9fd50f1e9986fb003a6a9d"
+    },
+    {
+      "id": 124,
+      "python_path": "examples/hot100/p0124_binary_tree_maximum_path_sum.py",
+      "doc_path": "docs/80-hot100/problems/0124-binary-tree-maximum-path-sum.md",
+      "source_sha256": "e32012c0b4aae9f99593c8008b487f129cdf1b39562e157b7459a245e408377f"
+    },
+    {
+      "id": 200,
+      "python_path": "examples/hot100/p0200_number_of_islands.py",
+      "doc_path": "docs/80-hot100/problems/0200-number-of-islands.md",
+      "source_sha256": "8804249f3dbb05b14bab970b879c2f6207d85c974cec9f0bb19534804357383a"
+    },
+    {
+      "id": 994,
+      "python_path": "examples/hot100/p0994_rotting_oranges.py",
+      "doc_path": "docs/80-hot100/problems/0994-rotting-oranges.md",
+      "source_sha256": "27ffe38abe924318a6971fba2e6e140b727a67d4532b41d72c30cbc9e049d959"
+    },
+    {
+      "id": 207,
+      "python_path": "examples/hot100/p0207_course_schedule.py",
+      "doc_path": "docs/80-hot100/problems/0207-course-schedule.md",
+      "source_sha256": "52fb1920cdd2da9e7f8dc9da50219bdbc4defc86e3a9cc729dd3721cf7a30f24"
+    },
+    {
+      "id": 208,
+      "python_path": "examples/hot100/p0208_implement_trie_prefix_tree.py",
+      "doc_path": "docs/80-hot100/problems/0208-implement-trie-prefix-tree.md",
+      "source_sha256": "20d43b4b15b8c3b9ef96d2c9d1f310e546628629380bdc7314332775093fdbcb"
+    },
+    {
+      "id": 46,
+      "python_path": "examples/hot100/p0046_permutations.py",
+      "doc_path": "docs/80-hot100/problems/0046-permutations.md",
+      "source_sha256": "9aa4fc114168a0e903ad7b362b390140e7830ad3d28f7cfb040be0baf9892bae"
+    },
+    {
+      "id": 78,
+      "python_path": "examples/hot100/p0078_subsets.py",
+      "doc_path": "docs/80-hot100/problems/0078-subsets.md",
+      "source_sha256": "ad8d0f8ab5878c673271d621deba511e7fe842f0308b25bdb42c467bd12e1ede"
+    },
+    {
+      "id": 17,
+      "python_path": "examples/hot100/p0017_letter_combinations_of_a_phone_number.py",
+      "doc_path": "docs/80-hot100/problems/0017-letter-combinations-of-a-phone-number.md",
+      "source_sha256": "bcb8488b3fe33efedf4549aefc4dfe7747a177c0529bc0ad177f9781d146e000"
+    },
+    {
+      "id": 39,
+      "python_path": "examples/hot100/p0039_combination_sum.py",
+      "doc_path": "docs/80-hot100/problems/0039-combination-sum.md",
+      "source_sha256": "118d4846185fb7a26dca8c07f45bbb40944fc78ac8cb5d776df686ad80921224"
+    },
+    {
+      "id": 22,
+      "python_path": "examples/hot100/p0022_generate_parentheses.py",
+      "doc_path": "docs/80-hot100/problems/0022-generate-parentheses.md",
+      "source_sha256": "3aba520256592e82e48ad1abcd52a575138ea57cab4416742fc882c4d9ba00e2"
+    },
+    {
+      "id": 79,
+      "python_path": "examples/hot100/p0079_word_search.py",
+      "doc_path": "docs/80-hot100/problems/0079-word-search.md",
+      "source_sha256": "599825e0555235b1c448d4112261fd7ee0d12d8114377f6bdc1f987bab0ae059"
+    },
+    {
+      "id": 131,
+      "python_path": "examples/hot100/p0131_palindrome_partitioning.py",
+      "doc_path": "docs/80-hot100/problems/0131-palindrome-partitioning.md",
+      "source_sha256": "43510f2121943619777f8f5e19fc8b6bade18329cb471d10671af88a8dd50a48"
+    },
+    {
+      "id": 51,
+      "python_path": "examples/hot100/p0051_n_queens.py",
+      "doc_path": "docs/80-hot100/problems/0051-n-queens.md",
+      "source_sha256": "83f777f1882822c4a98f56f4b61cd3a68d679c1130f4fdce6740d5fbb71862f3"
+    },
+    {
+      "id": 35,
+      "python_path": "examples/hot100/p0035_search_insert_position.py",
+      "doc_path": "docs/80-hot100/problems/0035-search-insert-position.md",
+      "source_sha256": "8291c360493555254d3f6c936563c4193aad64395ed918e15543177aaa4c8252"
+    },
+    {
+      "id": 74,
+      "python_path": "examples/hot100/p0074_search_a_2d_matrix.py",
+      "doc_path": "docs/80-hot100/problems/0074-search-a-2d-matrix.md",
+      "source_sha256": "b3ec9ebada2b04c2a3ac4c56956ee3db5db7df922a03f4c2166e0f45ef5f00dc"
+    },
+    {
+      "id": 34,
+      "python_path": "examples/hot100/p0034_find_first_and_last_position_of_element_in_sorted_array.py",
+      "doc_path": "docs/80-hot100/problems/0034-find-first-and-last-position-of-element-in-sorted-array.md",
+      "source_sha256": "c52ea14210a2ee6b9fc82b63000bfe7fdcbdb68031b0730f5730db16c104bc9c"
+    },
+    {
+      "id": 33,
+      "python_path": "examples/hot100/p0033_search_in_rotated_sorted_array.py",
+      "doc_path": "docs/80-hot100/problems/0033-search-in-rotated-sorted-array.md",
+      "source_sha256": "f941fd5494ef448c7311b524f2a3a18d2beedd7c4be5c24578e6f3274da21cd2"
+    },
+    {
+      "id": 153,
+      "python_path": "examples/hot100/p0153_find_minimum_in_rotated_sorted_array.py",
+      "doc_path": "docs/80-hot100/problems/0153-find-minimum-in-rotated-sorted-array.md",
+      "source_sha256": "73b6cf6aa66d334b4f75d5bdb06fbf91f8c5de1e37244e939889bff77b82e2fd"
+    },
+    {
+      "id": 4,
+      "python_path": "examples/hot100/p0004_median_of_two_sorted_arrays.py",
+      "doc_path": "docs/80-hot100/problems/0004-median-of-two-sorted-arrays.md",
+      "source_sha256": "b2eccf7d37134bc8bf66ac8bdf0723f172514cdb989436b7d1a8275c9000776d"
+    },
+    {
+      "id": 20,
+      "python_path": "examples/hot100/p0020_valid_parentheses.py",
+      "doc_path": "docs/80-hot100/problems/0020-valid-parentheses.md",
+      "source_sha256": "5c35c53704eb722c6aae787d023dd308f1f684ae150fef18b65bd50fae60e9d5"
+    },
+    {
+      "id": 155,
+      "python_path": "examples/hot100/p0155_min_stack.py",
+      "doc_path": "docs/80-hot100/problems/0155-min-stack.md",
+      "source_sha256": "10d58f2c6046289adae2410044467586fa5f2699190e3de0bc281a2b65369f5e"
+    },
+    {
+      "id": 394,
+      "python_path": "examples/hot100/p0394_decode_string.py",
+      "doc_path": "docs/80-hot100/problems/0394-decode-string.md",
+      "source_sha256": "aa988f9059dc4f91c9d8811832e77db98bbbf1c210aa9ded8eb2ec372f908624"
+    },
+    {
+      "id": 739,
+      "python_path": "examples/hot100/p0739_daily_temperatures.py",
+      "doc_path": "docs/80-hot100/problems/0739-daily-temperatures.md",
+      "source_sha256": "e612a8c03bd528579a9a772862a3833336a47acaffd8f82f78e8093aab041532"
+    },
+    {
+      "id": 84,
+      "python_path": "examples/hot100/p0084_largest_rectangle_in_histogram.py",
+      "doc_path": "docs/80-hot100/problems/0084-largest-rectangle-in-histogram.md",
+      "source_sha256": "8b941e96b200c1130b5e75c82dabde244ada4b4b73bad6f139c6f115fab49797"
+    },
+    {
+      "id": 215,
+      "python_path": "examples/hot100/p0215_kth_largest_element_in_an_array.py",
+      "doc_path": "docs/80-hot100/problems/0215-kth-largest-element-in-an-array.md",
+      "source_sha256": "82d85cfad2b593c123d244541b4c256b2d4c44347627518dfc2bc73e80c7b7eb"
+    },
+    {
+      "id": 347,
+      "python_path": "examples/hot100/p0347_top_k_frequent_elements.py",
+      "doc_path": "docs/80-hot100/problems/0347-top-k-frequent-elements.md",
+      "source_sha256": "c339e48ab4b68b36ddd85f710849245d6291a7ec25a33b1dd6d3555988cbfc4f"
+    },
+    {
+      "id": 295,
+      "python_path": "examples/hot100/p0295_find_median_from_data_stream.py",
+      "doc_path": "docs/80-hot100/problems/0295-find-median-from-data-stream.md",
+      "source_sha256": "1d1449ce1e2abe934d988c905561a1b2b6e0eac4e1c6c4636f7bb519dbf12a53"
+    },
+    {
+      "id": 121,
+      "python_path": "examples/hot100/p0121_best_time_to_buy_and_sell_stock.py",
+      "doc_path": "docs/80-hot100/problems/0121-best-time-to-buy-and-sell-stock.md",
+      "source_sha256": "fd83582bb2ac79166a5c64e1a036ef31ad789fdf3d5a035cc0d7980a10218699"
+    },
+    {
+      "id": 55,
+      "python_path": "examples/hot100/p0055_jump_game.py",
+      "doc_path": "docs/80-hot100/problems/0055-jump-game.md",
+      "source_sha256": "444eefc8ee894f5c3a716328dfd00c2216673e6c0687e1b3e580f5d5663ae6ec"
+    },
+    {
+      "id": 45,
+      "python_path": "examples/hot100/p0045_jump_game_ii.py",
+      "doc_path": "docs/80-hot100/problems/0045-jump-game-ii.md",
+      "source_sha256": "35ad074e6c82eca2a1bdee8af791cf928a418753ca53cbcf4880e6d599ba0a8f"
+    },
+    {
+      "id": 763,
+      "python_path": "examples/hot100/p0763_partition_labels.py",
+      "doc_path": "docs/80-hot100/problems/0763-partition-labels.md",
+      "source_sha256": "12c9f90c5eaaea0e107910ef23e79adfb8c7dbffcf244b5d1a609eab87beacd2"
+    },
+    {
+      "id": 70,
+      "python_path": "examples/hot100/p0070_climbing_stairs.py",
+      "doc_path": "docs/80-hot100/problems/0070-climbing-stairs.md",
+      "source_sha256": "725f3d928c229abd3e6f49304a9c9606dec03b170b30cf10cf0aebf85d64a0e9"
+    },
+    {
+      "id": 118,
+      "python_path": "examples/hot100/p0118_pascals_triangle.py",
+      "doc_path": "docs/80-hot100/problems/0118-pascals-triangle.md",
+      "source_sha256": "45bb764222c32afc782e584c4b4fa7b9e5ba3ebf0972b18b1106bc4a742a7275"
+    },
+    {
+      "id": 198,
+      "python_path": "examples/hot100/p0198_house_robber.py",
+      "doc_path": "docs/80-hot100/problems/0198-house-robber.md",
+      "source_sha256": "1a5271e9ee258c4a6ac021fd77f0267f1cf9b250df10948f0e01c53793f09792"
+    },
+    {
+      "id": 279,
+      "python_path": "examples/hot100/p0279_perfect_squares.py",
+      "doc_path": "docs/80-hot100/problems/0279-perfect-squares.md",
+      "source_sha256": "b744b290f4f5c757d1e2f9ce128a0274e941c4b88b44db13fb83211a04ac7b1c"
+    },
+    {
+      "id": 322,
+      "python_path": "examples/hot100/p0322_coin_change.py",
+      "doc_path": "docs/80-hot100/problems/0322-coin-change.md",
+      "source_sha256": "bbd1c65d28b2cba4f31339aeabdb039ab6354e9ab4f9a5df06bb33b531fd6570"
+    },
+    {
+      "id": 139,
+      "python_path": "examples/hot100/p0139_word_break.py",
+      "doc_path": "docs/80-hot100/problems/0139-word-break.md",
+      "source_sha256": "fb789b74a9f9520b2268adf36af8e734d1bc18474535cea3486375d1ac998717"
+    },
+    {
+      "id": 300,
+      "python_path": "examples/hot100/p0300_longest_increasing_subsequence.py",
+      "doc_path": "docs/80-hot100/problems/0300-longest-increasing-subsequence.md",
+      "source_sha256": "ac5109ebc868425cc3c49850775542348d52fe1e57d0ffacc7584a42ee87f42e"
+    },
+    {
+      "id": 152,
+      "python_path": "examples/hot100/p0152_maximum_product_subarray.py",
+      "doc_path": "docs/80-hot100/problems/0152-maximum-product-subarray.md",
+      "source_sha256": "4ae1c2c9a0e9911d0f1f5a2e5d43dfbf24ca0b9b81b02812ad5d6894e1b3db35"
+    },
+    {
+      "id": 416,
+      "python_path": "examples/hot100/p0416_partition_equal_subset_sum.py",
+      "doc_path": "docs/80-hot100/problems/0416-partition-equal-subset-sum.md",
+      "source_sha256": "70be581c4f50e87b9e65fca25d70080dc9abda2d4b1cff7a4f42c5e128879714"
+    },
+    {
+      "id": 32,
+      "python_path": "examples/hot100/p0032_longest_valid_parentheses.py",
+      "doc_path": "docs/80-hot100/problems/0032-longest-valid-parentheses.md",
+      "source_sha256": "ac476a692a9b44d7b8ec107a2cbbf35a5113840cf2863aefbd6cc88d7025646a"
+    },
+    {
+      "id": 62,
+      "python_path": "examples/hot100/p0062_unique_paths.py",
+      "doc_path": "docs/80-hot100/problems/0062-unique-paths.md",
+      "source_sha256": "b6858e8cc2e839b1ecb443c6d78688ce7c5bd16abbb6f1206a0f89cb4a0cdd07"
+    },
+    {
+      "id": 64,
+      "python_path": "examples/hot100/p0064_minimum_path_sum.py",
+      "doc_path": "docs/80-hot100/problems/0064-minimum-path-sum.md",
+      "source_sha256": "4e298db6206d622acab855f55d94698ef5964a603a6684114ccd5f3abc57c82e"
+    },
+    {
+      "id": 5,
+      "python_path": "examples/hot100/p0005_longest_palindromic_substring.py",
+      "doc_path": "docs/80-hot100/problems/0005-longest-palindromic-substring.md",
+      "source_sha256": "df1641594bdd548a6085cec545923a12d0eb2828e4f83d3c72407fa6e204d292"
+    },
+    {
+      "id": 1143,
+      "python_path": "examples/hot100/p1143_longest_common_subsequence.py",
+      "doc_path": "docs/80-hot100/problems/1143-longest-common-subsequence.md",
+      "source_sha256": "451453a84f83b6f363fc703f4a5011d0c280e71d74fd0a37765cb273d360ba06"
+    },
+    {
+      "id": 72,
+      "python_path": "examples/hot100/p0072_edit_distance.py",
+      "doc_path": "docs/80-hot100/problems/0072-edit-distance.md",
+      "source_sha256": "cb6d7d6f50393d42f5c431f2e0e3b7be95585033609779f5ac14046fb21088e2"
+    },
+    {
+      "id": 136,
+      "python_path": "examples/hot100/p0136_single_number.py",
+      "doc_path": "docs/80-hot100/problems/0136-single-number.md",
+      "source_sha256": "a774ea38b1d42b700a7318853108b241528457539b0b6b0e1639baceae39fe3d"
+    },
+    {
+      "id": 169,
+      "python_path": "examples/hot100/p0169_majority_element.py",
+      "doc_path": "docs/80-hot100/problems/0169-majority-element.md",
+      "source_sha256": "870a6a082e8bffc0d39435e966069e096d4da959387e0f9cfa5a0522b8c86350"
+    },
+    {
+      "id": 75,
+      "python_path": "examples/hot100/p0075_sort_colors.py",
+      "doc_path": "docs/80-hot100/problems/0075-sort-colors.md",
+      "source_sha256": "06a0ad8425476612d82acca4386c3cfb7fae19b68827caec396ff15cf5753746"
+    },
+    {
+      "id": 31,
+      "python_path": "examples/hot100/p0031_next_permutation.py",
+      "doc_path": "docs/80-hot100/problems/0031-next-permutation.md",
+      "source_sha256": "b3bddaeaad21603f452799ecf72450dc20a59d54f5520a550fcda036eacd2899"
+    },
+    {
+      "id": 287,
+      "python_path": "examples/hot100/p0287_find_the_duplicate_number.py",
+      "doc_path": "docs/80-hot100/problems/0287-find-the-duplicate-number.md",
+      "source_sha256": "99d3ae987ae0dfbeb5a365d98691d9480a89c69d50b81d8afb44e6c303a205be"
+    }
+  ]
+}

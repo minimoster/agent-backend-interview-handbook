@@ -63,7 +63,7 @@ ORDER BY department_id, id;
 
 **常见误区：** 以为主键插入顺序就是默认查询顺序；把所有排名窗口都补唯一键，意外取消并列；把行号当可跨请求稳定的业务ID。
 
-**来源：** [MySQL窗口函数说明](https://dev.mysql.com/doc/refman/8.4/en/window-function-descriptions.html)；本题数据、对照及代码为原创教学设计。
+本题数据、对照及代码为原创教学设计。
 
 <a id="s02"></a>
 ## S02 怎样求每个用户最长连续登录天数？
@@ -110,7 +110,7 @@ ORDER BY u.id;
 
 **常见误区：** 未去重导致同日多次虚增；忘记按用户分组；忽略时区；用字符串减法；只给正常案例，不测闰日、跨年、空用户和中间断点。
 
-**来源：** [MySQL窗口限制](https://dev.mysql.com/doc/refman/8.0/en/window-function-restrictions.html)、[日期运算](https://dev.mysql.com/doc/refman/8.4/en/date-and-time-functions.html)。[原创测试数据](../../examples/sql/streak-fixture.sql)和[等价算法检查](../../examples/sql/check-relational-examples.py)可供复核。
+可供复核。
 
 <a id="s03"></a>
 ## S03 过滤后分页，为什么必须把排序条件补完整？
@@ -149,8 +149,6 @@ LIMIT 20;
 
 **常见误区：** 没有ORDER BY；只排序非唯一时间；声称游标分页绝不重漏；SQL字符串拼接用户参数。
 
-**来源：** [MySQL LIMIT与同值排序](https://dev.mysql.com/doc/refman/8.0/en/limit-optimization.html)、[ORDER BY优化](https://dev.mysql.com/doc/refman/8.4/en/order-by-optimization.html)。
-
 <a id="s04"></a>
 ## S04 统计所有部门的人数、平均工资，空部门怎么办？
 
@@ -181,8 +179,6 @@ ORDER BY d.id;
 
 **常见误区：** COUNT(*)数空部门；COALESCE每个工资为0后再AVG，改变口径；私自加HAVING；多表连接后SUM重复。
 
-**来源：** [MySQL聚合函数的NULL行为](https://dev.mysql.com/doc/refman/8.4/en/aggregate-functions.html)。
-
 <a id="s05"></a>
 ## S05 统计一整年的用户消费，WHERE和HAVING怎么分？
 
@@ -210,7 +206,7 @@ ORDER BY total_spend DESC, u.id ASC;
 
 用户甲两单600和500应入选；把 `amount>1000` 写进WHERE会错误地排除甲。用户乙全年总额恰好1000，在本题严格“大于”口径下不入选。要展示所有用户含零消费，改LEFT JOIN并把订单过滤放ON，去掉该HAVING并对SUM做有说明的COALESCE。退款、跨币种及支付状态变更需要另外定义净消费口径。
 
-**面经变体：六项输出与两项聚合门槛必须逐个满足。** 另一个题目要求内连接两表，统计2025年`status = 1`的已支付订单，输出用户ID、用户名、订单数、总额、最大单笔、首次支付时间，且总额至少1000、订单至少2笔。本变体使用明确的`interview_users(id, username)`和`interview_orders(id, user_id, paid_at, status, amount)`，status为整数，amount为定点金额；不能照抄上一题的字符串状态或严格大于门槛。
+**题目变体：六项输出与两项聚合门槛必须逐个满足。** 另一个题目要求内连接两表，统计2025年`status = 1`的已支付订单，输出用户ID、用户名、订单数、总额、最大单笔、首次支付时间，且总额至少1000、订单至少2笔。本变体使用明确的`interview_users(id, username)`和`interview_orders(id, user_id, paid_at, status, amount)`，status为整数，amount为定点金额；不能照抄上一题的字符串状态或严格大于门槛。
 
 ```sql
 SELECT u.id AS user_id,
@@ -238,8 +234,6 @@ ORDER BY total_spend DESC, u.id ASC;
 
 **常见误区：** 引用不存在的表；末日边界漏数据；WHERE和HAVING混淆；金额用浮点后比较；混合多个币种直接SUM。
 
-**来源：** [MySQL日期类型](https://dev.mysql.com/doc/refman/8.4/en/datetime.html)、[SELECT语句与HAVING](https://dev.mysql.com/doc/refman/8.4/en/select.html)。
-
 <a id="s06"></a>
 ## S06 怎样真实构造并解释两个事务的死锁？
 
@@ -266,8 +260,6 @@ ORDER BY total_spend DESC, u.id ASC;
 
 **常见误区：** 顺序执行两个文件就声称验证死锁；只重试失败的最后一条语句；无限重试；为了演示在生产修改死锁检测配置。
 
-**来源：** [死锁处理](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks-handling.html)、[InnoDB错误回滚范围](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html)。
-
 <a id="s07"></a>
 ## S07 库存扣减一定要先FOR UPDATE吗？
 
@@ -292,8 +284,6 @@ WHERE product_id = 101 AND available >= 2;
 **追问：** 扣减0行怎么区分不存在和不足？按接口语义决定是否进一步查询，不要泄露多租户对象存在性。连接池里换了连接会怎样？后续动作就不在原事务上下文里。
 
 **常见误区：** 普通SELECT后UPDATE造成超卖；在自动提交单条SELECT后以为锁还保留；不检查行数；把数据库锁当跨系统事务。
-
-**来源：** [InnoDB锁定读取](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html)、[UPDATE影响行](https://dev.mysql.com/doc/refman/8.4/en/update.html)。
 
 <a id="s08"></a>
 ## S08 写“异常时ROLLBACK”就算完整转账了吗？
@@ -333,7 +323,7 @@ finally:
 
 **常见误区：** 只有ROLLBACK注释；余额校验在事务外；异常后继续COMMIT；浮点金额；重复键直接返回成功却不核对金额；把连接中断等同事务没提交。
 
-**来源：** [MySQL事务控制](https://dev.mysql.com/doc/refman/8.4/en/commit.html)、[精确数值](https://dev.mysql.com/doc/refman/8.4/en/fixed-point-types.html)、[InnoDB错误行为](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html)。流程和风险案例为原创工程推导。
+流程和风险案例为原创工程推导。
 
 <a id="s09"></a>
 ## S09 怎样解释覆盖索引，而不是把SELECT列全部加进索引？
@@ -365,5 +355,3 @@ LIMIT 20;
 **追问：** 为什么优化器没选这个索引？候选成本、选择性、统计、返回比例都可能影响。覆盖了为什么还是慢？可能扫描太多、排序、网络返回或锁等待，不能只盯回表。
 
 **常见误区：** 每个WHERE字段单独建索引；无条件把所有返回列并进去；把二级索引主键携带与索引排序方向混淆；把EXPLAIN估计当实际测量。
-
-**来源：** [InnoDB聚簇和二级索引](https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html)、[EXPLAIN输出](https://dev.mysql.com/doc/refman/8.4/en/explain-output.html)、[MVCC与二级索引](https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html)。

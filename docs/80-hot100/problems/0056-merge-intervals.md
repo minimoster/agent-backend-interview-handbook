@@ -1,6 +1,6 @@
 # 56. 合并区间
 
-[官方题目](https://leetcode.cn/problems/merge-intervals/) · MEDIUM · 官方分类：普通数组
+难度：MEDIUM · 分类：普通数组
 
 ## 题意与接口
 
@@ -55,22 +55,12 @@ class Solution:
 
 复习：如果区间是半开区间且仅相接不算重叠，判断条件怎样改？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/merge-intervals/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0056.Merge%20Intervals/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0056.merge-intervals.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0056.merge-intervals.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[56. 合并区间](https://www.bilibili.com/video/BV1wx4y157nD)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：排序后手推包含区间、接触端点和不相交区间，说明合并时右端点为何取最大值。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

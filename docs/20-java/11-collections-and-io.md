@@ -21,8 +21,6 @@ ArrayList 的 size 是实际元素数，capacity 是底层数组可容纳数。O
 
 **误区**：Map 是 Collection 子接口；Set 全无序；默认构造立即 new 10 个元素；扩容复制出 500 个业务对象。
 
-**一手来源**：[FJ-S025 Collections 框架](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/package-summary.html)、[FJ-S026 OpenJDK ArrayList](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/ArrayList.java)、[FJ-S027 TreeSet](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/TreeSet.html)。
-
 <a id="fj10"></a>
 ### FJ10 HashMap 与 ConcurrentHashMap 的树化、扩容、同步到底哪些能背
 
@@ -44,8 +42,6 @@ JDK 7 ConcurrentHashMap 用 Segment 协調；JDK 8 之后的主要结构改为�
 
 **误区**：JDK 8+ 仍固定 Segment 锁；重新哈希必然调用 hashCode；有 ConcurrentHashMap 就能保证其可变 value 安全。
 
-**一手来源**：[FJ-S028 OpenJDK HashMap](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/HashMap.java)、[FJ-S029 OpenJDK ConcurrentHashMap](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/concurrent/ConcurrentHashMap.java)、[FJ-S030 JDK 7 ConcurrentHashMap](https://github.com/openjdk/jdk7u/blob/master/jdk/src/share/classes/java/util/concurrent/ConcurrentHashMap.java)、[FJ-S136 Hashtable API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Hashtable.html)、[FJ-S137 OpenJDK 25u Hashtable](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/Hashtable.java)。
-
 <a id="fj11"></a>
 ### FJ11 BIO、NIO、AIO 是三个互斥包名吗
 
@@ -65,8 +61,6 @@ AIO 常指 AsynchronousSocketChannel、AsynchronousFileChannel 等异步接口�
 
 **误区**：Selector 自动完成读写；AIO 总不使用线程；非阻塞就没有任何等待或队列。
 
-**一手来源**：[FJ-S031 java.nio.channels](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/nio/channels/package-summary.html)、[FJ-S032 Selector](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/nio/channels/Selector.html)。
-
 <a id="fj12"></a>
 ### FJ12 并发容器怎样选，弱一致遍历与快照迭代有何不同
 
@@ -85,5 +79,3 @@ ConcurrentHashMap 的遍历是弱一致的：可与更新并发进行，可能�
 **追问**：synchronizedList 就不能用吗？可以，但复合访问与遍历仍需遵守外部同步规则。队列线程安全会自动阻止内存耗尽吗？无界队列不会。
 
 **误区**：所有并发集合都复制快照；每次 COW set 必复制；“读多写少”是唯一条件而忽略列表规模。
-
-**一手来源**：[FJ-S033 JUC 包说明](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/package-summary.html)、[FJ-S034 CopyOnWriteArrayList API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/CopyOnWriteArrayList.html)、[FJ-S035 OpenJDK COW 源码](https://github.com/openjdk/jdk25u/blob/master/src/java.base/share/classes/java/util/concurrent/CopyOnWriteArrayList.java)。

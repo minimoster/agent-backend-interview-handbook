@@ -1,6 +1,6 @@
 # 739. 每日温度
 
-[官方题目](https://leetcode.cn/problems/daily-temperatures/) · MEDIUM · 官方分类：栈
+难度：MEDIUM · 分类：栈
 
 ## 题意与接口
 
@@ -56,22 +56,12 @@ class Solution:
 
 复习：如果要求“不低于”而不是“更高”，比较符号怎样改？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/daily-temperatures/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0700-0799/0739.Daily%20Temperatures/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0739.daily-temperatures.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0739.daily-temperatures.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[739. 每日温度](https://www.bilibili.com/video/BV1my4y1Z7jj/)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：单调栈保存待求答案的下标；用相同温度检查弹出条件是否必须严格升温。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

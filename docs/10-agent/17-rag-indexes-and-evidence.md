@@ -4,7 +4,7 @@
 
 A09–A18 已覆盖RAG链路、分块、Embedding、混合检索、RRF、重排、改写与评测。本章补齐ANN、稠密稀疏成本、切片策略、证据安全和多模态文档检索，结合基础链路比较不同索引与证据使用方式。
 
-技术资料核查于2026-10-09。设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
+设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
 
 <a id="fa35"></a>
 
@@ -32,8 +32,6 @@ ANN的近邻召回和人工标注的文档相关性召回不是同一个指标�
 
 追问：增大top-k就能补回没搜索到的簇吗？验证：分别调返回数与搜索探索预算，观察两者对候选召回的不同影响；评测必须包含权限过滤条件。
 
-**来源**：[FA-S033](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes)、[FA-S034](https://arxiv.org/abs/1603.09320)、[FA-S039](https://www.elastic.co/docs/solutions/search/vector/knn)。
-
 <a id="fa36"></a>
 
 ### FA36 稠密稀疏向量与维数是什么关系 维度成本真是指数增长吗？
@@ -59,8 +57,6 @@ ANN的近邻召回和人工标注的文档相关性召回不是同一个指标�
 **追问与验证**
 
 追问：30000维稀疏向量一定比768维稠密大吗？验证：比较非零数量、位置编码、精度和索引开销；不能只看总维数。这里的内存例子是公式计算，不是压测结果。
-
-**来源**：[FA-S033](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes)、[FA-S035](https://www.sbert.net/docs/sparse_encoder/usage/usage.html)。
 
 <a id="fa37"></a>
 
@@ -88,8 +84,6 @@ ANN的近邻召回和人工标注的文档相关性召回不是同一个指标�
 
 追问：答案带引用就可靠吗？验证：逐条核对引用是否确实支持主张，用无答案问题、旧版资料、相近实体和恶意文档构造反例。结合A16定位故障，结合A17评价检索。
 
-**来源**：[FA-S022](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)、[FA-S021](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)、[FA-S012](https://opentelemetry.io/docs/security/handling-sensitive-data/)。
-
 <a id="fa38"></a>
 
 ### FA38 固定长度 结构切片和语义切片怎样选？
@@ -116,8 +110,6 @@ ANN的近邻召回和人工标注的文档相关性召回不是同一个指标�
 
 追问：怎样发现表格被切坏？验证：从块还原表头与行列含义，对照原文人工检查，再测试需要跨行比较的问题，不能只检查块长度。
 
-**来源**：[FA-S036](https://docs.langchain.com/oss/python/integrations/splitters)、[FA-S037](https://docs.unstructured.io/open-source/core-functionality/chunking)、[FA-S040](https://developers.llamaindex.ai/python/examples/node_parsers/semantic_chunking/)。
-
 <a id="fa43"></a>
 
 ### FA43 多模态RAG怎样检索图片表格和页面 需要Diffusion吗？
@@ -143,8 +135,6 @@ OCR容易丢版式，视觉向量也可能误读细小文字和密集表格。�
 **追问与验证**
 
 追问：怎样评测图表检索？验证：分别标注正确页面、区域和答案证据，测试同页相似图、错误单位、旋转文字和扫描噪声；把找错页面与读错数值分开计分。
-
-**来源**：[FA-S043](https://arxiv.org/abs/2407.01449)、[FA-S035](https://www.sbert.net/docs/sparse_encoder/usage/usage.html)。
 
 <a id="dynamic-top-k-and-graph-ablation"></a>
 

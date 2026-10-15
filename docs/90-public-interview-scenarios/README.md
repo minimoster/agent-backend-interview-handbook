@@ -1,10 +1,10 @@
-# 公开面经 → 原创场景与可验证练习
+# 场景题解与可验证练习
 
-本模块把公开面经中的主题组织成26张场景卡，配合原理、参考答案、追问与验收。结合基础章节，练习把正常流程和失败处理讲清楚。资料核查日期：2026-10-10。
+本模块组织26张场景卡，配合原理、参考答案、追问与验收。结合基础章节，练习把正常流程和失败处理讲清楚。
 
 ## 配套练习
 
-4个标准库 Python 练习包含33项本地测试；12条合成评测设计仍待运行模型。[来源目录](../../sources/public-interviews/README.md)记录公开报告的作者、日期与样本说明。
+4个标准库 Python 练习包含33项本地测试；12条合成评测设计仍待运行模型。
 
 ## 第一次实习怎样用
 
@@ -48,14 +48,9 @@
 - [SC-B13 TCP read边界不是消息边界](sc-b13.md)
 - [SC-B14 没有线上业务也能讲清自己的项目](sc-b14.md)
 
-## 来源与复验
+## 配套练习与验证
 
-- [17份公开报告目录与日期边界](../../sources/public-interviews/README.md)
-- [原帖结构化目录](../../sources/public-interviews/source-catalog.json)
-- [问题、知识、基础阅读与练习映射](../../sources/public-interviews/scenario-map.json)
-- [技术一手引用](../../sources/public-interviews/official-references.json)
-- [GitHub发现线索与小红书访问边界](../../sources/public-interviews/reference-and-access.json)
 - [4个Python练习与12条未运行合成设计](../../examples/public_interview_scenarios/README.md)
-- [实际运行结果与未验证范围](VALIDATION.md)
+
 
 先读每张卡列出的基础章节，再画失败时间线或运行练习。

@@ -1,12 +1,12 @@
 # 118. 杨辉三角
 
-[官方题目](https://leetcode.cn/problems/pascals-triangle/) · EASY · 官方分类：动态规划
+难度：EASY · 分类：动态规划
 
 ## 题意与接口
 
 接口：`Solution.generate(numRows: int) -> list[list[int]]`。生成杨辉三角前 numRows 行；每行两端是 1，内部元素等于上一行相邻两个元素之和。官方行数为 1 至 30。
 
-约束与规则于 2026-10-09 查阅[官方英文题面](https://leetcode.com/problems/pascals-triangle/)核对；以下为原创概述，并非完整题面转载。
+约束与规则于 2026-10-09 查阅官方英文题面核对；以下为原创概述，并非完整题面转载。
 
 ## 从朴素方法到优化
 
@@ -62,22 +62,12 @@ class Solution:
 
 复习：如果只求最后一行，如何做到 O(r) 空间？原地更新这一行为什么要从右向左？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/pascals-triangle/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0118.Pascal's%20Triangle/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
-- 官方Python：本次核验未找到本题精确匹配的官方实现区。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：逐行检查边缘的两个 1 与内部相邻两数之和，避免复用同一个列表造成所有行一起变化。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

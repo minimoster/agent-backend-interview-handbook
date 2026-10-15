@@ -1,12 +1,12 @@
 # 98. 验证二叉搜索树
 
-[官方题目](https://leetcode.cn/problems/validate-binary-search-tree/) · MEDIUM · 官方分类：二叉树
+难度：MEDIUM · 分类：二叉树
 
 ## 题意与接口
 
 判断每个节点的整个左子树均严格小于它、整个右子树均严格大于它。接口：`isValidBST(root) -> bool`。
 
-约束核对（2026-10-09）：节点数 1..10000，值在有符号 32 位整数范围；左右子树分别严格小于/大于根。 [官方来源](https://leetcode.com/problems/validate-binary-search-tree/description/)
+约束核对（2026-10-09）：节点数 1..10000，值在有符号 32 位整数范围；左右子树分别严格小于/大于根。
 
 ## 从朴素方法到优化
 
@@ -59,22 +59,12 @@ class Solution:
 
 复习：为什么只验证父子大小不足够？中序判断成立需要二叉树满足什么结构前提？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/validate-binary-search-tree/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0098.Validate%20Binary%20Search%20Tree/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/algo/binary-tree/0098-validate-binary-search-tree.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/algo/binary-tree/0098-validate-binary-search-tree.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[98. 验证二叉搜索树](https://www.bilibili.com/video/BV18P411n7Q4)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：用深层节点违反祖先边界的例子检查算法，说明只比较直接父子为什么不够。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

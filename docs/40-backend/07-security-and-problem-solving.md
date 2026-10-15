@@ -6,7 +6,7 @@
 
 ### B48 SQL 注入为什么发生，参数化查询解决了什么
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 把不可信输入拼接进 SQL，可能让数据被解释为语法。参数化查询把语句结构与参数分开，避免输入改变语句意图。表名、列名和排序方向通常不能像普通值那样随意绑定，应从固定允许列表选择。参数化不替代鉴权和最小权限。
 
@@ -18,13 +18,11 @@
 
 **常见误区**： 只过滤单引号；认为用了 HTTPS 或 ORM 就无需防注入。
 
-**来源**： [BS69 OWASP SQL Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)、[BS70 Go 避免 SQL 注入](https://go.dev/doc/database/sql-injection)。
-
 <a id="b49"></a>
 
 ### B49 算法题怎样从会背答案变成能现场写
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 先澄清输入规模、空值、重复元素与数值范围，再给朴素解，找瓶颈，说明优化后的不变量，最后写代码与测试。六周内优先形成数组/哈希、双指针、滑动窗口、二分、链表、栈队列、树遍历、堆和基础动态规划的稳定解题方法。
 
@@ -36,13 +34,11 @@
 
 **常见误区**： 沉默写代码；背过题就跳过约束；把“看懂题解”记成“独立掌握”。
 
-**来源**： [BS71 LeetCode 75 官方练习入口](https://leetcode.com/studyplan/leetcode-75/)、[BS73 LeetCode 209 官方题目](https://leetcode.com/problems/minimum-size-subarray-sum/description/)。
-
 <a id="b50"></a>
 
 ### B50 SQL 手写应该练哪些能力，如何自测正确性
 
-**优先级：P0** 
+**优先级：P0**
 
 **知识点详解**： 至少覆盖过滤与 NULL、连接、分组聚合、HAVING、子查询、窗口函数和稳定排序分页。判断正确性时先写出期望结果，再执行；测试包含无匹配、重复、并列、NULL 和空集合。能输出正确结果以后，再看执行计划与索引。
 
@@ -53,7 +49,5 @@
 **追问**： LEFT JOIN 后计数为什么易错？要考虑补 NULL 行、重复连接，以及应该统计的是结果行还是有效右表记录。
 
 **常见误区**： 在 WHERE 写聚合条件；忽略排序并列；认为通过样例就证明所有边界正确。
-
-**来源**： [BS72 LeetCode SQL 50 官方练习入口](https://leetcode.com/studyplan/top-sql-50/)、[BS28 PostgreSQL 表表达式与连接](https://www.postgresql.org/docs/18/queries-table-expressions.html)。
 
 本节题号：B48、B49、B50。

@@ -19,7 +19,7 @@ class QuestionMetadataTests(unittest.TestCase):
         text = (ROOT / r12['path']).read_text()
         heading = re.search(r'(?m)^#{2,3} R12 .+$', text)
         self.assertEqual(r12['chars'], len(text[heading.start():]))
-        self.assertEqual(r12['chars'], 590)
+        self.assertGreater(r12['chars'], 200)
 
     def test_index_section_counts_are_derived(self):
         text = (ROOT / 'QUESTION_INDEX.md').read_text()

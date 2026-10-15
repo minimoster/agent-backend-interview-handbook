@@ -4,7 +4,7 @@
 
 本章将多个工具调用的碎片组装成完整候选，通过可运行实验学习部分 JSON、重复、失序、截断和断线时的处理方式。基础章节先介绍模型提出调用、执行器负责校验。
 
-核验日2026-10-11。厂商部分分别依据当日的 OpenAI Responses、Chat Completions 与 Claude Messages 官方文档，事件字段按接口分别说明。SDK、模型请求及模型兼容性尚未验证。配套代码接收本地规范化事件；厂商原始 HTTP 字节需要先经适配器转换。[技术参考](../../sources/agent-protocol-references.md)
+本章的接口语义快照截至2026-10-11。OpenAI Responses、Chat Completions与Claude Messages具有不同事件合同，以下分别说明字段与完成语义。SDK、模型请求及模型兼容性尚未验证。配套代码接收本地规范化事件；厂商原始 HTTP 字节需要先经适配器转换。
 
 [标准库源码](../../examples/interview_followups/agent_protocol_lab.py) · [38项联合测试](../../examples/interview_followups/test_agent_protocol_lab.py)
 
@@ -18,7 +18,7 @@
 3. 组装层按调用身份保存参数片段，得到完整候选调用
 4. 执行层做结构、业务、权限、预算和必要批准检查，才实际执行
 
-同一个“解析错误”可能属于不同层。半个SSE事件不该进入事件JSON解析；一个完整事件里的arguments delta则可以合法地只有半段参数JSON。把它每次都当完整对象json.loads，会把正常分片误判成模型幻觉。[OpenAI函数调用流](https://developers.openai.com/api/docs/guides/function-calling#streaming)、[Claude输入JSON分片](https://platform.claude.com/docs/en/build-with-claude/streaming#input-json-delta)
+同一个“解析错误”可能属于不同层。半个SSE事件不该进入事件JSON解析；一个完整事件里的arguments delta则可以合法地只有半段参数JSON。把它每次都当完整对象json.loads，会把正常分片误判成模型幻觉。
 
 例子：工具输入最终是{"document_id":"guide-A","limit":2}。前一个参数片段可能只有{"document_id":"gui，后一个才补de-A","limit":2}。前半段不能执行查询，也没必要要求模型立即修复它。
 
@@ -27,7 +27,7 @@
 **参考答案：** 先确定在哪一层、是否收到结束标记、请求是否失败/截断、完整参数是什么。正常未完片段继续有界接收；真实完整对象不合法才进入明确的有界修复或失败。工具执行过而响应未知时，问题又变成A29/A30的恢复合同，不能重发模型来猜外部结果。
 
 <a id="provider-event-map"></a>
-## 2 三种官方事件合同各自怎样关联身份
+## 2 三种接口事件合同各自怎样关联身份
 
 |接口|定位和累积|需要区别的完成信息|
 |---|---|---|
@@ -35,7 +35,7 @@
 |OpenAI Chat Completions|choice范围内delta.tool_calls[index]；初始片段通常带调用id/name，后续常只带arguments|不能把Responses的事件名称、字段或结束语义直接搬来|
 |Claude Messages|content_block的index定位；tool_use块有调用id/name；input_json_delta携带partial_json|content_block_stop结束块；message_delta/message_stop及错误事件属于消息级信息|
 
-依据：[Responses事件参考](https://developers.openai.com/api/reference/resources/responses/streaming-events)、[Chat Completions函数流说明](https://developers.openai.com/api/docs/guides/function-calling#streaming)、[Messages事件流](https://platform.claude.com/docs/en/build-with-claude/streaming#event-types)。这里仅整理函数工具的相关字段，不覆盖内置工具、思考块、服务端工具或所有新增事件。
+这里仅整理函数工具的相关字段，不覆盖内置工具、思考块、服务端工具或所有新增事件。
 
 **原创适配器要求：** 保留provider、接口家族、request/response身份、调用定位键、结果回注身份和工具名。规范化start时建立身份，delta只往对应缓冲区追加，stop核对完成，finish描述整条请求的结果。未经确认不要把item_id当call_id返回工具结果。
 
@@ -69,7 +69,7 @@ b先完成是合法的跨调用交错，不等于a内部参数可以乱序。按
 <a id="stream-completion"></a>
 ## 4 参数看起来已经是JSON，什么时候才可以交给执行器
 
-合法JSON只证明这段文字当前能解析。组装器还要知道上游是否结束该调用、后续是否还有内容、请求是否被截断或失败。一个done事件里的完整arguments是最终快照，不能再追加成两个对象。Claude官方建议累积工具输入片段，到content_block_stop再解析。[Claude工具输入流](https://platform.claude.com/docs/en/build-with-claude/streaming#input-json-delta)
+合法JSON只证明这段文字当前能解析。组装器还要知道上游是否结束该调用、后续是否还有内容、请求是否被截断或失败。一个done事件里的完整arguments是最终快照，不能再追加成两个对象。Claude工具输入片段应先累积，到content_block_stop再解析。
 
 **本实验的保守本地策略：** 每个调用stop后解析完整对象，全部调用已stop且request级finish=completed后才允许calls()取出候选。stop可携带最终参数字符串，本实验要求它与累计字符串完全一致；仅空白不同也会拒绝，这是检测适配器不一致的严格教学选择，不是所有厂商强制的字符串相等规则。
 
@@ -86,7 +86,7 @@ b先完成是合法的跨调用交错，不等于a内部参数可以乱序。按
 <a id="stream-json-validation"></a>
 ## 5 完整JSON之后，仍有四道不同的检查
 
-第一道是明确的JSON输入政策。本实验要求根是对象，拒绝重复键、NaN/Infinity、解析后溢出为无穷的数字、过长整数及无效Unicode scalar；先限字节与结构深度，再解析，最后限节点数。这是较严格的教学子集，不是完整JSON Schema引擎。Python默认JSON解析会接受部分非标准数值和重复键，因此不能把默认解析成功当严格JSON验证。[Python3.12 JSON说明](https://docs.python.org/3.12/library/json.html)
+第一道是明确的JSON输入政策。本实验要求根是对象，拒绝重复键、NaN/Infinity、解析后溢出为无穷的数字、过长整数及无效Unicode scalar；先限字节与结构深度，再解析，最后限节点数。这是较严格的教学子集，不是完整JSON Schema引擎。Python默认JSON解析会接受部分非标准数值和重复键，因此不能把默认解析成功当严格JSON验证。
 
 第二道是工具结构：名字是否注册，必需字段存在吗，类型、未知字段、范围是否符合该工具契约。第三道是业务：目标文档是否存在、版本与任务是否吻合。第四道是授权：当前认证身份是否还能读取这个目标。结构与权限必须分别检查，不能把模型提供的tenant_id当可信身份。
 
@@ -96,7 +96,7 @@ validate_lookup只返回经过验证的预览字典，不查数据库、不执�
 
 **追问：** strict输出模式能否删除服务端校验？
 
-**参考答案：** 它缩小一部分结构错误的空间，仍要处理拒绝、未完成响应、适配器错误、业务对象、权限、预算和副作用。官方Schema支持范围也有约束；本实验未运行strict模型请求，不能用它声称模型结构成功率。
+**参考答案：** 它缩小一部分结构错误的空间，仍要处理拒绝、未完成响应、适配器错误、业务对象、权限、预算和副作用。接口支持的Schema范围也有约束；本实验未运行strict模型请求，不能用它声称模型结构成功率。
 
 <a id="stream-duplicates-disconnect"></a>
 ## 6 重复、乱序和断线：哪些可以修，哪些只能明确失败
@@ -111,7 +111,7 @@ validate_lookup只返回经过验证的预览字典，不查数据库、不执�
 
 **参考答案：** 只有接口明确支持的恢复/回放合同才可以。SSE这个传输形式本身不证明任意模型API支持通用续传。没有恢复保证时，记录未完成原因、保留受控诊断，再决定是否新请求；是否已经执行的业务结果要另查。
 
-厂商可能新增事件。官方Claude流文档要求优雅处理未知类型；适配器可对已知非工具事件做有界忽略或专门处理，而不能把它们送给本实验后冒称已支持。本实验未知“规范化”kind会拒绝，保护本地合同；两层处理并不矛盾。[事件扩展说明](https://platform.claude.com/docs/en/build-with-claude/streaming#other-events)
+厂商可能新增事件。Claude事件流需要兼容未知类型；适配器可对已知非工具事件做有界忽略或专门处理，而不能把它们送给本实验后冒称已支持。本实验未知“规范化”kind会拒绝，保护本地合同；两层处理并不矛盾。
 
 <a id="stream-resource-budget"></a>
 ## 7 只限制输出token，为什么仍可能撑满组装器

@@ -4,7 +4,7 @@
 
 先用A08区分Tool、Function Calling与MCP，再学习本章的技能包格式。格式标准、自研业务协议和运行时实现分开描述，避免用同一个Skill名词代替所有层。
 
-技术资料核查于2026-10-09。设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
+设计建议用于练习方案取舍，文中实验仍待执行；实际运行记录另列。
 
 <a id="fa31"></a>
 
@@ -32,8 +32,6 @@
 
 追问：为什么不把所有技能全文放system prompt？验证：比较仅加载候选元数据与全量加载的选中率、token和误触发；选中后再加载正文及所需资源。
 
-**来源**：[FA-S032](https://agentskills.io/specification)。
-
 <a id="fa32"></a>
 
 ### FA32 从用户意图到Skill执行 应该经过哪些路由和校验？
@@ -59,8 +57,6 @@
 **追问与验证**
 
 追问：两个技能都高分怎么选？验证：使用相近意图、否定需求、缺参数、跨租户资源和已撤权技能做测试，检查不会通过排名绕过确认。
-
-**来源**：[FA-S032](https://agentskills.io/specification)、[FA-S021](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)。
 
 <a id="fa33"></a>
 
@@ -88,8 +84,6 @@
 
 追问：技能升级后旧任务如何继续？验证：任务固定技能版本或执行显式迁移，测试新版本缺少旧字段、重复恢复和部分结果失效时的行为。
 
-**来源**：[FA-S032](https://agentskills.io/specification)、[FA-S003](https://docs.langchain.com/oss/python/langgraph/checkpointers)、[FA-S023](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fa34"></a>
 
 ### FA34 多个Agent共享Skill怎样管理版本 权限与淘汰？
@@ -115,5 +109,3 @@
 **追问与验证**
 
 追问：中央注册中心不可用怎么办？验证：检查已缓存版本是否允许继续、权限是否仍有效，过期或撤权时默认拒绝高风险执行；不要默默下载不可信替代版本。
-
-**来源**：[FA-S032](https://agentskills.io/specification)、[FA-S020](https://slsa.dev/spec/v1.2/)、[FA-S021](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)。

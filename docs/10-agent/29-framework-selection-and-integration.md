@@ -1,8 +1,7 @@
 # Agent框架选型与组件集成
 
-[返回Agent目录](README.md) · [验证范围](../../coverage/AGENT_LABS_VALIDATION.md)
-
-先说明系统缺什么，再比较框架能补什么。固定步骤可以用普通代码；需要长期状态、人审恢复或多角色交付时，再比较相应抽象。本章在[A01–A08](01-agent-loop-tools-and-state.md)的行动循环基础上学习选型与接口。官方入口核查日期2026-10-10；所列框架尚未安装或运行，落地前需固定版本验证 API。
+[返回Agent目录](README.md)
+先说明系统缺什么，再比较框架能补什么。固定步骤可以用普通代码；需要长期状态、人审恢复或多角色交付时，再比较相应抽象。本章在[A01–A08](01-agent-loop-tools-and-state.md)的行动循环基础上学习选型与接口。所列框架尚未安装或运行，落地前需固定版本验证 API。
 
 <a id="selection-contract"></a>
 ## 1 先写选型合同
@@ -14,21 +13,21 @@
 <a id="ecosystem-matrix"></a>
 ## 2 按职责比较候选
 
-下面是官方资料支持的职责定位和原创试验问题，不是品牌排名或互斥分类。同一系统可以组合组件层、数据层和编排层。
+下面按组件职责定位设计试验问题，不是品牌排名或互斥分类。同一系统可以组合组件层、数据层和编排层。
 
 |候选|先考察的职责|最小验证问题|
 |---|---|---|
-|[LangChain](https://docs.langchain.com/oss/python/langchain/overview)|模型、工具与Agent循环组件|替换模型或工具后，输入输出及错误语义能否保持？|
-|[LangGraph](https://docs.langchain.com/oss/python/langgraph/overview)|有状态编排、持久化、流式与人审|中断后恢复到哪个节点？哪些节点可能重放？|
-|[LlamaIndex](https://developers.llamaindex.ai/python/framework/)|数据摄取、索引、查询与工作流|引用能否回到原文版本与位置？解析和检索能否分别替换？|
-|[AutoGen](https://microsoft.github.io/autogen/stable/index.html)|Core事件运行时、AgentChat与扩展|交付边界、终止和消息成本能否被验证？不可把旧0.2接口混入新AgentChat。|
-|[CrewAI](https://docs.crewai.com/v1.15.26/en/concepts/crews)|角色、任务与Crew协作|任务产物是否被下游校验？角色名称是否掩盖共享状态冲突？|
-|[MetaGPT](https://github.com/FoundationAgents/MetaGPT)|面向任务分工和产物的多Agent组织|角色间实际传什么产物？一个产物错误会怎样阻止后续步骤？|
-|[OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)|Agent循环、工具、交接与追踪|handoff如何限制数据和权限？追踪怎样避免记录秘密？|
-|[smolagents](https://huggingface.co/docs/smolagents/index)|工具Agent与代码执行路线|代码在哪个隔离环境运行？文件、网络和时间预算由谁落实？|
-|[PraisonAI](https://praison.ai/docs)|其官方提供的Agent与工作流接口|先核对实际语言、组件、部署和版本，再用同一任务验证，不能由名称推出优劣。|
+|LangChain|模型、工具与Agent循环组件|替换模型或工具后，输入输出及错误语义能否保持？|
+|LangGraph|有状态编排、持久化、流式与人审|中断后恢复到哪个节点？哪些节点可能重放？|
+|LlamaIndex|数据摄取、索引、查询与工作流|引用能否回到原文版本与位置？解析和检索能否分别替换？|
+|AutoGen|Core事件运行时、AgentChat与扩展|交付边界、终止和消息成本能否被验证？不可把旧0.2接口混入新AgentChat。|
+|CrewAI|角色、任务与Crew协作|任务产物是否被下游校验？角色名称是否掩盖共享状态冲突？|
+|MetaGPT|面向任务分工和产物的多Agent组织|角色间实际传什么产物？一个产物错误会怎样阻止后续步骤？|
+|OpenAI Agents SDK|Agent循环、工具、交接与追踪|handoff如何限制数据和权限？追踪怎样避免记录秘密？|
+|smolagents|工具Agent与代码执行路线|代码在哪个隔离环境运行？文件、网络和时间预算由谁落实？|
+|PraisonAI|其官方提供的Agent与工作流接口|先核对实际语言、组件、部署和版本，再用同一任务验证，不能由名称推出优劣。|
 
-这些入口在读取日可访问。CrewAI入口明确重定向到v1.15.26；其余未给代码的入口仅是当日文档观察，不代表已锁定可重现SDK版本。版本选择、许可、支持周期和供应商服务费用仍需随实际采用另查。不要引用未经统一测量的发布时间先后、兼容模型数量、代码行数或流行度作为选型证据。
+本章的CrewAI概念按v1.15.26说明；其余未给代码的组件尚未锁定可复现SDK版本。版本选择、许可、支持周期和供应商服务费用仍需随实际采用另查。不要引用未经统一测量的发布时间先后、兼容模型数量、代码行数或流行度作为选型证据。
 
 <a id="pipeline-state-graph"></a>
 ## 3 普通pipeline与状态图怎样分界
@@ -51,7 +50,7 @@
 
 按任务解释策略：已给资料上直接生成、行动后继续决策、先计划后执行、失败后做有界修正、独立分支协作。zero-shot通常指不提供任务示例，不意味着没有提示或指令；某框架旧版的类名也不等于这些通用概念的永久标准。ReAct记录可审计动作、结果和简短理由，不要求公开完整内部推理。
 
-AutoGPT与BabyAGI早期常被用来讲解“目标→任务队列→执行→结果生成后续任务”的循环。它可用来说明任务去重、优先级、公平性、预算及停止，不是当前生产推荐。读取日[AutoGPT官方入口](https://agpt.co/docs/platform)已是平台文档；[BabyAGI当前仓库](https://github.com/yoheinakajima/babyagi)也不能自动等同早期任务队列脚本。引用历史实现时写清具体提交，不能拿历史教程推断当前产品机制。这里没有复现任一项目。
+AutoGPT与BabyAGI早期常被用来讲解“目标→任务队列→执行→结果生成后续任务”的循环。它可用来说明任务去重、优先级、公平性、预算及停止，不是当前生产推荐。AutoGPT的平台形态与BabyAGI的后续实现不能直接等同早期任务队列脚本。引用历史实现时写清具体提交，不能拿历史教程推断当前产品机制。这里没有复现任一项目。
 
 多Agent应围绕可检验交付物设计：检索者提供证据列表和覆盖缺口，审阅者核对引用，主控只合并已验证产物。两分支同时改同一资源或传递大量重复上下文时，收益可能抵不过协调成本。协作合同和同预算基线见[A07](01-agent-loop-tools-and-state.md#a07)与[生产设计](26-agent-production-design-lab.md#multi-agent-contract)。
 

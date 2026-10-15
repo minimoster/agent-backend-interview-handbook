@@ -8,6 +8,7 @@ import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
 import {Marked} from './vendor/marked.mjs';
+import {isReadingDocument,isTeachingResource,readingMarkdown} from './reading-policy.mjs';
 
 const site=path.dirname(fileURLToPath(import.meta.url));
 const root=path.dirname(site);
@@ -17,7 +18,10 @@ const dataText=fs.readFileSync(path.join(site,'assets/data.js'),'utf8');
 const html=fs.readFileSync(path.join(site,'index.html'),'utf8');
 for(const match of html.matchAll(/<script src="(assets\/data\.[^"]+\.js)" defer><\/script>/g))vm.runInNewContext(fs.readFileSync(path.join(site,match[1]),'utf8'),context,{timeout:10000});
 vm.runInNewContext(dataText,context,{timeout:10000});
-const data=context.window.STUDY_DATA;
+const publishedData=context.window.STUDY_DATA;
+// Local-only fixtures support source/code comparisons. They are deliberately
+// overlaid here, never serialized by the public build or read by the app.
+const data={...publishedData,docs:publishedData.docs.map(doc=>({...doc,source:readingMarkdown(fs.readFileSync(path.join(root,doc.path),'utf8'),doc.path)}))};
 const docs=new Map(data.docs.map(d=>[d.path,d]));
 const index=JSON.parse(fs.readFileSync(path.join(root,'content-index.json'),'utf8'));
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/80-hot100/manifest.json'),'utf8'));
@@ -25,14 +29,45 @@ const require=createRequire(import.meta.url);
 const {create,normalize}=require('./assets/search.js');
 const engine=create(data.docs);
 const fullEngine=create([...data.docs,...(data.supplementaryResources||[])]);
-const carl=JSON.parse(fs.readFileSync(path.join(root,'sources/carl-hot100-resources.json'),'utf8'));
+const catalog=JSON.parse(fs.readFileSync(path.join(root,'data/reading-catalog.json'),'utf8'));
+const supplementary=catalog.supplementaryProblems;
+const walk=dir=>fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(`${dir}/${e.name}`):[`${dir}/${e.name}`]);
 let checks=0;
 const check=(name,fn)=>{fn();checks++;console.log(`PASS ${name}`);};
-check('资源提示以对照学习和练习为目标',()=>{
+check('阅读界面只保留题目、解析、答案与必要源码入口',()=>{
   const app=fs.readFileSync(path.join(site,'assets/app.js'),'utf8');
-  assert.ok(app.includes('对照官方题解、Python 实现与视频，再用自己的样例练习。'));
-  assert.ok(app.includes('按题号与主题选择练习，用官方讲解、Python 实现和视频对照复习。'));
-  for(const phrase of ['外部 Python 和视频未复制到本仓库','没有新增原创实现或测试记录','外部资源练习单，无新增实现'])assert.ok(!app.includes(phrase),phrase);
+  for(const phrase of ['代码随想录','程序员Carl','carlCard','source-view','GitHub 原文','来源与版本见正文','查看版本与来源','外部资源题库','external-resource','resource-bank'])assert.ok(!app.includes(phrase),phrase);
+  assert.ok(app.includes('sourceDownloads'));
+  assert.ok(!data.modules.some(m=>m.id==='reference'));
+  assert.equal(data.modules.find(m=>m.id==='examples').label,'代码示例');
+  assert.ok(!Object.hasOwn(data,'publicSelfReportCount'));
+});
+check('发布边界只接收教学文档和必要代码资源',()=>{
+  for(const file of ['README.md','QUESTION_INDEX.md','docs/10-agent/README.md','docs/80-hot100/problems/0001-two-sum.md','examples/hot100/README.md'])assert.ok(isReadingDocument(file),file);
+  for(const file of ['sources/README.md','coverage/README.md','errata/README.md','VERSIONS.md','CONTRIBUTING.md','site/README.md','docs/10-agent/SOURCES.md','docs/10-agent/VALIDATION.md','docs/10-agent/TESTING.md'])assert.ok(!isReadingDocument(file),file);
+  for(const file of ['examples/hot100/p0001_two_sum.py','examples/interview_followups/ExecutorFailureLab.java','examples/go/followup_lifecycle/go.mod','examples/go/followup_lifecycle/pool.go','examples/sql/practice.sql','tests/test_example.py','examples/requirements.txt','examples/public_interview_scenarios/evaluation_design_template.json'])assert.ok(isTeachingResource(file),file);
+  for(const file of ['sources/catalog.json','coverage/VALIDATION.md','site/build.mjs','content-index.json','examples/check_carl_resources.py','tests/validate_sources.py','examples/README.md'])assert.ok(!isTeachingResource(file),file);
+});
+check('阅读清洗移除资料元数据但保留技术版本、教学链接与代码',()=>{
+  const sample=['# 教学示例','协议版本 2025-11-25；实现必须校验状态。','请求端点 `https://api.example.com/v1/responses?stream=true` 与 ``https://api.example.com/v1/chat/completions`` 必须逐字保留。','内联代码 `[调试示例](https://example.com/code-url)` 不应当作资料链接剥除。','作者：不应公开的资料作者','[文章](https://example.com/article) 与 [课程](https://example.com/video)','[教学章节](10-agent/README.md) · [验证](../coverage/VALIDATION.md) · [源数据](../sources/catalog.json)','[实现](../examples/demo.py)','[固定项目实现](https://github.com/example/project/blob/0123456789abcdef0123456789abcdef01234567/src/main.go#L1)','```python','# 来源不是代码中的元数据','print("https://example.com/kept-in-code")','```','## 来源','来源记录不应公开','### 细项','仍是来源记录','## 解答','保留这个教学答案。'].join('\n');
+  const clean=readingMarkdown(sample,'docs/example.md');
+  assert.ok(clean.includes('协议版本 2025-11-25'));
+  assert.ok(clean.includes('`https://api.example.com/v1/responses?stream=true`'));
+  assert.ok(clean.includes('``https://api.example.com/v1/chat/completions``'));
+  assert.ok(clean.includes('`[调试示例](https://example.com/code-url)`'));
+  assert.ok(clean.includes('[教学章节](10-agent/README.md)'));
+  assert.ok(clean.includes('[实现](../examples/demo.py)'));
+  assert.ok(clean.includes('[固定项目实现](https://github.com/example/project/blob/0123456789abcdef0123456789abcdef01234567/src/main.go#L1)'));
+  assert.ok(clean.includes('# 来源不是代码中的元数据\nprint("https://example.com/kept-in-code")'));
+  assert.ok(clean.includes('## 解答\n保留这个教学答案。'));
+  for(const text of ['不应公开的资料作者','https://example.com/article','https://example.com/video','coverage/VALIDATION.md','sources/catalog.json','来源记录不应公开','仍是来源记录'])assert.ok(!clean.includes(text),text);
+});
+check('紧邻列表和表格的稳定锚点仍作为独立区块解析',()=>{
+  const source='# 示例\n- 先做练习\n<a id="after-list"></a>\n## 列表之后\n| 项 | 值 |\n|---|---|\n| a | b |\n<a id="after-table"></a>\n## 表格之后\n回答。';
+  const cleaned=readingMarkdown(source,'docs/example.md');
+  const tokens=new Marked().lexer(cleaned);
+  for(const id of ['after-list','after-table'])assert.ok(tokens.some(t=>t.raw.trim()===`<a id="${id}"></a>`),id);
+  assert.deepEqual(tokens.filter(t=>t.type==='heading').map(t=>t.text),['示例','列表之后','表格之后']);
 });
 const relativeLuminance=hex=>{
   const channel=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4);
@@ -49,12 +84,36 @@ check('索引 461 项与 Hot100 100 题均有阅读文档',()=>{
   assert.equal(data.docs.filter(d=>d.problemId).length,100);
   for(const item of index.items){const d=docs.get(item.relative_path||item.path);assert.ok(d,`${item.id} 路径缺失`);if(item.anchor)assert.ok(d.headings.some(h=>h.id===item.anchor),`${item.id} 锚点缺失：${item.anchor}`);}
 });
-check('阅读产物逐篇保留当前 Markdown 原文',()=>{
-  for(const d of data.docs)assert.equal(d.source,fs.readFileSync(path.join(root,d.path),'utf8'),d.path);
+check('阅读产物逐篇使用当前教学 Markdown，不暴露原文与来源字段',()=>{
+  for(const d of data.docs){
+    assert.equal(d.source,readingMarkdown(fs.readFileSync(path.join(root,d.path),'utf8'),d.path),d.path);
+    const published=publishedData.docs.find(doc=>doc.path===d.path);
+    for(const field of ['source','rawMarkdown','sourceUrl','attribution','author','checkedDate'])assert.ok(!Object.hasOwn(published,field),`${d.path}: ${field}`);
+    assert.ok(!Object.hasOwn(d,'carl'),d.path);
+  }
+});
+check('公开数据无Markdown回看字段或出处链接，下载不依赖远端fallback',()=>{
+  for(const field of ['repositoryUrl','repository_url','sourceUrl','attribution','author','checkedDate'])assert.ok(!Object.hasOwn(publishedData,field),field);
+  const forbidden=new Set(['source','rawMarkdown','rawSource','markdown','sourceUrl','attribution','author','checkedDate','repositoryUrl']);
+  const inspect=(value,location)=>{
+    if(!value||typeof value!=='object')return;
+    for(const [key,child] of Object.entries(value)){
+      assert.ok(!forbidden.has(key),`${location}.${key}`);
+      inspect(child,`${location}.${key}`);
+    }
+  };
+  inspect(publishedData,'public');
+  for(const doc of publishedData.docs){
+    assert.ok(!doc.html.includes('source-fallback'),doc.path);
+    assert.ok(!doc.html.includes('github.com/minimoster/agent-backend-interview-handbook/blob/'),doc.path);
+  }
+  const builder=fs.readFileSync(path.join(site,'build.mjs'),'utf8');
+  assert.ok(!builder.includes('const sourceUrl'));
+  assert.ok(!builder.includes('source-fallback'));
 });
 check('小分片可逐个审阅并完整还原阅读数据',()=>{
   const scripts=[...html.matchAll(/<script src="(assets\/data\.[^"]+\.js)" defer><\/script>/g)].map(m=>m[1]);
-  assert.ok(scripts.length>100);
+  assert.ok(scripts.length>50,'分片应覆盖整本教学内容，不以旧rawMarkdown重复副本扩充体积');
   const filenames=new Set(scripts);
   assert.equal(filenames.size,scripts.length);
   for(const file of scripts){
@@ -82,16 +141,21 @@ check('学习路线只有一个正文和索引条目，进阶与独特练习仍�
     for(const section of [alias.section,...Object.values(alias.sections)])assert.ok(route.headings.some(h=>h.id===section),`${old}#${section}`);
   }
 });
-check('全部规范 Markdown 进入阅读层，不复制有相对链接的孤立 Markdown',()=>{
-  const walk=dir=>fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(`${dir}/${e.name}`):[`${dir}/${e.name}`]);
-  for(const file of ['docs','examples','coverage','errata','sources'].flatMap(walk).filter(p=>p.endsWith('.md')))assert.ok(docs.has(file),file);
-  for(const file of walk('site/assets/repo'))assert.ok(!file.endsWith('.md'),`Markdown 应通过阅读路由打开，不能孤立复制：${file}`);
-  for(const file of ['examples/hot100/README.md','coverage/README.md','coverage/VALIDATION.md']){
-    assert.ok(docs.has(file),file);
-    assert.ok(docs.get(file).html.includes('href="#/read/'),`${file} 的 Markdown 关联链接应转译为阅读路由`);
+check('教学 Markdown 完整注册，来源、版本与验证日志不进入阅读或下载',()=>{
+  const expected=[...['docs','examples'].flatMap(walk),'README.md','QUESTION_INDEX.md'].filter(isReadingDocument).sort();
+  assert.deepEqual([...docs.keys()].sort(),expected);
+  for(const d of data.docs)assert.ok(isReadingDocument(d.path),d.path);
+  for(const file of ['coverage/README.md','coverage/VALIDATION.md','errata/README.md','sources/README.md','VERSIONS.md','CONTRIBUTING.md','site/README.md','docs/10-agent/SOURCES.md'])assert.ok(!docs.has(file),file);
+  for(const file of walk('site/assets/repo')){
+    const target=file.slice('site/assets/repo/'.length);
+    assert.ok(isTeachingResource(target),`只应镜像教学资源：${target}`);
+    assert.ok(!file.endsWith('.md'),`Markdown 应通过阅读路由打开：${file}`);
   }
+  const example=docs.get('examples/hot100/README.md');
+  assert.ok(example);
+  assert.ok(example.html.includes('href="#/read/'),'代码示例 Markdown 的教学链接应转译为阅读路由');
 });
-check('全量原文 Markdown 相对链接扫描通过',()=>{
+check('全量教学 Markdown 相对链接扫描通过',()=>{
   const marked=new Marked();
   let scanned=0;
   for(const d of data.docs){
@@ -102,6 +166,8 @@ check('全量原文 Markdown 相对链接扫描通过',()=>{
       const target=path.resolve(root,path.dirname(d.path),file);
       assert.ok(target.startsWith(root+path.sep),`${d.path}: 目标超出仓库 ${token.href}`);
       assert.ok(fs.existsSync(target),`${d.path}: 相对链接缺目标 ${token.href}`);
+      const relative=path.relative(root,target).split(path.sep).join('/');
+      assert.ok(isReadingDocument(relative)||isTeachingResource(relative),`${d.path}: 不应关联非教学资料 ${token.href}`);
       scanned++;
     });
   }
@@ -119,12 +185,11 @@ check('关联源码与资源使用当前文件的自动副本',()=>{
 });
 check('Pages关联资源不使用被隐藏目录排除的路径',()=>{
   for(const d of data.docs){for(const m of d.html.matchAll(/href="assets\/repo\/([^"#]+)(?:#[^"]*)?"/g)){const file=decodeURIComponent(m[1]);assert.ok(!file.split('/').some(part=>part.startsWith('.')),`${d.path}: 隐藏路径应使用已核实的GitHub文件链接 ${file}`);}}
-  const validation=docs.get('coverage/VALIDATION.md');
-  assert.ok(validation.html.includes('href="https://github.com/minimoster/agent-backend-interview-handbook/blob/6dacaf1dd1f6f7bd5b71b8e74c017e9d5a91e833/.github/workflows/knowledge-checks.yml"'));
+  for(const d of data.docs)assert.ok(!/href="(?:assets\/repo\/|#\/read\/)(?:sources|coverage|errata)(?:\/|%2F)/i.test(d.html),d.path);
 });
 check('静态输出不执行原始脚本或危险链接',()=>{
   assert.ok(!dataText.includes('</script>'));
-  for(const d of data.docs){assert.ok(!/<script\b|<iframe\b|<object\b|\bon\w+\s*=|href=["'](?:javascript|data):/i.test(d.html),d.path);assert.ok(d.sourceUrl.startsWith(data.repositoryUrl+'/blob/'));}
+  for(const d of data.docs)assert.ok(!/<script\b|<iframe\b|<object\b|\bon\w+\s*=|href=["'](?:javascript|data):/i.test(d.html),d.path);
   const html=fs.readFileSync(path.join(site,'index.html'),'utf8');
   assert.ok(html.includes("connect-src 'none'"));
   for(const m of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g))assert.ok(fs.existsSync(path.join(site,m[1].split('?')[0])),m[1]);
@@ -154,38 +219,59 @@ check('Hot100 主题与官方难度筛选准确',()=>{
   for(const difficulty of ['EASY','MEDIUM','HARD']){const result=engine.query(new URLSearchParams({module:'hot100',difficulty})).results;assert.equal(result.length,manifest.problems.filter(p=>p.difficulty===difficulty).length);assert.ok(result.every(r=>r.d.difficulty===difficulty));}
   assert.equal(engine.query(new URLSearchParams({module:'java',difficulty:'HARD'})).results.length,0);
 });
-check('Carl资源保持361/100计数，15补充题作为独立资源条目',()=>{
+check('361加100的主线计数不变，15补充题作为独立练习条目',()=>{
   assert.equal(data.questionCount,461);assert.equal(data.questionCount-data.hot100Count,361);assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);assert.equal(data.supplementaryResources.length,15);
   const hotIds=new Set(manifest.problems.map(p=>p.id));
   assert.equal(new Set(data.supplementaryResources.map(p=>p.resourceProblemId)).size,15);
-  for(const r of data.supplementaryResources){assert.ok(!hotIds.has(r.resourceProblemId));assert.equal(r.kind,'external-resource');assert.equal(r.problemId,null);assert.ok(!r.code_path&&!r.python_path&&!r.html&&!r.source);assert.ok(docs.get(r.path).headings.some(h=>h.id===r.targetAnchor));assert.equal(r.sections[0].id,r.targetAnchor);}
+  for(const r of data.supplementaryResources){assert.ok(!hotIds.has(r.resourceProblemId));assert.equal(r.kind,'exercise');assert.equal(r.problemId,null);assert.ok(!r.code_path&&!r.python_path&&!r.html&&!r.source);assert.ok(docs.get(r.path).headings.some(h=>h.id===r.targetAnchor));assert.equal(r.sections[0].id,r.targetAnchor);}
 });
 check('15题逐项搜索、题号锚点、分类与官方难度筛选正确',()=>{
   const all=fullEngine.query(new URLSearchParams({module:'supplement'})).results;
-  assert.equal(all.length,15);assert.ok(all.every(r=>r.d.kind==='external-resource'));
-  assert.deepEqual(all.map(r=>r.d.resourceProblemId),carl.supplementary_index.problems.map(r=>r.id));
-  for(const entry of carl.supplementary_index.problems){
+  assert.equal(all.length,15);assert.ok(all.every(r=>r.d.kind==='exercise'));
+  assert.deepEqual(all.map(r=>r.d.resourceProblemId),supplementary.map(r=>r.id));
+  for(const entry of supplementary){
     const result=fullEngine.query(new URLSearchParams({q:'LC'+entry.id})).results[0];
     assert.equal(result.d.resourceProblemId,entry.id);assert.equal(result.section.id,entry.article_anchor);assert.equal(result.d.difficulty,entry.difficulty);
     assert.ok(fullEngine.query(new URLSearchParams({module:'supplement',q:entry.title_zh})).results.some(r=>r.d.resourceProblemId===entry.id));
   }
-  for(const topic of new Set(carl.supplementary_index.problems.map(r=>r.topic)))assert.equal(fullEngine.query(new URLSearchParams({module:'supplement',topic})).results.length,carl.supplementary_index.problems.filter(r=>r.topic===topic).length);
-  for(const difficulty of ['EASY','MEDIUM','HARD'])assert.equal(fullEngine.query(new URLSearchParams({module:'supplement',difficulty})).results.length,carl.supplementary_index.problems.filter(r=>r.difficulty===difficulty).length);
+  for(const topic of new Set(supplementary.map(r=>r.topic)))assert.equal(fullEngine.query(new URLSearchParams({module:'supplement',topic})).results.length,supplementary.filter(r=>r.topic===topic).length);
+  for(const difficulty of ['EASY','MEDIUM','HARD'])assert.equal(fullEngine.query(new URLSearchParams({module:'supplement',difficulty})).results.length,supplementary.filter(r=>r.difficulty===difficulty).length);
   const bank='docs/85-algorithm-supplement/README.md';
   assert.equal(fullEngine.query(new URLSearchParams({view:'saved'}),{saved:[bank],done:[]}).results.length,1,'章级收藏不应复制成15份记录');
 });
-check('Carl入口的精确资源/相关视频分类与核查映射完全一致',()=>{
-  for(const entry of carl.problems){
-    const d=docs.get(entry.doc_path),c=d.carl;
-    assert.ok(d.headings.some(h=>h.id===c.anchor));assert.equal(Boolean(c.explanation),entry.has_direct_explanation);assert.equal(Boolean(c.python),entry.has_direct_python_implementation);
-    assert.deepEqual([...c.directVideos].map(v=>v.url),entry.direct_videos.map(v=>v.url));assert.deepEqual([...c.relatedVideos].map(v=>v.url),entry.related_videos.map(v=>v.url));
-    assert.equal(c.author,'代码随想录（程序员Carl）');assert.equal(c.checkedDate,entry.checked_date);
+check('补充练习保持中性教学数据，不带作者、来源或外部资源映射',()=>{
+  assert.equal(catalog.schemaVersion,'1.0');
+  assert.equal(supplementary.length,15);
+  assert.equal(docs.get('docs/85-algorithm-supplement/README.md').kind,'exercise-bank');
+  for(const entry of supplementary){
+    assert.deepEqual(Object.keys(entry).sort(),['id','title_zh','topic','difficulty','doc_path','article_anchor','supplementary_order','original_review_prompt'].sort());
+    assert.ok(entry.original_review_prompt.length>10);
+    const resource=data.supplementaryResources.find(r=>r.resourceProblemId===entry.id);
+    assert.ok(resource);
+    assert.equal(resource.path,entry.doc_path);
+    assert.equal(resource.targetAnchor,entry.article_anchor);
+    assert.ok(!Object.hasOwn(resource,'carl')&&!Object.hasOwn(resource,'sourceUrl'));
+    const teaching=resource.sections.map(s=>s.text).join('\n');
+    for(const label of ['题目与接口合同','解析与不变量','完整 Python 答案','复杂度与边界样例'])assert.ok(teaching.includes(label),`${entry.id}: ${label}`);
+    assert.ok(teaching.includes('def '),`${entry.id}: 可读 Python 答案`);
   }
-  const right=docs.get('docs/80-hot100/problems/0199-binary-tree-right-side-view.md').carl;
-  assert.equal(right.directVideos.length,0);assert.ok(right.relatedVideos.length>0);
-  const course=docs.get('docs/80-hot100/problems/0207-course-schedule.md').carl;
-  assert.ok(course.explanation);assert.equal(course.python,null);assert.equal(course.directVideos.length,0);
+});
+check('SQL九题都有稳定题号、知识解析、答案口述与失败边界',()=>{
+  const file='docs/70-practice/sql-nine-worked-problems.md';
+  const d=docs.get(file);
+  const ids=Array.from({length:9},(_,i)=>`s0${i+1}`);
+  assert.equal(d.headings.filter(h=>/^s0[1-9]$/.test(h.id)).length,9);
+  for(const id of ids){
+    assert.ok(d.headings.some(h=>h.id===id&&h.text.startsWith(id.toUpperCase())),id);
+    const section=d.sections.find(s=>s.id===id);
+    assert.ok(section,id);
+    for(const label of ['知识点详解','面试答法','追问','常见误区'])assert.ok(section.text.includes(label),`${id}: ${label}`);
+    const result=engine.query(new URLSearchParams({q:id})).results.find(r=>r.d.path===file);
+    assert.ok(result,id);assert.equal(result.section.id,id);
+  }
+  assert.ok(d.source.includes('MySQL 8.0/8.4'));
+  assert.ok(d.source.includes('不能替代 MySQL'));
 });
 check('收藏与已读筛选仅使用传入的本地状态',()=>{
   const p=data.docs[0].path;
@@ -193,12 +279,21 @@ check('收藏与已读筛选仅使用传入的本地状态',()=>{
   assert.equal(engine.query(new URLSearchParams({view:'saved'}),{saved:[],done:[]}).results.length,0);
   assert.equal(engine.query(new URLSearchParams({view:'done'}),{saved:[],done:[p]}).results.length,1);
 });
-check('代码文本未因高亮丢失字符，解答和知识区可折叠',()=>{
-  const d=data.docs.find(d=>d.problemId===1);
-  const code=d.html.match(/<pre[^>]*><code>([\s\S]*?)<\/code><\/pre>/)?.[1].replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
-  assert.equal(code,d.source.match(/```python\n([\s\S]*?)\n```/)[1]);
-  assert.ok(d.html.includes('class="answer-section"'));
+check('全量教学代码高亮逐字保真，解答和知识区可折叠',()=>{
+  const marked=new Marked();
+  const unescape=source=>source.replace(/<\/?span\b[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
+  let blocks=0;
+  for(const d of data.docs){
+    const expected=[];
+    marked.walkTokens(marked.lexer(d.source),token=>{if(token.type==='code')expected.push(token.text);});
+    const actual=[...d.html.matchAll(/<pre[^>]*><code>([\s\S]*?)<\/code><\/pre>/g)].map(m=>unescape(m[1]));
+    assert.deepEqual(actual,expected,d.path);
+    blocks+=actual.length;
+  }
+  assert.ok(blocks>200,`应检查全量教学代码，而非少数样本：${blocks}`);
+  assert.ok(data.docs.find(d=>d.problemId===1).html.includes('class="answer-section"'));
   assert.ok(docs.get('docs/10-agent/01-agent-loop-tools-and-state.md').html.includes('class="knowledge-section"'));
+  console.log(`  已逐字核对 ${blocks} 个教学代码块。`);
 });
 check('手机与无障碍规则存在（静态检查，不是实测）',()=>{
   const css=fs.readFileSync(path.join(site,'assets/style.css'),'utf8'),app=fs.readFileSync(path.join(site,'assets/app.js'),'utf8');
@@ -262,9 +357,9 @@ check('知识修订可检索，36条Agent追问参考答案可折叠且题数独
   assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);
 });
-check('26张公开场景卡编号、搜索、原文、追问与既有题数独立',()=>{
-  const scenes=JSON.parse(fs.readFileSync(path.join(root,'sources/public-interviews/scenario-map.json'),'utf8')).records;
-  assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,19);
+check('26张场景卡编号、搜索、答案、追问与既有题数独立',()=>{
+  const scenes=catalog.scenarios;
+  assert.equal(data.scenarioCount,26);
   assert.equal(data.docs.filter(d=>d.kind==='scenario').length,26);
   assert.equal(data.modules.find(m=>m.id==='scenarios').count,26);
   for(const scene of scenes){
@@ -333,14 +428,24 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   assert.ok(boot('#/library?view=saved',false).html.includes('未允许本地存储'));
   const supplement=boot('#/library?module=supplement').html;
   assert.equal((supplement.match(/class="result-item"/g)||[]).length,15);
-  assert.ok(supplement.includes('section=problem-77'));assert.ok(supplement.includes('外部资源题库'));
-  const carlReader=boot('#/read/docs%2F80-hot100%2Fproblems%2F0001-two-sum.md').html;
-  assert.ok(carlReader.includes('本题精确讲解'));assert.ok(carlReader.includes('本题 Python 区'));assert.ok(carlReader.includes('代码随想录（程序员Carl）'));
+  assert.ok(supplement.includes('section=problem-77'));assert.ok(!supplement.includes('外部资源题库'));
+  assert.ok(!supplement.includes('外部链接与复习提示'));
+  const hotReader=boot('#/read/docs%2F80-hot100%2Fproblems%2F0001-two-sum.md').html;
   const relatedReader=boot('#/read/docs%2F80-hot100%2Fproblems%2F0199-binary-tree-right-side-view.md').html;
-  assert.ok(relatedReader.includes('相关题迁移，非本题配套'));assert.ok(relatedReader.includes('本题直接视频：本次未找到'));
+  for(const reader of [hotReader,relatedReader])for(const phrase of ['代码随想录','程序员Carl','本题精确讲解','本题 Python 区','相关题迁移','source-view','GitHub 原文','来源与版本见正文'])assert.ok(!reader.includes(phrase),phrase);
+  for(const excluded of ['sources/README.md','coverage/VALIDATION.md','errata/README.md','VERSIONS.md','CONTRIBUTING.md','site/README.md','docs/10-agent/SOURCES.md']){
+    const hidden=boot('#/read/'+encodeURIComponent(excluded));
+    assert.ok(hidden.html.includes('这一页没有找到'),excluded);
+    assert.ok(!hidden.html.includes('reader-content'),excluded);
+  }
+  const filteredState=boot('#/',true,{saved:['sources/README.md','coverage/VALIDATION.md'],done:['VERSIONS.md'],lastPath:'sources/README.md'});
+  assert.deepEqual([...filteredState.sandbox.savedState.saved],[]);
+  assert.deepEqual([...filteredState.sandbox.savedState.done],[]);
+  assert.equal(filteredState.sandbox.savedState.lastPath,'');
   const javaReader=boot('#/read/docs%2F20-java%2F16-executor-failure-followups.md').html;
   assert.ok(javaReader.includes('href="assets/repo/examples/interview_followups/ExecutorFailureLab.java" download="ExecutorFailureLab.java"'));
-  assert.ok(/<a class="source-fallback"[^>]+href="https:\/\/github\.com\/[^>]+>GitHub ↗<\/a>/.test(javaReader),'保留独立 GitHub 查看链接');
+  assert.ok(!javaReader.includes('source-fallback'),'不应为本地教学代码自动添加GitHub出处入口');
+  assert.ok(!javaReader.includes('github.com/minimoster/agent-backend-interview-handbook/blob/'),'本地教学代码只保留本地阅读与下载');
   assert.ok(!/<a[^>]+href="https:\/\/github\.com\/[^>]+\bdownload=/.test(javaReader),'不能对外部 GitHub 链接强制下载');
   const designReader=boot('#/read/docs%2F40-backend%2F42-system-design-debugging-clinic.md').html;
   assert.ok(designReader.includes('href="assets/repo/examples/interview_followups/ExecutorFailureLab.java" download="ExecutorFailureLab.java"'),'设计章的同一源码入口');
@@ -379,7 +484,7 @@ check('原创Agent与Python专题保持既有题数和独立模块',()=>{
   assert.ok(docs.get('docs/10-agent/24-inference-and-serving-boundaries.md').headings.some(h=>h.id==='kv-memory-budget'));
   assert.ok(!docs.has('chapters/kv_cache_supplement.md'),'KV内容合并到既有章');
 });
-check('新专题正文检索能定位真实锚点且现代协议保持未测',()=>{
+check('新专题正文检索能定位真实锚点且保留必要协议版本',()=>{
   const expectations=[
     ['校准阈值','docs/10-agent/25-agent-evaluation-and-routing.md'],
     ['MMR','docs/10-agent/30-rag-data-and-chunking-lab.md'],
@@ -388,9 +493,7 @@ check('新专题正文检索能定位真实锚点且现代协议保持未测',()
   ];
   for(const [q,file] of expectations){const result=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===file);assert.ok(result,`${q}: ${file}`);assert.ok(result.section.id);}
   const modern=docs.get('docs/10-agent/31-tool-mcp-and-skill-contracts.md').source;
-  assert.ok(modern.includes('未运行2026-07-28互通或迁移测试'));
   assert.ok(modern.includes('2025-11-25'));
-  assert.ok(docs.get('coverage/AGENT_LABS_VALIDATION.md').source.includes('合计94项'));
 });
 
 
@@ -398,7 +501,7 @@ check('Transformer原创先修导航、形状搜索与源码保持独立口径',
   const chapterPath='docs/10-agent/05-transformer-prerequisite.md';
   const chapter=docs.get(chapterPath);
   assert.ok(chapter);
-  assert.equal(chapter.source,fs.readFileSync(path.join(root,chapterPath),'utf8'));
+  assert.equal(chapter.source,readingMarkdown(fs.readFileSync(path.join(root,chapterPath),'utf8'),chapterPath));
   assert.equal(data.questionCount-data.hot100Count,361);
   assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);
@@ -410,7 +513,8 @@ check('Transformer原创先修导航、形状搜索与源码保持独立口径',
   for(const q of ['总体方差','Post-LN','W_O','d_model','Q K V']){const r=engine.query(new URLSearchParams({q})).results.find(r=>r.d.path===chapterPath);assert.ok(r,q);assert.ok(chapter.headings.some(h=>h.id===r.section.id),q);}
   for(const file of ['attention_lab.py','test_attention_lab.py']){const relative=`examples/transformer_prerequisite/${file}`;assert.ok(chapter.html.includes(`href="assets/repo/${relative}"`));assert.ok(fs.readFileSync(path.join(site,'assets/repo',relative)).equals(fs.readFileSync(path.join(root,relative))));}
   for(const file of ['README.md','docs/10-agent/README.md','docs/10-agent/00-reading-guide.md'])assert.ok(docs.get(file).html.includes(encodeURIComponent(chapterPath)),file);
-  for(const file of ['sources/transformer-prerequisite-references.md','coverage/TRANSFORMER_PREREQUISITE_VALIDATION.md','examples/transformer_prerequisite/README.md'])assert.ok(docs.has(file),file);
+  assert.ok(docs.has('examples/transformer_prerequisite/README.md'));
+  for(const file of ['sources/transformer-prerequisite-references.md','coverage/TRANSFORMER_PREREQUISITE_VALIDATION.md'])assert.ok(!docs.has(file),file);
 });
 
 
@@ -425,7 +529,7 @@ check('面经六篇追问与一路线保持既有编号并有唯一真实锚点'
     'docs/40-backend/42-system-design-debugging-clinic.md'
   ];
   assert.equal(data.questionCount,461);assert.equal(data.questionCount-data.hot100Count,361);
-  assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);assert.equal(data.publicSelfReportCount,19);
+  assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);
   for(const file of paths){
     const d=docs.get(file);assert.ok(d,file);assert.equal(d.questionIds.length,0);
     assert.equal(index.documents.filter(entry=>entry.relative_path===file).length,1,file);
@@ -434,7 +538,8 @@ check('面经六篇追问与一路线保持既有编号并有唯一真实锚点'
     assert.ok(anchors.length>=5,file);assert.equal(new Set(anchors).size,anchors.length,file);
     for(const id of anchors)assert.equal(d.headings.filter(h=>h.id===id).length,1,`${file}#${id}`);
   }
-  for(const file of ['sources/interview-followups/README.md','sources/agent-protocol-references.md','coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md','examples/interview_followups/README.md','examples/go/followup_lifecycle/README.md'])assert.ok(docs.has(file),file);
+  for(const file of ['examples/interview_followups/README.md','examples/go/followup_lifecycle/README.md'])assert.ok(docs.has(file),file);
+  for(const file of ['sources/interview-followups/README.md','sources/agent-protocol-references.md','coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md'])assert.ok(!docs.has(file),file);
   assert.ok(docs.get('README.md').html.includes(encodeURIComponent(paths[0])));
   for(const [file,target] of [['docs/10-agent/README.md',paths[1]],['docs/10-agent/README.md',paths[2]],['docs/20-java/README.md',paths[3]],['docs/30-go/README.md',paths[4]],['docs/40-backend/README.md',paths[5]],['docs/40-backend/README.md',paths[6]]])assert.ok(docs.get(file).html.includes(encodeURIComponent(target)),`${file}: ${target}`);
 });
@@ -450,21 +555,20 @@ check('新追问正文搜索、源码下载及模型边界一致',()=>{
   for(const relative of ['examples/interview_followups/ExecutorFailureLab.java','examples/interview_followups/storage_lab.py','examples/interview_followups/test_storage_lab.py','examples/interview_followups/agent_protocol_lab.py','examples/interview_followups/test_agent_protocol_lab.py','examples/go/followup_lifecycle/go.mod','examples/go/followup_lifecycle/pool.go','examples/go/followup_lifecycle/pool_test.go']){
     assert.ok(fs.readFileSync(path.join(site,'assets/repo',relative)).equals(fs.readFileSync(path.join(root,relative))),relative);
   }
-  assert.ok(docs.get('coverage/INTERVIEW_FOLLOWUPS_VALIDATION.md').source.includes('本地未执行'));
   assert.ok(docs.get('docs/40-backend/41-storage-recovery-followups.md').source.includes('不保证'));
-  assert.ok(docs.get('sources/interview-followups/README.md').source.includes('不计为原始候选人自报'));
 });
 
-check('显式源码下载控件不拆行且样式使用独立缓存版本',()=>{
+check('显式源码下载控件不拆行且脚本样式统一使用构建缓存版本',()=>{
   const css=fs.readFileSync(path.join(site,'assets/style.css'),'utf8');
   assert.ok(css.includes('.reader-content .resource-download{display:inline-block;white-space:nowrap}'));
-  assert.ok(html.includes('href="assets/style.css?v=source-download-nowrap-20261011"'));
+  const version=data.sourceHash.slice(0,16);
+  for(const file of ['style.css','search.js','app.js'])assert.ok(html.includes(`assets/${file}?v=${version}`),file);
 });
 
-check('虾皮Agent补充保留34个唯一题号、六栏目与独立计数',()=>{
+check('虾皮Agent补充保留34个唯一题号、教学栏目与独立计数',()=>{
   const file='docs/10-agent/34-shopee-agent-interview-playbook.md';
   const d=docs.get(file);
-  const mapping=JSON.parse(fs.readFileSync(path.join(root,'sources/shopee-agent-question-map.json'),'utf8'));
+  const mapping=JSON.parse(fs.readFileSync(path.join(root,'data/shopee-agent-question-map.json'),'utf8'));
   assert.ok(d,file);
   assert.equal(mapping.unique_question_count,34);
   assert.equal(mapping.records.length,34);
@@ -474,14 +578,14 @@ check('虾皮Agent补充保留34个唯一题号、六栏目与独立计数',()=>
   assert.equal(data.questionCount,461);
   assert.equal(data.hot100Count,100);
   assert.equal(data.scenarioCount,26);
-  assert.equal(data.publicSelfReportCount,19);
+
   assert.equal(data.supplementaryCount,15);
   for(const r of mapping.records){
     assert.equal(r.path,file);
     assert.ok(d.headings.some(h=>h.id===r.anchor&&h.text.includes(r.id)),r.id);
     const section=d.sections.find(s=>s.id===r.anchor);
     assert.ok(section,r.id);
-    for(const label of ['新手概念','面试口述','落地设计','指标与失败边界','追问与误区','延伸阅读'])assert.ok(section.text.includes(label),`${r.id}: ${label}`);
+    for(const label of ['新手概念','面试口述','落地设计','指标与失败边界','追问与误区','相关练习'])assert.ok(section.text.includes(label),`${r.id}: ${label}`);
   }
   assert.ok(!/libfile_|file_00000000|IMG_276[1-4]|oai-library:/.test(d.source));
   assert.ok(d.source.includes('示例指标为教学设定'));
@@ -494,11 +598,11 @@ check('虾皮Agent新题号与新增二面正文可搜索，导航相互连接',
     assert.ok(docs.get(file).headings.some(h=>h.id===result.section.id),q);
   }
   for(const p of ['README.md','QUESTION_INDEX.md','docs/10-agent/README.md','docs/10-agent/00-reading-guide.md','docs/60-interviews/README.md','docs/60-interviews/agent.md'])assert.ok(docs.get(p).html.includes(encodeURIComponent(file)),p);
-  assert.ok(docs.has('sources/shopee-agent-interview-supplement.md'));
-  assert.ok(docs.has('coverage/SHOPEE_AGENT_VALIDATION.md'));
+  assert.ok(!docs.has('sources/shopee-agent-interview-supplement.md'));
+  assert.ok(!docs.has('coverage/SHOPEE_AGENT_VALIDATION.md'));
 });
 
-check('检索手算、稳定排序与原创模拟可搜索且来源计数独立',()=>{
+check('检索手算、稳定排序、SQL九题与原创模拟可搜索且主线计数独立',()=>{
   for(const [q,file] of [
     ['unjudged_returned','docs/10-agent/35-retrieval-evaluation-worked-example.md'],
     ['heapreplace','docs/70-practice/retrieval-ranking-algorithms.md'],
@@ -512,9 +616,8 @@ check('检索手算、稳定排序与原创模拟可搜索且来源计数独立'
   }
   const chapter=docs.get('docs/60-interviews/agent-followups-20261015.md').source;
   assert.equal((chapter.match(/^## [^\n]*原创模拟追问 [1-4]：/gm)||[]).length,4);
-  assert.ok(chapter.includes('页面未显示年份'));
   assert.equal(data.questionCount,461);
-  assert.equal(data.publicSelfReportCount,19);
+
   assert.equal(data.scenarioCount,26);
   assert.equal((docs.get('docs/70-practice/sql-nine-worked-problems.md').source.match(/^## S0[1-9] /gm)||[]).length,9);
   for(const name of ['retrieval_worked_examples.py','test_retrieval_worked_examples.py','interview_build_forest.py','test_interview_build_forest.py']){
@@ -523,12 +626,38 @@ check('检索手算、稳定排序与原创模拟可搜索且来源计数独立'
   }
 });
 
-check('阅读内容仅展示学习正文与可公开引用的技术依据',()=>{
+check('阅读内容不暴露私有材料或资料核验元数据',()=>{
   const disallowed=/feishu\.(?:cn|com)|larksuite\.com|私人飞书|私人来源|私有来源|提供给本手册整理|四张有重叠|题目来自[^\n]*图片|provided_interview_material|外部Skill ZIP|未读外部技能ZIP|受限原资料|不完整上传样例|截图省略区域|外部技能包实验|提供材料的专项学习|题目材料用于|材料范围：|未由材料精确给定|猜材料中的/;
   for(const d of data.docs)assert.ok(!disallowed.test(d.source),d.path);
-  const mapping=fs.readFileSync(path.join(root,'sources/shopee-agent-question-map.json'),'utf8');
+  const mapping=fs.readFileSync(path.join(root,'data/shopee-agent-question-map.json'),'utf8');
   assert.ok(!disallowed.test(mapping));
-  assert.equal(JSON.parse(mapping).source_type,'learning_exercise_topic_map');
+  assert.ok(!Object.hasOwn(JSON.parse(mapping),'source_type'));
+});
+
+check('全文、摘要、搜索段落与下载镜像不残留出处渠道',()=>{
+  const provenance=/nowcoder\.(?:com|cn)|programmercarl\.com|bilibili\.com|代码随想录|程序员\s*Carl|作者[：:]|原帖|主题来源|资料来源[：:]|来源渠道|核验日期|来源核查日期/i;
+  for(const doc of data.docs){
+    assert.ok(!provenance.test(JSON.stringify(doc)),doc.path);
+    for(const heading of doc.headings)assert.ok(!/^(?:资料来源|参考资料|参考文献|来源与复验|代码随想录延伸阅读)$/.test(heading.text),`${doc.path}: ${heading.text}`);
+  }
+  for(const file of walk('site/assets/repo'))assert.ok(!provenance.test(fs.readFileSync(path.join(root,file),'utf8')),file);
+  for(const query of ['程序员Carl','代码随想录','nowcoder.com','来源核查日期'])assert.equal(fullEngine.query(new URLSearchParams({q:query})).results.length,0,query);
+});
+
+check('公开阅读不出现延伸阅读栏目或书目出处残句',()=>{
+  // Match bibliographic language, not technical library/model names. In
+  // particular MIT licensing and Microsoft APIs remain valid teaching terms.
+  const bibliography=text=>{
+    const clean=String(text).replace(/<[^>]*>/g,' ').replace(/\*\*/g,'').replace(/\s+/g,' ');
+    return /原论文(?:链接|提供|使用)|作者(?:的|报告|在|实验|研究)|(?:参见|参考|详见|依据|根据|见)[^。！？]{0,80}(?:原论文|论文链接|Stanford\s*《|Microsoft\s+(?:Research|rankerEval)|Cormack|MIT\s*循环不变量)|Stanford\s*(?:《[^》]+》|信息检索(?:教材|导论)|介绍)|Microsoft\s+Research\s*的定义|Cormack\s*等人.{0,40}(?:SIGIR|论文)/i.test(clean);
+  };
+  for(const text of ['Marked 使用 MIT 许可证。','Microsoft Graph API 需要权限校验。','Microsoft rankerEval 接受排序与相关性输入。','Stanford Alpaca 是模型研究示例。','LoRA、Prefix-Tuning 和 Prompt Tuning 是不同方法。','动态和通讯不能代替原论文、代码、模型卡和官方文档。'])assert.ok(!bibliography(text),text);
+  for(const text of ['公式可参见 Stanford《信息检索导论》。','Microsoft Research 的定义区分两个指标。','公式见 Cormack 等人的 SIGIR 2009 原论文。','证明方法可参见MIT循环不变量原理。','见深入练习与其原论文链接。'])assert.ok(bibliography(text),text);
+  for(const doc of publishedData.docs){
+    const content=[doc.title,doc.summary,doc.html,...doc.headings.map(h=>h.text),...doc.sections.map(s=>s.heading+'\n'+s.text)].join('\n');
+    assert.ok(!content.includes('延伸阅读'),doc.path);
+    assert.ok(!bibliography(content),doc.path);
+  }
 });
 
 check('两篇新面经34项均有答案、口述与固定项目边界',()=>{

@@ -1,6 +1,6 @@
 # SC-B10 发出消息、broker确认、业务完成是三件事
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 生产者拿到了confirm，能保证订单处理一次且已成功吗？
 
@@ -26,11 +26,9 @@
 
 附带SQLite练习展示同数据库事务内的幂等效果；再手画提交成功但ack丢失的重放。它不是RabbitMQ测试，不能证明外部效果仅执行一次。
 
-**主题来源：** P04、P08、P09、P17。**技术依据：** [RabbitMQ发布与消费确认](https://www.rabbitmq.com/docs/confirms)、[AWS幂等API设计](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。按实际消息系统确认持久性和投递合同。
+按实际消息系统确认持久性和投递合同。
 
 ## 阅读与复验入口
-
-公开主题线索：[P04](../../sources/public-interviews/README.md#report-p04)、[P08](../../sources/public-interviews/README.md#report-p08)、[P09](../../sources/public-interviews/README.md#report-p09)、[P17](../../sources/public-interviews/README.md#report-p17)。
 
 先读基础：
 
@@ -41,4 +39,4 @@
 
 - [interview_lab.py#IdempotentInventory](../../examples/public_interview_scenarios/interview_lab.py#IdempotentInventory)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

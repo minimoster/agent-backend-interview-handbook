@@ -1,6 +1,6 @@
 # SC-B03 volatile可见，不代表i++原子
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** volatile计数器为什么在两个线程下仍可能少计？ConcurrentHashMap又是否让所有业务操作都原子？
 
@@ -26,15 +26,13 @@
 
 两线程重复递增，分别用普通int、volatile、AtomicInteger或锁。无错误的一次运行不能证明无竞争；用规范解释每种版本保障了什么，并补充value对象竞争例子。
 
-**主题来源：** P04、P15、P16。**技术依据：** [JLS21内存模型](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html)、[JDK21并发API入口](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html)。本卡的语言边界为Java21，不描述固定容器内存布局。
+本卡的语言边界为Java21，不描述固定容器内存布局。
 
 ## 阅读与复验入口
-
-公开主题线索：[P04](../../sources/public-interviews/README.md#report-p04)、[P15](../../sources/public-interviews/README.md#report-p15)、[P16](../../sources/public-interviews/README.md#report-p16)。
 
 先读基础：
 
 - [02-concurrency-and-thread-pools](../../docs/20-java/02-concurrency-and-thread-pools.md)
 - [13-concurrency-details](../../docs/20-java/13-concurrency-details.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

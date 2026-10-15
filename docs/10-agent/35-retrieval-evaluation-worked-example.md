@@ -35,7 +35,7 @@
 
 一共三份相关材料，找到了两份，所以 `Recall@3 = 2/3`。分母来自相关性标注，而不是本次返回条数。若知识库有九份相关材料，只命中一份，则 Recall 是 `1/9`，不是 1。
 
-Precision 关心返回集合里的噪声，Recall 关心相关集合里的遗漏；公式可参见 [Stanford《信息检索导论》的集合评测](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-unranked-retrieval-sets-1.html)。在固定排序上扩大 K，Recall 不会下降，但 Precision 并不保证单调下降或上升，取决于新加入的材料。
+Precision 关心返回集合里的噪声，Recall 关心相关集合里的遗漏。在固定排序上扩大 K，Recall 不会下降，但 Precision 并不保证单调下降或上升，取决于新加入的材料。
 
 ### Hit@3：至少命中一份了吗
 
@@ -45,7 +45,7 @@ Precision 关心返回集合里的噪声，Recall 关心相关集合里的遗漏
 
 第一名 B 已相关，`RR@3 = 1/1 = 1`。若返回 `[X, B, A]`，第一份相关材料在第 2 名，RR 是 `1/2`。前三名都不相关时，RR@3 为 0。
 
-对多条问题的 RR 求平均才叫 MRR。RR 只看第一份相关材料，所以 `[B, X, X2]` 与 `[B, A, C]` 都可以得到 1；需要多份证据的 RAG 不能仅靠 MRR 验收。[Microsoft Research 的定义](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2008-179.pdf)把 RR 与支持多级相关性的 nDCG 区分开来。
+对多条问题的 RR 求平均才叫 MRR。RR 只看第一份相关材料，所以 `[B, X, X2]` 与 `[B, A, C]` 都可以得到 1；需要多份证据的 RAG 不能仅靠 MRR 验收。RR只看第一份相关材料，nDCG可以表达多级相关性。
 
 ## 3. nDCG：重要证据是不是排得够靠前
 
@@ -64,9 +64,9 @@ Precision 关心返回集合里的噪声，Recall 关心相关集合里的遗漏
 
 `nDCG@3 = DCG@3 / IDCG@3 ≈ 0.69202`
 
-直觉是：A 最重要却排第三，系统要被扣分；B 提前不能完全抵消 A 的延后。理想分母必须来自完整候选标注，不能只把已召回的 B、X、A 排序。后一种做法会忽略遗漏的 C，使结果偏乐观。[排序评测教材](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)解释了累计增益与理想归一化。
+直觉是：A 最重要却排第三，系统要被扣分；B 提前不能完全抵消 A 的延后。理想分母必须来自完整候选标注，不能只把已召回的 B、X、A 排序。后一种做法会忽略遗漏的 C，使结果偏乐观。
 
-**用库时再核对一次定义。** nDCG 实现可能使用线性增益 `g` 或指数增益 `2^g−1`，还可能对并列分数取平均。scikit-learn 的 [ndcg_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ndcg_score.html)直接使用输入的真实分数并有 ties 选项。若要与本章指数增益对齐，应传递相应增益值，并保持候选全集、K 和并列处理一致，不能只因为函数名一样就比较数值。
+**用库时再核对一次定义。** nDCG 实现可能使用线性增益 `g` 或指数增益 `2^g−1`，还可能对并列分数取平均。scikit-learn 的 ndcg_score直接使用输入的真实分数并有 ties 选项。若要与本章指数增益对齐，应传递相应增益值，并保持候选全集、K 和并列处理一致，不能只因为函数名一样就比较数值。
 
 ## 4. 文档都相关，为什么答案仍然不完整
 
@@ -89,7 +89,7 @@ Precision 关心返回集合里的噪声，Recall 关心相关集合里的遗漏
 
 ### 没有正确答案的问题
 
-如果金标没有任何正例，Recall 与 nDCG 没有适用分母。本文返回 `None`，将这类问题放入“无答案”切片，另测系统是否正确识别缺证据、是否编造断言。不可把 None 当零后与可回答问题混成一个均值。相关性库对此也有不同处理规则，见 [Microsoft rankerEval 的缺定义值说明](https://github.com/microsoft/rankerEval/blob/main/docs/source/metrics.rst)。
+如果金标没有任何正例，Recall 与 nDCG 没有适用分母。本文返回 `None`，将这类问题放入“无答案”切片，另测系统是否正确识别缺证据、是否编造断言。不可把 None 当零后与可回答问题混成一个均值。不同相关性库可能采用不同的缺定义值处理规则，跨实现比较前应统一规则。
 
 ### 尚未人工评过的材料
 
@@ -161,11 +161,11 @@ def score_query(ranking: Sequence[str], grades: Mapping[str, int], k: int) -> di
 一次实用实验按下面顺序做：
 
 1. 固定问题、语料快照、身份权限、模型版本、提示、工具返回和预算；只改变要比较的组件。
-2. 用开发集选择参数，最终留出集只用于评估。分块或改写出来的近重复问题按文档/模板分组，避免随机拆分后两边都出现同一事实。预处理和阈值选择也可能泄漏，参见 [scikit-learn 的数据泄漏说明](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage)。
+2. 用开发集选择参数，最终留出集只用于评估。分块或改写出来的近重复问题按文档/模板分组，避免随机拆分后两边都出现同一事实。预处理和阈值选择也可能泄漏，必须只在训练或开发数据上拟合。
 3. 保存每条问题 A/B 的结果，而不仅是两个总分；对有随机性的 Agent 重复运行，保留问题与试验之间的层级。
 4. 同报总体、关键切片、回归列表、样本量、时延和失败成本。需要不确定性估计时，可按问题配对重采样；同一用户或文档的高度相关问题按组重采样。
 
-配对 bootstrap 的基本动作是每次抽取一批问题下标，让 A、B 同时使用这批下标，再计算差值，而不是独立抽两份数据。SciPy 的 [`bootstrap(..., paired=True)`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html)支持这种索引配对。置信区间取决于抽样假设与方法，不能把 100 个高度相似问题当作 100 次独立证据。
+配对 bootstrap 的基本动作是每次抽取一批问题下标，让 A、B 同时使用这批下标，再计算差值，而不是独立抽两份数据。SciPy 的 `bootstrap(..., paired=True)`支持这种索引配对。置信区间取决于抽样假设与方法，不能把 100 个高度相似问题当作 100 次独立证据。
 
 ## 8. 面试口述与原创模拟追问
 
@@ -196,11 +196,11 @@ def score_query(ranking: Sequence[str], grades: Mapping[str, int], k: int) -> di
 
 ## 10. 用两个项目回答“你会在哪里采集评测证据？”
 
-**固定源码。** Saber 使用 [6d5bb13dc74dc03a7a59c74b2396c3b10e84caef](https://github.com/minimoster/agi-saber/tree/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef)，Openresearch 使用 [5f876faabba238563001151fc7a573581ddaf869](https://github.com/minimoster/agi-openresearch/tree/5f876faabba238563001151fc7a573581ddaf869)。
+**固定源码。** Saber 使用 6d5bb13dc74dc03a7a59c74b2396c3b10e84caef，Openresearch 使用 5f876faabba238563001151fc7a573581ddaf869。
 
-- Saber 的 [internal/domain/rag/hybrid.go](https://github.com/minimoster/agi-saber/blob/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef/internal/domain/rag/hybrid.go) 可定位 `searchHybrid` 的单查询候选与RRF、`SearchMulti` 的跨查询融合和 `finalize`；[reranker.go](https://github.com/minimoster/agi-saber/blob/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef/internal/domain/rag/reranker.go) 可定位 LLM listwise 重排及解析失败回退；[rag.go](https://github.com/minimoster/agi-saber/blob/6d5bb13dc74dc03a7a59c74b2396c3b10e84caef/internal/domain/rag/rag.go) 的 `QueryWithHistory` 优先把父块放入生成上下文。可以分别在这些边界采集候选、重排与实际上下文，**这是建议加入的评测记录点，不是声称固定源码已经记录本章全部指标**。
-- Openresearch 的 [scholar-agent/backend/internal/agent/benchmark_harness.go](https://github.com/minimoster/agi-openresearch/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/benchmark_harness.go) 有数据/适配器hash核对、逐样本预测和指标重算；[claim_evidence.go](https://github.com/minimoster/agi-openresearch/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/claim_evidence.go) 有rubric规范化、哈希和证据关联。它们可用于解释“结果须能回到样本与证据”的原则，但当前分类/回归 benchmark 不是本章RAG Recall/nDCG实现，也不能据此宣称有独立防泄漏数据集。
+- Saber 的 internal/domain/rag/hybrid.go 可定位 `searchHybrid` 的单查询候选与RRF、`SearchMulti` 的跨查询融合和 `finalize`；reranker.go 可定位 LLM listwise 重排及解析失败回退；rag.go 的 `QueryWithHistory` 优先把父块放入生成上下文。可以分别在这些边界采集候选、重排与实际上下文，**这是建议加入的评测记录点，不是声称固定源码已经记录本章全部指标**。
+- Openresearch 的 scholar-agent/backend/internal/agent/benchmark_harness.go 有数据/适配器hash核对、逐样本预测和指标重算；claim_evidence.go 有rubric规范化、哈希和证据关联。它们可用于解释“结果须能回到样本与证据”的原则，但当前分类/回归 benchmark 不是本章RAG Recall/nDCG实现，也不能据此宣称有独立防泄漏数据集。
 
 **口述版。**“我会沿 Saber 的候选融合、LLM重排、父块上下文三个边界保存同一问题的证据身份，避免只看最终回答。评测可借鉴 Openresearch 的冻结规则和逐样本重算思路，但需要另建带证据金标的问题集。本章 Python 指标是可手算的教学内核，没有冒充项目线上指标；没有实际运行报告时，我只讲源码机制和验证计划。”
 
-核查日期：2026-10-15。数字、问题、代码及练习均为本章原创教学例子；技术定义的一手来源随对应段落给出。
+数字、问题、代码及练习均为本章原创教学例子；技术定义与适用边界在对应段落说明。

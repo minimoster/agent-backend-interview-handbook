@@ -1,6 +1,6 @@
 # 53. 最大子数组和
 
-[官方题目](https://leetcode.cn/problems/maximum-subarray/) · MEDIUM · 官方分类：普通数组
+难度：MEDIUM · 分类：普通数组
 
 ## 题意与接口
 
@@ -74,24 +74,14 @@ class Solution:
 
 平衡拆分形成n个叶子、n−1次常数合并，故总时间O(n)，递归栈O(log n)；使用下标区间，不复制切片。若每层另从中点扫描左右以求跨界和，则是O(n log n)的另一种分治版本。主接口仍采用上面的Kadane方法。
 
-[可运行分治实现](../../../examples/hot100/followup_algorithms.py)提供`maximum_subarray_summary`与`max_subarray_divide_conquer`；[独立测试](../../../examples/hot100/test_followup_algorithms.py)对97,655个非空小数组逐项核对四个字段，并测试全负与100,000项边界。根目录运行`python -B -m unittest examples.hot100.test_followup_algorithms -v`。追问来自[官方英文题页](https://leetcode.com/problems/maximum-subarray/)；合并推导与代码为本仓库原创。
+[可运行分治实现](../../../examples/hot100/followup_algorithms.py)提供`maximum_subarray_summary`与`max_subarray_divide_conquer`；[独立测试](../../../examples/hot100/test_followup_algorithms.py)对97,655个非空小数组逐项核对四个字段，并测试全负与100,000项边界。根目录运行`python -B -m unittest examples.hot100.test_followup_algorithms -v`。
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/maximum-subarray/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0053.Maximum%20Subarray/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0053.maximum-subarray.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0053.maximum-subarray.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[本题：动态规划](https://www.bilibili.com/video/BV19V4y1F7b5) · [本题：贪心](https://www.bilibili.com/video/BV1aY4y1Z7ya)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：用全负数数组检查初始答案；解释“以当前位置结尾的最佳和”与全局最佳和的区别。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

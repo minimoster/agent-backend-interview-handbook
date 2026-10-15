@@ -1,8 +1,8 @@
-# 面经技术追问：补齐工程边界
+# 工程技术追问：补齐工程边界
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
+示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB79 Spring AI、Flux 和多人流式会话各负责哪一层](#fb79)
 - [FB80 关注、粉丝、点赞与会员系统怎样设计可验证的数据模型](#fb80)
@@ -36,8 +36,6 @@
 
 **常见误区**：WebFlux 自动使所有驱动非阻塞；Flux 必比 MVC 快；Spring AI 替应用管理所有上下文预算。
 
-**来源**：[FB-S080 Spring WebFlux 概览](https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html)、[FB-S081 Spring AI Chat Model API](https://docs.spring.io/spring-ai/reference/api/chatmodel.html)、[FB-S082 Reactor 调度与线程模型](https://projectreactor.io/docs/core/release/reference/coreFeatures/schedulers.html)、[FB-S053 CompletableFuture Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)。
-
 <a id="fb80"></a>
 
 ### FB80 关注、粉丝、点赞与会员系统怎样设计可验证的数据模型
@@ -53,8 +51,6 @@
 **追问**：粉丝千万时是否一次查询全量？需要 keyset 分页、限额与异步导出；热门计数可分片聚合，但应说明误差和合并方式。
 
 **常见误区**：一个 Redis 计数就是全部点赞事实；关注与粉丝各写一份却没有一致性策略；表越多代表系统越高级。
-
-**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S074 Apache Cassandra Dynamo 架构与虚拟节点](https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)。
 
 <a id="fb81"></a>
 
@@ -72,8 +68,6 @@
 
 **常见误区**：模型分类准确率就是通知送达率；供应商接收就是用户已读；所有并发导出写同一路径。
 
-**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。
-
 <a id="fb82"></a>
 
 ### FB82 Git 分支和 CI/CD 怎样支持并行开发并保留回退
@@ -89,8 +83,6 @@
 **追问**：紧急修复合到主干后长期分支怎么办？同步该修复并重新验证，防止之后合并把修复覆盖。
 
 **常见误区**：无冲突即无缺陷；直接 force push 修所有协作问题；重建同一标签一定得到同样镜像。
-
-**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S085 Pro Git：分支工作流](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows)、[FB-S091 Pro Git：变基](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)。
 
 <a id="fb83"></a>
 
@@ -108,8 +100,6 @@
 
 **常见误区**：acceptCount 就是业务线程数；连接池越大越快；连接泄漏检测自动替代正确 close。
 
-**来源**：[FB-S079 Tomcat 10.1 HTTP Connector](https://tomcat.apache.org/tomcat-10.1-doc/config/http.html)、[FB-S083 HikariCP 官方配置说明](https://github.com/brettwooldridge/HikariCP)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)。
-
 <a id="fb84"></a>
 
 ### FB84 Docker 与 Kubernetes 基础如何与发布可靠性相连
@@ -125,8 +115,6 @@
 **追问**：设置副本数 3 就高可用了吗？还要分散故障域、依赖容量和状态恢复，否则三副本可能共同失败。
 
 **常见误区**：容器内存无限；readiness 失败一定重启；应用状态全存在临时容器层也能自动恢复。
-
-**来源**：[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S086 Kubernetes Pod 生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)、[FB-S090 Docker CLI 官方参考](https://docs.docker.com/reference/cli/docker/)。
 
 <a id="fb85"></a>
 
@@ -144,8 +132,6 @@
 
 **常见误区**：登录后所有资源都能读；JWT 有签名就无需业务授权；删日志里的 key 就允许先把它提交到 Git。
 
-**来源**：[FB-S054 RFC 9700 OAuth 2.0 安全实践](https://www.rfc-editor.org/rfc/rfc9700)、[FB-S064 RFC 7519 JWT](https://www.rfc-editor.org/rfc/rfc7519)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S087 Spring Security Servlet 架构](https://docs.spring.io/spring-security/reference/servlet/architecture.html)、[FB-S092 Kubernetes Secret 官方说明](https://kubernetes.io/docs/concepts/configuration/secret/)。
-
 <a id="fb86"></a>
 
 ### FB86 IP 和 TCP 报文头哪些字段与排障真正相关
@@ -162,15 +148,13 @@
 
 **常见误区**：IP 校验保护应用内容不可篡改；IPv6 只是更长 IPv4 头；端口由 IP 头提供。
 
-**来源**：[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)、[FB-S025 RFC 826 ARP](https://www.rfc-editor.org/rfc/rfc826)、[FB-S088 RFC 791 IPv4](https://www.rfc-editor.org/rfc/rfc791)、[FB-S089 RFC 8200 IPv6](https://www.rfc-editor.org/rfc/rfc8200)。
-
 <a id="fb87"></a>
 
 ### FB87 Redis 消息、广播与备份恢复怎样避免能力混淆
 
 **优先级：P1**
 
-**知识点详解**：Pub/Sub 适合在线通知但离线会丢，不是持久消息队列；List 可表达简单队列，可靠领取/处理中恢复需要额外设计；Streams 提供 ID、消费组和 pending 等机制，但 ACK 与业务事务仍是不同边界。广播缓存失效应确认每个节点都能收到，而普通竞争消费组只把消息交给组内某消费者，不能直接当全节点广播。RDB/AOF 恢复是数据恢复能力，不是跨业务系统对账自动完成；备份要验证恢复耗时和数据时间点。 RocketMQ 4.x Push Consumer官方文档明确：消息重试仅对集群模式有效，广播模式消费失败后不会由该机制重试，而会继续消费新消息。因此本地缓存广播监听失败需应用持久记录补偿/失败告警，或使用实体版本水位、短TTL及重连全量校验/清空来恢复；不能声称广播会自动进入集群重试主题或DLQ。
+**知识点详解**：Pub/Sub 适合在线通知但离线会丢，不是持久消息队列；List 可表达简单队列，可靠领取/处理中恢复需要额外设计；Streams 提供 ID、消费组和 pending 等机制，但 ACK 与业务事务仍是不同边界。广播缓存失效应确认每个节点都能收到，而普通竞争消费组只把消息交给组内某消费者，不能直接当全节点广播。RDB/AOF 恢复是数据恢复能力，不是跨业务系统对账自动完成；备份要验证恢复耗时和数据时间点。 RocketMQ 4.x Push Consumer的重试边界是：消息重试仅对集群模式有效，广播模式消费失败后不会由该机制重试，而会继续消费新消息。因此本地缓存广播监听失败需应用持久记录补偿/失败告警，或使用实体版本水位、短TTL及重连全量校验/清空来恢复；不能声称广播会自动进入集群重试主题或DLQ。
 
 **具体例子**：三台应用共用一个竞争消费组，商户变更只被一台处理，其余本地缓存还旧。可选择符合产品语义的广播/每节点订阅，再用 TTL 和重连清空兜底。恢复 Redis 后需检查最近订单流水和已失效租约，避免把旧锁当当前所有权。
 
@@ -179,8 +163,6 @@
 **追问**：Streams XACK 是否原子提交 MySQL？不是，数据库写入仍需去重与事务，崩溃窗口仍存在。
 
 **常见误区**：Pub/Sub 自动保留离线消息；消费组就是广播；备份文件可用等于所有业务状态一致。
-
-**来源**：[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S061 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S084 Redis XREADGROUP 消费组与 pending](https://redis.io/docs/latest/commands/xreadgroup/)、[FB-S106 RocketMQ 4.x Push Consumer 广播与重试](https://rocketmq.apache.org/docs/4.x/consumer/02push/#message-retry)。
 
 <a id="fb88"></a>
 
@@ -198,8 +180,6 @@
 
 **常见误区**：红黑树所有根叶路径长度完全相同；B+ 树固定三层；跳表最坏永远 log n；数据都放内部节点不会影响扇出。
 
-**来源**：[FB-S093 Cornell CS3110：红黑树不变量](https://www.cs.cornell.edu/courses/cs3110/2010fa/lectures/lec11.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)、[FB-S096 MySQL 8.4 索引物理结构](https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html)、[FB-S099 Redis 7.2 有序集合源码](https://github.com/redis/redis/blob/7.2/src/t_zset.c)。
-
 <a id="fb89"></a>
 
 ### FB89 排序题如何从不变量推导快速排序的平均与最坏复杂度
@@ -215,8 +195,6 @@
 **追问**：平均 O(n log n) 为何仍可能栈溢出？不均衡递归深度可达 n；可先递归较短侧并循环长侧，或采用有最坏保证的混合排序。
 
 **常见误区**：快排永远 n log n；原地等于递归栈 O(1)；随机 pivot 彻底消灭所有最坏情形。
-
-**来源**：[FB-S094 MIT 6.046：随机化快速排序分析](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/bdfdbc2391daad0b8c32606d6d3644a4_0VqawRl3Xzs.pdf)。
 
 <a id="fb90"></a>
 
@@ -234,8 +212,6 @@
 
 **常见误区**：链表所有删除都更快；ArrayList 尾删也搬全部元素；哈希结构任何情况下都是常数时间。
 
-**来源**：[FB-S097 ArrayList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html)、[FB-S098 LinkedList Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html)、[FB-S095 TreeMap Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)。
-
 <a id="fb91"></a>
 
 ### FB91 强一致、最终一致、读己之写和几秒延迟如何区分
@@ -251,8 +227,6 @@
 **追问**：只有“更新后一秒同步”够定义最终一致吗？还要说明更新停止、故障恢复、消息不丢与冲突解决等前提。
 
 **常见误区**：所有副本一秒内同步就是线性一致；把一致性哈希当一致性保障；读主库自动绕过所有旧缓存。
-
-**来源**：[FB-S069 Gilbert 与 Lynch：CAP 证明论文](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf)、[FB-S102 MySQL 8.4 Group Replication 一致性说明](https://dev.mysql.com/doc/refman/8.4/en/group-replication-consistency-guarantees.html)、[FB-S060 Redis 客户端缓存](https://redis.io/docs/latest/develop/reference/client-side-caching/)。
 
 <a id="fb92"></a>
 
@@ -270,8 +244,6 @@
 
 **常见误区**：向量库持久化等于知识永远最新；upsert 自动删除所有旧块；检索后才过滤权限没有泄漏风险。
 
-**来源**：[FB-S101 Chroma 更新数据](https://docs.trychroma.com/docs/collections/update-data)、[FB-S059 Redis Pub/Sub 投递语义](https://redis.io/docs/latest/develop/pubsub/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。
-
 <a id="fb93"></a>
 
 ### FB93 点评与订单教学案例的数据表如何按职责设计
@@ -287,5 +259,3 @@
 **追问**：为什么不能把所有字段都塞订单表？冗余可能用于保留成交快照，但要区分历史快照与当前商户资料，避免随资料更新篡改历史。
 
 **常见误区**：先背课程表数再解释业务；一切外键都不用或必须用的绝对断言；表设计与实际查询和索引脱节。
-
-**来源**：[FB-S100 MySQL 8.4 CREATE TABLE 与约束](https://dev.mysql.com/doc/refman/8.4/en/create-table.html)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。

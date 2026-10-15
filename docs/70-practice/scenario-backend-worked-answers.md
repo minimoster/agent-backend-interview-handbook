@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
+示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB67 只有十件库存，怎样让大量无效抢购早停](#fb67)
 - [FB68 面试中的 QPS、并行流与扩容收益怎样证明](#fb68)
@@ -33,8 +33,6 @@
 
 **常见误区**：库存很少就不用持久流水；全部排队永不拒绝；库存归零永久缓存且不处理取消回补。
 
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。
-
 <a id="fb68"></a>
 
 ### FB68 面试中的 QPS、并行流与扩容收益怎样证明
@@ -50,8 +48,6 @@
 **追问**：为什么只看平均延迟不够？少量长尾可能影响用户体验与资源滞留，平均值会掩盖排队和抖动。
 
 **常见误区**：一秒峰值就是稳定容量；压测机自身没饱和无需检查；线程越多速度越快。
-
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)。
 
 <a id="fb69"></a>
 
@@ -69,8 +65,6 @@
 
 **常见误区**：所有超时都重试；所有慢请求都改异步；只看总耗时不看分段。
 
-**来源**：[FB-S066 OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fb70"></a>
 
 ### FB70 深分页怎样降低回表，又怎样真正避开大 OFFSET
@@ -86,8 +80,6 @@
 **追问**：并发更新排序字段会怎样？记录可能跨边界移动，若要求严格快照，应有快照版本/时间边界与相应存储方案。
 
 **常见误区**：子查询里仍 OFFSET 百万就完全解决深分页；只用非唯一时间戳做边界；客户端自由改游标就无安全风险。
-
-**来源**：[FB-S051 MySQL 8.4 ICP](https://dev.mysql.com/doc/refman/8.4/en/index-condition-pushdown-optimization.html)、[FB-S058 RFC 9110 HTTP 语义](https://datatracker.ietf.org/doc/html/rfc9110)。
 
 <a id="fb71"></a>
 
@@ -105,8 +97,6 @@
 
 **常见误区**：第一步是加所有池子；无限降级放量到数据库；补偿不检查状态直接加库存。
 
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
-
 <a id="fb72"></a>
 
 ### FB72 高 CPU 与 OOM 怎样留下能解释原因的证据
@@ -122,8 +112,6 @@
 **追问**：heap dump 很大怎么处理？确认磁盘、访问权限与保留期限，离线分析最短必要副本，不能公开上传完整业务对象。
 
 **常见误区**：OOM 全是堆太小；一次线程转储就证明根因；把 Java 逻辑线程 ID 当作 OS TID；把平台线程的 TID→nid 方法无条件用于虚拟线程。
-
-**来源**：[JDK 25 jcmd 命令与影响说明](https://docs.oracle.com/en/java/javase/25/docs/specs/man/jcmd.html)、[JDK 25 虚拟线程与载体调度](https://docs.oracle.com/en/java/javase/25/core/virtual-threads.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S056 Linux proc_pid_stat(5)](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)。
 
 <a id="fb73"></a>
 
@@ -141,8 +129,6 @@
 
 **常见误区**：分布式锁就是幂等；失败删标记一定安全；每次重试重新生成 key。
 
-**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S076 AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)。
-
 <a id="fb74"></a>
 
 ### FB74 短链从创建到跳转有哪些必须解释的边界
@@ -158,8 +144,6 @@
 **追问**：长 URL 的同一内容是否一定返回同短码？这是产品去重语义，涉及用户隔离、参数规范化与隐私，不能随便全局去重。
 
 **常见误区**：截断哈希绝无碰撞；301 总是最快所以总用；允许 javascript 等任意 scheme。
-
-**来源**：[FB-S058 RFC 9110 HTTP 语义](https://datatracker.ietf.org/doc/html/rfc9110)、[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)。
 
 <a id="fb75"></a>
 
@@ -177,8 +161,6 @@
 
 **常见误区**：超时就是没扣；每次重试换新 payment_id；收到任意自称支付成功的 HTTP 回调就发货。
 
-**来源**：[FB-S068 AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)、[FB-S075 AWS Saga Orchestration](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/saga-orchestration.html)、[FB-S078 Stripe 幂等请求契约](https://docs.stripe.com/api/idempotent_requests)。
-
 <a id="fb76"></a>
 
 ### FB76 慢 HTTP 依赖怎样隔离，CompletableFuture 为何不够
@@ -194,8 +176,6 @@
 **追问**：重试放哪一层？尽量集中在知道业务语义的一层，避免网关、SDK、服务各重试把一次变成指数多次。
 
 **常见误区**：用了异步就没有阻塞；orTimeout 自动停止一切底层工作；独立池使用无限队列仍算隔离充分。
-
-**来源**：[FB-S053 CompletableFuture Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)、[FB-S018 ThreadPoolExecutor Java SE 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。
 
 <a id="fb77"></a>
 
@@ -213,8 +193,6 @@
 
 **常见误区**：普通索引永远更快；所有版本默认 change buffer 一样；去掉业务唯一约束仅是性能优化。
 
-**来源**：[FB-S052 MySQL 8.4 Change Buffer](https://dev.mysql.com/doc/refman/8.4/en/innodb-change-buffer.html)、[FB-S051 MySQL 8.4 ICP](https://dev.mysql.com/doc/refman/8.4/en/index-condition-pushdown-optimization.html)。
-
 <a id="fb78"></a>
 
 ### FB78 令牌桶、漏桶与分布式全局限额怎样取舍
@@ -230,5 +208,3 @@
 **追问**：为什么同一 QPS 也可能压垮服务？请求时长上升使在途并发增长；只限制每秒到达量没有限制资源占用时间。
 
 **常见误区**：共享 Redis 就任何故障下精确全局 QPS；令牌桶完全不允许突发；漏桶无限排队不会有问题。
-
-**来源**：[FB-S065 Google SRE 过载处理](https://sre.google/sre-book/handling-overload/)、[FB-S036 Redis Lua 脚本执行](https://redis.io/docs/latest/develop/programmability/eval-intro/)、[FB-S067 AWS 超时、重试与抖动退避](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)。

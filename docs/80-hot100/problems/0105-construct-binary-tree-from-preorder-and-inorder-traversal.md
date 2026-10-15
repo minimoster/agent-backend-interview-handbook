@@ -1,12 +1,12 @@
 # 105. 从前序与中序遍历序列构造二叉树
 
-[官方题目](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) · MEDIUM · 官方分类：二叉树
+难度：MEDIUM · 分类：二叉树
 
 ## 题意与接口
 
-已知同一棵树的先序与中序序列，重建树。接口：`buildTree(preorder, inorder)`。官方页已核实值互不重复、两序列有效且长度至多 3000。
+已知同一棵树的先序与中序序列，重建树。接口：`buildTree(preorder, inorder)`。本题约定值互不重复、两序列有效且长度至多 3000。
 
-约束核对（2026-10-09）：长度 1..3000，两遍历合法且值互异，来自同一棵树。 [官方来源](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+约束核对（2026-10-09）：长度 1..3000，两遍历合法且值互异，来自同一棵树。
 
 ## 从朴素方法到优化
 
@@ -68,24 +68,12 @@ class Solution:
 
 复习：弹出多个祖先意味着在原树中完成了什么？为何下标推进总共只有 O(n) 次？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0105.Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0105.construct-binary-tree-from-preorder-and-inorder-traversal.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0105.construct-binary-tree-from-preorder-and-inorder-traversal.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
-- 相关主题视频：[106. 从中序与后序遍历序列构造二叉树](https://www.bilibili.com/video/BV1vW4y1i7dn)。仅用于方法迁移，不计为本题专属配套视频。
-- 同题补充区块：[106文章内的105讲解](https://programmercarl.com/algo/binary-tree/0106-construct-binary-tree-from-inorder-and-postorder-traversal.html#_105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91) · [对应前序/中序Python实现](https://programmercarl.com/algo/binary-tree/0106-construct-binary-tree-from-inorder-and-postorder-traversal.html#python)。106的视频解的是中序/后序构树，须区分根在遍历序列中的位置。
+## 复习与迁移
 
 自主复习提示：用前序确定根后，解释中序分界怎样决定左右子树大小；注意不要套用后序构树的根位置。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

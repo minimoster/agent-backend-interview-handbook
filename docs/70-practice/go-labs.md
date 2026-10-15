@@ -25,4 +25,4 @@ go test -race -v -count=10 -timeout=60s ./...
 
 验收标准：每题先用 30–60 秒讲主线，再接受 2–3 分钟追问；遇到未验证的版本细节能说“我会查该版本源码/文档”，比把旧口诀讲得很确定更可靠。服务相关故障演练另外按[MySQL 两连接步骤](../../examples/sql/README.md#mysql-concurrency-fixture)与[提交/消息重放实验](../50-projects/teaching-case-review-and-seckill.md#crash-replay-fixture)执行，SQLite 关系式通过不能替代它们。
 
-依据：[Go 官方流水线与取消](https://go.dev/blog/pipelines)、[testing](https://pkg.go.dev/testing)、[ResponseController 写 deadline](https://pkg.go.dev/net/http#ResponseController.SetWriteDeadline)。实验实现与组织为原创。
+实验实现与组织为原创。

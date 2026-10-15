@@ -1,12 +1,12 @@
 # 114. 二叉树展开为链表
 
-[官方题目](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/) · MEDIUM · 官方分类：二叉树
+难度：MEDIUM · 分类：二叉树
 
 ## 题意与接口
 
 原地把树展开为沿 right 前进的链，顺序为先序遍历，所有 left 置空。接口：`flatten(root) -> None`。
 
-约束核对（2026-10-09）：节点数 0..2000；同一批 TreeNode 原地按先序排列，left 全空，right 为后继。 [官方来源](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
+约束核对（2026-10-09）：节点数 0..2000；同一批 TreeNode 原地按先序排列，left 全空，right 为后继。
 
 ## 从朴素方法到优化
 
@@ -58,22 +58,12 @@ class Solution:
 
 复习：如何用先序序列不变证明正确性？为何嵌套 while 仍可为 O(n)？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0100-0199/0114.Flatten%20Binary%20Tree%20to%20Linked%20List/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：本次已核验的官方站点、sitemap、固定仓库目录与精确题号/标题检索中未找到本题直接匹配；不代表永久不存在。
-- 官方Python：本次核验未找到本题精确匹配的官方实现区。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：画出重连后的引用关系，确认每个节点只出现一次、左指针清空且先序顺序保持。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

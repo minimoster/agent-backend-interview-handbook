@@ -1,6 +1,6 @@
 # SC-A03 混合召回 融合 重排分别做什么
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 为什么不把BM25分数和向量相似度直接相加，然后取前五？
 
@@ -26,11 +26,9 @@
 
 对两个各含4个ID的列表手算RRF，加入重复ID及同分。附带的小练习会测试列表去重、确定性排序和非法k输入；它不代表真实检索效果已提升。
 
-**主题来源：** P05、P06。**技术依据：** [Elastic RRF定义](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion)、[Sentence Transformers检索和重排](https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html)。使用 Elasticsearch 时需按目标版本核对 API 与许可。
+使用 Elasticsearch 时需按目标版本核对 API 与许可。
 
 ## 阅读与复验入口
-
-公开主题线索：[P05](../../sources/public-interviews/README.md#report-p05)、[P06](../../sources/public-interviews/README.md#report-p06)。
 
 先读基础：
 
@@ -40,4 +38,4 @@
 
 - [interview_lab.py#rrf](../../examples/public_interview_scenarios/interview_lab.py#rrf)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

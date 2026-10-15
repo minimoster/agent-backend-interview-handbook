@@ -1,6 +1,6 @@
 # SC-A02 文档分块为什么不能只背一个长度
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** 同一知识库有Markdown、扫描PDF和表格，统一每500字符切一块够不够？
 
@@ -26,15 +26,13 @@
 
 自写一段制度，把限制条件放在段落末尾，另做一张有单位的表。设计4个跨边界问题。验收检查证据是否完整、引用能否定位、不同用户能否看到不该看到的块。此处是待执行练习，没有声称做过解析或检索实验。
 
-**主题来源：** P01、P06、P10。**技术依据：** [LangChain检索与知识库](https://docs.langchain.com/oss/python/langchain/retrieval)、[LangChain分块接口](https://docs.langchain.com/oss/python/integrations/splitters)。参数须按实际分块器和tokenizer版本记录。
+参数须按实际分块器和tokenizer版本记录。
 
 ## 阅读与复验入口
-
-公开主题线索：[P01](../../sources/public-interviews/README.md#report-p01)、[P06](../../sources/public-interviews/README.md#report-p06)、[P10](../../sources/public-interviews/README.md#report-p10)。
 
 先读基础：
 
 - [02-rag-retrieval-and-reranking](../../docs/10-agent/02-rag-retrieval-and-reranking.md)
 - [17-rag-indexes-and-evidence](../../docs/10-agent/17-rag-indexes-and-evidence.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

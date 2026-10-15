@@ -1,12 +1,12 @@
 # 19. 删除链表的倒数第 N 个结点
 
-[官方题目](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/) · MEDIUM · 官方分类：链表
+难度：MEDIUM · 分类：链表
 
 ## 题意与接口
 
 删除链表倒数第 n 个节点并返回头；题目保证 `1 <= n <= 链表长度`。接口：`removeNthFromEnd(head, n)`。
 
-约束核对（2026-10-09）：链长 1..30，1<=n<=链长；删除倒数第 n 个节点。 [官方来源](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+约束核对（2026-10-09）：链长 1..30，1<=n<=链长；删除倒数第 n 个节点。
 
 ## 从朴素方法到优化
 
@@ -58,22 +58,12 @@ class Solution:
 
 复习：若快指针仅先走 n 步，同步循环的终止条件需要怎样变化？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0019.Remove%20Nth%20Node%20From%20End%20of%20List/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0019.remove-nth-node-from-end-of-list.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0019.remove-nth-node-from-end-of-list.html#python3)。可与上面的本仓库原创实现对照。
-- 本题配套视频：[19. 删除链表的倒数第 N 个结点](https://www.bilibili.com/video/BV1vW4y1U7Gf)。上传者已核验为代码随想录（MID 525438321）。
+## 复习与迁移
 
 自主复习提示：用删除头节点和删除尾节点检查 dummy 与快慢指针间距，明确 n 的合法范围。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

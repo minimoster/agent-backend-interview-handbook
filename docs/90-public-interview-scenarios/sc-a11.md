@@ -1,6 +1,6 @@
 # SC-A11 SSE断开后续传的是事件还是业务任务
 
-[返回场景卡目录](README.md) · [公开报告与日期边界](../../sources/public-interviews/README.md)
+[返回场景卡目录](README.md)
 
 **练习问题：** Agent结果通过SSE流式显示，浏览器断开又连接。是否应该重新启动Agent任务？
 
@@ -26,15 +26,11 @@
 
 创建编号1–5的事件，客户端在3处断开，从3续传，并模拟重复3。验收界面最终只出现1–5一次；缺失历史应给出明确恢复路径。完整 SSE 解析器仍待实现与测试。
 
-**主题来源：** 公开 Agent/后端服务主题扩展。**技术依据：** [WHATWG Server sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html)、[RFC9293 TCP字节流](https://www.rfc-editor.org/rfc/rfc9293.html)。
-
 ## 阅读与复验入口
-
-公开主题线索：通用工程延伸，见正文的来源边界。
 
 先读基础：
 
 - [04-streaming-and-reliable-execution](../../docs/10-agent/04-streaming-and-reliable-execution.md)
 - [01-network-and-streaming](../../docs/40-backend/01-network-and-streaming.md)
 
-[本模块验证范围](VALIDATION.md)。正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。
+正文的手工、目标服务或模型验收是待执行标准；只有明确记录的Python测试已经运行。

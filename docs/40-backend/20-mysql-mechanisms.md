@@ -26,8 +26,6 @@
 
 **误区**：type 至少 range 才合格；key_len 越短越好；EXPLAIN ANALYZE 是完全不执行的安全预览。
 
-**一手来源**：[FJ-S071 EXPLAIN 字段](https://dev.mysql.com/doc/refman/8.4/en/explain-output.html)、[FJ-S072 EXPLAIN/ANALYZE](https://dev.mysql.com/doc/refman/8.4/en/explain.html)、[FJ-S073 SHOW PROFILE 弃用](https://dev.mysql.com/doc/refman/8.4/en/show-profile.html)。
-
 <a id="fj27"></a>
 ### FJ27 索引有哪些分类，“索引失效”为什么常常说得太粗
 
@@ -47,8 +45,6 @@
 
 **误区**：每一列建索引都改善性能；全文或空间索引普遍没用；没用来定位就等于索引完全没参与执行。
 
-**一手来源**：[FJ-S074 MySQL 建索引语义](https://dev.mysql.com/doc/refman/8.4/en/create-index.html)、[FJ-S075 范围与 skip scan](https://dev.mysql.com/doc/refman/8.4/en/range-optimization.html)、[FJ-S076 index merge](https://dev.mysql.com/doc/refman/8.4/en/index-merge-optimization.html)、[FJ-S077 生成列索引](https://dev.mysql.com/doc/refman/8.4/en/generated-column-index-optimizations.html)。
-
 <a id="fj28"></a>
 ### FJ28 B+ 树、聚簇索引与覆盖查询怎样影响真正的页访问
 
@@ -67,8 +63,6 @@
 **追问**：为什么推荐稳定较短主键？降低二级索引和变更成本，仍需兼顾业务 ID 策略。回表一定比聚簇直接查慢吗？选择性、覆盖和缓存都影响整体代价。
 
 **误区**：B+ 树永远三层；无主键表没有聚簇组织；Extra 显示 Using index 就能证明任何快照下零聚簇访问。
-
-**一手来源**：[FJ-S078 InnoDB 索引物理结构](https://dev.mysql.com/doc/refman/8.4/en/innodb-physical-structure.html)、[FJ-S079 聚簇与二级索引](https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html)、[FJ-S080 二级索引与 MVCC](https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html)、[FJ-S081 ICP](https://dev.mysql.com/doc/refman/8.4/en/index-condition-pushdown-optimization.html)。
 
 <a id="fj29"></a>
 ### FJ29 索引 (A,B,C) 跳过 B、出现多个范围时，到底用了哪些列
@@ -93,7 +87,7 @@ B 从1到2有序，C 却是10、40、5、30。A=7/C>20 的结果是第2、4项�
 
 **误区**：固定 A 后 B 无序；BETWEEN 一律保证使用所有后列；看到 key_len 较长就认定访问行一定更少。
 
-**一手来源**：[FJ-S075 官方范围构造与 skip scan](https://dev.mysql.com/doc/refman/8.4/en/range-optimization.html)、[FJ-S081 ICP](https://dev.mysql.com/doc/refman/8.4/en/index-condition-pushdown-optimization.html)、[FJ-S082 多列索引](https://dev.mysql.com/doc/refman/8.4/en/multiple-column-indexes.html)、[FJ-S071 key_len 的解释](https://dev.mysql.com/doc/refman/8.4/en/explain-output.html)。键顺序示意为原创推导。
+键顺序示意为原创推导。
 
 <a id="fj30"></a>
 ### FJ30 隔离级别如何影响读异常，InnoDB RR 到底怎么处理幻读
@@ -113,8 +107,6 @@ RR 下范围锁定读常借 next-key 锁限制相关间隙插入，以协调幻�
 **追问**：RR 是否解决所有业务并发不变量？不是，跨行条件还需约束、锁或更强事务方案。用 COUNT 不变能证明无幻读吗？不能证明集合完全相同。
 
 **误区**：BEGIN 立即固定所有查询快照；幻读只是行数变多；串行化必定物理单线程执行。
-
-**一手来源**：[FJ-S083 InnoDB 隔离级别](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)、[FJ-S084 一致性读取](https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html)、[FJ-S085 InnoDB 锁](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html)。
 
 <a id="fj31"></a>
 ### FJ31 undo、redo、binlog 与 Read View 怎样共同支撑事务
@@ -140,8 +132,6 @@ RR 下范围锁定读常借 next-key 锁限制相关间隙插入，以协调幻�
 
 **误区**：redo 只有提交后才写；undo 仅服务 rollback；BEGIN 就复制整库；一个日志独自保证全部 ACID。
 
-**一手来源**：[FJ-S086 InnoDB 与 ACID](https://dev.mysql.com/doc/refman/8.4/en/mysql-acid.html)、[FJ-S087 redo](https://dev.mysql.com/doc/refman/8.4/en/innodb-redo-log.html)、[FJ-S088 undo](https://dev.mysql.com/doc/refman/8.4/en/innodb-undo-logs.html)、[FJ-S089 binlog](https://dev.mysql.com/doc/refman/8.4/en/binary-log.html)、[FJ-S090 ReadView 源码](https://github.com/mysql/mysql-server/blob/8.4/storage/innobase/include/read0types.h)、[FJ-S091 InnoDB 配置](https://dev.mysql.com/doc/refman/8.4/en/innodb-parameters.html)、[FJ-S092 binlog 刷盘配置](https://dev.mysql.com/doc/refman/8.4/en/replication-options-binary-log.html)。
-
 <a id="fj32"></a>
 ### FJ32 什么时候分库分表，单表“最大多少行”怎样回答
 
@@ -161,7 +151,7 @@ MySQL 8.4 InnoDB 表空间理论上限依页大小变化，16KiB 页在手册中
 
 **误区**：分表后每条查询自然只访问一片；忽略跨片唯一性与事务；把64TB描述为任何配置都固定可用容量。
 
-**一手来源**：[FJ-S093 InnoDB 限制](https://dev.mysql.com/doc/refman/8.4/en/innodb-limits.html)、[FJ-S094 Vitess 分片概念](https://vitess.io/docs/23.0/reference/features/sharding/)、[FJ-S095 分片隔离与原子性](https://vitess.io/docs/23.0/user-guides/configuration-advanced/shard-isolation-atomicity/)。拆分决策和容量示例为原创工程分析。
+拆分决策和容量示例为原创工程分析。
 
 <a id="fj33"></a>
 ### FJ33 MySQL 复制如何工作，读写分离为什么会读不到刚写的数据
@@ -182,7 +172,7 @@ MySQL 8.4 InnoDB 表空间理论上限依页大小变化，16KiB 页在手册中
 
 **误区**：全部 SELECT 一律副本；半同步等于所有副本已应用；收到写成功就表示任何选出的新主都保有该写。
 
-**一手来源**：[FJ-S096 复制线程](https://dev.mysql.com/doc/refman/8.4/en/replication-threads.html)、[FJ-S097 半同步语义](https://dev.mysql.com/doc/refman/8.4/en/replication-semisync.html)、[FJ-S098 GTID 等待函数](https://dev.mysql.com/doc/refman/8.4/en/gtid-functions.html)。路由示例为基于这些机制的原创设计。
+路由示例为基于这些机制的原创设计。
 
 <a id="fj34"></a>
 ### FJ34 MySQL 与 Redis 应怎样分工，为什么不能只比较“毫秒与微秒”
@@ -201,8 +191,6 @@ MySQL 8.4 InnoDB 表空间理论上限依页大小变化，16KiB 页在手册中
 
 **误区**：MySQL 每次都读磁盘；Redis 持久化就绝不丢；用两个没有条件的延迟数字证明架构优劣。
 
-**一手来源**：[FJ-S086 InnoDB ACID](https://dev.mysql.com/doc/refman/8.4/en/mysql-acid.html)、[FJ-S099 Redis 数据类型](https://redis.io/docs/latest/develop/data-types/)、[FJ-S100 Redis 持久化](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)。
-
 <a id="fj35"></a>
 ### FJ35 UNION 与 UNION ALL 去重什么，结果有默认顺序吗
 
@@ -219,5 +207,3 @@ MySQL 8.4 InnoDB 表空间理论上限依页大小变化，16KiB 页在手册中
 **追问**：每个分支都 ORDER BY 就能保证总结果顺序吗？不能代替最外层排序。每组第二名用哪一个窗口函数？取决于第二行、竞赛名次、第二个不同分数，完整例子见 [S01](../70-practice/sql-nine-worked-problems.md#s01)。
 
 **误区**：UNION 自带按第一列升序；UNION 只按主键判重；UNION ALL 在任何业务场景都可替换 UNION。
-
-**一手来源**：[FJ-S101 MySQL UNION](https://dev.mysql.com/doc/refman/8.4/en/union.html)、[FJ-S102 集合操作语义](https://dev.mysql.com/doc/refman/8.4/en/set-operations.html)。

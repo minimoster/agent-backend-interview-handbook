@@ -2,7 +2,7 @@
 
 [总目录](../../README.md) · [原 Spring 题](04-spring-and-backend.md)
 
-Spring Framework 6+ 的行为与历史版本差异分开说明；自动配置示例按现代 Spring Boot imports 机制。参考手册滚动更新，发布前核对日期为 2026-10-09；源码示例固定到 Framework 6.2.0。所有代码、配置与故障测试均未运行。
+Spring Framework 6+ 的行为与历史版本差异分开说明；自动配置示例按现代 Spring Boot imports 机制。运行与源码细节随版本演进；源码示例固定到 Framework 6.2.0。所有代码、配置与故障测试均未运行。
 
 <a id="fj22"></a>
 ### FJ22 Bean 作用域和生命周期怎样一起决定状态与资源归属
@@ -23,8 +23,6 @@ Spring Framework 6+ 的行为与历史版本差异分开说明；自动配置示
 
 **误区**：prototype 每个方法调用都新建；只要状态在局部变量就绝对线程安全；所有 Bean 都通过直接反射构造。
 
-**一手来源**：[FJ-S061 Bean scopes](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html)、[FJ-S062 生命周期](https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html)。
-
 <a id="fj23"></a>
 ### FJ23 Autowired、Resource 和循环依赖的“三级缓存”各解决什么
 
@@ -43,8 +41,6 @@ Spring Framework 6+ 的行为与历史版本差异分开说明；自动配置示
 **追问**：为何第三层放工厂而不总提前放原对象？为了按需获得可能经过早期代理处理的引用，而不是普遍注入未增强的裸对象。Lazy 可缓解环是否就设计正确？仍需审查运行时依赖与首次调用行为。
 
 **误区**：Resource 显式名字缺失也总回退类型；三级缓存能解决所有构造器循环；开启循环配置是推荐长期方案。
-
-**一手来源**：[FJ-S063 Autowired](https://docs.spring.io/spring-framework/reference/core/beans/annotation-config/autowired.html)、[FJ-S064 Resource](https://docs.spring.io/spring-framework/reference/core/beans/annotation-config/resource.html)、[FJ-S065 依赖注入与循环](https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html)、[FJ-S066 6.2.0 单例注册表源码](https://github.com/spring-projects/spring-framework/blob/v6.2.0/spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java)、[FJ-S067 Boot 2.6 变更](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6-Release-Notes)。
 
 <a id="fj24"></a>
 ### FJ24 Starter、自动配置与 Boot 启动怎样串起来，Cloud 又负责什么
@@ -80,8 +76,6 @@ class SearchAutoConfiguration {
 
 **误区**：加 @Configuration 就自动成为任何项目的 Starter；默认配置覆盖用户明确 Bean；将 spring.factories 用法无版本复制。
 
-**一手来源**：[FJ-S068 官方自定义自动配置指南](https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html)、[FJ-S139 SpringApplication 生命周期](https://docs.spring.io/spring-boot/reference/features/spring-application.html)、[FJ-S140 Boot 3.5.0 启动入口源码](https://raw.githubusercontent.com/spring-projects/spring-boot/v3.5.0/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java)、[FJ-S141 Spring Cloud 项目与兼容表](https://spring.io/projects/spring-cloud/)。
-
 <a id="fj25"></a>
 ### FJ25 Spring 的 isolation 设置什么时候生效，怎样区分“没事务”和“没回滚”
 
@@ -100,5 +94,3 @@ class SearchAutoConfiguration {
 **追问**：外层捕获内层 REQUIRED 异常能保证提交吗？共享事务可能已经 rollback-only，最终出现 UnexpectedRollbackException。反应式事务还总靠线程绑定吗？不是同一模型，需用 Reactor 上下文和反应式事务管理器。
 
 **误区**：每个 @Transactional 都新建事务；非 public 在所有 Spring 版本都失效；任意新线程都绝不能有自己的事务。
-
-**一手来源**：[FJ-S069 事务传播](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html)、[FJ-S070 Transactional 注解边界](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)。

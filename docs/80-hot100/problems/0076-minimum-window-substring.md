@@ -1,6 +1,6 @@
 # 76. 最小覆盖子串
 
-[官方题目](https://leetcode.cn/problems/minimum-window-substring/) · HARD · 官方分类：子串
+难度：HARD · 分类：子串
 
 ## 题意与接口
 
@@ -71,22 +71,12 @@ class Solution:
 
 复习：need为负是什么意思？为什么“找到第一个覆盖就返回”不能保证最短？
 
-本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[测试说明](../TESTING.md)。
+本地测试只能提供有限输入上的证据；本仓库没有把“测试通过”写成“LeetCode 已 AC”。复现命令和覆盖边界见[运行方式](../../../examples/hot100/README.md)。
 
-## 延伸阅读
+[返回分类导航](../README.md)
 
-- [官方原题与约束](https://leetcode.cn/problems/minimum-window-substring/)
-- [doocs 对照材料（固定版本，仅链接）](https://github.com/doocs/leetcode/blob/c412a46586590f020b0d861c163758cb60987270/solution/0000-0099/0076.Minimum%20Window%20Substring/README.md)
-- [返回分类导航](../README.md)
-
-## 代码随想录延伸阅读
-
-外部资源作者：[代码随想录（程序员Carl）](https://programmercarl.com/)。核验日期：2026-10-10（UTC）。以下提供官方外链，不复制上游题解、Python代码或视频。
-
-- 官网讲解：[本题对应页面或区块](https://programmercarl.com/hot100/0076.minimum-window-substring.html)
-- 官方Python：[本题对应实现区](https://programmercarl.com/hot100/0076.minimum-window-substring.html#python)。可与上面的本仓库原创实现对照。
-- 本题配套视频：本次已核验的官方来源中未找到直接匹配视频。
+## 复习与迁移
 
 自主复习提示：先定义“已满足”统计的是字符种类还是出现次数，再手推窗口刚满足和刚失效的两次更新。
 
-资源覆盖与权利说明见[代码随想录来源记录](../../../sources/carl-hot100-resources.md)；非Hot100练习单列在[算法基础补充题库](../../85-algorithm-supplement/README.md)。
+[算法基础补充题库](../../85-algorithm-supplement/README.md)

@@ -13,7 +13,7 @@
 
 **起手问：** 最大线程数64，队列10000，为什么只有8个线程在跑，却积压了几千任务？
 
-先看实际执行器类型及提交路径。ThreadPoolExecutor通常先使用核心线程，然后尝试入队，入队失败才考虑扩展到maximumPoolSize。大队列可能让“最大64”长期不起作用。[Java21 ThreadPoolExecutor](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)
+先看实际执行器类型及提交路径。ThreadPoolExecutor通常先使用核心线程，然后尝试入队，入队失败才考虑扩展到maximumPoolSize。大队列可能让“最大64”长期不起作用。
 
 **继续追问：队列该设多大？** 不用“CPU核数乘某个常数”直接下结论。画出接入、排队、执行、借连接、下游调用五段；队列占据请求总deadline，连接池和下游额度是另外两道门。教学例：剩余300ms，但前面已有一整波预计400ms工作，入队成功也不代表有业务价值。估算用于准入，执行时仍要重查deadline，且实际服务时间会波动。
 
@@ -30,7 +30,7 @@
 
 **追问：静默丢弃更快，能不能用于有结果任务？** `submit`包装出来的Future可能既没执行也没完成。调用方无期限等待会造成另一种挂住。`silentDiscard`确认该Future仍未完成，并在实验收尾主动取消。按业务合同选择显式拒绝、可观测降级或受控反馈；不要将丢弃任务伪装成成功。
 
-**追问：任务异常为什么没有打日志？** `submit`的计算失败可存进Future；没有读取结果，就可能没人观察。`submitCapturesFailure`通过`get`检查ExecutionException的原因。同步、异步和拒绝三类错误都要纳入错误指标。[Future合同](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html)
+**追问：任务异常为什么没有打日志？** `submit`的计算失败可存进Future；没有读取结果，就可能没人观察。`submitCapturesFailure`通过`get`检查ExecutionException的原因。同步、异步和拒绝三类错误都要纳入错误指标。
 
 <a id="java-future-cancellation"></a>
 ## 3. Future超时之后，工作究竟停没停
@@ -44,7 +44,7 @@
 | CompletableFuture.cancel(true) | Future异常完成 | 它不直接控制产生结果的计算，不能据此保证中断supplier |
 | CompletableFuture.orTimeout | 该Future超时异常完成，并返回同一Future | supplier是否还在运行、共享Future的其他观察者是否受影响 |
 
-前三种差异分别以门闩与信号验证，`orTimeoutIdentity`检查对象身份，`lateCompletion`检查超时结果不能被迟到success改写。[CompletableFuture合同](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)
+前三种差异分别以门闩与信号验证，`orTimeoutIdentity`检查对象身份，`lateCompletion`检查超时结果不能被迟到success改写。
 
 **追问：取消后还扣了一次库存，谁的错？** 不能只看Future状态。请求可能在取消前已经到达资源端。应带稳定操作身份、定义未知结果查询、用业务事务约束和幂等重试；取消是在途控制，库存正确性由资源端保证。[存储失败窗口](../40-backend/41-storage-recovery-followups.md#storage-unknown-outcome)
 
@@ -62,16 +62,16 @@
 <a id="java-context-boundary"></a>
 ## 5. 日志和事务为什么到了异步线程就变了
 
-普通ThreadLocal是线程关联值，不是请求传播协议。实验先证明提交者的值不会自动复制，再证明同一个worker会保留上一任务未清理的值，最后验证remove。实际应用应捕获最小必要上下文，显式传递或使用框架认可的包装机制，并在finally恢复/清理worker原状态。[ThreadLocal](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html)
+普通ThreadLocal是线程关联值，不是请求传播协议。实验先证明提交者的值不会自动复制，再证明同一个worker会保留上一任务未清理的值，最后验证remove。实际应用应捕获最小必要上下文，显式传递或使用框架认可的包装机制，并在finally恢复/清理worker原状态。
 
 **追问：把所有ThreadLocal整包复制过去就行？** 不应。权限、事务连接、请求对象和大可变对象有不同生命周期，复用过期授权甚至会串租户。传播trace标识与传播数据库事务不能混为一谈。
 
-Spring命令式事务通常绑定当前线程，新线程不自动加入旧事务；通过正确代理调用可在另一个线程开启它自己的事务。REQUIRES_NEW还可能需要额外连接，外层持着连接、内层等不到连接会放大池压力。本轮没有启动Spring做此集成实验。[事务传播](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html) · [事务注解边界](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)
+Spring命令式事务通常绑定当前线程，新线程不自动加入旧事务；通过正确代理调用可在另一个线程开启它自己的事务。REQUIRES_NEW还可能需要额外连接，外层持着连接、内层等不到连接会放大池压力。本轮没有启动Spring做此集成实验。
 
 <a id="java-shutdown-ownership"></a>
 ## 6. 服务关闭为何不能只调用shutdownNow
 
-先停止接纳，再给在途任务有限收尾时间，然后请求协作取消，最后核对资源归还和任务最终状态。`orderlyShutdown`验证shutdown仍允许已接纳工作完成；`shutdownNowQueuedFuture`验证从队列排出的Future不会因此自动得到完成状态。调用方仍需处理被排出的任务、取消它们的结果句柄和记录恢复需求。[ExecutorService](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html)
+先停止接纳，再给在途任务有限收尾时间，然后请求协作取消，最后核对资源归还和任务最终状态。`orderlyShutdown`验证shutdown仍允许已接纳工作完成；`shutdownNowQueuedFuture`验证从队列排出的Future不会因此自动得到完成状态。调用方仍需处理被排出的任务、取消它们的结果句柄和记录恢复需求。
 
 **追问：中断没有效果怎么办？** 检查是否吞掉InterruptedException、阻塞API是否支持中断、锁是否可中断获取，以及任务是否在远端。能及时退出是合作合同，不是Java强杀保证。诊断时看重复线程栈和等待依赖，而不只读一次Thread.State。
 
@@ -79,4 +79,4 @@ Spring命令式事务通常绑定当前线程，新线程不自动加入旧事�
 
 运行：`java examples/interview_followups/ExecutorFailureLab.java`。完整19场景源码可[下载](../../examples/interview_followups/ExecutorFailureLab.java)。依次解释每个断言保护什么、没有保护什么，再把小池参数改成自己的教学设定，保持门闩协调与收尾，不用sleep假装同步。
 
-面经主题入口：[本轮公开线索](../../sources/interview-followups/README.md#java-reports)。一页纸画出队列、线程、连接、Future与提交状态的关系，再回答：“取消、异常、重复、退出分别是谁负责？”
+一页纸画出队列、线程、连接、Future与提交状态的关系，再回答：“取消、异常、重复、退出分别是谁负责？”

@@ -1,8 +1,8 @@
-# 面经算法补充：六个明确题设的Python解法
+# 算法变体补充：六个明确题设的Python解法
 
 [返回练习目录](README.md) · [完整可运行代码](../../examples/interview_algorithms/solutions.py) · [测试](../../examples/interview_algorithms/test_solutions.py)
 
-这些是所读面经题单中未能直接由Hot100主线替代的变体。题设缺失的地方明确声明假设，不声称恢复原作者未提供的完整题目。讲解、代码和合成测试均为原创。
+这些变体不能直接由Hot100主线替代。每题明确声明输入、输出与必要假设，配合讲解、Python代码和合成测试。
 
 2026-10-10，Python 3.12.14运行8个测试入口全部通过，含固定种子随机对拍、小范围穷举与X04的5,000位字符串边界；没有向在线判题站提交。附带的[历史运行记录](../../examples/interview_algorithms/validation-result.json)对应2026-10-09的6项测试，不包含新增的超大字符串与输入验证入口；当前8项可从根目录用`python -B examples/interview_algorithms/test_solutions.py`复现。链表题重连原节点，调用后原链表结构改变。共享节点类型如下：
 
@@ -52,7 +52,7 @@ def reverse_words_in_place(chars: list[str]) -> None:
 
 **常见误区：** 用split再join却声称原地；用chars[::-1]产生副本；把Python字符串赋值当作可修改字符。
 
-**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**验证边界：** 本节为原创明确题设与代码，对应测试已运行
 
 <a id="x02"></a>
 ## X02 奇数位递增、偶数位递减的链表，如何线性排序？
@@ -109,11 +109,11 @@ Input is acyclic. Relinks existing nodes; consumes the original list topology.
 2. 反转：previous已反转前缀与current未处理后缀仍构成偶链的身份分割；先保存following，再改current.next，每轮仅将一个节点从后缀转移到前缀。后缀变空时，偶链原节点恰好都出现一次，顺序相反。
 3. 归并：以tail为止的已完成输出前缀、left剩余链、right剩余链仍是原节点的身份分割；每轮只取一条剩余链的头节点接到tail并移动该链的头。两条剩余链有序，因此选较小头维持输出非递减；一个头耗尽后接上另一条完整后缀。没有新结果节点被创建，哨兵不在返回链内，终止时每个原节点恰好输出一次，也不会接回已完成前缀形成环。
 
-测试中的身份集合相等、遍历检测环、排序比较是上述性质在有限输入上的佐证，不能替代对所有允许输入的证明。若要求保留原链结构，则需要复制节点或不同接口约定；本解法也不承诺相等值按原位置稳定排序。证明方法可参见[MIT循环不变量原理](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf#page=143)。
+测试中的身份集合相等、遍历检测环、排序比较是上述性质在有限输入上的佐证，不能替代对所有允许输入的证明。若要求保留原链结构，则需要复制节点或不同接口约定；本解法也不承诺相等值按原位置稳定排序。证明应明确初始化成立、每步保持以及终止时推出目标三个环节。
 
 **常见误区：** 把奇偶按节点值而不是位置拆；未断链；反转顺序错误丢next；违反前提时仍保证有序。
 
-**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**验证边界：** 本节为原创明确题设与代码，对应测试已运行
 
 <a id="x03"></a>
 ## X03 不用大整数转换，怎样把两个十进制字符串相加？
@@ -149,7 +149,7 @@ def add_decimal_strings(a: str, b: str) -> str:
 
 **常见误区：** 漏最终进位；用int(a)+int(b)绕过要求；把isdigit认为只接受ASCII；0000结果变成空串。
 
-**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**验证边界：** 本节为原创明确题设与代码，对应测试已运行
 
 <a id="x04"></a>
 ## X04 怎样构造小于N的最大整数，原题少条件时怎么办？
@@ -160,7 +160,7 @@ def add_decimal_strings(a: str, b: str) -> str:
 
 面向超大输入的`largest_below_decimal(n, digits)`用非空ASCII十进制字符串表示N和结果，不把整个数转成int。N允许前导零并先规范化；0或1这个扩展输入返回None。非法字符串或非0–9整数的集合成员抛ValueError，bool不视为合法数位。结果保持规范十进制形式，严格小于N。
 
-`largest_below(n, digits)`保留整数便利接口，但整数须能在当前解释器配置下完成十进制str/int转换；超出转换限制抛ValueError，并提示使用字符串接口。CPython 3.11+及包含相关安全修补的较早版本对这类转换设有可配置长度限制，常见默认值为4,300位；它不是所有Python版本/实现的统一上限。本实现和测试均不修改或关闭该安全限制。机制见[Python十进制整数转换限制](https://docs.python.org/3.12/library/stdtypes.html#integer-string-conversion-length-limitation)。
+`largest_below(n, digits)`保留整数便利接口，但整数须能在当前解释器配置下完成十进制str/int转换；超出转换限制抛ValueError，并提示使用字符串接口。CPython 3.11+及包含相关安全修补的较早版本对这类转换设有可配置长度限制，常见默认值为4,300位；它不是所有Python版本/实现的统一上限。本实现和测试均不修改或关闭该安全限制。机制见Python十进制整数转换限制。
 
 同位数时希望尽量长地与N保持相同前缀。在每个前缀仍可行的位置，记录“把当前位改为小于N该位的最大允许数字”的机会；一旦严格变小，后缀全填最大允许数字即可。越靠后的可行下降点保留越长相等前缀，结果越大。若同位数无解，则退到少一位并填最大数字。
 
@@ -227,7 +227,7 @@ def largest_below(n: int, digits: set[int]) -> int | None:
 
 **常见误区：** 题面缺条件却猜成唯一题；把小于写成小于等于；产生前导零；只贪心匹配当前位却不记录退回点。
 
-**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**验证边界：** 本节为原创明确题设与代码，对应测试已运行
 
 <a id="x05"></a>
 ## X05 删除排序链表里所有重复值，和保留一个重复值有什么区别？
@@ -264,7 +264,7 @@ def remove_all_duplicate_values(head: Node | None) -> Node | None:
 
 **常见误区：** 把题目误写成每个值留一个；只删除第二个节点；头部重复时丢失返回头；kept推进太快。
 
-**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**验证边界：** 本节为原创明确题设与代码，对应测试已运行
 
 <a id="x06"></a>
 ## X06 判断两个字符串是不是字母异位词，字符范围为什么重要？
@@ -302,7 +302,7 @@ def are_anagrams(a: str, b: str) -> bool:
 
 **常见误区：** 只比较set；默认所有题都可用26字母数组；忽略重复次数；混淆异位词判断、分组与滑动窗口三种输出。
 
-**来源与验证：** 本节为原创明确题设与代码，对应测试已运行；[主题范围与验证边界](../../coverage/README.md)区分题数、运行证据与未覆盖范围。Python语义参见[内置类型](https://docs.python.org/3/library/stdtypes.html)与[Unicode规范化](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize)。
+**验证边界：** 本节为原创明确题设与代码，对应测试已运行
 
 ## 如何运行验证
 
@@ -340,4 +340,4 @@ LC3的“出现重复就缩左边”具有可维护的约束；本题中字符�
 
 测试穷举长度0–7的abc字符串，对k=0–9共32,800组输入，将两种实现与独立暴力枚举比较，另测中文、emoji和较长分段边界。这个验证范围只证明这些输入的一致性，不代替上述不变量证明。
 
-题意核对：[LeetCode 395](https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/)。
+题意核对：LeetCode 395。

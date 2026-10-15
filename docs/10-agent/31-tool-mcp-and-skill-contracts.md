@@ -1,9 +1,7 @@
 # 工具 MCP与Skill的实用契约
 
-[返回Agent目录](README.md) · [验证范围](../../coverage/AGENT_LABS_VALIDATION.md)
-
-
-工具执行、协议接入和任务方法是三层契约。先读[A03–A08](01-agent-loop-tools-and-state.md#a03)、[FA26–FA30](15-mcp-versions-and-integration.md)及[FA31–FA34](16-skills-routing-and-governance.md)。本章通过按需发现、内容与错误处理、本地协议实验和 Skill 验收，练习把三层接口接起来。核查日期：2026-10-10。
+[返回Agent目录](README.md)
+工具执行、协议接入和任务方法是三层契约。先读[A03–A08](01-agent-loop-tools-and-state.md#a03)、[FA26–FA30](15-mcp-versions-and-integration.md)及[FA31–FA34](16-skills-routing-and-governance.md)。本章通过按需发现、内容与错误处理、本地协议实验和 Skill 验收，练习把三层接口接起来。
 
 <a id="tool-result-contract"></a>
 ## 1 一次工具回合要保留哪些身份
@@ -42,9 +40,9 @@ Host管理模型、交互、上下文与授权，Client是宿主内部的协议�
 <a id="modern-protocol-boundary"></a>
 ## 4 现代2026-07-28与legacy的线必须清楚
 
-本节以[2026-07-28规范](https://modelcontextprotocol.io/specification/2026-07-28)为现代基准，与[2025-11-25生命周期](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)对照。现代核心使用自包含请求，不再把initialize/initialized或协议Mcp-Session-Id当所有请求的前置；server/discover可以取得服务信息，但不是每次调用前的强制握手。业务任务状态和显式句柄仍可持久保存。
+本节以2026-07-28规范为现代基准，与2025-11-25生命周期对照。现代核心使用自包含请求，不再把initialize/initialized或协议Mcp-Session-Id当所有请求的前置；server/discover可以取得服务信息，但不是每次调用前的强制握手。业务任务状态和显式句柄仍可持久保存。
 
-按[现代基础字段表](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)，每个请求的_meta必须带io.modelcontextprotocol/protocolVersion与io.modelcontextprotocol/clientCapabilities；clientInfo是可选，但规范建议包含。客户端身份描述是自报信息，不是认证凭据。请求元数据字段的必需性以基础字段表为准，不把示例省略说明当成完整字段要求。
+按现代基础字段表，每个请求的_meta必须带io.modelcontextprotocol/protocolVersion与io.modelcontextprotocol/clientCapabilities；clientInfo是可选，但规范建议包含。客户端身份描述是自报信息，不是认证凭据。请求元数据字段的必需性以基础字段表为准，不把示例省略说明当成完整字段要求。
 
 工具目录有inputSchema和可选outputSchema；按声明方言校验structuredContent，不把Pydantic自动包装当跨实现保证。默认JSON Schema方言按采用规范核查；本章现代基准为2020-12。外部$ref不可自动联网解引用，防止Schema校验变成SSRF或无界资源访问；不支持的方言与无法解析引用要明确失败。
 
@@ -55,7 +53,7 @@ Host管理模型、交互、上下文与授权，Client是宿主内部的协议�
 <a id="transport-and-content"></a>
 ## 5 传输 内容与运行上下文各有边界
 
-[现代传输规范](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)分别定义stdio与Streamable HTTP。stdio适合由宿主启动的本地子进程，要限制OS用户、环境变量、可读目录、执行/网络与时间；协议stdout不能混入print调试文本。Streamable HTTP适合远程服务，认证、Origin/Host防护、请求体/流大小和超时需落实；请求可返回JSON或请求范围的SSE，所以旧HTTP+SSE被替代不意味着SSE技术消失。
+现代传输规范分别定义stdio与Streamable HTTP。stdio适合由宿主启动的本地子进程，要限制OS用户、环境变量、可读目录、执行/网络与时间；协议stdout不能混入print调试文本。Streamable HTTP适合远程服务，认证、Origin/Host防护、请求体/流大小和超时需落实；请求可返回JSON或请求范围的SSE，所以旧HTTP+SSE被替代不意味着SSE技术消失。
 
 远程OAuth及token audience等按采用版本执行；不随意透传上游token给另一受众。旧HTTP会话管理不能照搬到现代无协议会话设计。本地SDK Context只在对应请求内有效，可以帮助发日志/进度，不是长期记忆；业务状态放在应用任务表，并关联版本与操作身份。IDE/桌面只是宿主形态，配置命令启动能力服务不等于批准它读取所有用户文件。
 
@@ -64,9 +62,9 @@ Host管理模型、交互、上下文与授权，Client是宿主内部的协议�
 <a id="legacy-fastmcp-lab"></a>
 ## 6 本地 stdio FastMCP 实验
 
-配套[mcp_legacy_server.py](../../examples/retrieval_contracts/mcp_legacy_server.py)和[test_mcp_legacy.py](../../examples/retrieval_contracts/test_mcp_legacy.py)固定CPython 3.12.14、mcp 1.29.0、Pydantic 2.13.4、AnyIO 4.14.2，使用官方Python SDK内置mcp.server.fastmcp，不与另一个独立FastMCP包混名。接口参照[v1.29.0官方源代码](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.0/src/mcp/server/fastmcp/server.py)。
+配套[mcp_legacy_server.py](../../examples/retrieval_contracts/mcp_legacy_server.py)和[test_mcp_legacy.py](../../examples/retrieval_contracts/test_mcp_legacy.py)固定CPython 3.12.14、mcp 1.29.0、Pydantic 2.13.4、AnyIO 4.14.2，使用官方Python SDK内置mcp.server.fastmcp，不与另一个独立FastMCP包混名。接口行为限定mcp 1.29.0。
 
-这个SDK的[支持版本文件](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.0/src/mcp/shared/version.py)结合实际常量包含2024-11-05、2025-03-26、2025-06-18、2025-11-25，不含2026-07-28。本次initialize实际协商到2025-11-25；最近SDK版本号不能作为现代协议支持证据。
+这个SDK的支持版本文件结合实际常量包含2024-11-05、2025-03-26、2025-06-18、2025-11-25，不含2026-07-28。本次initialize实际协商到2025-11-25；最近SDK版本号不能作为现代协议支持证据。
 
 服务有有界加法工具、分阶段求和工具、参数化合成greeting资源和教学Prompt，无网络、凭据或私有文件。整数strict校验与范围约束由实际入参Schema和运行时共同验证；工具返回SumResult产生结构化结果。求和用Context发单调进度与合成日志，但没有持久任务、真实取消或事务副作用。
 
@@ -77,7 +75,7 @@ Host管理模型、交互、上下文与授权，Client是宿主内部的协议�
 <a id="skill-package-contract"></a>
 ## 7 Skill包要能发现 也要能完整执行
 
-[Agent Skills格式](https://agentskills.io/specification)中的SKILL.md是必需入口，name/description用于发现，正文描述方法；references、scripts、assets是可选资源。自研version、tags、executor、input_schema等属于业务清单扩展，不能说所有宿主必需；allowed-tools仍是实验字段，支持行为因宿主而异，文件不能自行授权。
+Agent Skills格式中的SKILL.md是必需入口，name/description用于发现，正文描述方法；references、scripts、assets是可选资源。自研version、tags、executor、input_schema等属于业务清单扩展，不能说所有宿主必需；allowed-tools仍是实验字段，支持行为因宿主而异，文件不能自行授权。
 
 工具Skill侧重具体能力使用方法，产品/业务Skill可组织目标、质量与多个工具；这是本章解释层级，不是统一官方分类。全局约束与专业方法按作用域分开，Skill不是新增自治主体，也不天然附带沙箱。Skill可组织MCP能力，MCP也可动态提供工具Schema，二者互补。
 

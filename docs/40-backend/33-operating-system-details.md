@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-官方资料核查于2026-10-09。示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
+示例参数用于教学推演，代码、SQL 与实验的执行情况在对应题中标注。
 
 - [FB25 进程、线程和状态转换如何共同解释并发](#fb25)
 - [FB26 死锁四条件与预防、避免、检测怎样区分](#fb26)
@@ -29,8 +29,6 @@
 
 **常见误区**：线程共享所有东西；阻塞线程持锁时其他线程可以自动拿走锁；把 Java WAITING 与 Linux 状态码直接等号连接。
 
-**来源**：[FB-S030 Linux pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html)、[FB-S056 Linux proc_pid_stat(5)](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)。
-
 <a id="fb26"></a>
 
 ### FB26 死锁四条件与预防、避免、检测怎样区分
@@ -46,8 +44,6 @@
 **追问**：无死锁是否一定无活锁和饥饿？不是，反复退让可能无进展，固定优先级也可能让低优先级任务长期等候。
 
 **常见误区**：四条件具备就断言一定已经死锁；杀任意持锁线程不会破坏业务；加超时就无需定义回滚。
-
-**来源**：[FB-S055 OSTEP 作者公开教材](https://pages.cs.wisc.edu/~remzi/OSTEP/)、[FB-S030 Linux pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html)。
 
 <a id="fb27"></a>
 
@@ -65,8 +61,6 @@
 
 **常见误区**：虚拟内存一定有 swap；malloc 成功证明未来不会 OOM；分页完全没有碎片。
 
-**来源**：[FB-S011 Linux mmap(2)](https://man7.org/linux/man-pages/man2/mmap.2.html)、[FB-S050 Linux cgroup v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)、[FB-S055 OSTEP 作者公开教材](https://pages.cs.wisc.edu/~remzi/OSTEP/)。
-
 <a id="fb28"></a>
 
 ### FB28 内存对齐与大小端是同一个问题吗
@@ -82,8 +76,6 @@
 **追问**：用 packed 消除填充是否总是优化？可能引入非对齐访问、更多指令甚至架构异常，要看目标 ABI。
 
 **常见误区**：小端机器不能发送网络包；结构体 sizeof 就是协议长度；所有 8 字节类型都要求相同对齐。
-
-**来源**：[FB-S033 Linux 非对齐内存访问](https://www.kernel.org/doc/html/latest/core-api/unaligned-memory-access.html)、[FB-S019 RFC 9293 TCP](https://www.rfc-editor.org/rfc/rfc9293)。
 
 <a id="fb29"></a>
 
@@ -156,8 +148,6 @@ class LRU:
 
 可复验源码与运行命令见 [examples/backend](../../examples/backend/README.md)。
 
-**来源**：[FB-S055 OSTEP 作者公开教材](https://pages.cs.wisc.edu/~remzi/OSTEP/)。
-
 <a id="fb30"></a>
 
 ### FB30 用户态进入内核意味着什么，何时发生切换
@@ -173,8 +163,6 @@ class LRU:
 **追问**：缺页一定访问非法地址吗？合法按需映射也可缺页；需要看异常是否能由内核满足。
 
 **常见误区**：每次系统调用都切换到另一进程；用户态不能利用页缓存；内核态就不受任何内存保护。
-
-**来源**：[FB-S011 Linux mmap(2)](https://man7.org/linux/man-pages/man2/mmap.2.html)、[FB-S030 Linux pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html)、[FB-S055 OSTEP 作者公开教材](https://pages.cs.wisc.edu/~remzi/OSTEP/)。
 
 <a id="fb31"></a>
 
@@ -192,8 +180,6 @@ class LRU:
 
 **常见误区**：删除文件名立即擦除数据；硬链接是保存路径的快捷方式；软链接跟随目标重命名自动修改。
 
-**来源**：[FB-S031 Linux unlink(2)](https://man7.org/linux/man-pages/man2/unlink.2.html)、[FB-S032 Linux symlink(7)](https://man7.org/linux/man-pages/man7/symlink.7.html)。
-
 <a id="fb32"></a>
 
 ### FB32 调度算法如何在吞吐、响应、公平之间取舍
@@ -209,5 +195,3 @@ class LRU:
 **追问**：等待越久优先级越高能解决什么？老化可降低饥饿风险，但需与实时任务约束共同设计。
 
 **常见误区**：短作业优先知道未来长度；线程越多越公平；某经典算法名就是现代内核的全部调度逻辑。
-
-**来源**：[FB-S055 OSTEP 作者公开教材](https://pages.cs.wisc.edu/~remzi/OSTEP/)。
