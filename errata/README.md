@@ -30,6 +30,8 @@
 
 ## 分领域修订与范围澄清
 
+- [公开仓库评审与评测](../docs/50-projects/public-repository-case-studies.md#a45)：2026-10-16 区分任务 Completed、graph assessed/degraded 与准则 verdict；A41/A46 明确 adapter 输出 target 的重算边界和最终 validate 的输入范围。[独立评分教学示例](../examples/trusted_evaluation/scorer.py)按冻结金标与完整样本计划评分，不是 ResearchPilot 的功能修复。
+
 - [知识合同与追问补充](knowledge-contract-corrections.md)：Python可哈希条件、算法变体、幂等身份、执行失败窗口和平台边界。
 - [检索练习与运行方式](../docs/70-practice/retrieval-ranking-algorithms.md)：2026-10-15补齐固定K分母、无正例/未标注项、完整金标IDCG、稳定Top-K与RRF聚合边界；22项标准库测试通过，模型效果仍未运行。
 

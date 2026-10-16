@@ -2,7 +2,7 @@
 
 [返回总目录](../../README.md) · [题目索引](../../QUESTION_INDEX.md) · [版本与纠错](../../errata/README.md)
 
-以下引用固定提交：Openresearch 为 5f876faabba238563001151fc7a573581ddaf869，Saber 为 6d5bb13dc74dc03a7a59c74b2396c3b10e84caef。本章沿固定提交学习状态、调度、评测与投影机制；部署状态与性能仍需实际运行确认。练习时，从一个请求入口沿文件和调用栈走读。
+Openresearch 现名 ResearchPilot，Saber 现名 KnowFlow；以下机制仍基于原固定提交：Openresearch 为 5f876faabba238563001151fc7a573581ddaf869，Saber 为 6d5bb13dc74dc03a7a59c74b2396c3b10e84caef。本章沿固定提交学习状态、调度、评测与投影机制；部署状态与性能仍需实际运行确认。练习时，从一个请求入口沿文件和调用栈走读。
 
 <a id="a39"></a>
 
@@ -68,7 +68,7 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 **知识点详解**
 - 预检 preflight 最多8条样本，用于检查适配器；总尝试次数限制1–3，所以最多2次修复。正式 benchmark 独立配置：默认 min(数据行数,1000)，参数可至100000并受实际行数约束。不能把预检规模当整个评测规模。
 - Accuracy 是正确样本比例；F1 综合 precision 与 recall；MAE 平均绝对误差，MSE 平均平方误差且更惩罚大误差。分类和回归指标不能随意混用。
-- 代码包含 claimRubric 的规范化/哈希验证和按逐样本预测重算指标。它增强可审计性，但仍需独立标签、隔离测试集与真实运行记录；支持大样本运行不等于已经完成大样本验证。
+- 代码包含 claimRubric 的规范化/哈希验证；benchmark execute 阶段按 adapter 输出的 predictions.jsonl 中 prediction/target 两列逐样本重算，检查指标与输出记录一致性。这些验证函数没有按样本 ID 重新读取可信原始标签，dataset hash 匹配不等于标签独立可信。最终 benchmark_validate 另检查 manifest、hash、样本数范围与有限数，不重新读取 predictions。详见 [A46](#a46)。支持大样本运行不等于已经完成大样本验证。
 
 **具体例子** ：预检8条全通过，只能说明这批输入下接口可运行；正式500条中正确450条才是这次运行的90% accuracy，仍须说明数据来源与划分。数字均为教学假设。
 
@@ -162,6 +162,92 @@ rename 的原子可见性不等于断电后的目录项持久性；在写入、�
 **验收点：** 先投影v3再收到v2，核对主记录与版本；过期消息不能让索引退回v2，失败处理有预算和告警。
 
 **常见错误** ：把 outbox 说成自动 exactly-once；把“定期对账”说成“任何时刻都没有不一致”。
+
+<a id="a45"></a>
+
+### A45 ResearchPilot 的任务 Completed，为什么不等于主张 verified？
+
+**优先级：P0**
+
+**知识点详解**
+
+`executeClaimEvidenceBuild` 有三层语义：Task 的 Completed 表示评审报告成功产出；graph 的 assessed/degraded 表示评审过程是否完整满足合同；各项 criterion 的 verified/unverifiable 等才表达证据判定。assessed 也不保证全部 verified。证据引用覆盖率只统计有 EvidenceIDs 的准则比例，与主张 verified 比例不是同一指标。
+
+缺少评审模型、模型调用失败、JSON 无效或 verdict 合同不完整时，代码构建 degraded 图，保留“不能确认”的结论，仍可成功生成报告并 Completed。rubric 校验失败或图序列化失败走失败分支，不能概括为所有异常都 Completed。
+
+**具体例子**：rubric 有两项准则，模型只给第一项 verified。`buildClaimEvidenceResults(requireComplete=true)` 发现缺项返回错误；上层丢弃已有 proposal，以空 proposal 重建两项，全部为 unverifiable、confidence=0，graph 为 degraded。报告成功产出时 Task 仍为 Completed。固定测试也检查不完整评审不会残留 verified verdict。
+
+| 条件 | Task（报告成功时） | graph | 准则含义 |
+| --- | --- | --- | --- |
+| 模型缺失或调用/JSON失败 | Completed | degraded | 全部 unverifiable |
+| 两项准则只返回一项 | Completed | degraded | 丢弃已有判断，全部 unverifiable |
+| 完整合法判断，仅 repo_manifest 却声称 verified | Completed | assessed | 对应准则降为 unverifiable，confidence ≤ 0.25 |
+| 完整合法判断且引用执行派生证据 | Completed | assessed | 仍逐项看 verdict，不保证全 verified |
+| rubric 无效或图序列化失败 | 失败分支 | 无成功报告保证 | 不得套用 Completed |
+
+引用执行派生证据是有关判定的必要检查之一，不能从“有引用”推导真实性、独立复现或语义正确。
+
+**30 秒答题主线**：Completed 是工作流产物状态，verified 是主张的证据状态。我会同时看 Task、graph 和 criterion。评审失败可以产出诚实的 degraded 报告；不完整 verdict 会整体回退为 unverifiable。即使 graph assessed，也要逐项看证据和判断。
+
+**追问**：100% 准则有引用就能写“已验证”吗？两项只评一项时保留第一项 verified 合适吗？
+
+#### 参考答案
+
+不能。引用覆盖只回答有没有证据关联，不能回答证据是否足以支持结论。固定实现对不完整 proposal 整体回退，避免把不完整评审包装成完成判定。仅 repo_manifest 不构成执行派生证据，相关 verified 判定会降级。建议发布侧把“已验证”措辞绑定到所声明范围的准则 verdict、证据适用性和完整性，而不是 Task Completed；这是教学改进建议，并非当前已实现的发布门禁。普通不确定性报告可以发布，只需忠实标注 degraded/unverifiable，不能把任何未验证结果都说成不允许发布。
+
+代码定位：[报告与任务状态](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/claim_evidence.go#L112-L173)、[合同与降级](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/claim_evidence.go#L331-L435)、[覆盖率](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/claim_evidence.go#L463-L489)、[缺项测试](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/claim_evidence_test.go#L101-L141)。本题为固定代码静态走读，未运行 ResearchPilot。
+
+**验收点：** 对照矩阵分别解释 Completed/degraded、assessed/unverifiable 如何同时成立；不能把引用覆盖率当验证通过率。
+
+**常见错误**：看到绿色 Completed 就宣称论文主张已复现；把 confidence 当统计置信区间；把建议门禁说成当前功能。
+
+<a id="a46"></a>
+
+### A46 hash 匹配、逐行重算分数，为什么仍不等于独立可信评测？
+
+**优先级：P0**
+
+**知识点详解**
+
+固定代码的 `ResearchCodingAgent.ExecuteTask` 分别路由 benchmark_execute 与 benchmark_validate。逐行重算位于 execute → runBenchmarkHarness → validateBenchmarkOutputDirectory；最终 validate 节点只声明 dataset_manifest、benchmark_run_metrics、benchmark_run_manifest 输入，没有传 predictions。
+
+execute 前后对数据集与 adapter 文件做 hash 检查，有助于发现受检查字节被修改；输出 manifest 的 dataset hash 也须匹配。hash 比较要求可信预期摘要，并不证明标签权威性、任务定义正确或覆盖了冻结样本计划。输出校验要求 count > 0 且不超过 limit/RowCount，预测行数等于自报 count；这不等于所有计划样本恰好出现一次。
+
+`readBenchmarkPredictionLines` 只保留 adapter 输出行的 prediction 和 target，忽略 JSON 中的 index/sample_id；分类或回归指标据这两列重算。这些验证函数未把输出行逐一绑定到可信原始标签或已冻结样本集合。最终 executeBenchmarkValidation 校验 manifest 状态/hash/count 范围与指标有限数，不进行独立标签评分。这里描述静态代码合同边界，未复现攻击，也不宣称整个系统必然存在漏洞或已修复。
+
+**具体例子**：教学计划固定 s1→cat、s2→dog、s3→cat，adapter 乱序输出 s3→cat、s1→cat、s2→cat。可信评分为 2/3；不能使用 adapter 自填的 target 或它宣称的 100%。若少交 s2，应拒绝整次评测，而不是把分母缩成 2 后报满分。示例数字不是项目实测。
+
+**30 秒答题主线**：我区分字节一致、输出自洽、样本覆盖和独立金标评分。固定实现的 hash 与重算能检查一部分一致性，但重算 target 来自 adapter 输出。我会由可信评分侧冻结版本、样本 ID 和 gold，以固定分母判分，对缺失、重复、未知 ID 和解析失败明确处理。
+
+**追问**：行数正确是否足够？adapter 写入 target 和 accuracy 时能否直接采信？
+
+#### 参考答案
+
+行数正确仍可能重复一个样本并遗漏另一个。可信评分侧应独立保存数据集版本、sample_id→gold、样本计划与解析失败策略；adapter 只能交预测，不能重定义标签或分母。版本标识还应绑定实际可信内容，不能只采信 adapter 自报版本。建议隔离评分计划、阻止待评程序修改，并记录覆盖与评分器版本；这些属于教学改进设计，不是对 ResearchPilot 的补丁。
+
+本仓库的[标准库评分器](../../examples/trusted_evaluation/scorer.py)只演示字符串分类 accuracy，可信 plan 为非空 JSON 对象，预测每行严格仅有 sample_id/prediction。拒绝空计划、重复/未知/缺失 ID、非法 schema、空字符串、数值/布尔等边界类型及 target/自报分数字段；JSON 重复键、NaN、坏行和空行也拒绝，失败不输出部分分数。未知类别字符串按错误预测计分，不自动改标签。
+
+```python
+# gold 在评分侧冻结，预测不能携带 target；遍历时检查 ID 唯一且已知
+correct += prediction == gold[sample_id]
+# 只有 seen == gold.keys() 才允许产出分数
+accuracy = correct / len(gold)
+```
+
+仓库根目录运行，无模型、数据库或 GPU：
+
+```bash
+python -B examples/trusted_evaluation/scorer.py examples/trusted_evaluation/plan.json examples/trusted_evaluation/predictions.jsonl
+python -B -m unittest discover -s examples/trusted_evaluation -p 'test_*.py' -v
+```
+
+[教学计划](../../examples/trusted_evaluation/plan.json)、[乱序预测](../../examples/trusted_evaluation/predictions.jsonl)输出 correct=2、sample_count=3、accuracy=2/3。[测试](../../examples/trusted_evaluation/test_scorer.py)覆盖全对、部分错、全错、覆盖和伪造字段。算法期望 O(n) 时间、O(n) 空间；仅使用 CPU。它不提供进程隔离、计划签名、标签质量保证、版本注册、F1/回归或统计显著性；命令行接收的 plan 必须由可信调用者保护，不能让 adapter 指定或改写。
+
+代码定位：[任务路由](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/research_coding_agent.go#L35-L50)、[planner 输入](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/planner/planner.go#L417-L448)、[执行与最终校验](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/benchmark_harness.go#L187-L308)、[输出合同](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/benchmark_harness.go#L332-L376)、[预测解析与重算](https://github.com/minimoster/ResearchPilot/blob/5f876faabba238563001151fc7a573581ddaf869/scholar-agent/backend/internal/agent/benchmark_harness.go#L420-L509)。
+
+**验收点：** 保持行数不变，把一个 ID 重复并漏掉另一个，评分器必须拒绝；插入 target 字段同样拒绝。乱序不改分，错误预测不能通过自报分数抬高结果。
+
+**常见错误**：hash 一致就等于数据权威；逐行重算就等于独立 gold 校验；忽略解析失败样本却继续缩小分母报分。
 
 <a id="agentscope-pr-attribution"></a>
 

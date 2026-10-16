@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0",
-  "updated_on": "2026-10-15",
+  "updated_on": "2026-10-16",
   "content_status": "published_teaching_handbook",
   "path_base": "repository_root",
   "notes": [
     "priority为学习优先级；difficulty记录算法题难度。",
     "relative_path/path/url均相对仓库根目录；anchor为空时打开整篇。",
-    "items收录361道讲义题与100道Hot100题；独立专题、场景与补充练习在documents登记。",
+    "items收录364道讲义题与100道Hot100题；独立专题、场景与补充练习在documents登记。",
     "SP-R1/SP-R2标识用于34项专项练习的检索。",
     "学习路线统一为docs/00-guide/expanded-map-and-study-plan.md；旧阅读地址在site/config.json登记别名。"
   ],
   "counts": {
-    "interview_questions": 361,
+    "interview_questions": 364,
     "hot100_problems": 100,
-    "total_items": 461
+    "total_items": 464
   },
   "items": [
     {
@@ -7130,6 +7130,51 @@
       "available": true,
       "official_problem_id": 287,
       "code_path": "examples/hot100/p0287_find_the_duplicate_number.py"
+    },
+    {
+      "id": "A45",
+      "title": "ResearchPilot 的任务 Completed，为什么不等于主张 verified？",
+      "kind": "interview_question",
+      "category": "项目设计",
+      "subcategory": "两个公开仓库的机制走读",
+      "relative_path": "docs/50-projects/public-repository-case-studies.md",
+      "path": "docs/50-projects/public-repository-case-studies.md",
+      "anchor": "a45",
+      "url": "docs/50-projects/public-repository-case-studies.md#a45",
+      "priority": "P0",
+      "difficulty": null,
+      "language": null,
+      "available": true
+    },
+    {
+      "id": "A46",
+      "title": "hash 匹配、逐行重算分数，为什么仍不等于独立可信评测？",
+      "kind": "interview_question",
+      "category": "项目设计",
+      "subcategory": "两个公开仓库的机制走读",
+      "relative_path": "docs/50-projects/public-repository-case-studies.md",
+      "path": "docs/50-projects/public-repository-case-studies.md",
+      "anchor": "a46",
+      "url": "docs/50-projects/public-repository-case-studies.md#a46",
+      "priority": "P0",
+      "difficulty": null,
+      "language": null,
+      "available": true
+    },
+    {
+      "id": "A47",
+      "title": "Agentic、Hybrid、Corrective RAG 怎样区分，检索不可靠时怎样纠错？",
+      "kind": "interview_question",
+      "category": "AI Agent",
+      "subcategory": "RAG、检索与重排",
+      "relative_path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+      "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+      "anchor": "a47",
+      "url": "docs/10-agent/02-rag-retrieval-and-reranking.md#a47",
+      "priority": "P0",
+      "difficulty": null,
+      "language": null,
+      "available": true
     }
   ],
   "documents": [
@@ -7190,7 +7235,8 @@
         "A15",
         "A16",
         "A17",
-        "A18"
+        "A18",
+        "A47"
       ]
     },
     {
@@ -7860,7 +7906,9 @@
         "A41",
         "A42",
         "A43",
-        "A44"
+        "A44",
+        "A45",
+        "A46"
       ]
     },
     {

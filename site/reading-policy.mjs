@@ -11,6 +11,8 @@ export const isTeachingResource = file =>
   /\.(?:py|java|go|mod|sql)$/.test(file) &&
   !/(?:check_carl_resources|validate_sources)/.test(file)) ||
   file === 'examples/requirements.txt' ||
+  file === 'examples/trusted_evaluation/plan.json' ||
+  file === 'examples/trusted_evaluation/predictions.jsonl' ||
   file === 'examples/public_interview_scenarios/evaluation_design_template.json';
 
 // Fixed public implementation locations remain useful to explain project code.

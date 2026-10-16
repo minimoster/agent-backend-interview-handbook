@@ -5,7 +5,7 @@
 - [怎样使用这份资料](00-reading-guide.md)
 - [Transformer先修 从向量到一个可计算的注意力块](05-transformer-prerequisite.md) · 算例与 CPU 前向实验
 - [Agent loop、工具、状态与编排](01-agent-loop-tools-and-state.md) · 8题
-- [RAG、检索与重排](02-rag-retrieval-and-reranking.md) · 10题
+- [RAG、检索与重排](02-rag-retrieval-and-reranking.md) · 11题
 - [Memory 与上下文管理](03-memory-and-context.md) · 5题
 - [SSE、异步任务与可靠执行](04-streaming-and-reliable-execution.md) · 7题
 - [受控自改进与反馈治理](14-controlled-improvement.md) · 5题
@@ -43,7 +43,6 @@
 ## 虾皮 Agent 一二面专项学习
 
 - [34题学习与追问](34-shopee-agent-interview-playbook.md)：独立SP-R1/SP-R2编号，每轮17题；基础答案与新追问交叉阅读
-验证范围
 
 ## 检索手算与算法练习
 

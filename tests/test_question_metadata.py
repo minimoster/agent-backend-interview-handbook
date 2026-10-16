@@ -71,7 +71,7 @@ class QuestionMetadataTests(unittest.TestCase):
                 self.assertIn('#### 参考答案', block, match[1])
                 self.assertIn('**验收点：**', block, match[1])
                 answered.add(match[1])
-        self.assertEqual(answered, {f'A{i:02d}' for i in [*range(1, 31), *range(39, 45)]})
+        self.assertEqual(answered, {f'A{i:02d}' for i in [*range(1, 31), *range(39, 48)]})
 
 
 if __name__ == '__main__':

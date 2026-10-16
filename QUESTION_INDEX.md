@@ -7,7 +7,7 @@
 
 另有[15道算法基础补充题](docs/85-algorithm-supplement/README.md)，按题号、分类和难度检索。。
 
-## Agent基线 · 36题
+## Agent基线 · 39题
 
 - [A01 什么是 Agent？与聊天机器人、Workflow 有什么区别？](docs/10-agent/01-agent-loop-tools-and-state.md#a01) · P0
 - [A02 ReAct 如何工作？为什么不能只让模型一直“想”？](docs/10-agent/01-agent-loop-tools-and-state.md#a02) · P0
@@ -45,6 +45,10 @@
 - [A42 Saber 怎样连接研究、文档生成与知识索引？](docs/50-projects/public-repository-case-studies.md#a42) · P0
 - [A43 Saber 检索的并行边界和重排实现，最容易说错什么？](docs/50-projects/public-repository-case-studies.md#a43) · P0
 - [A44 Saber 长期记忆的 outbox、版本 hash 与 reconcile 为什么不是强一致？](docs/50-projects/public-repository-case-studies.md#a44) · P0
+
+- [A45 ResearchPilot 的任务 Completed，为什么不等于主张 verified？](docs/50-projects/public-repository-case-studies.md#a45) · P0
+- [A46 hash 匹配、逐行重算分数，为什么仍不等于独立可信评测？](docs/50-projects/public-repository-case-studies.md#a46) · P0
+- [A47 Agentic、Hybrid、Corrective RAG 怎样区分，检索不可靠时怎样纠错？](docs/10-agent/02-rag-retrieval-and-reranking.md#a47) · P0
 
 ## 后端基线 · 50题
 

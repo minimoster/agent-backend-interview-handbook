@@ -19,8 +19,8 @@ def main():
         assert '## 练习与验收' in text
         assert len(re.findall(r'^## 追问[12]：', text, re.M)) == 2
     index = json.loads((ROOT / 'content-index.json').read_text())
-    assert index['counts']['interview_questions'] == 361
-    assert len(index['items']) == 461
+    assert index['counts']['interview_questions'] == 364
+    assert len(index['items']) == 464
     assert not any(r['id'].startswith('SC-') for r in index['items'])
     hot = json.loads((ROOT / 'docs/80-hot100/manifest.json').read_text())
     assert len(hot['problems']) == 100
@@ -34,7 +34,7 @@ def main():
     model = json.loads((ROOT / 'examples/public_interview_scenarios/evaluation_design_template.json').read_text())
     assert model['status'] == 'design_only_not_executed' and len(model['cases']) == 12
     assert '不是防泄漏分组键' in model['split_policy']
-    print('PASS: 26 answered scenarios / 34 answered Agent followups / 34专项 / 9 SQL / 461 unchanged index entries')
+    print('PASS: 26 answered scenarios / 34 answered Agent followups / 34专项 / 9 SQL / 464 index entries')
 
 
 if __name__ == '__main__':

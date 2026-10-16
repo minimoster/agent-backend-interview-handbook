@@ -41,6 +41,7 @@ jobs:
           python3 -B -m unittest discover -s examples/retrieval_worked_examples -p 'test_*.py' -v
           python3 -B -m unittest discover -s examples/algorithm_supplement -p 'test_*.py' -v
           python3 -B -m unittest discover -s examples/interview_followups -v
+          python3 -B -m unittest discover -s examples/trusted_evaluation -p 'test_*.py' -v
           python3 -B examples/backend/test_lru.py
           python3 -B examples/sql/check-relational-examples.py
           python3 -B examples/reasoning/verify-puzzles.py

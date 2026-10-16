@@ -141,7 +141,7 @@
     "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
     "anchor": "a18",
     "priority": "P1",
-    "chars": 666
+    "chars": 620
   },
   {
     "id": "A19",
@@ -2389,7 +2389,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a41",
     "priority": "P0",
-    "chars": 872
+    "chars": 1059
   },
   {
     "id": "A42",
@@ -2413,7 +2413,7 @@
     "path": "docs/50-projects/public-repository-case-studies.md",
     "anchor": "a44",
     "priority": "P0",
-    "chars": 1053
+    "chars": 1013
   },
   {
     "id": "FB33",
@@ -2886,5 +2886,29 @@
     "anchor": "s09",
     "priority": "P1",
     "chars": 1188
+  },
+  {
+    "id": "A45",
+    "title": "ResearchPilot 的任务 Completed，为什么不等于主张 verified？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a45",
+    "priority": "P0",
+    "chars": 2487
+  },
+  {
+    "id": "A46",
+    "title": "hash 匹配、逐行重算分数，为什么仍不等于独立可信评测？",
+    "path": "docs/50-projects/public-repository-case-studies.md",
+    "anchor": "a46",
+    "priority": "P0",
+    "chars": 1579
+  },
+  {
+    "id": "A47",
+    "title": "Agentic、Hybrid、Corrective RAG 怎样区分，检索不可靠时怎样纠错？",
+    "path": "docs/10-agent/02-rag-retrieval-and-reranking.md",
+    "anchor": "a47",
+    "priority": "P0",
+    "chars": 1798
   }
 ]

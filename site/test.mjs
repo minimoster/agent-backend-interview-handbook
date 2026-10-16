@@ -78,7 +78,7 @@ const contrastRatio=(foreground,background)=>{
   return (Math.max(a,b)+0.05)/(Math.min(a,b)+0.05);
 };
 
-check('索引 461 项与 Hot100 100 题均有阅读文档',()=>{
+check('所有索引项与 Hot100 100 题均有阅读文档',()=>{
   assert.equal(data.questionCount,index.items.length);
   assert.equal(data.hot100Count,manifest.problems.length);
   assert.equal(data.docs.filter(d=>d.problemId).length,100);
@@ -219,8 +219,8 @@ check('Hot100 主题与官方难度筛选准确',()=>{
   for(const difficulty of ['EASY','MEDIUM','HARD']){const result=engine.query(new URLSearchParams({module:'hot100',difficulty})).results;assert.equal(result.length,manifest.problems.filter(p=>p.difficulty===difficulty).length);assert.ok(result.every(r=>r.d.difficulty===difficulty));}
   assert.equal(engine.query(new URLSearchParams({module:'java',difficulty:'HARD'})).results.length,0);
 });
-check('361加100的主线计数不变，15补充题作为独立练习条目',()=>{
-  assert.equal(data.questionCount,461);assert.equal(data.questionCount-data.hot100Count,361);assert.equal(data.hot100Count,100);
+check('364加100的主线计数准确，15补充题作为独立练习条目',()=>{
+  assert.equal(data.questionCount,464);assert.equal(data.questionCount-data.hot100Count,364);assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);assert.equal(data.supplementaryResources.length,15);
   const hotIds=new Set(manifest.problems.map(p=>p.id));
   assert.equal(new Set(data.supplementaryResources.map(p=>p.resourceProblemId)).size,15);
@@ -341,8 +341,8 @@ check('搜索占位符显式采用主题 muted 色，明暗背景均达到 AA',(
     assert.ok(contrastRatio(color('muted'),color('panel'))>=4.5);
   }
 });
-check('知识修订可检索，36条Agent追问参考答案可折叠且题数独立',()=>{
-  const expected=[['docs/10-agent/01-agent-loop-tools-and-state.md',8],['docs/10-agent/02-rag-retrieval-and-reranking.md',10],['docs/10-agent/03-memory-and-context.md',5],['docs/10-agent/04-streaming-and-reliable-execution.md',7],['docs/50-projects/public-repository-case-studies.md',6]];
+check('知识修订可检索，39条Agent追问参考答案可折叠且题数独立',()=>{
+  const expected=[['docs/10-agent/01-agent-loop-tools-and-state.md',8],['docs/10-agent/02-rag-retrieval-and-reranking.md',11],['docs/10-agent/03-memory-and-context.md',5],['docs/10-agent/04-streaming-and-reliable-execution.md',7],['docs/50-projects/public-repository-case-studies.md',8]];
   for(const [file,count] of expected){
     const doc=docs.get(file);
     assert.equal((doc.html.match(/class="answer-section"/g)||[]).length,count,file);
@@ -353,7 +353,7 @@ check('知识修订可检索，36条Agent追问参考答案可折叠且题数独
   assert.ok(has('子块全文字符串','docs/50-projects/public-repository-case-studies.md'));
   assert.ok(has('Last-Event-ID','docs/10-agent/04-streaming-and-reliable-execution.md'));
   assert.ok(docs.get('QUESTION_INDEX.md').source.includes('Agent补充 · 23题'));
-  assert.equal(index.counts.interview_questions,361);
+  assert.equal(index.counts.interview_questions,364);
   assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);
 });
@@ -370,7 +370,7 @@ check('26张场景卡编号、搜索、答案、追问与既有题数独立',()=
   assert.equal(engine.query(new URLSearchParams({q:'A01'})).results[0].d.scenarioCardId,null,'原讲义A01不应被SC-A01抢占');
   assert.equal(engine.query(new URLSearchParams({module:'scenarios',topic:'Agent应用'})).results.filter(r=>r.d.kind==='scenario').length,12);
   assert.equal(engine.query(new URLSearchParams({module:'scenarios',topic:'后端可靠性'})).results.filter(r=>r.d.kind==='scenario').length,14);
-  assert.equal(data.questionCount,461);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);
+  assert.equal(data.questionCount,464);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);
 });
 check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存储',()=>{
   // Minimal DOM stubs check runtime initialization only. They do not lay out or paint a page.
@@ -480,7 +480,7 @@ check('原创Agent与Python专题保持既有题数和独立模块',()=>{
   ];
   for(const file of chapters){assert.ok(docs.has(file),file);assert.equal(docs.get(file).questionIds.length,0,file);assert.equal(index.documents.filter(d=>d.relative_path===file).length,1,file);}
   assert.equal(docs.get(chapters[9]).module,'preparation');
-  assert.equal(data.questionCount,461);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);
+  assert.equal(data.questionCount,464);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);
   assert.ok(docs.get('docs/10-agent/24-inference-and-serving-boundaries.md').headings.some(h=>h.id==='kv-memory-budget'));
   assert.ok(!docs.has('chapters/kv_cache_supplement.md'),'KV内容合并到既有章');
 });
@@ -502,7 +502,7 @@ check('Transformer原创先修导航、形状搜索与源码保持独立口径',
   const chapter=docs.get(chapterPath);
   assert.ok(chapter);
   assert.equal(chapter.source,readingMarkdown(fs.readFileSync(path.join(root,chapterPath),'utf8'),chapterPath));
-  assert.equal(data.questionCount-data.hot100Count,361);
+  assert.equal(data.questionCount-data.hot100Count,364);
   assert.equal(data.hot100Count,100);
   assert.equal(data.supplementaryCount,15);
   assert.equal(data.scenarioCount,26);
@@ -528,7 +528,7 @@ check('面经六篇追问与一路线保持既有编号并有唯一真实锚点'
     'docs/40-backend/41-storage-recovery-followups.md',
     'docs/40-backend/42-system-design-debugging-clinic.md'
   ];
-  assert.equal(data.questionCount,461);assert.equal(data.questionCount-data.hot100Count,361);
+  assert.equal(data.questionCount,464);assert.equal(data.questionCount-data.hot100Count,364);
   assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);assert.equal(data.scenarioCount,26);
   for(const file of paths){
     const d=docs.get(file);assert.ok(d,file);assert.equal(d.questionIds.length,0);
@@ -575,7 +575,7 @@ check('虾皮Agent补充保留34个唯一题号、教学栏目与独立计数',(
   assert.equal(new Set(mapping.records.map(r=>r.id)).size,34);
   assert.deepEqual(mapping.records.map(r=>[r.round,r.original_number]),[1,2].flatMap(round=>Array.from({length:17},(_,i)=>[round,i+1])));
   assert.equal(d.questionIds.length,34);
-  assert.equal(data.questionCount,461);
+  assert.equal(data.questionCount,464);
   assert.equal(data.hot100Count,100);
   assert.equal(data.scenarioCount,26);
 
@@ -616,7 +616,7 @@ check('检索手算、稳定排序、SQL九题与原创模拟可搜索且主线�
   }
   const chapter=docs.get('docs/60-interviews/agent-followups-20261015.md').source;
   assert.equal((chapter.match(/^## [^\n]*原创模拟追问 [1-4]：/gm)||[]).length,4);
-  assert.equal(data.questionCount,461);
+  assert.equal(data.questionCount,464);
 
   assert.equal(data.scenarioCount,26);
   assert.equal((docs.get('docs/70-practice/sql-nine-worked-problems.md').source.match(/^## S0[1-9] /gm)||[]).length,9);
@@ -676,7 +676,7 @@ check('两篇新面经34项均有答案、口述与固定项目边界',()=>{
   }
   assert.ok(docs.get('docs/10-agent/35-retrieval-evaluation-worked-example.md').source.includes('0.523434'));
   assert.ok(docs.get('docs/70-practice/retrieval-ranking-algorithms.md').source.includes('不能继续无条件声称只用 O(K) 空间'));
-  assert.equal(data.questionCount,461);assert.equal(data.scenarioCount,26);
+  assert.equal(data.questionCount,464);assert.equal(data.scenarioCount,26);
 });
 
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);
