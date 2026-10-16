@@ -3,7 +3,7 @@
 [返回总目录](README.md) · [完整学习路线](docs/00-guide/expanded-map-and-study-plan.md)
 按题号、主题与优先级查找：A/G/J/B 为基础题，FA/FJ/FB 为扩展题，S 为 SQL，R 为推理。
 
-收录361道讲义题和100道 Hot100 题。
+收录364道讲义题和100道 Hot100 题。
 
 另有[15道算法基础补充题](docs/85-algorithm-supplement/README.md)，按题号、分类和难度检索。。
 
@@ -591,11 +591,11 @@
 - [技术、HR与负责人追问准备](docs/90-interview/01-evidence-based-interview-preparation.md)
 - [KV生命周期与容量算例](docs/10-agent/24-inference-and-serving-boundaries.md#kv-lifecycle)
 
-沿用现有题号，361道讲义详解、100道Hot100、15道算法基础补充题与26张场景卡分别计数。
+沿用现有题号，364道讲义详解、100道Hot100、15道算法基础补充题与26张场景卡分别计数。
 
 ## 虾皮Agent一二面：独立34题专项补充
 
-一面17题、二面17题；与原361道讲义题、Hot100及SC场景卡分开计数。基础主题已有答案时链接原章，SP编号用于本材料的复习与核对。。
+一面17题、二面17题；与原364道讲义题、Hot100及SC场景卡分开计数。基础主题已有答案时链接原章，SP编号用于本材料的复习与核对。。
 
 - [SP-R1-01 怎样选择检索方式，向量没结果怎么办？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-01)
 - [SP-R1-02 知识库怎样增量更新与处理局部修改？](docs/10-agent/34-shopee-agent-interview-playbook.md#sp-r1-02)

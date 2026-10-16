@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { Marked, Renderer } from './vendor/marked.mjs';
 import { isReadingDocument, isTeachingResource, isProjectCodeUrl, readingMarkdown } from './reading-policy.mjs';
+import { validateTaxonomy } from './taxonomy.mjs';
 
 const site = path.dirname(fileURLToPath(import.meta.url));
 const root = path.dirname(site);
@@ -61,6 +62,8 @@ const brokenLinks = [];
 const sourceInputs = ['assets/app.js','assets/search.js','assets/style.css'].map(file=>['site/'+file,fs.readFileSync(path.join(site,file),'utf8')]);
 sourceInputs.push(['site/config.json',fs.readFileSync(path.join(site,'config.json'),'utf8')],['content-index.json',fs.readFileSync(path.join(root,'content-index.json'),'utf8')],['docs/80-hot100/manifest.json',fs.readFileSync(path.join(root,'docs/80-hot100/manifest.json'),'utf8')]);
 sourceInputs.push([catalogPath,catalogSource]);
+const taxonomySource=fs.readFileSync(path.join(root,'data/learning-taxonomy.json'),'utf8');
+sourceInputs.push(['data/learning-taxonomy.json',taxonomySource],['site/taxonomy.mjs',fs.readFileSync(path.join(site,'taxonomy.mjs'),'utf8')]);
 sourceInputs.push(['site/reading-policy.mjs',fs.readFileSync(path.join(site,'reading-policy.mjs'),'utf8')]);
 const docs = [];
 
@@ -220,10 +223,11 @@ const supplementaryResources=supplementaryRecords.map(record=>{
   if(!['EASY','MEDIUM','HARD'].includes(record.difficulty))throw Error(`补充题${record.id}的官方难度未核验，须等待资源整合完成。`);
   return {path:bank.path,title:`${record.id}. ${record.title_zh}`,module:'supplement',moduleName:'算法补充',category:record.topic,difficulty:record.difficulty,problemId:null,resourceProblemId:record.id,questionIds:[`LC${record.id}`],priorities:[],kind:'exercise',targetAnchor:anchor,resourceOrder:record.supplementary_order,summary:record.original_review_prompt,minutes:Math.max(1,Math.ceil(section.text.length/450)),sections:[section]};
 });
+const taxonomy=validateTaxonomy(JSON.parse(taxonomySource),docs,contentIndex.items);
 for(const file of [...resourcePaths].sort()) sourceInputs.push([file,fs.readFileSync(path.join(root,file),'utf8')]);
 sourceInputs.push(['site/build.mjs',fs.readFileSync(fileURLToPath(import.meta.url),'utf8')]);
 const sourceHash=crypto.createHash('sha256').update(sourceInputs.sort(([a],[b])=>a.localeCompare(b,'en')).map(([file,source])=>`${file}\0${source}`).join('\0')).digest('hex');
-const data={schemaVersion:'1.1',readingAliases,readingSectionAliases,sourceHash,questionCount:contentIndex.items.length,hot100Count:hot.problems.length,scenarioCount:scenarios.length,supplementaryCount:supplementaryResources.length,supplementaryResources,modules:moduleDefs.filter(([id])=>(id!=='supplement'||supplementaryResources.length)).map(([id,folder,label,number,description])=>({id,label,number,description,count:id==='scenarios'?scenarios.length:id==='supplement'?supplementaryResources.length:docs.filter(d=>d.module===id).length,countUnit:id==='scenarios'?'张场景卡':id==='supplement'?'道练习':'篇文档'})),hot100Categories:hot.categories.map(c=>c.name),docs};
+const data={schemaVersion:'1.2',taxonomy,readingAliases,readingSectionAliases,sourceHash,questionCount:contentIndex.items.length,hot100Count:hot.problems.length,scenarioCount:scenarios.length,supplementaryCount:supplementaryResources.length,supplementaryResources,modules:moduleDefs.filter(([id])=>(id!=='supplement'||supplementaryResources.length)).map(([id,folder,label,number,description])=>({id,label,number,description,count:id==='scenarios'?scenarios.length:id==='supplement'?supplementaryResources.length:docs.filter(d=>d.module===id).length,countUnit:id==='scenarios'?'张场景卡':id==='supplement'?'道练习':'篇文档'})),hot100Categories:hot.categories.map(c=>c.name),docs};
 // Small deterministic external scripts keep the offline reader self-contained.
 // The source digest in filenames also prevents stale cache combinations.
 const serialized=JSON.stringify(data);

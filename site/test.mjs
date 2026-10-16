@@ -379,13 +379,96 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
     const stub=()=>({innerHTML:'',textContent:'',value:'',hidden:true,dataset:{},listeners:{},style:{setProperty(){}},classList:{add(){},remove(){},contains(){return false;},toggle(){}},setAttribute(){},removeAttribute(){},getAttribute(){return '';},addEventListener(name,fn){this.listeners[name]=fn;},querySelectorAll(){return [];},contains(){return false;},focus(){this.focused=true;},scrollIntoView(){this.scrolled=true;},select(){}});
     const doc={getElementById(id){if(!nodes.has(id))nodes.set(id,stub());return nodes.get(id);},querySelector(selector){return this.getElementById(selector);},querySelectorAll(){return [];},addEventListener(){},documentElement:stub(),activeElement:null};
     const sandbox={window:{},document:doc,innerWidth:390,location:{hash},URLSearchParams,localStorage:{getItem(){if(!allowStorage)throw Error('disabled');return JSON.stringify(initialState);},setItem(key,value){if(!allowStorage)throw Error('disabled');sandbox.savedState=JSON.parse(value);}},history:{replaceState(a,b,hash){sandbox.location.hash=hash;}},setTimeout(){return 1;},clearTimeout(){},requestAnimationFrame(fn){fn();},getComputedStyle(){return {display:'block'};}};
-    sandbox.window.matchMedia=()=>({matches:false});sandbox.window.scrollTo=()=>{};sandbox.window.addEventListener=()=>{};
+    sandbox.window.matchMedia=()=>({matches:false});sandbox.window.scrollTo=()=>{};sandbox.window.listeners={};sandbox.window.addEventListener=(name,fn)=>{sandbox.window.listeners[name]=fn;};
     for(const match of html.matchAll(/<script src="(assets\/data\.[^"]+\.js)" defer><\/script>/g))vm.runInNewContext(fs.readFileSync(path.join(site,match[1]),'utf8'),sandbox,{timeout:10000});
     vm.runInNewContext(dataText,sandbox,{timeout:10000});
     vm.runInNewContext(fs.readFileSync(path.join(site,'assets/search.js'),'utf8'),sandbox,{timeout:10000});
     vm.runInNewContext(fs.readFileSync(path.join(site,'assets/app.js'),'utf8'),sandbox,{timeout:10000});
     return {html:nodes.get('main').innerHTML,title:doc.title,nodes,sandbox};
   }
+  const taxonomy=data.taxonomy;
+  const interviewPath='docs/60-interviews/agent-followups-20261015.md';
+  const simulation=taxonomy.entries.find(e=>e.id==='simulation:1');
+  const originalBack='#/library?'+new URLSearchParams({area:'interviews',company:'bytedance',round:'1',q:'评测',page:'2'});
+  const decodeHref=value=>value.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+  const interview=boot('#/read/'+encodeURIComponent(interviewPath)+'?'+new URLSearchParams({section:'p18-answers',area:'interviews',entry:'report:P18',back:originalBack}));
+  assert.ok(interview.nodes.get('main').innerHTML.split('<article')[0].includes('字节跳动'));
+  const p18Hash=interview.sandbox.location.hash;
+  const body=interview.nodes.get('main').innerHTML.split('<article')[1].split('</article>')[0];
+  const practice=body.match(/href="([^"]+)"[^>]*>深入练习\s*1<\/a>/);
+  assert.ok(practice,'actual rendered body must contain 深入练习1');
+  const practiceHref=decodeHref(practice[1]);
+  assert.equal(new URLSearchParams(practiceHref.split('?')[1]).get('back'),originalBack);
+  interview.sandbox.location.hash=practiceHref;
+  interview.sandbox.window.listeners.hashchange();
+  const switched=interview.nodes.get('main').innerHTML,header=switched.split('<article')[0];
+  assert.ok(header.includes('原创模拟'));assert.ok(!header.includes('字节跳动'));assert.ok(!header.includes('· 一面'));
+  assert.equal(decodeHref(switched.match(/class="text-link return-results" href="([^"]+)"/)[1]),originalBack,'same-page context preserves exact filtered return');
+  const headings=docs.get(interviewPath).headings;const simAt=headings.findIndex(h=>h.id===simulation.anchor),nested=headings[simAt+1];
+  assert.ok(nested.level>headings[simAt].level);
+  interview.sandbox.location.hash='#/read/'+encodeURIComponent(interviewPath)+'?'+new URLSearchParams({section:nested.id,area:'interviews',back:originalBack});
+  interview.sandbox.window.listeners.hashchange();
+  const nestedHeader=interview.nodes.get('main').innerHTML.split('<article')[0];assert.ok(nestedHeader.includes('原创模拟'));assert.ok(!nestedHeader.includes('字节跳动'));
+  // Follow a rendered cross-page body link, then emulate history back to P18.
+  const renderedBody=interview.nodes.get('main').innerHTML.split('<article')[1].split('</article>')[0];
+  const cross=[...renderedBody.matchAll(/href="(#\/read\/[^"]+)"/g)].map(m=>decodeHref(m[1])).find(h=>!h.startsWith('#/read/'+encodeURIComponent(interviewPath)+'?'));
+  assert.ok(cross);interview.sandbox.location.hash=cross;interview.sandbox.window.listeners.hashchange();
+  assert.equal(new URLSearchParams(cross.split('?')[1]).get('back'),originalBack);
+  const crossReturn=decodeHref(interview.nodes.get('main').innerHTML.match(/class="text-link return-results" href="([^"]+)"/)[1]);assert.equal(crossReturn,originalBack);
+  interview.sandbox.location.hash=p18Hash;interview.sandbox.window.listeners.hashchange();assert.ok(interview.nodes.get('main').innerHTML.split('<article')[0].includes('字节跳动'));
+  const unsafeBack='#/library?'+new URLSearchParams({q:'评测 "<tag>&',page:'2',onclick:'bad'});
+  const special=boot('#/read/'+encodeURIComponent(interviewPath)+'?'+new URLSearchParams({section:'p18-answers',back:unsafeBack}));
+  const specialBody=special.html.split('<article')[1].split('</article>')[0];
+  const specialHref=decodeHref(specialBody.match(/href="([^"]+)"[^>]*>深入练习\s*1<\/a>/)[1]);
+  const specialBack=new URLSearchParams(specialHref.split('?')[1]).get('back'),backQuery=new URLSearchParams(specialBack.split('?')[1]);
+  assert.equal(backQuery.get('q'),'评测 "<tag>&');assert.equal(backQuery.get('page'),'2');assert.ok(!backQuery.has('onclick'));assert.ok(!specialHref.includes('<tag>'));
+  const baiduHref=decodeHref(special.nodes.get('module-nav').innerHTML.match(/href="([^"]+)" data-company-nav="baidu"/)[1]);
+  special.sandbox.location.hash=baiduHref;special.sandbox.window.listeners.hashchange();
+  assert.ok(special.nodes.get('main').innerHTML.includes('不逐一归属'));assert.ok(special.nodes.get('main').innerHTML.includes('多公司回顾'));
+  const knowledgePath='docs/10-agent/01-agent-loop-tools-and-state.md';
+  const knowledgeBack='#/library?'+new URLSearchParams({area:'knowledge',subcategory:taxonomy.entries.find(e=>e.path===knowledgePath&&e.area==='knowledge'&&!e.anchor).subcategory,q:'Agent',page:'2'});
+  const knowledgeContext=boot('#/read/'+encodeURIComponent(knowledgePath)+'?'+new URLSearchParams({area:'knowledge',back:knowledgeBack}));
+  const nextNavigation=markup=>markup.match(/<nav class="reader-next"[\s\S]*?<\/nav>/)[0];
+  const chapterPeers=nextNavigation(knowledgeContext.html);
+  const followTOC=(reader,section)=>{
+    const href=[...reader.nodes.get('main').innerHTML.matchAll(/href="([^"]+)" data-section="([^"]+)"/g)].find(m=>m[2]===section)?.[1];
+    assert.ok(href,'actual TOC link: '+section);
+    reader.sandbox.location.hash=decodeHref(href);reader.sandbox.window.listeners.hashchange();
+  };
+  const assertKnowledgeContext=()=>{
+    const markup=knowledgeContext.nodes.get('main').innerHTML;
+    assert.ok(markup.split('<article')[0].includes('知识点'));
+    assert.equal(new URLSearchParams(knowledgeContext.sandbox.location.hash.split('?')[1]).get('area'),'knowledge');
+    assert.equal(nextNavigation(markup),chapterPeers,'TOC must preserve chapter learning sequence');
+    assert.equal(decodeHref(markup.match(/class="text-link return-results" href="([^"]+)"/)[1]),knowledgeBack);
+  };
+  followTOC(knowledgeContext,'a01');assertKnowledgeContext();
+  // A01's answer is h4 and is deliberately absent from the h2/h3 TOC.
+  // Check its deep-link context separately; do not fabricate a clickable TOC item.
+  const knowledgeHeadings=docs.get(knowledgePath).headings,a01At=knowledgeHeadings.findIndex(h=>h.id==='a01');
+  assert.equal(knowledgeHeadings[a01At+1].level,4);
+  const answerRoute=new URLSearchParams(knowledgeContext.sandbox.location.hash.split('?')[1]);answerRoute.set('section',knowledgeHeadings[a01At+1].id);
+  knowledgeContext.sandbox.location.hash='#/read/'+encodeURIComponent(knowledgePath)+'?'+answerRoute;knowledgeContext.sandbox.window.listeners.hashchange();assertKnowledgeContext();
+  followTOC(knowledgeContext,'a02');assertKnowledgeContext();
+  // The same hint must not retain P18's company/round when its TOC enters a simulation.
+  followTOC(interview,simulation.anchor);
+  const simulationHeader=interview.nodes.get('main').innerHTML.split('<article')[0];
+  assert.ok(simulationHeader.includes('原创模拟'));assert.ok(!simulationHeader.includes('字节跳动'));assert.ok(!simulationHeader.includes('· 一面'));
+  assert.equal(new URLSearchParams(interview.sandbox.location.hash.split('?')[1]).get('back'),originalBack);
+
+  const tocHref=[...switched.matchAll(/href="([^"]+)" data-section=/g)][0][1];
+  assert.equal(new URLSearchParams(tocHref.split('?')[1]).get('back'),originalBack);
+  const rag=boot('#/read/'+encodeURIComponent('docs/10-agent/02-rag-retrieval-and-reranking.md')+'?'+new URLSearchParams({area:'knowledge',back:originalBack}));
+  const relatedPart=rag.html.split('class="learning-related"')[1].split('</section>')[0];
+  const relatedLinks=[...relatedPart.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
+  assert.ok(relatedLinks.some(h=>new URLSearchParams(h.split('?')[1]).get('area')==='interviews'),'related project question changes to its actual area');
+  for(const href of relatedLinks)assert.equal(new URLSearchParams(href.split('?')[1]).get('back'),originalBack);
+  const filters=boot('#/library?area=interviews&subcategory=mixed&company=baidu&round=1&role=Go&pattern=BFS&structure=数组&q=机制&page=2');
+  filters.nodes.get('main').listeners.change({target:{dataset:{filter:'area'},value:'algorithms'}});
+  const changedFilters=new URLSearchParams(filters.sandbox.location.hash.split('?')[1]);
+  assert.equal(changedFilters.get('area'),'algorithms');assert.equal(changedFilters.get('q'),'机制');
+  for(const field of ['subcategory','company','round','role','pattern','structure','page'])assert.ok(!changedFilters.has(field),field);
+  assert.ok(boot('#/library?area=qa&subcategory=failure').title.startsWith('故障与验证'));
   const canonical='docs/00-guide/expanded-map-and-study-plan.md';
   const aliases=Object.entries(data.readingAliases);
   for(const [old,alias] of aliases){
@@ -409,11 +492,11 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   assert.equal(migrated.sandbox.savedState.lastPath,canonical);
   assert.equal(migrated.nodes.get('saved-count').textContent,1);
   assert.equal(migrated.nodes.get('done-count').textContent,1);
-  assert.ok(migrated.html.includes('继续阅读'));
-  assert.ok(boot('#/').html.includes('把知识连成一条主线'));
+  assert.ok(migrated.html.includes('继续上次阅读'));
+  assert.ok(boot('#/').html.includes('先理解，再讲清'));
   assert.ok(boot('#/').html.includes('场景卡'));
   assert.equal(boot('#/').title,'AI Agent 与后端开发学习手册');
-  assert.ok(boot('#/').html.includes('从 Agent 应用到后端工程，系统学习核心知识、项目实践与面试方法。'));
+  assert.ok(boot('#/').html.includes('从一个具体问题出发'));
   assert.ok(html.includes('aria-label="AI Agent 与后端开发学习手册首页"'));
   assert.ok(html.includes('class="brand-name-ending">学习手册</span>'));
   assert.ok(fs.readFileSync(path.join(site,'assets/style.css'),'utf8').includes('.brand-name-ending{white-space:nowrap}'));
@@ -425,7 +508,7 @@ check('生产页面脚本非渲染启动：总览、搜索、阅读与禁用存�
   const searched=boot('#/library?q=A01');assert.ok(searched.html.includes('A01'));assert.ok(searched.html.includes('section=a01'));
   assert.ok(boot('#/library?q=绝不存在987XYZ').html.includes('暂时没有匹配'));
   assert.ok(boot('#/read/docs%2F80-hot100%2Fproblems%2F0001-two-sum.md').html.includes('两数之和'));
-  assert.ok(boot('#/library?view=saved',false).html.includes('未允许本地存储'));
+  assert.ok(boot('#/library?view=saved',false).html.includes('本地存储不可用'));
   const supplement=boot('#/library?module=supplement').html;
   assert.equal((supplement.match(/class="result-item"/g)||[]).length,15);
   assert.ok(supplement.includes('section=problem-77'));assert.ok(!supplement.includes('外部资源题库'));
@@ -678,5 +761,40 @@ check('两篇新面经34项均有答案、口述与固定项目边界',()=>{
   assert.ok(docs.get('docs/70-practice/retrieval-ranking-algorithms.md').source.includes('不能继续无条件声称只用 O(K) 空间'));
   assert.equal(data.questionCount,464);assert.equal(data.scenarioCount,26);
 });
+
+check('移动筛选最终级联保持一列或两列和44px控件（非渲染检查）',()=>{
+  const css=fs.readFileSync(path.join(site,'assets/style.css'),'utf8').replace(/\/\*[\s\S]*?\*\//g,'');
+  // Evaluate source order for the exact class selectors under width media rules.
+  // This deliberately checks CSS cascade declarations, not browser layout.
+  function declarations(width,selector){
+    const result={};
+    function visit(text,active=true){
+      let offset=0;
+      while(offset<text.length){
+        const open=text.indexOf('{',offset);if(open<0)break;
+        const prelude=text.slice(offset,open).trim();let end=open+1,depth=1;
+        while(depth&&end<text.length){if(text[end]==='{')depth++;if(text[end]==='}')depth--;end++;}
+        const body=text.slice(open+1,end-1);offset=end;
+        if(prelude.startsWith('@media')){
+          const max=prelude.match(/max-width:\s*(\d+)px/),min=prelude.match(/min-width:\s*(\d+)px/);
+          visit(body,active&&!/\bprint\b/.test(prelude)&&(!max||width<=Number(max[1]))&&(!min||width>=Number(min[1])));
+        }else if(active&&prelude.split(',').map(x=>x.trim()).includes(selector)){
+          for(const declaration of body.split(';')){const colon=declaration.indexOf(':');if(colon>0)result[declaration.slice(0,colon).trim()]=declaration.slice(colon+1).trim();}
+        }
+      }
+    }
+    visit(css);return result;
+  }
+  for(const width of [320,390,720]){
+    const filters=declarations(width,'.filters'),field=declarations(width,'.filter-field'),select=declarations(width,'.filter-field select');
+    assert.equal(filters.display,'grid',String(width));
+    assert.equal(filters['grid-template-columns'],width<=420?'minmax(0,1fr)':'repeat(2,minmax(0,1fr))',String(width));
+    assert.equal(field.width,'100%');assert.equal(field['min-width'],'0');
+    assert.equal(select['min-height'],'44px');assert.equal(select['font-size'],'14px');
+    assert.equal(declarations(width,'.filter-note')['grid-column'],'1 / -1');
+  }
+});
+
+check('现有站点检查入口实际执行分类回归',()=>{execFileSync(process.execPath,['--test',path.join(site,'taxonomy.test.mjs')],{stdio:'inherit'});});
 
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);
