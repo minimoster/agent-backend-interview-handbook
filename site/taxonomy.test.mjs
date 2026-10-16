@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {naturalCompare, targetKey, assertUnique, assertTarget, entrySections} from './taxonomy.mjs';
+import {naturalCompare, targetKey, assertUnique, assertTarget, entrySections, validateTaxonomy} from './taxonomy.mjs';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
@@ -15,6 +16,7 @@ for(const m of shell.matchAll(/src="(assets\/data\.[^"]+\.js)"/g))vm.runInNewCon
 vm.runInNewContext(fs.readFileSync(path.join(root,'site/assets/data.js'),'utf8'),context);
 const data=context.window.STUDY_DATA;
 const {catalogue,create}=createRequire(import.meta.url)('./assets/search.js');
+const projectPath='docs/50-projects/source-code-interview-deep-dive.md';
 const entries=catalogue(data),engine=create(entries),query=p=>engine.query(new URLSearchParams(p)).results;
 
 test('natural question order preserves full prefix and all numeric segments',()=>{
@@ -47,19 +49,21 @@ test('anchored search includes its nested answers but excludes next question',()
   assert.throws(()=>assertTarget(new Map(),doc.path),/缺少正文/);
 });
 
-test('actual registry preserves 261 pages, all 464 IDs and their exact targets',()=>{
+test('actual registry adds one canonical project page and preserves all 464 IDs and targets',()=>{
   assert.equal(JSON.stringify(data.taxonomy),JSON.stringify(registry));
-  assert.equal(registry.pages.length,261);assert.equal(new Set(registry.pages.map(p=>p.path)).size,261);
+  assert.equal(registry.pages.length,262);assert.equal(new Set(registry.pages.map(p=>p.path)).size,262);
   assert.deepEqual(registry.entries.filter(e=>e.itemId).map(e=>e.itemId).sort(),index.items.map(i=>i.id).sort());
   for(const item of index.items){const entry=registry.entries.find(e=>e.itemId===item.id);assert.equal(targetKey(entry.path,entry.anchor),targetKey(item.path,item.anchor||''));}
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='qa').length,297);
   assert.equal(registry.entries.filter(e=>e.itemId&&e.subcategory==='projects').length,40);
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='algorithms').length,127);
-  assert.ok(!registry.pages.some(p=>p.path.includes('source-code-interview-deep-dive')));
+  assert.equal(registry.pages.filter(p=>p.path===projectPath).length,1);
+  assert.equal(registry.pages.filter(p=>p.path!==projectPath).length,261);
+  assert.equal(registry.entries.length,729);
 });
 
 test('real question and scenario display order preserves prefix and local sequence',()=>{
-  for(const sub of registry.areas.find(a=>a.id==='qa').subcategories){const ids=query({area:'qa',subcategory:sub.id}).map(r=>r.d.itemId);assert.deepEqual(ids,[...ids].sort(naturalCompare));}
+  for(const sub of registry.areas.find(a=>a.id==='qa').subcategories){const ids=query({area:'qa',subcategory:sub.id}).filter(r=>r.d.itemId).map(r=>r.d.itemId);assert.deepEqual(ids,[...ids].sort(naturalCompare));}
   const scenes=query({area:'interviews',subcategory:'scenarios'}).filter(r=>r.d.scenarioCardId).map(r=>r.d.scenarioCardId);
   assert.deepEqual(scenes,[...scenes].sort(naturalCompare));assert.equal(scenes.length,26);
   const sp=query({area:'interviews',subcategory:'shopee'}).filter(r=>r.d.id.startsWith('SP-')).map(r=>r.d.id);assert.equal(sp.length,34);assert.deepEqual(sp,[...sp].sort(naturalCompare));
@@ -78,7 +82,7 @@ test('legacy supplemental listing, LC77, topic and difficulty use real navigatio
 test('global search deduplicates canonical target while preserving separate questions',()=>{
   for(const q of ['A01','RAG','SQL','LC77','Go']){const results=query({q});const keys=results.map(({d,section})=>targetKey(d.path,d.targetAnchor||section?.id||''));assert.equal(new Set(keys).size,keys.length,q);}
   assert.equal(query({q:'A01'})[0].d.itemId,'A01');
-  const qa=query({area:'qa'});assert.equal(qa.length,297);assert.ok(qa.some(r=>r.d.itemId==='A01'));assert.ok(qa.some(r=>r.d.itemId==='A02'));
+  const qa=query({area:'qa'});assert.equal(qa.length,321);assert.equal(qa.filter(r=>r.d.itemId).length,297);assert.ok(qa.some(r=>r.d.itemId==='A01'));assert.ok(qa.some(r=>r.d.itemId==='A02'));
   const saved=create(entries).query(new URLSearchParams({view:'saved'}),{saved:['docs/10-agent/01-agent-loop-tools-and-state.md'],done:[]}).results;assert.equal(saved.length,1);assert.equal(saved[0].d.targetAnchor,'');
 });
 
@@ -130,9 +134,9 @@ test('saved and done filter any matching chapter entry before canonical-path ded
 });
 
 
-test('all 161 non-Hot100 pages link to substantive cross-page teaching sections',()=>{
+test('all 162 non-Hot100 pages link to substantive cross-page teaching sections',()=>{
   const docs=new Map(data.docs.map(d=>[d.path,d]));
-  const pages=registry.pages.filter(p=>!p.path.startsWith('docs/80-hot100/problems/'));assert.equal(pages.length,161);
+  const pages=registry.pages.filter(p=>!p.path.startsWith('docs/80-hot100/problems/'));assert.equal(pages.length,162);
   for(const page of pages){
     const links=registry.related[page.path];assert.ok(links.some(l=>l.path!==page.path),page.path);
     for(const link of links){
@@ -160,4 +164,60 @@ test('stable original ID sequences preserve existing gaps without inventing ques
   assert.deepEqual(numbers('FA'),[...range(22,43),63]);
   for(const [prefix,last] of Object.entries({J:46,FJ:46,G:40,B:50,FB:93,X:6,R:12,S:9}))assert.deepEqual(numbers(prefix),range(1,last),prefix);
   assert.deepEqual(numbers('LC'),hot.problems.map(p=>p.id).sort((a,b)=>a-b));
+});
+
+
+test('project depth uses exact approved text and existing heading targets without new question IDs',()=>{
+  const bytes=fs.readFileSync(path.join(root,projectPath));
+  assert.equal(bytes.length,96772);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),'2e4dbb057fa544ca83af5ab358547a18ca2acc6a87c27e39326357b688e52ec9');
+  const text=bytes.toString('utf8');
+  for(const version of ['9afe774372f2068eb7e57ecdf1c491965eace2e3','8abe80150be6fc72359f2fe78acfd5960d664bdf','bd0230f2f14b03fa016829cf895a4b009515e88c'])assert.ok(text.includes(version));
+  const doc=data.docs.find(d=>d.path===projectPath);assert.equal(doc.headings.length,44);
+  const rows=registry.entries.filter(e=>e.subcategory==='project-depth');assert.equal(rows.length,24);
+  assert.equal(new Set(rows.map(e=>targetKey(e.path,e.anchor))).size,24);
+  assert.equal(rows.filter(e=>e.kind==='chapter').length,1);assert.equal(rows.filter(e=>e.kind==='project-section').length,23);
+  for(const e of rows){assert.equal(e.path,projectPath);assert.equal(e.area,'qa');assert.ok(!e.itemId&&!e.companies&&!e.rounds&&!e.roundLabel);assertTarget(new Map([[projectPath,doc]]),e.path,e.anchor);}
+  for(let n=1;n<=12;n++){const e=rows.find(e=>e.anchor==='direction-'+String(n).padStart(2,'0'));assert.ok(e);assert.deepEqual(e.projects,n===10?['knowflow','researchpilot']:n<=7||n===12?['knowflow']:['researchpilot']);}
+  assert.deepEqual(registry.projects,[{id:'knowflow',label:'KnowFlow'},{id:'researchpilot',label:'ResearchPilot'},{id:'shared',label:'共同练习'}]);
+});
+
+test('project filters include shared practice and saved state remains canonical-path based',()=>{
+  const filters={area:'qa',subcategory:'project-depth'};
+  assert.equal(query(filters).length,24);
+  for(const [project,count]of Object.entries({knowflow:19,researchpilot:14,shared:8})){
+    const results=query({...filters,project});assert.equal(results.length,count);
+    assert.ok(results.every(r=>r.d.projects.includes(project)||r.d.projects.includes('shared')));
+    assert.ok(results.every(r=>r.d.path===projectPath));
+  }
+  assert.equal(query({...filters,project:'unknown-project'}).length,0);
+  const state={saved:[projectPath],done:[projectPath]};
+  for(const view of ['saved','done'])for(const project of ['knowflow','researchpilot','shared']){
+    const results=engine.query(new URLSearchParams({...filters,view,project}),state).results;
+    assert.equal(results.length,1);assert.equal(results[0].d.path,projectPath);
+  }
+  assert.deepEqual(state,{saved:[projectPath],done:[projectPath]});
+});
+
+test('project schema rejects ambiguous ownership and accidental question or company labels',()=>{
+  assert.doesNotThrow(()=>validateTaxonomy(registry,data.docs,index.items));
+  for(const mutate of [
+    r=>r.projects.push({...r.projects[0]}),
+    r=>r.entries.find(e=>e.subcategory==='project-depth').projects=['missing'],
+    r=>r.entries.find(e=>e.subcategory==='project-depth').projects=['shared','knowflow'],
+    r=>r.entries.find(e=>e.subcategory==='project-depth').projects=['knowflow','knowflow'],
+    r=>r.entries.find(e=>e.subcategory==='project-depth').companies=['bytedance'],
+    r=>r.entries.find(e=>e.subcategory==='project-depth').rounds=[1],
+    r=>r.entries.find(e=>e.subcategory==='project-depth').itemId='A48',
+    r=>delete r.entries.find(e=>e.subcategory==='project-depth').projects
+  ]){const copy=structuredClone(registry);mutate(copy);assert.throws(()=>validateTaxonomy(copy,data.docs,index.items));}
+});
+
+test('project footer offers precise prerequisites and four knowledge chapters link back',()=>{
+  const links=registry.related[projectPath];assert.equal(links.length,3);
+  assert.deepEqual(links.map(l=>l.anchor),['a27','核心思路','7-从涨了-10-个点走到可信的版本比较']);
+  const backlinks=Object.entries(registry.related).flatMap(([from,links])=>links.filter(l=>l.path===projectPath).map(l=>({from,...l})));
+  assert.equal(backlinks.length,4);
+  assert.deepEqual(backlinks.map(l=>l.anchor).sort(),['direction-01','direction-02','direction-07','direction-11']);
+  for(const link of backlinks){assert.equal(registry.pages.find(p=>p.path===link.from).area,'knowledge');assert.equal(registry.related[link.from].length,3);}
 });

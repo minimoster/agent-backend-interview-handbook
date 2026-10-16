@@ -63,6 +63,10 @@
         {
           "id": "failure",
           "label": "故障与验证"
+        },
+        {
+          "id": "project-depth",
+          "label": "项目源码深挖"
         }
       ]
     },
@@ -1887,6 +1891,12 @@
       "area": "knowledge",
       "subcategory": "overview",
       "displayOrder": 261
+    },
+    {
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "displayOrder": 262
     }
   ],
   "entries": [
@@ -10961,6 +10971,319 @@
       "kind": "supplement",
       "displayOrder": 15,
       "theme": "栈与队列"
+    },
+    {
+      "id": "doc:docs/50-projects/source-code-interview-deep-dive.md",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "",
+      "title": "KnowFlow 与 ResearchPilot：源码深挖、项目表达与模拟追问",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "chapter",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 0
+    },
+    {
+      "id": "project-depth:knowflow-30",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "knowflow30-秒介绍模板",
+      "title": "KnowFlow：30 秒介绍模板",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 10
+    },
+    {
+      "id": "project-depth:knowflow-2min",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "knowflow23-分钟介绍模板",
+      "title": "KnowFlow：2–3 分钟介绍模板",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 20
+    },
+    {
+      "id": "project-depth:researchpilot-30",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "researchpilot30-秒介绍模板",
+      "title": "ResearchPilot：30 秒介绍模板",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "researchpilot"
+      ],
+      "displayOrder": 30
+    },
+    {
+      "id": "project-depth:researchpilot-2min",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "researchpilot23-分钟介绍模板",
+      "title": "ResearchPilot：2–3 分钟介绍模板",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "researchpilot"
+      ],
+      "displayOrder": 40
+    },
+    {
+      "id": "project-depth:contribution",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "你到底做了什么与用了-ai-还算你的项目吗",
+      "title": "“你到底做了什么”与“用了 AI 还算你的项目吗”",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 50
+    },
+    {
+      "id": "project-depth:direction-01",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-01",
+      "title": "方向 1：一次 KnowFlow 请求究竟走哪条链路",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 101
+    },
+    {
+      "id": "project-depth:direction-02",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-02",
+      "title": "方向 2：界面看起来在流式输出，是否真的降低了首 token 延迟",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 102
+    },
+    {
+      "id": "project-depth:direction-03",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-03",
+      "title": "方向 3：取消是谁的取消，context 到底传到了哪里",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 103
+    },
+    {
+      "id": "project-depth:direction-04",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-04",
+      "title": "方向 4：用了 RWMutex 和 snapshot，为什么还不能宣称请求隔离",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 104
+    },
+    {
+      "id": "project-depth:direction-05",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-05",
+      "title": "方向 5：DAG 校验失败后清空依赖，是否是安全的降级",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 105
+    },
+    {
+      "id": "project-depth:direction-06",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-06",
+      "title": "方向 6：名字叫 MCPTool，能否证明标准协议互通",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 106
+    },
+    {
+      "id": "project-depth:direction-07",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-07",
+      "title": "方向 7：长期记忆提交成功后，为什么当前进程还可能读不到",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 107
+    },
+    {
+      "id": "project-depth:direction-08",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-08",
+      "title": "方向 8：ResearchPilot 返回 202 后，断连与重启分别意味着什么",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "researchpilot"
+      ],
+      "displayOrder": 108
+    },
+    {
+      "id": "project-depth:direction-09",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-09",
+      "title": "方向 9：先订阅再重放，为什么仍不是完整的事件续传协议",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "researchpilot"
+      ],
+      "displayOrder": 109
+    },
+    {
+      "id": "project-depth:direction-10",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-10",
+      "title": "方向 10：认证、计划归属、CORS 与 SSRF 分别保护什么",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow",
+        "researchpilot"
+      ],
+      "displayOrder": 110
+    },
+    {
+      "id": "project-depth:direction-11",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-11",
+      "title": "方向 11：Docker 沙箱有哪些限制，哪些只是可选配置",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "researchpilot"
+      ],
+      "displayOrder": 111
+    },
+    {
+      "id": "project-depth:direction-12",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "direction-12",
+      "title": "方向 12：记忆检查挡住了内容，为什么仍要追缓存和所有写路径",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "knowflow"
+      ],
+      "displayOrder": 112
+    },
+    {
+      "id": "project-depth:diagnostic-1",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "召回了相关-chunk为什么仍然答错",
+      "title": "召回了相关 chunk，为什么仍然答错",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 200
+    },
+    {
+      "id": "project-depth:diagnostic-2",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "如何回答你会怎么优化性能而不编造压测",
+      "title": "如何回答“你会怎么优化性能”而不编造压测",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 201
+    },
+    {
+      "id": "project-depth:diagnostic-3",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "怎样嵌入后端基础而不背另一套八股",
+      "title": "怎样嵌入后端基础，而不背另一套八股",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 202
+    },
+    {
+      "id": "project-depth:mock-60",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "mock-60",
+      "title": "四、60 分钟初级模拟：能讲链路、能解释失败",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 300
+    },
+    {
+      "id": "project-depth:mock-90",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "mock-90",
+      "title": "五、90 分钟加深模拟：算法、协议、状态与安全取舍",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 310
+    },
+    {
+      "id": "project-depth:rubric",
+      "path": "docs/50-projects/source-code-interview-deep-dive.md",
+      "anchor": "rubric",
+      "title": "六、四维 0–3 分评分与复盘方法",
+      "area": "qa",
+      "subcategory": "project-depth",
+      "kind": "project-section",
+      "projects": [
+        "shared"
+      ],
+      "displayOrder": 400
     }
   ],
   "related": {
@@ -11010,6 +11333,13 @@
         "label": "A27 长任务为什么要和 HTTP 连接解耦？恢复时从哪里继续？",
         "relation": "执行延伸",
         "description": "从内存状态继续追问任务与 HTTP 连接解耦后怎样恢复。"
+      },
+      {
+        "path": "docs/50-projects/source-code-interview-deep-dive.md",
+        "anchor": "direction-01",
+        "label": "方向 1：一次 KnowFlow 请求究竟走哪条链路",
+        "relation": "源码对照",
+        "description": "以专题标明的固定版本为准，把 Agent loop 概念落实到 KnowFlow 的实际入口、路由条件与执行分支。"
       }
     ],
     "docs/10-agent/02-rag-retrieval-and-reranking.md": [
@@ -11042,6 +11372,13 @@
         "label": "10. 为何保留20轮，而不是10轮或30轮？",
         "relation": "压缩验证",
         "description": "比较不同上下文长度，检查保留轮数是否有可复验依据。"
+      },
+      {
+        "path": "docs/50-projects/source-code-interview-deep-dive.md",
+        "anchor": "direction-07",
+        "label": "方向 7：长期记忆提交成功后，为什么当前进程还可能读不到",
+        "relation": "源码对照",
+        "description": "以专题标明的固定版本为准，用记忆提交后缓存更新的失败窗口，区分已持久化与当前实例已可见。"
       }
     ],
     "docs/10-agent/04-streaming-and-reliable-execution.md": [
@@ -11058,6 +11395,13 @@
         "label": "B34 数据库写成功但消息发送失败，outbox 怎样解决",
         "relation": "持久恢复",
         "description": "对照数据库和消息双写，理解持久化事件与业务提交的边界。"
+      },
+      {
+        "path": "docs/50-projects/source-code-interview-deep-dive.md",
+        "anchor": "direction-02",
+        "label": "方向 2：界面看起来在流式输出，是否真的降低了首 token 延迟",
+        "relation": "源码对照",
+        "description": "以专题标明的固定版本为准，沿项目调用链区分模型产出、SSE 写出与前端展示，练习首答案延迟的诊断。"
       }
     ],
     "docs/10-agent/05-transformer-prerequisite.md": [
@@ -11803,6 +12147,13 @@
         "label": "FB27 虚拟内存为什么不等于把磁盘当内存",
         "relation": "内存前置",
         "description": "区分虚拟地址、物理内存和磁盘换页，再判断容器内存告警。"
+      },
+      {
+        "path": "docs/50-projects/source-code-interview-deep-dive.md",
+        "anchor": "direction-11",
+        "label": "方向 11：Docker 沙箱有哪些限制，哪些只是可选配置",
+        "relation": "源码对照",
+        "description": "以专题标明的固定版本为准，把 Docker 隔离概念对应到 ResearchPilot 的资源限制和可选运行配置。"
       }
     ],
     "docs/40-backend/07-security-and-problem-solving.md": [
@@ -15646,6 +15997,43 @@
         "relation": "SQL口述",
         "description": "从行号与并列名次的差别练习排序语义和反例。"
       }
+    ],
+    "docs/50-projects/source-code-interview-deep-dive.md": [
+      {
+        "path": "docs/10-agent/04-streaming-and-reliable-execution.md",
+        "anchor": "a27",
+        "label": "A27 长任务为什么要和 HTTP 连接解耦？恢复时从哪里继续？",
+        "relation": "生命周期前置",
+        "description": "先区分任务与 HTTP 连接的寿命，再沿项目代码解释取消、重启和恢复的边界。"
+      },
+      {
+        "path": "docs/80-hot100/problems/0207-course-schedule.md",
+        "anchor": "核心思路",
+        "label": "207. 课程表：核心思路",
+        "relation": "依赖图对照",
+        "description": "用入度队列和处理数量判环，再比较项目 DAG 校验与业务依赖降级的不同责任。"
+      },
+      {
+        "path": "docs/10-agent/35-retrieval-evaluation-worked-example.md",
+        "anchor": "7-从涨了-10-个点走到可信的版本比较",
+        "label": "7. 从“涨了 10 个点”走到可信的版本比较",
+        "relation": "评测练习",
+        "description": "将源码中的计算步骤与独立标注、数据隔离和版本比较分开，避免编造效果提升。"
+      }
     ]
-  }
+  },
+  "projects": [
+    {
+      "id": "knowflow",
+      "label": "KnowFlow"
+    },
+    {
+      "id": "researchpilot",
+      "label": "ResearchPilot"
+    },
+    {
+      "id": "shared",
+      "label": "共同练习"
+    }
+  ]
 }

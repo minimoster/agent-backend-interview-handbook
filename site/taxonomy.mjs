@@ -39,6 +39,10 @@ export function assertUnique(values, label) {
 export function validateTaxonomy(registry, docs, items) {
   const byPath=new Map(docs.map(d=>[d.path,d]));
   const areaMap=new Map(registry.areas.map(a=>[a.id,a]));
+  const projects=registry.projects||[];
+  assertUnique(projects.map(p=>p.id),'项目筛选');
+  if(projects.some(p=>!p.id||!p.label))throw Error('项目筛选缺少名称');
+  const projectIds=new Set(projects.map(p=>p.id));
   if(registry.areas.map(a=>a.id).join(',')!=='knowledge,qa,interviews,algorithms')throw Error('教学导航应有四个固定大类');
   if(registry.guidePath!=='docs/00-guide/expanded-map-and-study-plan.md')throw Error('学习路线必须保持唯一');
   assertUnique(registry.pages.map(p=>p.path),'页面归类');
@@ -53,6 +57,13 @@ export function validateTaxonomy(registry, docs, items) {
     if(!Number.isFinite(record.displayOrder))throw Error(`入口缺少学习顺序：${record.path}`);
   }
   for(const e of registry.entries){
+    if(e.projects!==undefined){
+      if(!Array.isArray(e.projects)||!e.projects.length||e.projects.some(id=>!projectIds.has(id)))throw Error(`项目筛选无定义：${e.id}`);
+      assertUnique(e.projects,'入口项目');
+      if(e.projects.includes('shared')&&e.projects.length!==1)throw Error('共同练习不得同时标记专属项目');
+      if(e.area!=='qa'||e.subcategory!=='project-depth')throw Error('项目筛选仅用于项目源码深挖');
+    }
+    if(e.subcategory==='project-depth'&&(e.area!=='qa'||!e.projects?.length||e.itemId||e.companies?.length||e.rounds?.length||e.roundLabel))throw Error('项目源码深挖不得新增题号或继承公司轮次');
     if(e.itemId){const original=items.find(i=>i.id===e.itemId);if(targetKey(original.path,original.anchor||'')!==targetKey(e.path,e.anchor||''))throw Error(`原题目标改变：${e.itemId}`);}
     if(e.companies?.some(id=>!registry.companies.some(c=>c.id===id)))throw Error(`公司筛选无定义：${e.id}`);
     if(e.subcategory==='simulation'&&(e.companies?.length||e.rounds?.length))throw Error('原创模拟不得继承公司轮次');

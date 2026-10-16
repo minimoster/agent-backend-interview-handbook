@@ -6,6 +6,7 @@
   if (!data) { main.textContent = '阅读数据未加载。请从仓库根目录运行 node site/build.mjs。'; return; }
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalize = window.STUDY_SEARCH.normalize;
+  const projectMatches = window.STUDY_SEARCH.projectMatches;
   const byPath = new Map(data.docs.map(d => [d.path, d]));
   const readingAliases = data.readingAliases || {};
   const canonicalPath = path => readingAliases[path]?.path || path;
@@ -14,6 +15,8 @@
   const byEntry=new Map(catalogueDocs.map(e=>[e.entryId,e]));
   const areaInfo=id=>taxonomy.areas.find(a=>a.id===id);
   const subInfo=(area,id)=>areaInfo(area)?.subcategories.find(s=>s.id===id);
+  const isCompany=id=>taxonomy.companies.some(c=>c.id===id);
+  const subcategoryOptions=area=>area.id==='interviews'?area.subcategories.filter(c=>!isCompany(c.id)):area.subcategories;
   const difficultyName = { EASY:'简单', MEDIUM:'中等', HARD:'困难' };
   let state = { saved:[], done:[], lastPath:'', fontSize:17, lineHeight:1.95, theme:'' };
   let storageOK = true;
@@ -94,14 +97,14 @@
   function returnHash(entry) {
     const back=route?.query.get('back');
     if(back&&/^#\/library(?:\?|$)/.test(back)){
-      const allowed=new Set(['area','subcategory','company','round','role','pattern','structure','difficulty','priority','module','topic','q','view','page']);
+      const allowed=new Set(['area','subcategory','project','company','round','role','pattern','structure','difficulty','priority','module','topic','q','view','page']);
       return libraryHash(Object.fromEntries([...new URLSearchParams(back.split('?').slice(1).join('?'))].filter(([key])=>allowed.has(key))));
     }
     return libraryHash({area:entry?.area,subcategory:entry?.subcategory});
   }
   function entryMeta(e) {
     const names=(e.companyNames||[]).join('、');
-    return [e.entryKind==='interview'?'面经整理与练习':e.entryKind==='simulation'?'原创模拟':e.entryKind==='project-question'?'原创项目场景':e.entryKind==='scenario'?'原创场景卡':'',names,e.roundLabel,(e.roles||[]).join(' / ')].filter(Boolean).map(esc).join(' · ');
+    return [e.entryKind==='interview'?'面经整理与练习':e.entryKind==='simulation'?'原创模拟':e.entryKind==='project-question'?'原创项目场景':e.entryKind==='scenario'?'原创场景卡':'',names,(e.projectNames||[]).join(' / '),e.roundLabel,(e.roles||[]).join(' / ')].filter(Boolean).map(esc).join(' · ');
   }
 
   function sourceDownloads(html) {
@@ -148,6 +151,11 @@
       query.set('section',renamedSection);
       history.replaceState(null,'',`#/read/${encodeURIComponent(path)}?${query.toString()}`);
     }
+    // Older company subcategory URLs describe company membership, including mixed reports.
+    if(pathname==='/library'&&query.get('area')==='interviews'&&isCompany(query.get('subcategory'))){
+      query.set('company',query.get('subcategory'));query.delete('subcategory');
+      history.replaceState(null,'',libraryHash(Object.fromEntries(query)));
+    }
     return {type:pathname.startsWith('/read/')?'read':pathname==='/library'?'library':'home',path,query};
   }
   function buildNav() {
@@ -183,8 +191,9 @@
   function renderLibrary() {
     const p=route.query,area=p.get('area')||'',sub=p.get('subcategory')||'',q=p.get('q')||'',view=p.get('view')||'';
     const a=areaInfo(area),child=subInfo(area,sub),legacy=data.modules.find(m=>m.id===p.get('module'));
+    const projectDepth=area==='qa'&&sub==='project-depth';
     const title=q?'搜索结果':view==='saved'?'我的收藏':view==='done'?'已读章节':child?.label||a?.label||legacy?.label||'全部学习资料';
-    const desc=q?`搜索“${q}”，匹配题号、标题和正文；多个关键词用空格分隔。`:view?'按章节保存的本机记录，不因题目入口增加而重复。':a?.description||legacy?.description||'选择一个学习入口，或搜索明确的题号与关键词。';
+    const desc=q?`搜索“${q}”，匹配题号、标题和正文；多个关键词用空格分隔。`:view?'按章节保存的本机记录，不因题目入口增加而重复。':projectDepth?'按项目查看源码讲解，再练口述与递进追问。项目筛选包含共同练习；所有入口连接同一篇正文，原有题号保持不变。':a?.description||legacy?.description||'选择一个学习入口，或搜索明确的题号与关键词。';
     const select=(key,label,options)=>`<div class="filter-field"><label for="filter-${key}">${label}</label><select id="filter-${key}" data-filter="${key}"><option value="">全部${label}</option>${options.map(o=>`<option value="${esc(o.id)}"${o.id===p.get(key)?' selected':''}>${esc(o.label)}</option>`).join('')}</select></div>`;
     const candidates=catalogueDocs.filter(e=>(!area||e.area===area)&&(!sub||e.subcategory===sub));
     const roles=[...new Set(candidates.flatMap(e=>e.roles||[]))].sort();
@@ -192,8 +201,13 @@
     const structures=[...new Set(candidates.flatMap(e=>e.dataStructures||[]))].sort();
     const {results,terms}=resultRows(p),pageSize=24,totalPages=Math.max(1,Math.ceil(results.length/pageSize)),page=Math.min(totalPages,Math.max(1,Number(p.get('page'))||1));
     const visible=results.slice((page-1)*pageSize,page*pageSize),back=libraryHash(Object.fromEntries(p));
+    const companyGuides=area==='interviews'&&isCompany(p.get('company'))&&!sub&&!q&&!view?catalogueDocs.filter(e=>e.area===area&&e.subcategory===p.get('company')&&!e.targetAnchor&&!e.companies?.includes(p.get('company'))):[];
+    const companyGuideHtml=companyGuides.map(e=>`<p class="boundary-note"><a class="text-link" data-company-guide="${esc(p.get('company'))}" href="${esc(entryHash(e,back))}">先读导读：${esc(e.title)}</a></p>`).join('');
+    const companyCards=area==='interviews'?taxonomy.companies.map(c=>{const count=catalogueDocs.filter(e=>e.area===area&&e.companies?.includes(c.id)).length;return count?`<a href="${esc(libraryHash({area,company:c.id}))}" data-company-card="${esc(c.id)}"><strong>${esc(c.label)}</strong><span>${count} 个学习入口 →</span></a>`:'';}).join(''):'';
+    const categoryNav=a&&!sub&&!q&&!view?`<nav class="subcategory-grid" aria-label="${esc(a.label)}子类">${companyCards}${subcategoryOptions(a).map(c=>{const count=catalogueDocs.filter(e=>e.area===area&&e.subcategory===c.id).length;return count?`<a href="${libraryHash({area,subcategory:c.id})}"><strong>${esc(c.label)}</strong><span>${count} 个学习入口 →</span></a>`:'';}).join('')}</nav>`:'';
+    const projectNav=projectDepth&&!q&&!view?`<nav class="subcategory-grid" aria-label="源码项目与共同练习">${(taxonomy.projects||[]).map(project=>`<a href="${esc(libraryHash({area,subcategory:sub,project:project.id}))}"${p.get('project')===project.id?' aria-current="page"':''}><strong>${esc(project.label)}</strong><span>${candidates.filter(e=>projectMatches(e,project.id)).length} 个学习入口${project.id==='shared'?'':' · 含共同练习'} →</span></a>`).join('')}</nav>`:'';
     main.className='library-main';
-    main.innerHTML=`<div class="breadcrumb"><a href="#/">学习总览</a>${a?`<span>/</span><a href="${libraryHash({area})}">${esc(a.label)}</a>`:''}<span>/</span><span>${esc(title)}</span></div><div class="page-heading"><div class="eyebrow">${a?esc(a.verb):'查找与复习'}</div><h1>${esc(title)}</h1><p>${esc(desc)}</p></div>${a&&!sub&&!q&&!view?`<nav class="subcategory-grid" aria-label="${esc(a.label)}子类">${a.subcategories.map(c=>{const count=catalogueDocs.filter(e=>e.area===area&&e.subcategory===c.id).length;return count?`<a href="${libraryHash({area,subcategory:c.id})}"><strong>${esc(c.label)}</strong><span>${count} 个学习入口 →</span></a>`:'';}).join('')}</nav>`:''}${area==='interviews'?'<p class="boundary-note">面经为整理与练习。公司标签只用于对应小节；多公司回顾不把每题归属到每家公司。原创项目、模拟与场景卡单列。</p>':''}${legacy?`<p class="boundary-note">当前保留旧专题筛选：${esc(legacy.label)}。</p>`:''}${!storageOK&&view?'<p class="storage-warning">本地存储不可用，记录仅在本次打开期间保留。</p>':''}<section class="filters" aria-label="筛选学习资料">${select('area','学习入口',taxonomy.areas)}${a?select('subcategory','子类',a.subcategories):''}${area==='interviews'?select('company','公司',taxonomy.companies.filter(c=>candidates.some(e=>e.companies?.includes(c.id))))+select('round','明确轮次',[{id:'1',label:'一面'},{id:'2',label:'二面'},{id:'3',label:'三面'}])+select('role','岗位',roles.map(id=>({id,label:id}))):''}${area==='algorithms'?select('structure','数据结构',structures.map(id=>({id,label:id})))+select('pattern','解法模式',patterns.map(id=>({id,label:id})))+select('difficulty','难度',Object.entries(difficultyName).map(([id,label])=>({id,label}))):''}${area==='qa'?select('priority','优先级',['P0','P1','P2'].map(id=>({id,label:id}))):''}<span class="filter-note">${area==='algorithms'?'主题描述问题领域，解法模式描述具体方法；两者分别筛选。':area==='interviews'?'轮次未知不标注；一/二面综合回顾不拆为单轮真题。':'先独立回忆，再打开正文核对。'}</span></section><div class="results-meta" role="status" aria-live="polite"><span>${results.length} 个匹配${view?'章节':'入口'}${results.length>pageSize?` · 第 ${page} / ${totalPages} 页`:''}</span><button class="reset-button" id="reset-filters">清空搜索与筛选</button></div>${results.length?`<div class="result-list">${visible.map(({d,section})=>{const heading=d.targetAnchor?d.title:section&&/^[A-Z]+\d+\b/.test(section.heading)?section.heading:d.title;const target={...d,targetAnchor:d.targetAnchor||section?.id||''};return `<a class="result-item" href="${entryHash(target,back)}"><span class="result-marker" aria-hidden="true">${esc(d.itemId||d.resourceProblemId||d.scenarioCardId||d.id?.startsWith('SP-')&&d.id||'↗')}</span><div><h2 class="result-title">${highlight(heading,terms)}</h2><div class="result-meta"><span>${esc(d.areaName)} · ${esc(d.subcategoryName)}</span>${badges(d)}${entryMeta(d)?`<span>${entryMeta(d)}</span>`:''}${state.saved.includes(d.path)?'<span>☆ 已收藏</span>':''}${state.done.includes(d.path)?'<span>✓ 已读</span>':''}</div>${d.notice?`<p class="entry-notice">${esc(d.notice)}</p>`:''}${d.method?`<p class="entry-method">练习方法：${esc(d.method)}</p>`:''}<p class="result-snippet">${highlight(snippet(section?.text||d.summary,terms),terms)}</p></div><span class="result-arrow" aria-hidden="true">↗</span></a>`;}).join('')}</div>`:'<section class="empty-state"><h2>暂时没有匹配内容</h2><p>试试更短的关键词，或放宽筛选条件。</p><button class="button" id="empty-reset">浏览全部资料</button></section>'}${totalPages>1?`<nav class="pagination" aria-label="搜索结果分页"><button class="button" data-page="${page-1}"${page===1?' disabled':''}>← 上一页</button><span>${page} / ${totalPages}</span><button class="button" data-page="${page+1}"${page===totalPages?' disabled':''}>下一页 →</button></nav>`:''}`;
+    main.innerHTML=`<div class="breadcrumb"><a href="#/">学习总览</a>${a?`<span>/</span><a href="${libraryHash({area})}">${esc(a.label)}</a>`:''}<span>/</span><span>${esc(title)}</span></div><div class="page-heading"><div class="eyebrow">${a?esc(a.verb):'查找与复习'}</div><h1>${esc(title)}</h1><p>${esc(desc)}</p></div>${categoryNav}${companyGuideHtml}${projectNav}${area==='interviews'?'<p class="boundary-note">面经为整理与练习。公司标签只用于对应小节；多公司回顾不把每题归属到每家公司。原创项目、模拟与场景卡单列。</p>':''}${legacy?`<p class="boundary-note">当前保留旧专题筛选：${esc(legacy.label)}。</p>`:''}${!storageOK&&view?'<p class="storage-warning">本地存储不可用，记录仅在本次打开期间保留。</p>':''}<section class="filters" aria-label="筛选学习资料">${select('area','学习入口',taxonomy.areas)}${a?select('subcategory',area==='interviews'?'回顾与练习类型':'子类',subcategoryOptions(a)):''}${projectDepth?select('project','项目',taxonomy.projects||[]):''}${area==='interviews'?select('company','公司',taxonomy.companies.filter(c=>candidates.some(e=>e.companies?.includes(c.id))))+select('round','明确轮次',[{id:'1',label:'一面'},{id:'2',label:'二面'},{id:'3',label:'三面'}])+select('role','岗位',roles.map(id=>({id,label:id}))):''}${area==='algorithms'?select('structure','数据结构',structures.map(id=>({id,label:id})))+select('pattern','解法模式',patterns.map(id=>({id,label:id})))+select('difficulty','难度',Object.entries(difficultyName).map(([id,label])=>({id,label}))):''}${area==='qa'?select('priority','优先级',['P0','P1','P2'].map(id=>({id,label:id}))):''}<span class="filter-note">${area==='algorithms'?'主题描述问题领域，解法模式描述具体方法；两者分别筛选。':area==='interviews'?'轮次未知不标注；一/二面综合回顾不拆为单轮真题。':'先独立回忆，再打开正文核对。'}</span></section><div class="results-meta" role="status" aria-live="polite"><span>${results.length} 个匹配${view?'章节':'入口'}${results.length>pageSize?` · 第 ${page} / ${totalPages} 页`:''}</span><button class="reset-button" id="reset-filters">清空搜索与筛选</button></div>${results.length?`<div class="result-list">${visible.map(({d,section})=>{const heading=d.targetAnchor?d.title:section&&/^[A-Z]+\d+\b/.test(section.heading)?section.heading:d.title;const target={...d,targetAnchor:d.targetAnchor||section?.id||''};return `<a class="result-item" href="${entryHash(target,back)}"><span class="result-marker" aria-hidden="true">${esc(d.itemId||d.resourceProblemId||d.scenarioCardId||d.id?.startsWith('SP-')&&d.id||'↗')}</span><div><h2 class="result-title">${highlight(heading,terms)}</h2><div class="result-meta"><span>${esc(d.areaName)} · ${esc(d.subcategoryName)}</span>${badges(d)}${entryMeta(d)?`<span>${entryMeta(d)}</span>`:''}${state.saved.includes(d.path)?'<span>☆ 已收藏</span>':''}${state.done.includes(d.path)?'<span>✓ 已读</span>':''}</div>${d.notice?`<p class="entry-notice">${esc(d.notice)}</p>`:''}${d.method?`<p class="entry-method">练习方法：${esc(d.method)}</p>`:''}<p class="result-snippet">${highlight(snippet(section?.text||d.summary,terms),terms)}</p></div><span class="result-arrow" aria-hidden="true">↗</span></a>`;}).join('')}</div>`:'<section class="empty-state"><h2>暂时没有匹配内容</h2><p>试试更短的关键词，或放宽筛选条件。</p><button class="button" id="empty-reset">浏览全部资料</button></section>'}${totalPages>1?`<nav class="pagination" aria-label="搜索结果分页"><button class="button" data-page="${page-1}"${page===1?' disabled':''}>← 上一页</button><span>${page} / ${totalPages}</span><button class="button" data-page="${page+1}"${page===totalPages?' disabled':''}>下一页 →</button></nav>`:''}`;
   }
 
   function tocLinks(d) {
@@ -207,7 +221,8 @@
     state.lastPath=d.path;persist();
     const toc=tocLinks(d);
     const entry=currentEntry(),a=areaInfo(entry.area),child=subInfo(entry.area,entry.subcategory),back=returnHash(entry);
-    const peers=catalogueDocs.filter(x=>x.area===entry.area&&x.subcategory===entry.subcategory).sort((x,y)=>x.displayOrder-y.displayOrder||window.STUDY_SEARCH.naturalCompare(x.id,y.id));
+    const project=new URLSearchParams(back.split('?')[1]||'').get('project')||'';
+    const peers=catalogueDocs.filter(x=>x.area===entry.area&&x.subcategory===entry.subcategory&&(!projectMatches(entry,project)||projectMatches(x,project))).sort((x,y)=>x.displayOrder-y.displayOrder||window.STUDY_SEARCH.naturalCompare(x.id,y.id));
     const i=peers.findIndex(x=>x.entryId===entry.entryId),prev=peers[i-1],next=peers[i+1];
     const related=taxonomy.related[d.path]||[];
     const relatedHash=link=>hashForRead(link.path,link.anchor||'');
@@ -274,8 +289,8 @@
     const key=e.target.dataset.filter;if(!key)return;
     const p=Object.fromEntries(route.query);p[key]=e.target.value;delete p.page;
     if(key==='module')delete p.topic;
-    if(key==='area')for(const child of ['subcategory','company','round','role','pattern','structure','difficulty','priority','module','topic'])delete p[child];
-    if(key==='subcategory')for(const child of ['company','round','role','pattern','structure'])delete p[child];
+    if(key==='area')for(const child of ['subcategory','project','company','round','role','pattern','structure','difficulty','priority','module','topic'])delete p[child];
+    if(key==='subcategory')for(const child of ['project','company','round','role','pattern','structure'])delete p[child];
     navigate(libraryHash(p));
   });
   main.addEventListener('click',e=>{
