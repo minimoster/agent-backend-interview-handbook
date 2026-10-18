@@ -59,7 +59,7 @@ test('actual registry adds one canonical project page and preserves all 464 IDs 
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='algorithms').length,127);
   assert.equal(registry.pages.filter(p=>p.path===projectPath).length,1);
   assert.equal(registry.pages.filter(p=>p.path!==projectPath).length,261);
-  assert.equal(registry.entries.length,729);
+  assert.equal(registry.entries.length,730);
 });
 
 test('real question and scenario display order preserves prefix and local sequence',()=>{
@@ -220,4 +220,21 @@ test('project footer offers precise prerequisites and four knowledge chapters li
   assert.equal(backlinks.length,4);
   assert.deepEqual(backlinks.map(l=>l.anchor).sort(),['direction-01','direction-02','direction-07','direction-11']);
   for(const link of backlinks){assert.equal(registry.pages.find(p=>p.path===link.from).area,'knowledge');assert.equal(registry.related[link.from].length,3);}
+});
+
+
+test('LC115 is a distinct non-Hot100 handwrite entry without changing numbered IDs',()=>{
+  const record=registry.entries.find(e=>e.id==='extra:LC115');
+  assert.equal(record.area,'algorithms');assert.equal(record.subcategory,'handwrite');
+  assert.equal(record.anchor,'lc115');assert.equal(record.itemId,undefined);
+  assert.deepEqual(record.questionIds,['LC115']);
+  const results=query({area:'algorithms',subcategory:'handwrite',q:'LC115'});
+  assert.equal(results[0].d.id,'extra:LC115');
+  assert.equal(results[0].d.targetAnchor,'lc115');
+  assert.ok(results[0].d.sections[0].text.includes('dp[j] += dp[j - 1]'));
+  assert.ok(results[0].d.sections[0].text.includes('不计删除动作')||results[0].d.sections[0].text.includes('不区分删除动作'));
+  assert.ok(!query({q:'X01'}).some(r=>r.d.id==='extra:LC115'));
+  assert.equal(data.questionCount,464);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);
+  assert.equal(query({area:'algorithms',pattern:'动态规划',q:'LC115'})[0].d.id,'extra:LC115');
+  assert.equal(new Set(registry.pages.filter(p=>p.path===registry.guidePath).map(p=>p.path)).size,1);
 });

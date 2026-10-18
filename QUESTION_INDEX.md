@@ -402,6 +402,10 @@
 - [X05 删除排序链表里所有重复值，和保留一个重复值有什么区别？](docs/70-practice/interview-algorithm-supplements.md#x05) · P0
 - [X06 判断两个字符串是不是字母异位词，字符范围为什么重要？](docs/70-practice/interview-algorithm-supplements.md#x06) · P0
 
+## 独立算法补充（不计入 Hot100）
+
+- [LC115 删除位置方案计数：计数与最少删除数有什么不同？](docs/70-practice/interview-algorithm-supplements.md#lc115)
+
 ## LeetCode Hot100 · 100道Python题
 
 官方题号与上述讲义题号分开；算法难度不等于学习优先级。

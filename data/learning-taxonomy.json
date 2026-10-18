@@ -11284,6 +11284,29 @@
         "shared"
       ],
       "displayOrder": 400
+    },
+    {
+      "id": "extra:LC115",
+      "path": "docs/70-practice/interview-algorithm-supplements.md",
+      "anchor": "lc115",
+      "title": "LC115 删除位置方案计数：状态、倒序更新与整数边界",
+      "area": "algorithms",
+      "subcategory": "handwrite",
+      "kind": "exercise",
+      "questionIds": [
+        "LC115"
+      ],
+      "resourceProblemId": 115,
+      "difficulty": "HARD",
+      "patterns": [
+        "动态规划"
+      ],
+      "dataStructures": [
+        "数组",
+        "字符串"
+      ],
+      "method": "双串前缀计数、一维倒序更新",
+      "displayOrder": 7
     }
   ],
   "related": {
@@ -12719,6 +12742,13 @@
         "label": "49. 字母异位词分组：核心思路",
         "relation": "字符计数",
         "description": "把异位词判断迁移到分组任务，说明字符范围与计数键的选择。"
+      },
+      {
+        "path": "docs/80-hot100/problems/1143-longest-common-subsequence.md",
+        "anchor": "核心思路",
+        "label": "LC1143 最长公共子序列：前缀状态与目标",
+        "relation": "计数与最优值对照",
+        "description": "对比 LC115 的方案数相加与最长公共子序列的最大长度，避免把可达性、方案数和最少删除代价混为一谈。"
       }
     ],
     "docs/70-practice/java-labs.md": [
