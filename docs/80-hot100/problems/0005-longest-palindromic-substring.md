@@ -76,3 +76,5 @@ class Solution:
 自主复习提示：分别枚举奇数与偶数回文中心，检查停止边界并说明怎样从区间恢复子串。
 
 [算法基础补充题库](../../85-algorithm-supplement/README.md)
+
+递进练习：[怎样返回所有最长回文，并区分出现位置与内容去重？](../../70-practice/all-longest-palindromes.md)

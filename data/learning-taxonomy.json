@@ -1903,6 +1903,12 @@
       "area": "knowledge",
       "subcategory": "engineering",
       "displayOrder": 93
+    },
+    {
+      "path": "docs/70-practice/all-longest-palindromes.md",
+      "area": "algorithms",
+      "subcategory": "handwrite",
+      "displayOrder": 263
     }
   ],
   "entries": [
@@ -11333,6 +11339,16 @@
       "subcategory": "principle",
       "kind": "teaching-question",
       "displayOrder": 68
+    },
+    {
+      "id": "doc:docs/70-practice/all-longest-palindromes.md",
+      "path": "docs/70-practice/all-longest-palindromes.md",
+      "anchor": "",
+      "title": "所有最长回文：位置、去重与结果空间",
+      "area": "algorithms",
+      "subcategory": "handwrite",
+      "kind": "chapter",
+      "displayOrder": 263
     }
   ],
   "related": {
@@ -16098,6 +16114,15 @@
         "label": "评测合同与独立判分",
         "relation": "评测设计",
         "description": "先分开候选生成、执行结果和业务语义，再为真实模型设计隔离任务及独立验收。"
+      }
+    ],
+    "docs/70-practice/all-longest-palindromes.md": [
+      {
+        "path": "docs/80-hot100/problems/0005-longest-palindromic-substring.md",
+        "anchor": "核心思路",
+        "label": "先掌握返回一个最长回文",
+        "relation": "方法前置",
+        "description": "从中心扩展的一个最优区间，推导全部并列结果的合同与不变量。"
       }
     ]
   },

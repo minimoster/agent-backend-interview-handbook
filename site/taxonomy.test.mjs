@@ -19,6 +19,19 @@ const {catalogue,create}=createRequire(import.meta.url)('./assets/search.js');
 const projectPath='docs/50-projects/source-code-interview-deep-dive.md';
 const entries=catalogue(data),engine=create(entries),query=p=>engine.query(new URLSearchParams(p)).results;
 
+test('all-longest-palindrome exercise is discoverable without changing canonical LC5',()=>{
+  const exercisePath='docs/70-practice/all-longest-palindromes.md';
+  const hit=query({area:'algorithms',subcategory:'handwrite',q:'最长回文'}).find(r=>r.d.id==='doc:'+exercisePath);
+  assert.ok(hit);
+  const doc=data.docs.find(d=>d.path===exercisePath);
+  assert.ok(doc.headings.some(h=>h.id==='all-longest-palindromes'));
+  assert.ok(doc.html.includes('assets/repo/examples/interview_algorithms/all_longest_palindromes.py'));
+  const canonical=registry.entries.find(e=>e.itemId==='LC5');
+  assert.equal(canonical.path,'docs/80-hot100/problems/0005-longest-palindromic-substring.md');
+  assert.equal(canonical.anchor,'');
+  assert.ok(!registry.entries.find(e=>e.path===exercisePath).itemId);
+});
+
 test('natural question order preserves full prefix and all numeric segments',()=>{
   assert.deepEqual(['A10','A2','A01'].sort(naturalCompare),['A01','A2','A10']);
   assert.deepEqual(['SC-B14','SC-A12','SC-B01','SC-A01','SC-A02'].sort(naturalCompare),['SC-A01','SC-A02','SC-A12','SC-B01','SC-B14']);
@@ -51,15 +64,15 @@ test('anchored search includes its nested answers but excludes next question',()
 
 test('actual registry preserves all 464 IDs and targets with focused teaching pages',()=>{
   assert.equal(JSON.stringify(data.taxonomy),JSON.stringify(registry));
-  assert.equal(registry.pages.length,263);assert.equal(new Set(registry.pages.map(p=>p.path)).size,263);
+  assert.equal(registry.pages.length,264);assert.equal(new Set(registry.pages.map(p=>p.path)).size,264);
   assert.deepEqual(registry.entries.filter(e=>e.itemId).map(e=>e.itemId).sort(),index.items.map(i=>i.id).sort());
   for(const item of index.items){const entry=registry.entries.find(e=>e.itemId===item.id);assert.equal(targetKey(entry.path,entry.anchor),targetKey(item.path,item.anchor||''));}
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='qa').length,297);
   assert.equal(registry.entries.filter(e=>e.itemId&&e.subcategory==='projects').length,40);
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='algorithms').length,127);
   assert.equal(registry.pages.filter(p=>p.path===projectPath).length,1);
-  assert.equal(registry.pages.filter(p=>p.path!==projectPath).length,262);
-  assert.equal(registry.entries.length,732);
+  assert.equal(registry.pages.filter(p=>p.path!==projectPath).length,263);
+  assert.equal(registry.entries.length,733);
 });
 
 test('real question and scenario display order preserves prefix and local sequence',()=>{
@@ -134,9 +147,9 @@ test('saved and done filter any matching chapter entry before canonical-path ded
 });
 
 
-test('all 163 non-Hot100 pages link to substantive cross-page teaching sections',()=>{
+test('all non-Hot100 pages link to substantive cross-page teaching sections',()=>{
   const docs=new Map(data.docs.map(d=>[d.path,d]));
-  const pages=registry.pages.filter(p=>!p.path.startsWith('docs/80-hot100/problems/'));assert.equal(pages.length,163);
+  const pages=registry.pages.filter(p=>!p.path.startsWith('docs/80-hot100/problems/'));assert.equal(pages.length,164);
   for(const page of pages){
     const links=registry.related[page.path];assert.ok(links.some(l=>l.path!==page.path),page.path);
     for(const link of links){

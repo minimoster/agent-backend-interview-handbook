@@ -22,5 +22,6 @@
 
 - [稳定 Top-K、堆不变量与 RRF 聚合](retrieval-ranking-algorithms.md)
 - [乱序列表构树、独立环与深链](../60-interviews/agent-followups-20261015.md)
+- [所有最长回文：位置、去重与结果空间](all-longest-palindromes.md)
 
 这些原创练习独立于原有题号计数。[检索练习与运行方式](retrieval-ranking-algorithms.md)。
