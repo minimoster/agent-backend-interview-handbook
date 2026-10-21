@@ -238,3 +238,5 @@ Spark 的 live UI 和 History Server 提供指标与历史证据，但不能把�
 选一条失败轨迹实现最小原型，再用[Spark 诊断补充](../40-backend/37-spark-execution-and-diagnostics.md#spark-diagnostics)定义观察证据。部署、取消恢复与性能改进仍待验证。
 
 可先运行[幂等身份内存反例](../../examples/agent_contracts/README.md)核对同键异参数契约。该实验没有连接Spark或数据库，不替代上表的集成验收。
+
+查询生成阶段另见[Text-to-SQL 的口径澄清与有限样本语义验证](../10-agent/36-text-to-sql-agent.md#sql-semantic-witness)，本案例继续关注提交、恢复和发布。

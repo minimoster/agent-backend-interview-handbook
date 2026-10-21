@@ -1897,6 +1897,12 @@
       "area": "qa",
       "subcategory": "project-depth",
       "displayOrder": 262
+    },
+    {
+      "path": "docs/10-agent/36-text-to-sql-agent.md",
+      "area": "knowledge",
+      "subcategory": "engineering",
+      "displayOrder": 93
     }
   ],
   "entries": [
@@ -11307,6 +11313,26 @@
       ],
       "method": "双串前缀计数、一维倒序更新",
       "displayOrder": 7
+    },
+    {
+      "id": "doc:docs/10-agent/36-text-to-sql-agent.md",
+      "path": "docs/10-agent/36-text-to-sql-agent.md",
+      "anchor": "",
+      "title": "Text-to-SQL Agent：从一句需求到可解释的查询结果",
+      "area": "knowledge",
+      "subcategory": "engineering",
+      "kind": "chapter",
+      "displayOrder": 93
+    },
+    {
+      "id": "teaching:text-to-sql",
+      "path": "docs/10-agent/36-text-to-sql-agent.md",
+      "anchor": "text-to-sql-answer",
+      "title": "Text-to-SQL Agent 怎样把需求变成可解释的 SQL 结果？",
+      "area": "qa",
+      "subcategory": "principle",
+      "kind": "teaching-question",
+      "displayOrder": 68
     }
   ],
   "related": {
@@ -16049,6 +16075,29 @@
         "label": "7. 从“涨了 10 个点”走到可信的版本比较",
         "relation": "评测练习",
         "description": "将源码中的计算步骤与独立标注、数据隔离和版本比较分开，避免编造效果提升。"
+      }
+    ],
+    "docs/10-agent/36-text-to-sql-agent.md": [
+      {
+        "path": "docs/10-agent/31-tool-mcp-and-skill-contracts.md",
+        "anchor": "synthetic-sql-skill",
+        "label": "9 六表数据 Skill 怎样写清查询口径",
+        "relation": "固定查询对照",
+        "description": "对照只接受注册查询的六表 Skill，区分固定能力与模型提出 SQL 候选的执行边界。"
+      },
+      {
+        "path": "docs/50-projects/data-engineering-agent-case.md",
+        "anchor": "job-reconciliation",
+        "label": "提交双写与重启对账",
+        "relation": "任务恢复延伸",
+        "description": "把查询提交后的未知状态、取消与结果发布接到任务对账合同，不重复实现批处理编排。"
+      },
+      {
+        "path": "docs/10-agent/25-agent-evaluation-and-routing.md",
+        "anchor": "eval-contract",
+        "label": "评测合同与独立判分",
+        "relation": "评测设计",
+        "description": "先分开候选生成、执行结果和业务语义，再为真实模型设计隔离任务及独立验收。"
       }
     ]
   },

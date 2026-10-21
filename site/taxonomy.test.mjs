@@ -49,17 +49,17 @@ test('anchored search includes its nested answers but excludes next question',()
   assert.throws(()=>assertTarget(new Map(),doc.path),/缺少正文/);
 });
 
-test('actual registry adds one canonical project page and preserves all 464 IDs and targets',()=>{
+test('actual registry preserves all 464 IDs and targets with focused teaching pages',()=>{
   assert.equal(JSON.stringify(data.taxonomy),JSON.stringify(registry));
-  assert.equal(registry.pages.length,262);assert.equal(new Set(registry.pages.map(p=>p.path)).size,262);
+  assert.equal(registry.pages.length,263);assert.equal(new Set(registry.pages.map(p=>p.path)).size,263);
   assert.deepEqual(registry.entries.filter(e=>e.itemId).map(e=>e.itemId).sort(),index.items.map(i=>i.id).sort());
   for(const item of index.items){const entry=registry.entries.find(e=>e.itemId===item.id);assert.equal(targetKey(entry.path,entry.anchor),targetKey(item.path,item.anchor||''));}
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='qa').length,297);
   assert.equal(registry.entries.filter(e=>e.itemId&&e.subcategory==='projects').length,40);
   assert.equal(registry.entries.filter(e=>e.itemId&&e.area==='algorithms').length,127);
   assert.equal(registry.pages.filter(p=>p.path===projectPath).length,1);
-  assert.equal(registry.pages.filter(p=>p.path!==projectPath).length,261);
-  assert.equal(registry.entries.length,730);
+  assert.equal(registry.pages.filter(p=>p.path!==projectPath).length,262);
+  assert.equal(registry.entries.length,732);
 });
 
 test('real question and scenario display order preserves prefix and local sequence',()=>{
@@ -82,7 +82,7 @@ test('legacy supplemental listing, LC77, topic and difficulty use real navigatio
 test('global search deduplicates canonical target while preserving separate questions',()=>{
   for(const q of ['A01','RAG','SQL','LC77','Go']){const results=query({q});const keys=results.map(({d,section})=>targetKey(d.path,d.targetAnchor||section?.id||''));assert.equal(new Set(keys).size,keys.length,q);}
   assert.equal(query({q:'A01'})[0].d.itemId,'A01');
-  const qa=query({area:'qa'});assert.equal(qa.length,321);assert.equal(qa.filter(r=>r.d.itemId).length,297);assert.ok(qa.some(r=>r.d.itemId==='A01'));assert.ok(qa.some(r=>r.d.itemId==='A02'));
+  const qa=query({area:'qa'});assert.equal(qa.length,322);assert.equal(qa.filter(r=>r.d.itemId).length,297);assert.ok(qa.some(r=>r.d.itemId==='A01'));assert.ok(qa.some(r=>r.d.itemId==='A02'));
   const saved=create(entries).query(new URLSearchParams({view:'saved'}),{saved:['docs/10-agent/01-agent-loop-tools-and-state.md'],done:[]}).results;assert.equal(saved.length,1);assert.equal(saved[0].d.targetAnchor,'');
 });
 
@@ -134,9 +134,9 @@ test('saved and done filter any matching chapter entry before canonical-path ded
 });
 
 
-test('all 162 non-Hot100 pages link to substantive cross-page teaching sections',()=>{
+test('all 163 non-Hot100 pages link to substantive cross-page teaching sections',()=>{
   const docs=new Map(data.docs.map(d=>[d.path,d]));
-  const pages=registry.pages.filter(p=>!p.path.startsWith('docs/80-hot100/problems/'));assert.equal(pages.length,162);
+  const pages=registry.pages.filter(p=>!p.path.startsWith('docs/80-hot100/problems/'));assert.equal(pages.length,163);
   for(const page of pages){
     const links=registry.related[page.path];assert.ok(links.some(l=>l.path!==page.path),page.path);
     for(const link of links){
@@ -237,4 +237,20 @@ test('LC115 is a distinct non-Hot100 handwrite entry without changing numbered I
   assert.equal(data.questionCount,464);assert.equal(data.hot100Count,100);assert.equal(data.supplementaryCount,15);
   assert.equal(query({area:'algorithms',pattern:'动态规划',q:'LC115'})[0].d.id,'extra:LC115');
   assert.equal(new Set(registry.pages.filter(p=>p.path===registry.guidePath).map(p=>p.path)).size,1);
+});
+
+
+test('Text-to-SQL teaching has one canonical page, an unnumbered answer and working related anchors',()=>{
+  const teachingPath='docs/10-agent/36-text-to-sql-agent.md';
+  const docs=new Map(data.docs.map(d=>[d.path,d]));
+  assert.equal(registry.pages.filter(p=>p.path===teachingPath).length,1);
+  const records=registry.entries.filter(e=>e.path===teachingPath);
+  assert.equal(records.length,2);assert.ok(records.every(e=>!e.itemId&&!e.companies&&!e.rounds));
+  const answer=query({area:'qa',q:'Text-to-SQL'}).find(r=>r.d.id==='teaching:text-to-sql');
+  assert.ok(answer);assert.equal(answer.d.targetAnchor,'text-to-sql-answer');
+  assert.ok(query({area:'knowledge',q:'Text-to-SQL'}).some(r=>r.d.path===teachingPath));
+  for(const link of registry.related[teachingPath])assertTarget(docs,link.path,link.anchor);
+  const saved=create(entries).query(new URLSearchParams({view:'saved',q:'Text-to-SQL'}),{saved:[teachingPath],done:[]}).results;
+  assert.equal(saved.length,1);assert.equal(saved[0].d.path,teachingPath);
+  assert.equal(data.questionCount,464);assert.equal(data.hot100Count,100);
 });

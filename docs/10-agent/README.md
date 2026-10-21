@@ -29,6 +29,7 @@
 - [框架选型与组件集成](29-framework-selection-and-integration.md)
 - [RAG数据工程与分块实验](30-rag-data-and-chunking-lab.md)
 - [工具、MCP与Skill契约](31-tool-mcp-and-skill-contracts.md)
+- [Text-to-SQL Agent：需求、受控执行与语义反例](36-text-to-sql-agent.md)
 
 另见[Python/FastAPI附录](../40-backend/40-python-fastapi-lab.md)、[AI Coding练习](../70-practice/ai-coding-exercises.md)与[面试证据准备](../90-interview/01-evidence-based-interview-preparation.md)。
 
