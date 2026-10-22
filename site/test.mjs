@@ -881,6 +881,22 @@ check('移动筛选最终级联保持一列或两列和44px控件（非渲染检
   }
 });
 
+check('AI代码审查、成本核算和微服务动机沿用既有入口且练习可下载',()=>{
+  const file='docs/10-agent/28-frontier-and-engineering-decisions.md';
+  const chapter=docs.get(file);
+  for(const anchor of ['ai-coding-responsibility','coding-context'])assert.ok(chapter.headings.some(h=>h.id===anchor),anchor);
+  for(const phrase of ['USD 0.0532','USD 0.0932','不是并发预算闸门','失败和重试'])assert.ok(chapter.source.includes(phrase),phrase);
+  for(const query of ['未知 预留','同一个AI'])assert.ok(engine.query(new URLSearchParams({q:query})).results.some(r=>r.d.path===file),query);
+  const interview='docs/90-interview/01-evidence-based-interview-preparation.md';
+  assert.ok(engine.query(new URLSearchParams({q:'模块化单体'})).results.some(r=>r.d.path===interview));
+  for(const name of ['cost_ledger.py','test_cost_ledger.py']){
+    const resource='examples/agent_costs/'+name;
+    assert.ok(chapter.html.includes('assets/repo/'+resource),resource);
+    assert.deepEqual(fs.readFileSync(path.join(site,'assets/repo',resource)),fs.readFileSync(path.join(root,resource)));
+  }
+  assert.equal(data.questionCount,464);assert.equal(data.hot100Count,100);
+});
+
 check('现有站点检查入口实际执行分类回归',()=>{execFileSync(process.execPath,['--test',path.join(site,'taxonomy.test.mjs')],{stdio:'inherit'});});
 
 console.log(`\n${checks} 组非渲染检查通过。实际浏览器、屏幕尺寸与辅助技术测试需另行进行。`);
